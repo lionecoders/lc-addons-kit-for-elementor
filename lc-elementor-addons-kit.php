@@ -73,7 +73,20 @@ class LC_Elementor_Addons_Kit
             [],
             LC_EAK_VERSION
         );
-            wp_enqueue_style('lc-kit-button');
+        wp_enqueue_style('lc-kit-button');
+
+    
+        wp_register_style(
+            'lc-kit-social-icons',
+            LC_EAK_URL . 'assets/css/lc_social_icons.css',
+            [],
+            LC_EAK_VERSION
+        );
+
+        wp_enqueue_style('lc-kit-social-icons');
+
+
+
     }
     
 

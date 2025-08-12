@@ -1,0 +1,27 @@
+ul.lc-social-icons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lc-social-icons--horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.lc-social-icons--vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lc-social-icons--horizontal.align-left {
+    justify-content: flex-start;
+}
+.lc-social-icons--horizontal.align-center {
+    justify-content: center;
+}
+.lc-social-icons--horizontal.align-right {
+    justify-content: flex-end;
+}

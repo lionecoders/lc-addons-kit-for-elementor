@@ -39,7 +39,6 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         return ['accordion', 'tabs', 'toggle', 'collapsible', 'faq'];
     }
 
-    // ✅ FIXED: Register content and style controls here
     protected function register_controls() {
         $this->add_content_controls();
         $this->add_style_controls();

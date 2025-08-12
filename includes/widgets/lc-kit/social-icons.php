@@ -31,43 +31,38 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         return ['social', 'icons', 'facebook', 'twitter', 'instagram', 'linkedin'];
     }
 
+    protected function register_controls() {
+        $this->add_content_controls();
+        $this->add_style_controls();
+    }
     protected function add_content_controls() {
         $this->start_controls_section(
-            'content_section',
+            'lc_content_section',
             [
                 'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
 
+        
+
         $repeater = new \Elementor\Repeater();
 
+        // set social icon
         $repeater->add_control(
-            'social_platform',
+            'lc_socialmedia_icons',
             [
-                'label' => esc_html__('Platform', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'facebook',
-                'options' => [
-                    'facebook' => esc_html__('Facebook', 'lc-elementor-addons-kit'),
-                    'twitter' => esc_html__('Twitter', 'lc-elementor-addons-kit'),
-                    'instagram' => esc_html__('Instagram', 'lc-elementor-addons-kit'),
-                    'linkedin' => esc_html__('LinkedIn', 'lc-elementor-addons-kit'),
-                    'youtube' => esc_html__('YouTube', 'lc-elementor-addons-kit'),
-                    'pinterest' => esc_html__('Pinterest', 'lc-elementor-addons-kit'),
-                    'tiktok' => esc_html__('TikTok', 'lc-elementor-addons-kit'),
-                    'snapchat' => esc_html__('Snapchat', 'lc-elementor-addons-kit'),
-                    'whatsapp' => esc_html__('WhatsApp', 'lc-elementor-addons-kit'),
-                    'telegram' => esc_html__('Telegram', 'lc-elementor-addons-kit'),
-                    'discord' => esc_html__('Discord', 'lc-elementor-addons-kit'),
-                    'github' => esc_html__('GitHub', 'lc-elementor-addons-kit'),
-                    'email' => esc_html__('Email', 'lc-elementor-addons-kit'),
-                    'phone' => esc_html__('Phone', 'lc-elementor-addons-kit'),
-                    'website' => esc_html__('Website', 'lc-elementor-addons-kit'),
+                'label' => esc_html__( 'Icon', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::ICONS,
+                'label_block' => true,
+                'default' => [
+                    'value' => 'fab fa-facebook-f',
+                    'library' => 'fa-brands',
                 ],
             ]
         );
 
+        // Add the Link control
         $repeater->add_control(
             'link',
             [
@@ -77,17 +72,7 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
             ]
         );
 
-        $repeater->add_control(
-            'custom_icon',
-            [
-                'label' => esc_html__('Custom Icon', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::ICONS,
-                'condition' => [
-                    'social_platform' => 'custom',
-                ],
-            ]
-        );
-
+        // Add the Title control
         $repeater->add_control(
             'title',
             [
@@ -97,38 +82,92 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
             ]
         );
 
+
+        // Add the repeater control itself
         $this->add_control(
-            'social_icons',
+            'lc_content_social_icons',
             [
                 'label' => esc_html__('Social Icons', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'social_platform' => 'facebook',
+                        'title' => 'Facebook',
+                        'lc_socialmedia_icons' => [
+                            'value' => 'fab fa-facebook-f',
+                            'library' => 'fa-brands',
+                        ],
                         'link' => [
                             'url' => 'https://facebook.com',
                         ],
                     ],
                     [
-                        'social_platform' => 'twitter',
+                        'title' => 'Twitter',
+                        'lc_socialmedia_icons' => [
+                            'value' => 'fab fa-twitter',
+                            'library' => 'fa-brands',
+                        ],
                         'link' => [
                             'url' => 'https://twitter.com',
                         ],
                     ],
                     [
-                        'social_platform' => 'instagram',
+                        'title' => 'Instagram',
+                        'lc_socialmedia_icons' => [
+                            'value' => 'fab fa-instagram',
+                            'library' => 'fa-brands',
+                        ],
                         'link' => [
                             'url' => 'https://instagram.com',
                         ],
                     ],
                 ],
-                'title_field' => '{{{ social_platform }}}',
+                'title_field' => '{{{ title }}}', // show title in repeater label
+            ]
+        );
+        
+        $this->add_control(
+            'lc_content_social_icons',
+            [
+                'label' => esc_html__('Social Icons', 'lc-elementor-addons-kit'),
+                'type' => \Elementor\Controls_Manager::REPEATER,
+                'fields' => $repeater->get_controls(),
+                'default' => [
+                    [
+                        'lc_socialmedia_icons' => [
+                            'value' => 'fab fa-facebook-f',
+                            'library' => 'fa-brands',
+                        ],
+                        'link' => [
+                            'url' => 'https://facebook.com',
+                        ],
+                    ],
+                    [
+                        'lc_socialmedia_icons' => [
+                            'value' => 'fab fa-twitter',
+                            'library' => 'fa-brands',
+                        ],
+                        'link' => [
+                            'url' => 'https://twitter.com',
+                        ],
+                    ],
+                    [
+                        'lc_socialmedia_icons' => [
+                            'value' => 'fab fa-instagram',
+                            'library' => 'fa-brands',
+                        ],
+                        'link' => [
+                            'url' => 'https://instagram.com',
+                        ],
+                    ],
+                ],
+                'title_field' => '{{{ lc_socialmedia_icons.value }}}', 
             ]
         );
 
+
         $this->add_control(
-            'layout',
+            'lc_content_layout',
             [
                 'label' => esc_html__('Layout', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SELECT,
@@ -141,12 +180,12 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'alignment',
+            'lc_content_alignment',
             [
                 'label' => esc_html__('Alignment', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
-                    'left' => [
+                    'flex-start' => [
                         'title' => esc_html__('Left', 'lc-elementor-addons-kit'),
                         'icon' => 'eicon-text-align-left',
                     ],
@@ -154,20 +193,25 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
                         'title' => esc_html__('Center', 'lc-elementor-addons-kit'),
                         'icon' => 'eicon-text-align-center',
                     ],
-                    'right' => [
+                    'flex-end' => [
                         'title' => esc_html__('Right', 'lc-elementor-addons-kit'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
                 'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-social-icons' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .lc-social-icons' => 'justify-content: {{VALUE}};',
+                ],
+                'condition' => [
+                    'lc_content_layout' => 'horizontal', 
                 ],
             ]
         );
 
+
+
         $this->add_control(
-            'show_title',
+            'lc_content_show_title',
             [
                 'label' => esc_html__('Show Title', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
@@ -183,7 +227,7 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
 
     protected function add_style_controls() {
         $this->start_controls_section(
-            'section_style_icons',
+            'lc_section_style_icons',
             [
                 'label' => esc_html__('Icons', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -191,7 +235,7 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'icon_size',
+            'lc_style_icon_size',
             [
                 'label' => esc_html__('Size', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
@@ -213,7 +257,7 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'icon_padding',
+            'lc_style_icon_padding',
             [
                 'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
@@ -234,7 +278,7 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'icon_margin',
+            'lc_style_icon_margin',
             [
                 'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -246,15 +290,16 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'icon_color',
+            'lc_style_icon_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-social-icon' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lc-social-icon a' => 'color: {{VALUE}};',
                 ],
             ]
         );
+
 
         $this->add_control(
             'icon_background_color',
@@ -270,13 +315,13 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'icon_border',
+                'name' => 'lc_style_icon_border',
                 'selector' => '{{WRAPPER}} .lc-social-icon',
             ]
         );
 
         $this->add_control(
-            'icon_border_radius',
+            'lc_style_icon_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -290,7 +335,7 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'section_style_hover',
+            'lc_section_style_hover',
             [
                 'label' => esc_html__('Hover', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -298,12 +343,12 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'icon_hover_color',
+            'lc_style_icon_hover_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Hover Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-social-icon:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lc-social-icon a:hover' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -329,30 +374,22 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
                 ],
             ]
         );
-
-        $this->add_control(
-            'icon_hover_animation',
-            [
-                'label' => esc_html__('Hover Animation', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
-            ]
-        );
-
+        
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'section_style_title',
+            'lc_title_style_section_title',
             [
                 'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
-                    'show_title' => 'yes',
+                    'lc_content_show_title' => 'yes',
                 ],
             ]
         );
 
         $this->add_control(
-            'title_color',
+            'lc_title_style_title_color',
             [
                 'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -365,13 +402,13 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'title_typography',
+                'name' => 'lc_style_title_typography',
                 'selector' => '{{WRAPPER}} .lc-social-icon-title',
             ]
         );
 
         $this->add_responsive_control(
-            'title_margin',
+            'lc_style_title_margin',
             [
                 'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -385,91 +422,74 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         $this->end_controls_section();
     }
 
-    private function get_social_icon_class($platform) {
-        $icons = [
-            'facebook' => 'fab fa-facebook-f',
-            'twitter' => 'fab fa-twitter',
-            'instagram' => 'fab fa-instagram',
-            'linkedin' => 'fab fa-linkedin-in',
-            'youtube' => 'fab fa-youtube',
-            'pinterest' => 'fab fa-pinterest-p',
-            'tiktok' => 'fab fa-tiktok',
-            'snapchat' => 'fab fa-snapchat-ghost',
-            'whatsapp' => 'fab fa-whatsapp',
-            'telegram' => 'fab fa-telegram-plane',
-            'discord' => 'fab fa-discord',
-            'github' => 'fab fa-github',
-            'email' => 'fas fa-envelope',
-            'phone' => 'fas fa-phone',
-            'website' => 'fas fa-globe',
-        ];
-
-        return isset($icons[$platform]) ? $icons[$platform] : 'fas fa-link';
-    }
-
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        if (empty($settings['social_icons'])) {
+        if (empty($settings['lc_content_social_icons']) || !is_array($settings['lc_content_social_icons'])) {
             return;
         }
 
-        $this->add_render_attribute('wrapper', 'class', 'lc-social-icons');
-        $this->add_render_attribute('wrapper', 'class', 'lc-social-icons--' . $settings['layout']);
+        $layout = !empty($settings['lc_content_layout']) ? $settings['lc_content_layout'] : 'horizontal';
 
-        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
-        
-        foreach ($settings['social_icons'] as $icon) {
-            if (empty($icon['link']['url'])) {
+        // Wrapper attributes
+        $this->add_render_attribute('wrapper', [
+            'class' => [
+                'lc-social-icons',
+                'lc-social-icons--' . esc_attr($layout),
+            ],
+            'role' => 'list',
+        ]);
+
+        echo '<ul ' . $this->get_render_attribute_string('wrapper') . '>';
+
+        // Allowed URL schemes
+        $allowed_schemes = ['http', 'https', 'mailto', 'tel'];
+
+        foreach ((array) $settings['lc_content_social_icons'] as $icon) {
+            $id = !empty($icon['_id']) ? $icon['_id'] : uniqid('lc_social_', true);
+
+            $link = isset($icon['link']) && is_array($icon['link']) ? $icon['link'] : [];
+            $url  = isset($link['url']) ? trim($link['url']) : '';
+
+            if (empty($url)) {
                 continue;
             }
 
-            $icon_class = $this->get_social_icon_class($icon['social_platform']);
-            
-            echo '<div class="lc-social-icon">';
-            
-            $this->add_link_attributes('link_' . $icon['_id'], $icon['link']);
-            echo '<a ' . $this->get_render_attribute_string('link_' . $icon['_id']) . '>';
-            
-            if (!empty($icon['custom_icon']['value'])) {
-                \Elementor\Icons_Manager::render_icon($icon['custom_icon'], ['aria-hidden' => 'true']);
-            } else {
-                echo '<i class="' . esc_attr($icon_class) . '"></i>';
+            $scheme = wp_parse_url($url, PHP_URL_SCHEME);
+            if ($scheme && !in_array(strtolower($scheme), $allowed_schemes, true)) {
+                continue;
             }
-            
-            if ($settings['show_title'] === 'yes' && !empty($icon['title'])) {
+
+            // Sanitize URL
+            $link['url'] = esc_url_raw($url);
+
+            // Add link attributes
+            $this->add_link_attributes('link_' . $id, $link);
+
+            // Aria label
+            $aria_label = !empty($icon['title']) ? $icon['title'] : '';
+            if (!empty($aria_label)) {
+                $this->add_render_attribute('link_' . $id, 'aria-label', esc_attr($aria_label));
+            }
+
+            echo '<li class="lc-social-icon">';
+            echo '<a ' . $this->get_render_attribute_string('link_' . $id) . '>';
+
+            // Icon rendering using Elementor Icons Manager
+            if (!empty($icon['lc_socialmedia_icons']) && is_array($icon['lc_socialmedia_icons'])) {
+                \Elementor\Icons_Manager::render_icon($icon['lc_socialmedia_icons'], ['aria-hidden' => 'true']);
+            }
+
+            // Title (if enabled)
+            if (!empty($settings['lc_content_show_title']) && $settings['lc_content_show_title'] === 'yes' && !empty($icon['title'])) {
                 echo '<span class="lc-social-icon-title">' . esc_html($icon['title']) . '</span>';
             }
-            
+
             echo '</a>';
-            echo '</div>';
+            echo '</li>';
         }
 
-        echo '</div>';
+        echo '</ul>';
     }
 
-    protected function content_template() {
-        ?>
-        <# if (settings.social_icons.length > 0) { #>
-            <div class="lc-social-icons lc-social-icons--{{ settings.layout }}">
-                <# _.each(settings.social_icons, function(icon) { #>
-                    <# if (icon.link.url) { #>
-                        <div class="lc-social-icon">
-                            <a href="{{ icon.link.url }}">
-                                <# if (icon.custom_icon.value) { #>
-                                    <i class="{{ icon.custom_icon.value }}"></i>
-                                <# } else { #>
-                                    <i class="fab fa-{{ icon.social_platform }}"></i>
-                                <# } #>
-                                <# if (settings.show_title === 'yes' && icon.title) { #>
-                                    <span class="lc-social-icon-title">{{{ icon.title }}}</span>
-                                <# } #>
-                            </a>
-                        </div>
-                    <# } #>
-                <# }); #>
-            </div>
-        <# } #>
-        <?php
-    }
 } 
