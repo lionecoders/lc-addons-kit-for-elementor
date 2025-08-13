@@ -31,87 +31,99 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         return ['faq', 'questions', 'answers', 'accordion', 'help'];
     }
 
+    protected function register_controls() {
+        $this->add_content_controls();
+        $this->add_style_controls();
+    }
+
     protected function add_content_controls() {
-        $this->start_controls_section(
-            'content_section',
-            [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-            ]
-        );
+    $this->start_controls_section(
+        'lc_faq_content_section',
+        [
+            'label' => esc_html__('FAQ', 'lc-elementor-addons-kit'),
+            'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+        ]
+    );
 
-        $repeater = new \Elementor\Repeater();
+    $repeater = new \Elementor\Repeater();
 
-        $repeater->add_control(
-            'question',
-            [
-                'label' => esc_html__('Question', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Frequently Asked Question', 'lc-elementor-addons-kit'),
-                'label_block' => true,
-            ]
-        );
+    $repeater->add_control(
+        'title',
+        [
+            'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+            'type' => \Elementor\Controls_Manager::TEXT,
+            'default' => esc_html__('Accordion Title', 'lc-elementor-addons-kit'),
+            'label_block' => true,
+        ]
+    );
 
-        $repeater->add_control(
-            'answer',
-            [
-                'label' => esc_html__('Answer', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::WYSIWYG,
-                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'lc-elementor-addons-kit'),
-                'show_label' => false,
-            ]
-        );
+    $repeater->add_control(
+        'content',
+        [
+            'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+            'type' => \Elementor\Controls_Manager::WYSIWYG,
+            'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-elementor-addons-kit'),
+            'show_label' => false,
+        ]
+    );
 
-        $repeater->add_control(
-            'icon',
-            [
-                'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::ICONS,
-                'default' => [
-                    'value' => 'fas fa-plus',
-                    'library' => 'fa-solid',
+    // Removed the icon and active icon controls
+    /*
+    $repeater->add_control(
+        'icon',
+        [
+            'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
+            'type' => \Elementor\Controls_Manager::ICONS,
+            'default' => [
+                'value' => 'fas fa-plus',
+                'library' => 'fa-solid',
+            ],
+        ]
+    );
+
+    $repeater->add_control(
+        'active_icon',
+        [
+            'label' => esc_html__('Active Icon', 'lc-elementor-addons-kit'),
+            'type' => \Elementor\Controls_Manager::ICONS,
+            'default' => [
+                'value' => 'fas fa-minus',
+                'library' => 'fa-solid',
+            ],
+        ]
+    );
+    */
+
+    $this->add_control(
+        'lc_faq_content_items',
+        [
+            'label' => esc_html__('Tab Content', 'lc-elementor-addons-kit'),
+            'type' => \Elementor\Controls_Manager::REPEATER,
+            'fields' => $repeater->get_controls(),
+            'default' => [
+                [
+                    'title' => esc_html__('Can I build a professional website without knowing how to code?', 'lc-elementor-addons-kit'),
+                    'content' => esc_html__('Yes! With Elementor and WordPress, you can easily design stunning websites using drag-and-drop tools—no coding needed', 'lc-elementor-addons-kit'),
                 ],
-            ]
-        );
-
-        $repeater->add_control(
-            'active_icon',
-            [
-                'label' => esc_html__('Active Icon', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::ICONS,
-                'default' => [
-                    'value' => 'fas fa-minus',
-                    'library' => 'fa-solid',
+                [
+                    'title' => esc_html__('What’s the difference between WordPress and Elementor?', 'lc-elementor-addons-kit'),
+                    'content' => esc_html__('WordPress is a website platform, while Elementor is a page builder plugin that lets you customize your site visually. Learn how they work together here.', 'lc-elementor-addons-kit'),
                 ],
-            ]
-        );
+                [
+                    'title' => esc_html__('Is Elementor good for beginners?', 'lc-elementor-addons-kit'),
+                    'content' => esc_html__('Absolutely! Elementor is designed for users of all skill levels. Start learning new design skills right from this platform.', 'lc-elementor-addons-kit'),
+                ],
+                [
+                    'title' => esc_html__('How can I improve my website design using Elementor?', 'lc-elementor-addons-kit'),
+                    'content' => esc_html__('From animations to responsive layouts, Elementor offers powerful tools. Explore tips and tutorials here to keep learning new things', 'lc-elementor-addons-kit'),
+                ],
+            ],
+            'title_field' => '{{{ title }}}',
+        ]
+    );
 
         $this->add_control(
-            'faq_items',
-            [
-                'label' => esc_html__('FAQ Items', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::REPEATER,
-                'fields' => $repeater->get_controls(),
-                'default' => [
-                    [
-                        'question' => esc_html__('What is Lorem Ipsum?', 'lc-elementor-addons-kit'),
-                        'answer' => esc_html__('Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'lc-elementor-addons-kit'),
-                    ],
-                    [
-                        'question' => esc_html__('Why do we use it?', 'lc-elementor-addons-kit'),
-                        'answer' => esc_html__('It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', 'lc-elementor-addons-kit'),
-                    ],
-                    [
-                        'question' => esc_html__('Where does it come from?', 'lc-elementor-addons-kit'),
-                        'answer' => esc_html__('Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature.', 'lc-elementor-addons-kit'),
-                    ],
-                ],
-                'title_field' => '{{{ question }}}',
-            ]
-        );
-
-        $this->add_control(
-            'active_item',
+            'lc_faq_active_item',
             [
                 'label' => esc_html__('Active Item', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
@@ -123,27 +135,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'icon_position',
-            [
-                'label' => esc_html__('Icon Position', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'lc-elementor-addons-kit'),
-                        'icon' => 'eicon-h-align-left',
-                    ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'lc-elementor-addons-kit'),
-                        'icon' => 'eicon-h-align-right',
-                    ],
-                ],
-                'default' => 'right',
-                'toggle' => false,
-            ]
-        );
-
-        $this->add_control(
-            'multiple',
+            'lc_faq_active_multiple',
             [
                 'label' => esc_html__('Multiple Items Open', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
@@ -159,7 +151,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
 
     protected function add_style_controls() {
         $this->start_controls_section(
-            'style_section',
+            'lc_style_section',
             [
                 'label' => esc_html__('Style', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -167,7 +159,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'border_width',
+            'lc_style_border_width',
             [
                 'label' => esc_html__('Border Width', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
@@ -188,7 +180,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'border_color',
+            'lc_style_border_color',
             [
                 'label' => esc_html__('Border Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -199,7 +191,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'border_radius',
+            'lc_style_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -211,7 +203,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'item_spacing',
+            'lc_style_item_spacing',
             [
                 'label' => esc_html__('Item Spacing', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
@@ -235,7 +227,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
 
         // Question Style
         $this->start_controls_section(
-            'question_style_section',
+            'lc_question_style_section',
             [
                 'label' => esc_html__('Question', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -253,14 +245,14 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->start_controls_tabs('question_tabs');
 
         $this->start_controls_tab(
-            'question_normal_tab',
+            'lc_question_normal_tab',
             [
                 'label' => esc_html__('Normal', 'lc-elementor-addons-kit'),
             ]
         );
 
         $this->add_control(
-            'question_background_color',
+            'lc_question_background_color',
             [
                 'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -271,7 +263,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'question_color',
+            'lc_question_color',
             [
                 'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -284,14 +276,14 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->end_controls_tab();
 
         $this->start_controls_tab(
-            'question_hover_tab',
+            'lc_question_hover_tab',
             [
                 'label' => esc_html__('Hover', 'lc-elementor-addons-kit'),
             ]
         );
 
         $this->add_control(
-            'question_background_color_hover',
+            'lc_question_background_color_hover',
             [
                 'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -302,7 +294,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'question_color_hover',
+            'lc_question_color_hover',
             [
                 'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -322,7 +314,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'question_background_color_active',
+            'lc_question_background_color_active',
             [
                 'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -333,7 +325,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'question_color_active',
+            'lc_question_color_active',
             [
                 'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -348,7 +340,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->end_controls_tabs();
 
         $this->add_responsive_control(
-            'question_padding',
+            'lc_question_padding',
             [
                 'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -364,7 +356,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
 
         // Answer Style
         $this->start_controls_section(
-            'answer_style_section',
+            'lc_answer_style_section',
             [
                 'label' => esc_html__('Answer', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -372,7 +364,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'answer_background_color',
+            'lc_answer_background_color',
             [
                 'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -383,12 +375,12 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'answer_color',
+            'lc_answer_color',
             [
                 'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-faq-answer' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lc-faq-answer-content' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -397,68 +389,18 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'answer_typography',
-                'selector' => '{{WRAPPER}} .lc-faq-answer',
+                'selector' => '{{WRAPPER}} .lc-faq-answer-content',
             ]
         );
 
         $this->add_responsive_control(
-            'answer_padding',
+            'lc_answer_padding',
             [
                 'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-faq-answer' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        // Icon Style
-        $this->start_controls_section(
-            'icon_style_section',
-            [
-                'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            'icon_size',
-            [
-                'label' => esc_html__('Size', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 6,
-                        'max' => 300,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-faq-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'icon_color',
-            [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-faq-icon' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'icon_active_color',
-            [
-                'label' => esc_html__('Active Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-faq-item.active .lc-faq-icon' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} ..lc-faq-item.active' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -469,83 +411,47 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        if (empty($settings['faq_items'])) {
+        if (empty($settings['lc_faq_content_items']) || !is_array($settings['lc_faq_content_items'])) {
             return;
         }
 
-        $this->add_render_attribute('wrapper', 'class', 'lc-faq');
-        $this->add_render_attribute('wrapper', 'data-multiple', $settings['multiple']);
+        $multiple = (!empty($settings['lc_faq_active_multiple']) && $settings['lc_faq_active_multiple'] === 'yes');
 
-        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
-        
-        foreach ($settings['faq_items'] as $index => $item) {
-            $item_class = 'lc-faq-item';
-            if ($index + 1 == $settings['active_item']) {
-                $item_class .= ' active';
+        $active_index = null;
+        if (!$multiple && !empty($settings['lc_faq_active_item'])) {
+            $i = intval($settings['lc_faq_active_item']) - 1;
+            if ($i >= 0 && $i < count($settings['lc_faq_content_items'])) {
+                $active_index = $i;
             }
-
-            echo '<div class="' . esc_attr($item_class) . '">';
-            
-            echo '<div class="lc-faq-question">';
-            echo '<div class="lc-faq-question-text">' . esc_html($item['question']) . '</div>';
-            
-            if (!empty($item['icon']['value']) || !empty($item['active_icon']['value'])) {
-                echo '<div class="lc-faq-icon">';
-                if (!empty($item['icon']['value'])) {
-                    \Elementor\Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
-                }
-                if (!empty($item['active_icon']['value'])) {
-                    echo '<span class="lc-faq-icon-active">';
-                    \Elementor\Icons_Manager::render_icon($item['active_icon'], ['aria-hidden' => 'true']);
-                    echo '</span>';
-                }
-                echo '</div>';
-            }
-            
-            echo '</div>';
-            
-            echo '<div class="lc-faq-answer">';
-            echo '<div class="lc-faq-answer-content">';
-            echo wp_kses_post($item['answer']);
-            echo '</div>';
-            echo '</div>';
-            
-            echo '</div>';
         }
 
-        echo '</div>';
+        $this->add_render_attribute('wrapper', 'class', 'lc-faq');
+        $this->add_render_attribute('wrapper', 'data-multiple', $multiple ? 'true' : 'false');
+
+        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
+
+        foreach ($settings['lc_faq_content_items'] as $index => $item) {
+            $is_active = ($active_index !== null && $index === $active_index);
+            $item_classes = 'lc-faq-item' . ($is_active ? ' active' : '');
+
+            $question_id = 'lc-faq-q-' . esc_attr($this->get_id()) . '-' . $index;
+            $answer_id   = 'lc-faq-a-' . esc_attr($this->get_id()) . '-' . $index;
+
+            echo '<div class="' . esc_attr($item_classes) . '">';
+            echo '<div class="lc-faq-question" role="button" tabindex="0" aria-expanded="' . ($is_active ? 'true' : 'false') . '" aria-controls="' . esc_attr($answer_id) . '" id="' . esc_attr($question_id) . '">';
+
+            echo '<span class="lc-faq-question-text">' . esc_html($item['title']) . '</span>';
+
+            echo '</div>'; // .lc-faq-question
+
+            echo '<div class="lc-faq-answer" id="' . esc_attr($answer_id) . '" role="region" aria-labelledby="' . esc_attr($question_id) . '">';
+            echo '<div class="lc-faq-answer-content">' . wp_kses_post($item['content']) . '</div>';
+            echo '</div>';
+
+            echo '</div>'; // .lc-faq-item
+        }
+
+        echo '</div>'; // .lc-faq
     }
 
-    protected function content_template() {
-        ?>
-        <# if (settings.faq_items.length > 0) { #>
-            <div class="lc-faq" data-multiple="{{ settings.multiple }}">
-                <# _.each(settings.faq_items, function(item, index) { #>
-                    <div class="lc-faq-item<# if (index + 1 == settings.active_item) { #> active<# } #>">
-                        <div class="lc-faq-question">
-                            <div class="lc-faq-question-text">{{{ item.question }}}</div>
-                            <# if (item.icon.value || item.active_icon.value) { #>
-                                <div class="lc-faq-icon">
-                                    <# if (item.icon.value) { #>
-                                        <i class="{{ item.icon.value }}" aria-hidden="true"></i>
-                                    <# } #>
-                                    <# if (item.active_icon.value) { #>
-                                        <span class="lc-faq-icon-active">
-                                            <i class="{{ item.active_icon.value }}" aria-hidden="true"></i>
-                                        </span>
-                                    <# } #>
-                                </div>
-                            <# } #>
-                        </div>
-                        <div class="lc-faq-answer">
-                            <div class="lc-faq-answer-content">
-                                {{{ item.answer }}}
-                            </div>
-                        </div>
-                    </div>
-                <# }); #>
-            </div>
-        <# } #>
-        <?php
-    }
-} 
+}

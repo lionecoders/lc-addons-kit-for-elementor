@@ -58,6 +58,14 @@ class LC_Elementor_Addons_Kit
             LC_EAK_VERSION,
             true
         );
+        wp_register_script(
+            'lc-kit-faq-js',
+            LC_EAK_URL . 'assets/js/lc-faq.js',
+            ['jquery'],
+            LC_EAK_VERSION,
+            true
+        );
+        wp_enqueue_script('lc-kit-faq-js');
     }
     
     public function register_widget_styles() {
@@ -82,8 +90,15 @@ class LC_Elementor_Addons_Kit
             [],
             LC_EAK_VERSION
         );
-
         wp_enqueue_style('lc-kit-social-icons');
+
+        wp_register_style(
+            'lc-kit-faq-css',
+            LC_EAK_URL . 'assets/css/lc-faq.css',
+            [],
+            LC_EAK_VERSION
+        );
+        wp_enqueue_style('lc-kit-faq-css');
 
 
 
