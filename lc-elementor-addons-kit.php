@@ -53,14 +53,14 @@ class LC_Elementor_Addons_Kit
     public function register_widget_scripts() {
         wp_register_script(
             'lc-kit-accordion',
-            LC_EAK_URL . 'assets/js/lc-accordion.js',
+            LC_EAK_URL . 'assets/js/lc-kit-accordion.js',
             ['jquery'],
             LC_EAK_VERSION,
             true
         );
         wp_register_script(
             'lc-kit-faq-js',
-            LC_EAK_URL . 'assets/js/lc-faq.js',
+            LC_EAK_URL . 'assets/js/lc-kit-faq.js',
             ['jquery'],
             LC_EAK_VERSION,
             true
@@ -71,13 +71,13 @@ class LC_Elementor_Addons_Kit
     public function register_widget_styles() {
         wp_register_style(
             'lc-kit-accordion',
-            LC_EAK_URL . 'assets/css/lc-accordion.css',
+            LC_EAK_URL . 'assets/css/lc-kit-accordion.css',
             [],
             LC_EAK_VERSION
         );
         wp_register_style(
             'lc-kit-button',
-            LC_EAK_URL . 'assets/css/lc-button.css',
+            LC_EAK_URL . 'assets/css/lc-kit-button.css',
             [],
             LC_EAK_VERSION
         );
@@ -86,7 +86,7 @@ class LC_Elementor_Addons_Kit
     
         wp_register_style(
             'lc-kit-social-icons',
-            LC_EAK_URL . 'assets/css/lc_social_icons.css',
+            LC_EAK_URL . 'assets/css/lc-kit-social-icons.css',
             [],
             LC_EAK_VERSION
         );
@@ -94,7 +94,7 @@ class LC_Elementor_Addons_Kit
 
         wp_register_style(
             'lc-kit-faq-css',
-            LC_EAK_URL . 'assets/css/lc-faq.css',
+            LC_EAK_URL . 'assets/css/lc-kit-faq.css',
             [],
             LC_EAK_VERSION
         );
