@@ -83,49 +83,7 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
         );
 
 
-        // Add the repeater control itself
-        $this->add_control(
-            'lc_content_social_icons',
-            [
-                'label' => esc_html__('Social Icons', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::REPEATER,
-                'fields' => $repeater->get_controls(),
-                'default' => [
-                    [
-                        'title' => 'Facebook',
-                        'lc_socialmedia_icons' => [
-                            'value' => 'fab fa-facebook-f',
-                            'library' => 'fa-brands',
-                        ],
-                        'link' => [
-                            'url' => 'https://facebook.com',
-                        ],
-                    ],
-                    [
-                        'title' => 'Twitter',
-                        'lc_socialmedia_icons' => [
-                            'value' => 'fab fa-twitter',
-                            'library' => 'fa-brands',
-                        ],
-                        'link' => [
-                            'url' => 'https://twitter.com',
-                        ],
-                    ],
-                    [
-                        'title' => 'Instagram',
-                        'lc_socialmedia_icons' => [
-                            'value' => 'fab fa-instagram',
-                            'library' => 'fa-brands',
-                        ],
-                        'link' => [
-                            'url' => 'https://instagram.com',
-                        ],
-                    ],
-                ],
-                'title_field' => '{{{ title }}}', // show title in repeater label
-            ]
-        );
-        
+        // Add the repeater control itself        
         $this->add_control(
             'lc_content_social_icons',
             [
