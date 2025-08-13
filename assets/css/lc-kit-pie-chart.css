@@ -1,0 +1,46 @@
+.lc-pie-chart-wrapper {
+    display: block;
+    width: 100%;
+    text-align: center; /* Elementor will override this */
+}
+
+.lc-pie-chart-title {
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+/* Make chart and legend alignable via text-align */
+.lc-pie-chart,
+.lc-pie-chart-legend {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.lc-pie-chart {
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.lc-pie-chart-legend {
+    display: inline-block;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 15px;
+    text-align: left; /* keep internal legend text aligned left */
+}
+
+.lc-pie-chart-legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.lc-pie-chart-legend-marker {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
+    display: inline-block;
+}

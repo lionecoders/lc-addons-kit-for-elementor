@@ -66,6 +66,15 @@ class LC_Elementor_Addons_Kit
             true
         );
         wp_enqueue_script('lc-kit-faq-js');
+
+        wp_register_script(
+            'lc-kit-pie-chart-js',
+            LC_EAK_URL . 'assets/js/lc-kit-pie-chart.js',
+            ['jquery'],
+            LC_EAK_VERSION,
+            true
+        );
+        wp_enqueue_script('lc-kit-pie-chart-js');
     }
     
     public function register_widget_styles() {
@@ -100,7 +109,22 @@ class LC_Elementor_Addons_Kit
         );
         wp_enqueue_style('lc-kit-faq-css');
 
+        wp_register_style(
+            'lc-kit-pie-chart-css',
+            LC_EAK_URL . 'assets/css/lc-kit-pie-chart.css',
+            [],
+            LC_EAK_VERSION
+        );
+        wp_enqueue_style('lc-kit-pie-chart-css');
 
+  wp_register_script(
+        'chartjs',
+        'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js',
+        [],
+        '4.4.0',
+        true
+    );
+        wp_enqueue_script('chartjs');
 
     }
     
