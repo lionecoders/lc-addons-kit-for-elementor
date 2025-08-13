@@ -400,7 +400,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} ..lc-faq-item.active' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                 '{{WRAPPER}} .lc-faq-item.active .lc-faq-answer' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
