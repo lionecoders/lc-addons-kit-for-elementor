@@ -31,9 +31,13 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         return ['drop', 'caps', 'text', 'typography', 'letter', 'initial'];
     }
 
+    protected function register_controls() {
+        $this->add_content_controls();
+        $this->add_style_controls();
+    }
     protected function add_content_controls() {
         $this->start_controls_section(
-            'content_section',
+            'lc_content_section',
             [
                 'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
@@ -41,7 +45,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'text',
+            'lc_content_text',
             [
                 'label' => esc_html__('Text', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::WYSIWYG,
@@ -51,7 +55,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'drop_cap_letter',
+            'lc_content_drop_cap_letter',
             [
                 'label' => esc_html__('Drop Cap Letter', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::TEXT,
@@ -62,7 +66,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'drop_cap_position',
+            'lc_content_drop_cap_position',
             [
                 'label' => esc_html__('Drop Cap Position', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SELECT,
@@ -75,7 +79,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'drop_cap_lines',
+            'lc_content_drop_cap_lines',
             [
                 'label' => esc_html__('Drop Cap Lines', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
@@ -100,7 +104,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'text_color',
+            'lc_style_text_color',
             [
                 'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -119,7 +123,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'text_alignment',
+            'lc_style_text_alignment',
             [
                 'label' => esc_html__('Alignment', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
@@ -148,7 +152,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'text_margin',
+            'lc_style_text_margin',
             [
                 'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -162,7 +166,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'section_style_drop_cap',
+            'lc_section_style_drop_cap',
             [
                 'label' => esc_html__('Drop Cap', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -170,7 +174,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'drop_cap_color',
+            'lc_style_drop_cap_color',
             [
                 'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -181,7 +185,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'drop_cap_background_color',
+            'lc_style_drop_cap_background_color',
             [
                 'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -189,18 +193,10 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
                     '{{WRAPPER}} .lc-drop-caps-letter' => 'background-color: {{VALUE}};',
                 ],
             ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'drop_cap_typography',
-                'selector' => '{{WRAPPER}} .lc-drop-caps-letter',
-            ]
-        );
+        );     
 
         $this->add_control(
-            'drop_cap_size',
+            'lc_style_drop_cap_size',
             [
                 'label' => esc_html__('Size', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
@@ -233,7 +229,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'drop_cap_line_height',
+            'lc_style_drop_cap_line_height',
             [
                 'label' => esc_html__('Line Height', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
@@ -274,7 +270,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'drop_cap_border_radius',
+            'lc_style_drop_cap_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -286,7 +282,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'drop_cap_padding',
+            'lc_style_drop_cap_padding',
             [
                 'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -298,7 +294,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'drop_cap_margin',
+            'lc_style_drop_cap_margin',
             [
                 'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -323,51 +319,27 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        if (empty($settings['text'])) {
+        // Check if text exists
+        if (empty($settings['lc_content_text'])) {
             return;
         }
 
-        $text = $settings['text'];
-        $drop_cap_letter = !empty($settings['drop_cap_letter']) ? $settings['drop_cap_letter'] : substr($text, 0, 1);
-        $drop_cap_position = $settings['drop_cap_position'];
-        $drop_cap_lines = $settings['drop_cap_lines'];
+        // Get text content
+        $text = $settings['lc_content_text'];
 
+        // Determine drop cap letter
+        $drop_cap_letter = !empty($settings['lc_content_drop_cap_letter'])
+            ? $settings['lc_content_drop_cap_letter']
+            : mb_substr(strip_tags($text), 0, 1, 'UTF-8');
+
+        // Wrapper attributes
         $this->add_render_attribute('wrapper', 'class', 'lc-drop-caps-wrapper');
-        $this->add_render_attribute('wrapper', 'class', 'lc-drop-caps--' . $drop_cap_position);
-        $this->add_render_attribute('wrapper', 'data-lines', $drop_cap_lines);
 
         echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
-
-        if ($drop_cap_position === 'left') {
             echo '<span class="lc-drop-caps-letter">' . esc_html($drop_cap_letter) . '</span>';
-        }
-
-        echo '<div class="lc-drop-caps-text">';
-        echo wp_kses_post($text);
-        echo '</div>';
-
-        if ($drop_cap_position === 'right') {
-            echo '<span class="lc-drop-caps-letter">' . esc_html($drop_cap_letter) . '</span>';
-        }
-
+            echo '<div class="lc-drop-caps-text">' . wp_kses_post($text) . '</div>';
         echo '</div>';
     }
 
-    protected function content_template() {
-        ?>
-        <div class="lc-drop-caps-wrapper lc-drop-caps--{{ settings.drop_cap_position }}" data-lines="{{ settings.drop_cap_lines }}">
-            <# if (settings.drop_cap_position === 'left') { #>
-                <span class="lc-drop-caps-letter">{{{ settings.drop_cap_letter || settings.text.charAt(0) }}}</span>
-            <# } #>
-            
-            <div class="lc-drop-caps-text">
-                {{{ settings.text }}}
-            </div>
-            
-            <# if (settings.drop_cap_position === 'right') { #>
-                <span class="lc-drop-caps-letter">{{{ settings.drop_cap_letter || settings.text.charAt(0) }}}</span>
-            <# } #>
-        </div>
-        <?php
-    }
-} 
+
+}
