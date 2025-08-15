@@ -31,9 +31,14 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         return ['business', 'hours', 'time', 'schedule', 'opening', 'closing'];
     }
 
+    protected function register_controls() {
+        $this->add_content_controls();
+        $this->add_style_controls();
+    }
+
     protected function add_content_controls() {
         $this->start_controls_section(
-            'content_section',
+            'lc_content_section',
             [
                 'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
@@ -41,7 +46,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'title',
+            'lc_content_title',
             [
                 'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::TEXT,
@@ -115,7 +120,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'business_hours',
+            'lc_content_business_hours',
             [
                 'label' => esc_html__('Business Hours', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
@@ -162,7 +167,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'highlight_today',
+            'lc_contect_highlight_today',
             [
                 'label' => esc_html__('Highlight Today', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
@@ -174,7 +179,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'time_format',
+            'lc_content_time_format',
             [
                 'label' => esc_html__('Time Format', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::SELECT,
@@ -191,7 +196,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
 
     protected function add_style_controls() {
         $this->start_controls_section(
-            'section_style_container',
+            'lc_section_style_container',
             [
                 'label' => esc_html__('Container', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -199,7 +204,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'container_background_color',
+            'lc_container_background_color',
             [
                 'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -218,7 +223,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'container_border_radius',
+            'lc_container_border_radius',
             [
                 'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -230,7 +235,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'container_padding',
+            'lc_container_padding',
             [
                 'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -244,7 +249,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'section_style_title',
+            'lc_section_style_title',
             [
                 'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -252,7 +257,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'title_color',
+            'lc_style_title_color',
             [
                 'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -271,7 +276,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'title_margin',
+            'lc_style_title_margin',
             [
                 'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -285,7 +290,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'section_style_hours',
+            'lc_style_section_style_hours',
             [
                 'label' => esc_html__('Hours', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -293,7 +298,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'hours_background_color',
+            'lc_style_hours_background_color',
             [
                 'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -304,7 +309,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'hours_color',
+            'lc_style_hours_color',
             [
                 'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -331,7 +336,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'hours_padding',
+            'lc_style_hours_padding',
             [
                 'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -343,7 +348,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_responsive_control(
-            'hours_margin',
+            'lc_style_hours_margin',
             [
                 'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
@@ -357,7 +362,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'section_style_today',
+            'lc_style_section_style_today',
             [
                 'label' => esc_html__('Today Highlight', 'lc-elementor-addons-kit'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
@@ -368,7 +373,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'today_background_color',
+            'lc_style_today_background_color',
             [
                 'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -379,7 +384,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'today_color',
+            'lc_style_today_color',
             [
                 'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -413,14 +418,6 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         
         return isset($days[$day]) ? $days[$day] : $day;
     }
-
-    private function format_time($time, $format = '24') {
-        if ($format === '12') {
-            return date('g:i A', strtotime($time));
-        }
-        return $time;
-    }
-
     private function is_today($day) {
         $today = strtolower(date('l'));
         $day_map = [
@@ -439,7 +436,8 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        if (empty($settings['business_hours'])) {
+        // Updated to use new prefixed name
+        if (empty($settings['lc_content_business_hours'])) {
             return;
         }
 
@@ -447,30 +445,34 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
 
         echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
 
-        if (!empty($settings['title'])) {
-            echo '<h3 class="lc-business-hours-title">' . esc_html($settings['title']) . '</h3>';
+        // Title
+        if (!empty($settings['lc_content_title'])) {
+            echo '<h3 class="lc-business-hours-title">' . esc_html($settings['lc_content_title']) . '</h3>';
         }
 
         echo '<div class="lc-business-hours-list">';
-        
-        foreach ($settings['business_hours'] as $hour) {
+
+        foreach ($settings['lc_content_business_hours'] as $hour) {
             $item_class = 'lc-business-hours-item';
-            
-            if ($settings['highlight_today'] === 'yes' && $this->is_today($hour['day'])) {
+
+            // Highlight today check with new setting name
+            if ($settings['lc_contect_highlight_today'] === 'yes' && $this->is_today($hour['day'])) {
                 $item_class .= ' today';
             }
 
             echo '<div class="' . esc_attr($item_class) . '">';
             echo '<span class="lc-business-hours-day">' . esc_html($this->get_day_name($hour['day'])) . '</span>';
-            
-            if ($hour['closed'] === 'yes') {
+
+            if (!empty($hour['closed']) && $hour['closed'] === 'yes') {
                 echo '<span class="lc-business-hours-time closed">' . esc_html($hour['closed_text']) . '</span>';
             } else {
-                $open_time = $this->format_time($hour['open_time'], $settings['time_format']);
-                $close_time = $this->format_time($hour['close_time'], $settings['time_format']);
+                // Format times based on lc_content_time_format
+                $open_time  = $this->lc_format_business_time($hour['open_time'], $settings['lc_content_time_format']);
+                $close_time = $this->lc_format_business_time($hour['close_time'], $settings['lc_content_time_format']);
+
                 echo '<span class="lc-business-hours-time">' . esc_html($open_time) . ' - ' . esc_html($close_time) . '</span>';
             }
-            
+
             echo '</div>';
         }
 
@@ -478,26 +480,17 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         echo '</div>';
     }
 
-    protected function content_template() {
-        ?>
-        <div class="lc-business-hours">
-            <# if (settings.title) { #>
-                <h3 class="lc-business-hours-title">{{{ settings.title }}}</h3>
-            <# } #>
-            
-            <div class="lc-business-hours-list">
-                <# _.each(settings.business_hours, function(hour) { #>
-                    <div class="lc-business-hours-item">
-                        <span class="lc-business-hours-day">{{{ hour.day }}}</span>
-                        <# if (hour.closed === 'yes') { #>
-                            <span class="lc-business-hours-time closed">{{{ hour.closed_text }}}</span>
-                        <# } else { #>
-                            <span class="lc-business-hours-time">{{{ hour.open_time }}} - {{{ hour.close_time }}}</span>
-                        <# } #>
-                    </div>
-                <# }); #>
-            </div>
-        </div>
-        <?php
+
+    // Add this helper inside your widget class
+    private function lc_format_business_time($time, $format_type) {
+        if (empty($time)) {
+            return '';
+        }
+        $timestamp = strtotime($time);
+
+        return ($format_type === '12')
+            ? date('h:i A', $timestamp) // 12-hour format
+            : date('H:i', $timestamp);  // 24-hour format
     }
+
 } 
