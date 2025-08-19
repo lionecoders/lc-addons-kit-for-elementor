@@ -1,5 +1,7 @@
 # LC Elementor Addons Kit
 
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+
 A powerful Elementor addon plugin by Lionescoders that offers a wide range of widgets categorized into 'LC Kit' and 'LC Header & Footer kit'. Includes a dashboard settings panel to enable/disable individual widgets from appearing in Elementor editor.
 
 ## Features
@@ -248,7 +250,13 @@ Create custom widget templates by extending the base classes:
 
 ## License
 
-GPL v2 or later
+This project is licensed under the **GNU General Public License v2.0 or later**.
+
+**GPL v2 or later** - This means you can use, modify, and distribute this software under the terms of the GNU General Public License version 2 or any later version published by the Free Software Foundation.
+
+For the full license text, see the [LICENSE](LICENSE) file in this repository.
+
+**License Compatibility**: This license is compatible with WordPress and Elementor plugin requirements.
 
 ## Credits
 

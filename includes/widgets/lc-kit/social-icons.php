@@ -398,7 +398,7 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
             'role' => 'list',
         ]);
 
-        echo '<ul ' . $this->get_render_attribute_string('wrapper') . '>';
+    echo '<ul ' . esc_attr($this->get_render_attribute_string('wrapper')) . '>';
 
         // Allowed URL schemes
         $allowed_schemes = ['http', 'https', 'mailto', 'tel'];
@@ -422,16 +422,16 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
             $link['url'] = esc_url_raw($url);
 
             // Add link attributes
-            $this->add_link_attributes('link_' . $id, $link);
+            $this->add_link_attributes('link_' . esc_attr($id), $link);
 
             // Aria label
             $aria_label = !empty($icon['title']) ? $icon['title'] : '';
             if (!empty($aria_label)) {
-                $this->add_render_attribute('link_' . $id, 'aria-label', esc_attr($aria_label));
+                $this->add_render_attribute('link_' . esc_attr($id), 'aria-label', esc_attr($aria_label));
             }
 
             echo '<li class="lc-social-icon">';
-            echo '<a ' . $this->get_render_attribute_string('link_' . $id) . '>';
+            echo '<a ' . esc_attr($this->get_render_attribute_string('link_' . esc_attr($id))) . '>';
 
             // Icon rendering using Elementor Icons Manager
             if (!empty($icon['lc_socialmedia_icons']) && is_array($icon['lc_socialmedia_icons'])) {

@@ -329,7 +329,7 @@ class LC_Kit_Pie_Chart extends \Elementor\Widget_Base {
             echo '<span class="lc-pie-chart-legend-marker" style="background-color:' . esc_attr($colors[$index]) . ';"></span>';
             echo '<span class="lc-pie-chart-legend-label">' . esc_html($label);
             if ($settings['lc_content_show_percentage'] === 'yes') {
-                echo ' (' . $percentage . '%)';
+                echo ' (' . esc_html($percentage) . '%)';
             }
             echo '</span>';
             echo '</div>';

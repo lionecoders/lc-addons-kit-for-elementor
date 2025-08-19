@@ -6,9 +6,8 @@
  * Description: A powerful Elementor addon plugin that offers a wide range of widgets categorized into 'LC Kit' and 'LC Header & Footer kit'.
  * Version: 1.0.0
  * Author: Lionescoders
- * Author URI: https://lionecoders.com
+ * Author URI: https://lionecoders.com/contact/
  * Text Domain: lc-elementor-addons-kit
- * Domain Path: /languages
  * Requires at least: 5.0
  * Tested up to: 6.4
  * Requires PHP: 7.4
@@ -25,7 +24,6 @@ class LC_Elementor_Addons_Kit
     {
         $this->define_constants();
         add_action('plugins_loaded', [$this, 'on_plugins_loaded']);
-        
     }
 
     private function define_constants()
@@ -48,9 +46,9 @@ class LC_Elementor_Addons_Kit
         new LC_Kit_Admin_Settings();
         add_action('elementor/frontend/after_register_scripts', [$this, 'register_widget_scripts']);
         add_action('elementor/frontend/after_register_styles', [$this, 'register_widget_styles']);
-
     }
-    public function register_widget_scripts() {
+    public function register_widget_scripts()
+    {
         wp_register_script(
             'lc-kit-accordion',
             LC_EAK_URL . 'assets/js/lc-kit-accordion.js',
@@ -76,8 +74,9 @@ class LC_Elementor_Addons_Kit
         );
         wp_enqueue_script('lc-kit-pie-chart-js');
     }
-    
-    public function register_widget_styles() {
+
+    public function register_widget_styles()
+    {
         wp_register_style(
             'lc-kit-accordion',
             LC_EAK_URL . 'assets/css/lc-kit-accordion.css',
@@ -92,7 +91,7 @@ class LC_Elementor_Addons_Kit
         );
         wp_enqueue_style('lc-kit-button');
 
-    
+
         wp_register_style(
             'lc-kit-social-icons',
             LC_EAK_URL . 'assets/css/lc-kit-social-icons.css',
@@ -117,24 +116,23 @@ class LC_Elementor_Addons_Kit
         );
         wp_enqueue_style('lc-kit-pie-chart-css');
 
-  wp_register_script(
-        'chartjs',
-        'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js',
-        [],
-        '4.4.0',
-        true
-    );
-        wp_enqueue_script('chartjs');
-
+        wp_register_script(
+            'lc-chartjs',
+            LC_EAK_URL . '/assets/js/chart.umd.min.js',
+            [],
+            '4.4.0',
+            true
+        );
+        wp_enqueue_script('lc-chartjs');
     }
-    
+
 
     public function elementor_missing_notice()
     {
         echo '<div class="notice notice-warning"><p>';
         echo esc_html__('LC Elementor Addons Kit requires Elementor to be installed and activated.', 'lc-elementor-addons-kit');
         echo '</p></div>';
-    }    
+    }
 }
 
 new LC_Elementor_Addons_Kit();

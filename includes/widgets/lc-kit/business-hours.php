@@ -419,7 +419,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         return isset($days[$day]) ? $days[$day] : $day;
     }
     private function is_today($day) {
-        $today = strtolower(date('l'));
+    $today = strtolower(gmdate('l'));
         $day_map = [
             'monday' => 'monday',
             'tuesday' => 'tuesday',
@@ -443,7 +443,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
 
         $this->add_render_attribute('wrapper', 'class', 'lc-business-hours');
 
-        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
+        echo '<div ' . esc_attr($this->get_render_attribute_string('wrapper')) . '>';
 
         // Title
         if (!empty($settings['lc_content_title'])) {
@@ -489,8 +489,8 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
         $timestamp = strtotime($time);
 
         return ($format_type === '12')
-            ? date('h:i A', $timestamp) // 12-hour format
-            : date('H:i', $timestamp);  // 24-hour format
+            ? gmdate('h:i A', $timestamp) // 12-hour format
+            : gmdate('H:i', $timestamp);  // 24-hour format
     }
 
 } 

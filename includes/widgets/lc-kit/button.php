@@ -635,12 +635,12 @@ class LC_Kit_Button extends \Elementor\Widget_Base {
         <div class="lc-kit-wid-con">
             <div class="lc-kit-button-wrapper">
                 <?php if ($has_url): ?>
-                    <a <?php echo $this->get_render_attribute_string('button'); ?>>
-                        <?php echo $button_inner; ?>
+                    <a <?php echo esc_attr($this->get_render_attribute_string('button')); ?>>
+                        <?php echo wp_kses_post($button_inner); ?>
                     </a>
                 <?php else: ?>
-                    <button type="button" <?php echo $this->get_render_attribute_string('button'); ?>>
-                        <?php echo $button_inner; ?>
+                    <button type="button" <?php echo esc_attr($this->get_render_attribute_string('button')); ?>>
+                        <?php echo wp_kses_post($button_inner); ?>
                     </button>
                 <?php endif; ?>
             </div>

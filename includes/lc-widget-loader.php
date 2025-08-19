@@ -29,8 +29,7 @@ class LC_Kit_Widget_Loader {
 
     public function register_widgets($widgets_manager) {
         $folders = [
-            'lc-kit' => 'LC_Kit_',
-            'lc-header-footer' => 'LC_Header_Footer_'
+            'lc-kit' => 'LC_Kit_'
         ];
     
         foreach ($folders as $folder => $prefix) {

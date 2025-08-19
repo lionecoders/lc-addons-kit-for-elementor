@@ -2,21 +2,23 @@
 
 if (!defined('ABSPATH')) exit;
 
-class LC_Kit_Admin_Settings {
+class LC_Kit_Admin_Settings
+{
 
     private $widgets = [];
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->load_widget_classes();
         add_action('admin_menu', [$this, 'add_settings_page']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_styles']);
         add_action('admin_init', [$this, 'register_settings']);
     }
 
-    private function load_widget_classes() {
+    private function load_widget_classes()
+    {
         $widget_dirs = [
             'lc-kit' => 'LC_Kit_',
-            'lc-header-footer' => 'LC_Header_Footer_',
         ];
 
         foreach ($widget_dirs as $folder => $prefix) {
@@ -32,13 +34,15 @@ class LC_Kit_Admin_Settings {
         }
     }
 
-    private function format_class_name($filename) {
+    private function format_class_name($filename)
+    {
         $parts = explode('-', $filename);
         $parts = array_map('ucfirst', $parts);
         return implode('_', $parts);
     }
 
-    public function add_settings_page() {
+    public function add_settings_page()
+    {
         add_menu_page(
             __('LC Kit', 'lc-elementor-addons-kit'),
             __('LC Kit', 'lc-elementor-addons-kit'),
@@ -50,30 +54,66 @@ class LC_Kit_Admin_Settings {
         );
     }
 
-    public function register_settings() {
-        register_setting('lc_kit_settings_group', 'lc_kit_enabled_widgets');
+    public function register_settings()
+    {
+        register_setting(
+            'lc_kit_settings_group',
+            'lc_kit_enabled_widgets',
+            [
+                'sanitize_callback' => [$this, 'sanitize_widget_settings'],
+                'default' => []
+            ]
+        );
     }
 
-    public function enqueue_admin_styles($hook) {
+    /**
+     * Sanitize widget settings before saving to database
+     *
+     * @param array $input The input array from the form
+     * @return array Sanitized array
+     */
+    public function sanitize_widget_settings($input)
+    {
+        if (!is_array($input)) {
+            return [];
+        }
+
+        $sanitized = [];
+        $valid_widgets = array_keys($this->widgets);
+
+        foreach ($input as $widget_class => $value) {
+            // Only allow known widget classes
+            if (in_array($widget_class, $valid_widgets, true)) {
+                // Sanitize the value to ensure it's boolean
+                $sanitized[$widget_class] = (bool) $value;
+            }
+        }
+
+        return $sanitized;
+    }
+
+    public function enqueue_admin_styles($hook)
+    {
         if ($hook !== 'toplevel_page_lc-kit-settings') return;
 
-        // Load Tailwind CSS via CDN
-        wp_enqueue_style('lc-kit-tailwind', 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css', [], null);
+        // Load Tailwind CSS via CDN with version for cache busting
+        wp_enqueue_style('lc-kit-tailwind', LC_EAK_URL . 'assets/css/tailwind.min.css', [], '2.2.19');
     }
 
-    public function render_settings_page() {
+    public function render_settings_page()
+    {
         $enabled_widgets = get_option('lc_kit_enabled_widgets', []);
-        ?>
+?>
         <div class="wrap">
-            <h1 class="text-3xl font-bold mb-6"><?php _e('LC Elementor Addons Kit Settings', 'lc-elementor-addons-kit'); ?></h1>
+            <h1 class="text-3xl font-bold mb-6"><?php esc_attr_e('LC Elementor Addons Kit Settings', 'lc-elementor-addons-kit'); ?></h1>
 
             <form method="post" action="options.php">
                 <?php settings_fields('lc_kit_settings_group'); ?>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <?php foreach ($this->widgets as $class => $label): 
+                    <?php foreach ($this->widgets as $class => $label):
                         $is_enabled = isset($enabled_widgets[$class]) ? (bool) $enabled_widgets[$class] : true;
-                        ?>
+                    ?>
                         <div class="bg-white p-4 rounded shadow flex items-center justify-between">
                             <label class="text-lg font-medium"><?php echo esc_html($label); ?></label>
                             <label class="inline-flex relative items-center cursor-pointer">
@@ -87,11 +127,11 @@ class LC_Kit_Admin_Settings {
 
                 <div class="mt-6">
                     <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700">
-                        <?php _e('Save Settings', 'lc-elementor-addons-kit'); ?>
+                        <?php esc_attr_e('Save Settings', 'lc-elementor-addons-kit'); ?>
                     </button>
                 </div>
             </form>
         </div>
-        <?php
+<?php
     }
 }
