@@ -40,6 +40,7 @@ class LC_Elementor_Addons_Kit
             return;
         }
 
+        require_once LC_EAK_PATH . 'includes/lc-utils.php';
         require_once LC_EAK_PATH . 'includes/lc-widget-loader.php';
         require_once LC_EAK_PATH . 'admin/lc-admin-page.php';
         new LC_Kit_Widget_Loader();
@@ -73,6 +74,14 @@ class LC_Elementor_Addons_Kit
             true
         );
         wp_enqueue_script('lc-kit-pie-chart-js');
+
+        wp_register_script(
+            'lc-kit-testimonial-js',
+            LC_EAK_URL . 'assets/js/lc-kit-testimonial.js',
+            ['jquery', 'lc-swiper-js'],
+            LC_EAK_VERSION,
+            true
+        );
     }
 
     public function register_widget_styles()
@@ -114,7 +123,13 @@ class LC_Elementor_Addons_Kit
             [],
             LC_EAK_VERSION
         );
-        wp_enqueue_style('lc-kit-pie-chart-css');
+        wp_register_style(
+            'lc-kit-testimonial-css',
+            LC_EAK_URL . 'assets/css/lc-kit-testimonial.css',
+            [],
+            LC_EAK_VERSION
+        );
+        wp_enqueue_style('lc-kit-testimonial-css');
 
         wp_register_script(
             'lc-chartjs',
@@ -124,6 +139,16 @@ class LC_Elementor_Addons_Kit
             true
         );
         wp_enqueue_script('lc-chartjs');
+
+        wp_register_style('lc-btsp-css', LC_EAK_URL . 'assets/css/bootstrap.min.css', [], true, 'all');
+        wp_register_script('lc-btsp-js', LC_EAK_URL . '/assets/js/bootstrap.bundle.min.js', [], '5.3.7', true);
+        wp_register_style('lc-swiper-css', LC_EAK_URL . 'assets/css/swiper-bundle.min.css', [], true, 'all');
+        wp_register_script('lc-swiper-js', LC_EAK_URL . '/assets/js/swiper-bundle.min.js', [], '11.2.10', true);
+
+        wp_enqueue_style('lc-swiper-css');
+        wp_enqueue_script('lc-swiper-js');
+        wp_enqueue_script('lc-btsp-js');
+        wp_enqueue_style('lc-btsp-css');
     }
 
 

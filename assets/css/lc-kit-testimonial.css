@@ -1,0 +1,22 @@
+.lc-main-wrapper .lc-commentor-content>.lc-border-hr {
+    width: 40px;
+    height: 2px;
+    background-color: #25fc36;
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.lc-main-wrapper .lc-commentor-content {
+    padding-right: 30px;
+    position: relative;
+}
+
+.lc-main-wrapper .lc-author-name {
+    display: block;
+}
+
+.lc-main-wrapper .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after,
+.lc-main-wrapper .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    content: none;
+}
