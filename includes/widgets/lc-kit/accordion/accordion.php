@@ -167,7 +167,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
                 'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
                 'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
                 'return_value' => 'yes',
-                'default' => '',
+                'default' => 'no',
             ]
         );
 
@@ -635,21 +635,21 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'lc_accordion_icon_closed_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
+                'label' => esc_html__('Closed Icon Color', 'lc-elementor-addons-kit'),
+                'type'  => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-icon i' => 'color: {{VALUE}}; fill: {{VALUE}};',
+                    '{{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-icon i, {{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-icon svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
                 ],
             ]
         );
 
-        $this->add_control(
+       $this->add_control(
             'lc_accordion_icon_closed_hover_color',
             [
-                'label' => esc_html__('Hover Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
+                'label' => esc_html__('Closed Icon Hover Color', 'lc-elementor-addons-kit'),
+                'type'  => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-header:hover .lc-accordion-icon i' => 'color: {{VALUE}}; fill: {{VALUE}};',
+                    '{{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-header:hover .lc-accordion-icon i, {{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-header:hover .lc-accordion-icon svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
                 ],
             ]
         );
@@ -694,25 +694,24 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'lc_accordion_icon_open_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
+                'label' => esc_html__('Open Icon Color', 'lc-elementor-addons-kit'),
+                'type'  => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-icon-active i' => 'color: {{VALUE}}; fill: {{VALUE}};',
+                    '{{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-icon-active i, {{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-icon-active svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
                 ],
             ]
         );
-
+        
         $this->add_control(
             'lc_accordion_icon_open_hover_color',
             [
-                'label' => esc_html__('Hover Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
+                'label' => esc_html__('Open Icon Hover Color', 'lc-elementor-addons-kit'),
+                'type'  => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-header:hover .lc-accordion-icon-active i' => 'color: {{VALUE}}; fill: {{VALUE}};',
+                    '{{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-header:hover .lc-accordion-icon-active i, {{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-header:hover .lc-accordion-icon-active svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
                 ],
             ]
         );
-
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -783,12 +782,16 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         if (empty($settings['accordion_items'])) {
             return;
         }
+        
+        $multiple = ($settings['multiple'] === 'yes') ? 'yes' : 'no';
 
         $this->add_render_attribute('wrapper', 'class', 'lc-elementor-addons-kit');
-        $this->add_render_attribute('wrapper', 'data-multiple', esc_attr($settings['multiple']));
+        $this->add_render_attribute('wrapper', 'data-multiple', $multiple);
 
-        // Escape the wrapper attributes string
-        echo '<div ' . esc_attr($this->get_render_attribute_string('wrapper')) . '>';
+        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
+        echo '<div class="lc-accordion" data-multiple="' . esc_attr($multiple) . '">';
+
+        
 
         foreach ($settings['accordion_items'] as $index => $item) {
             $item_class = 'lc-accordion-item';
@@ -824,7 +827,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
 
             echo '</div>'; // .lc-accordion-item
         }
-
+        echo '</div>'; // .lc-accordion
         echo '</div>'; // .lc-accordion
     }
 }
