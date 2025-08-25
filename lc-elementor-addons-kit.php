@@ -82,6 +82,9 @@ class LC_Elementor_Addons_Kit
             LC_EAK_VERSION,
             true
         );
+        
+        // Debug: Log script registration
+        error_log('LC Plugin: Registered testimonial script: lc-kit-testimonial-js');
     }
 
     public function register_widget_styles()

@@ -2430,35 +2430,38 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 		// Config
 		$config = [
 			'rtl'				=> is_rtl(),
-			'arrows'			=> $ekit_testimonial_show_arrow ? true : false,
-			'dots'				=> $ekit_testimonial_show_dot ? true : false,
-			'pauseOnHover'		=> $ekit_testimonial_pause_on_hover ? true : false,
-			'autoplay'			=> $ekit_testimonial_autoplay ? true : false,
-			'speed'				=> $ekit_testimonial_speed ? $ekit_testimonial_speed : 1000,
+			'arrows'			=> $lc_testimonial_show_arrow ? true : false,
+			'dots'				=> $lc_testimonial_show_dot ? true : false,
+			'pauseOnHover'		=> $lc_testimonial_pause_on_hover ? true : false,
+			'autoplay'			=> $lc_testimonial_autoplay ? true : false,
+			'speed'				=> $lc_testimonial_speed ? $lc_testimonial_speed : 1000,
 			'slidesPerGroup'	=> (int) $slides_to_scroll_count,
 			'slidesPerView'		=> (int) $slides_to_show_count,
-			'loop'				=> (!empty($ekit_testimonial_loop) && $ekit_testimonial_loop == 'yes') ? true : false,
-			'spaceBetween' => isset($ekit_testimonial_left_right_spacing['size']) ? ($ekit_testimonial_left_right_spacing['size'] !== 0 ? $ekit_testimonial_left_right_spacing['size'] : 0) : 15,
+			'loop'				=> (!empty($lc_testimonial_loop) && $lc_testimonial_loop == 'yes') ? true : false,
+			'spaceBetween' => isset($lc_testimonial_left_right_spacing['size']) ? ($lc_testimonial_left_right_spacing['size'] !== 0 ? $lc_testimonial_left_right_spacing['size'] : 0) : 15,
 			'breakpoints'  => [
 				320 => [
-					'slidesPerView'      => !empty($ekit_testimonial_slidetoshow_mobile) ? $ekit_testimonial_slidetoshow_mobile : 1,
-					'slidesPerGroup'     => !empty($ekit_testimonial_slidesToScroll_mobile) ? $ekit_testimonial_slidesToScroll_mobile : 1,
-					'spaceBetween'       => !empty($ekit_testimonial_left_right_spacing_mobile['size']) ? $ekit_testimonial_left_right_spacing_mobile['size'] : 10,
+					'slidesPerView'      => !empty($lc_testimonial_slidetoshow_mobile) ? $lc_testimonial_slidetoshow_mobile : 1,
+					'slidesPerGroup'     => !empty($lc_testimonial_slidesToScroll_mobile) ? $lc_testimonial_slidesToScroll_mobile : 1,
+					'spaceBetween'       => !empty($lc_testimonial_left_right_spacing_mobile['size']) ? $lc_testimonial_left_right_spacing_mobile['size'] : 10,
 				],
 				768 => [
-					'slidesPerView'      => !empty($ekit_testimonial_slidetoshow_tablet) ? $ekit_testimonial_slidetoshow_tablet : 2,
-					'slidesPerGroup'     => !empty($ekit_testimonial_slidesToScroll_tablet) ? $ekit_testimonial_slidesToScroll_tablet : 1,
-					'spaceBetween'       => !empty($ekit_testimonial_left_right_spacing_tablet['size']) ? $ekit_testimonial_left_right_spacing_tablet['size'] : 10,
+					'slidesPerView'      => !empty($lc_testimonial_slidetoshow_tablet) ? $lc_testimonial_slidetoshow_tablet : 2,
+					'slidesPerGroup'     => !empty($lc_testimonial_slidesToScroll_tablet) ? $lc_testimonial_slidesToScroll_tablet : 1,
+					'spaceBetween'       => !empty($lc_testimonial_left_right_spacing_tablet['size']) ? $lc_testimonial_left_right_spacing_tablet['size'] : 10,
 				],
 				1024 => [
 					'slidesPerView'      =>  $slides_to_show_count,
 					'slidesPerGroup'     =>  $slides_to_scroll_count,
-					'spaceBetween'		=> !empty($ekit_testimonial_left_right_spacing['size']) ? $ekit_testimonial_left_right_spacing['size'] : 15,
+					'spaceBetween'		=> !empty($lc_testimonial_left_right_spacing['size']) ? $lc_testimonial_left_right_spacing['size'] : 0,
 				]
 			],
 
 		];
 
+		// Debug: Log the config being generated
+		error_log('LC Testimonial Config: ' . wp_json_encode($config));
+		
 		// HTML Attribute
 		$this->add_render_attribute(
 			'wrapper',

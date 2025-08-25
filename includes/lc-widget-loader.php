@@ -35,14 +35,25 @@ class LC_Kit_Widget_Loader {
         foreach ($folders as $folder => $prefix) {
             $path = LC_EAK_PATH . 'includes/widgets/' . $folder . '/';
     
-            foreach (glob($path . '*.php') as $file) {
+            // Get all PHP files including those in subdirectories
+            $files = glob($path . '*.php');
+            $subdir_files = glob($path . '*/*.php');
+            $all_files = array_merge($files, $subdir_files);
+    
+            foreach ($all_files as $file) {
                 require_once $file;
     
-                $base = basename($file, '.php'); // e.g., "image-accordion"
+                $base = basename($file, '.php'); // e.g., "testimonial" from "testimonial.php"
                 $class = $prefix . str_replace(' ', '_', ucwords(str_replace('-', ' ', $base)));
+                
+                // Debug logging
+                error_log("LC Widget Loader: File: $file, Base: $base, Class: $class");
     
                 if (class_exists($class)) {
                     $widgets_manager->register(new $class());
+                    error_log("LC Widget Loader: Successfully registered class: $class");
+                } else {
+                    error_log("LC Widget Loader: Class not found: $class");
                 }
             }
         }
