@@ -126,6 +126,7 @@ class LC_Elementor_Addons_Kit
             [],
             LC_EAK_VERSION
         );
+        wp_enqueue_style('lc-kit-pie-chart-css');
         wp_register_style(
             'lc-kit-testimonial-css',
             LC_EAK_URL . 'assets/css/lc-kit-testimonial.css',

@@ -253,10 +253,12 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
                 'label' => esc_html__('Icon Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-social-icon a' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lc-social-icon a svg path' => 'fill: {{VALUE}} !important;',
+                    '{{WRAPPER}} .lc-social-icon a i' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
+
 
 
         $this->add_control(
@@ -398,7 +400,7 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
             'role' => 'list',
         ]);
 
-    echo '<ul ' . esc_attr($this->get_render_attribute_string('wrapper')) . '>';
+    echo '<ul ' . $this->get_render_attribute_string('wrapper') . '>';
 
         // Allowed URL schemes
         $allowed_schemes = ['http', 'https', 'mailto', 'tel'];
@@ -431,7 +433,7 @@ class LC_Kit_Social_Icons extends \Elementor\Widget_Base {
             }
 
             echo '<li class="lc-social-icon">';
-            echo '<a ' . esc_attr($this->get_render_attribute_string('link_' . esc_attr($id))) . '>';
+            echo '<a ' . $this->get_render_attribute_string('link_' . esc_attr($id)) . '>';
 
             // Icon rendering using Elementor Icons Manager
             if (!empty($icon['lc_socialmedia_icons']) && is_array($icon['lc_socialmedia_icons'])) {
