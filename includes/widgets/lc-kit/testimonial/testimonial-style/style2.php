@@ -44,7 +44,7 @@
 								</div>
 								<?php if (isset($lc_testimonial_wartermark_enable) && $lc_testimonial_wartermark_enable == 'yes'): ?>
 									<div class="lc-watermark-icon <?php if ($lc_testimonial_wartermark_custom_position == 'yes') : ?> lc_watermark_icon_custom_position <?php endif; ?>">
-										<?php \Elementor\Icons_Manager::render_icon($settings['ekit_testimonial_wartermarks'], ['aria-hidden' => 'true']); ?>
+										<?php \Elementor\Icons_Manager::render_icon($settings['lc_testimonial_wartermarks'], ['aria-hidden' => 'true']); ?>
 									</div>
 								<?php endif; ?>
 							</div>

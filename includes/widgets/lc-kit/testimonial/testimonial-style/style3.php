@@ -1,4 +1,4 @@
-<div class="lc-testimonial-slider arrow_inside <?php echo (!empty($lc_testimonial_show_dot) && $lc_testimonial_show_dot === 'yes') ? 'lc-slider-dotted' : '' ?>" <?php $this->print_render_attribute_string('wrapper'); ?>>
+<div class="lc-testimonial-slider lc_testimonial_style_3 arrow_inside <?php echo (!empty($lc_testimonial_show_dot) && $lc_testimonial_show_dot === 'yes') ? 'lc-slider-dotted' : '' ?>" <?php $this->print_render_attribute_string('wrapper'); ?>>
 	<div <?php $this->print_render_attribute_string('swiper-container'); ?>>
 		<div class="swiper-wrapper">
 			<?php foreach ($testimonials as $testimonial):

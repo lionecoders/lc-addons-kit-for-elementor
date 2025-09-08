@@ -19,7 +19,7 @@
 																																																																																					?>>
 							<?php if (isset($lc_testimonial_wartermark_enable) && ($lc_testimonial_wartermark_enable == 'yes')): ?>
 								<div class="lc-watermark-icon lc-icon-content <?php if ($lc_testimonial_wartermark_mask_show_badge == 'yes') : ?> commentor-badge <?php endif; ?>">
-									<?php \Elementor\Icons_Manager::render_icon($settings['ekit_testimonial_wartermarks'], ['aria-hidden' => 'true']); ?>
+									<?php \Elementor\Icons_Manager::render_icon($settings['lc_testimonial_wartermarks'], ['aria-hidden' => 'true']); ?>
 								</div>
 							<?php endif; ?>
 							<?php if (!empty($testimonial['client_photo']['url'])):
@@ -39,6 +39,7 @@
 											?>
 										</div>
 									</div>
+								</div>
 								<?php endif; ?>
 
 								<?php if (!empty($testimonial['client_name']) || !empty($testimonial['designation'])) { ?>

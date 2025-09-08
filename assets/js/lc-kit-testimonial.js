@@ -40,16 +40,15 @@ class LCTestimonialSlider {
         console.log("Final parsed config:", config);
 
         this.swiper = new Swiper(this.containerEl, {
-            slidesPerView: config.slidesPerView || 1,
-            slidesPerGroup: config.slidesPerGroup || 1,
+            slidesPerView: 1,
             spaceBetween: config.spaceBetween || 10,
             loop: config.loop ?? true,
             speed: config.speed || 1000,
-            autoplay: config.autoplay ? {
-                delay: config.autoplayDelay || 5000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: config.pauseOnHover || false,
-            } : false,
+            // autoplay: config.autoplay ? {
+            //     delay: config.autoplayDelay || 5000,
+            //     disableOnInteraction: false,
+            //     pauseOnMouseEnter: config.pauseOnHover || false,
+            // } : false,
             pagination: paginationEl ? {
                 el: paginationEl,
                 clickable: true,

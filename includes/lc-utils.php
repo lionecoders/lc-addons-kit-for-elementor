@@ -401,9 +401,9 @@ class LC_Kit_Utils
         return $html;
     }
 
-    public static function swiper_class()
+    public static function swiper_class($style = 'style1')
     {
-        return 'lc-main-swiper swiper';
+        return 'lc-main-swiper swiper ' . $style;
     }
 
     public static function get_page_by_title($page_title, $post_type = 'page')

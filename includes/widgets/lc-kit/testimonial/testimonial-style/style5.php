@@ -36,7 +36,7 @@
 								<?php endif; ?>
 								<?php if (isset($lc_testimonial_wartermark_enable) && ($lc_testimonial_wartermark_enable == 'yes')): ?>
 									<div class="lc-icon-content lc-watermark-icon ">
-										<?php \Elementor\Icons_Manager::render_icon($settings['ekit_testimonial_wartermarks'], ['aria-hidden' => 'true']); ?>
+										<?php \Elementor\Icons_Manager::render_icon($settings['lc_testimonial_wartermarks'], ['aria-hidden' => 'true']); ?>
 									</div>
 								<?php endif; ?>
 							</div>
@@ -53,10 +53,17 @@
 									if (isset($testimonial['client_photo']) && !empty($testimonial['client_photo']['url']) && sizeof($testimonial['client_photo']) > 0) {
 									?>
 										<div class="lc-commentor-image lc-testimonial--avatar">
-											<?php echo wp_kses(\LC_Kit_Utils::get_attachment_image_html($testimonial, 'client_photo', 'full', [
-												'height'	=> esc_attr($lc_testimonial_client_image_size['size']),
-												'width'	=> esc_attr($lc_testimonial_client_image_size['size'])
-											]), \LC_Kit_Utils::get_kses_array()); ?>
+											<?php
+											$client_image_size = isset($lc_testimonial_client_image_size) ? $lc_testimonial_client_image_size : '';
+											if (is_array($client_image_size) && isset($client_image_size['size'])) {
+												echo wp_kses(\LC_Kit_Utils::get_attachment_image_html($testimonial, 'client_photo', 'full', [
+													'height' => esc_attr($client_image_size['size']),
+													'width' => esc_attr($client_image_size['size'])
+												]), \LC_Kit_Utils::get_kses_array());
+											} else {
+												echo wp_kses(\LC_Kit_Utils::get_attachment_image_html($testimonial, 'client_photo', 'full'), \LC_Kit_Utils::get_kses_array());
+											}
+											?>
 										</div>
 									<?php
 									}

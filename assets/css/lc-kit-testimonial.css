@@ -20,3 +20,102 @@
 .lc-main-wrapper .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
     content: none;
 }
+
+.lc-single-testimonial-slider {
+    position: relative;
+    padding: 20px;
+}
+
+.lc_testimonial_style_3 .lc-watermark-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.lc-watermark-icon i {
+    font-size: 48px;
+    color: #0000001a;
+}
+
+.lc-main-wrapper .xs-overlay {
+    background-color: #00000080;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: .5;
+    z-index: 0;
+}
+
+.lc-main-wrapper ul.lc-stars {
+    list-style: none;
+    position: relative;
+    z-index: 6;
+    padding: 0;
+}
+.lc-main-wrapper ul.lc-stars li {
+    display: inline-block;
+}
+
+.lc-main-wrapper ul.lc-stars svg {
+    width: 1em;
+    height: 2em;
+}
+
+.lc-main-wrapper .lc-testimonial-card {
+    position: relative;
+    padding: 200px 170px 80px;
+    z-index: 1;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    text-align: center;
+    display: block;
+}
+
+.lc-main-wrapper .lc_testimonial_style_4 .lc-testimonial-slider-block-style{
+    background-color: #fff;
+    -webkit-box-shadow: 9px 11px 14px 0 rgba(0, 0, 0, .1);
+    box-shadow: 9px 11px 14px 0 rgba(0, 0, 0, .1);
+    padding: 30px;
+    padding-left: 60px;
+    position: relative;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+    z-index: 1;
+}
+.lc-main-wrapper .lc-main-swiper.style4  {
+   height: 350px;
+   text-align: center;
+}
+
+.lc-main-wrapper .lc_testimonial_style_4 .lc-testimonial--avatar{
+    margin-bottom: 20px;
+}
+.lc-main-wrapper .lc_testimonial_style_4 .lc-testimonial--avatar img,
+.lc-main-wrapper .lc_testimonial_style_5 .lc-testimonial--avatar img{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.lc_testimonial_style_4 .lc-commentor-bio {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.lc_testimonial_style_5 .lc-icon-content {
+    position: absolute;
+    color: #2575fc33;
+    bottom: 30px;
+    right: 30px;
+}
+
+.lc_testimonial_style_5 .lc-commentor-details  {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

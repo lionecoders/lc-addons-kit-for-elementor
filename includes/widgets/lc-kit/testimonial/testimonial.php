@@ -2470,17 +2470,17 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 			]
 		);
 
+		$style = isset($ekit_testimonial_style) ? sanitize_text_field($ekit_testimonial_style) : 'style1';
 		// Swiper container
 		$this->add_render_attribute(
 			'swiper-container',
 			[
-				'class'	=> \LC_Kit_Utils::swiper_class(),
+				'class'	=> \LC_Kit_Utils::swiper_class($style),
 			]
 		);
 
 
 		$testimonials = isset($ekit_testimonial_data) ? $ekit_testimonial_data : [];
-		$style = isset($ekit_testimonial_style) ? sanitize_text_field($ekit_testimonial_style) : 'default';
 		$styles = [
 			'style1',
 			'style2',
