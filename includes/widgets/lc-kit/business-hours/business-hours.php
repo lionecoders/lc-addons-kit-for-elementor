@@ -443,7 +443,7 @@ class LC_Kit_Business_Hours extends \Elementor\Widget_Base {
 
         $this->add_render_attribute('wrapper', 'class', 'lc-business-hours');
 
-        echo '<div ' . esc_attr($this->get_render_attribute_string('wrapper')) . '>';
+        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
 
         // Title
         if (!empty($settings['lc_content_title'])) {
