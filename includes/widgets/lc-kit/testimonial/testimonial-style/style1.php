@@ -22,25 +22,25 @@
 											<?php if (isset($testimonial['client_logo']) && !empty($testimonial['client_logo']['url']) && sizeof($testimonial['client_logo']) > 0) { ?>
 												<div class="lc-client-logo">
 													<?php if (isset($testimonial['client_logo_active']) && sizeof($testimonial['client_logo_active']) > 0 && $testimonial['use_hover_logo'] == 'yes') : ?>
-														<?php echo wp_kses(\LC_Kit_Utils::get_attachment_image_html($testimonial, 'client_logo_active', 'full', [
+														<?php echo wp_kses(\LCAKE_Kit_Utils::get_attachment_image_html($testimonial, 'client_logo_active', 'full', [
 															'class'	=> 'lc-testimonial-client-active-logo'
-														]), \LC_Kit_Utils::get_kses_array()); ?>
+														]), \LCAKE_Kit_Utils::get_kses_array()); ?>
 													<?php endif; ?>
-													<?php echo wp_kses(\LC_Kit_Utils::get_attachment_image_html($testimonial, 'client_logo', 'full', [
+													<?php echo wp_kses(\LCAKE_Kit_Utils::get_attachment_image_html($testimonial, 'client_logo', 'full', [
 														'class'	=> 'lc-testimonial-client-logo'
-													]), \LC_Kit_Utils::get_kses_array()); ?>
+													]), \LCAKE_Kit_Utils::get_kses_array()); ?>
 												</div>
 											<?php
 											} ?>
 											<?php if (isset($testimonial['review']) && !empty($testimonial['review'])) : ?>
-												<p><?php echo isset($testimonial['review']) ? wp_kses($testimonial['review'], \LC_Kit_Utils::get_kses_array()) : ''; ?></p>
+												<p><?php echo isset($testimonial['review']) ? wp_kses($testimonial['review'], \LCAKE_Kit_Utils::get_kses_array()) : ''; ?></p>
 											<?php endif;  ?>
 											<?php if ('yes' == $lc_testimonial_title_separetor): ?>
 												<span class="lc-border-hr"></span>
 											<?php endif; ?>
 											<span class="lc-profile-info">
 												<strong class="lc-author-name"><?php echo isset($testimonial['client_name']) ? esc_html($testimonial['client_name']) : ''; ?></strong>
-												<span class="lc-author-des"><?php echo isset($testimonial['designation']) ? wp_kses(\LC_Kit_Utils::kspan($testimonial['designation']), \LC_Kit_Utils::get_kses_array()) : ''; // phpcs:ignore WordPress.Security.EscapeOutput -- Already escaped by kspan method by lc-kit
+												<span class="lc-author-des"><?php echo isset($testimonial['designation']) ? wp_kses(\LCAKE_Kit_Utils::kspan($testimonial['designation']), \LCAKE_Kit_Utils::get_kses_array()) : ''; // phpcs:ignore WordPress.Security.EscapeOutput -- Already escaped by kspan method by lc-kit
 																			?></span>
 											</span>
 										</div>
@@ -48,7 +48,7 @@
 									<div class="col-lg-6 lc-testimonial-col">
 										<div class="lc-profile-image-card">
 											<?php if (isset($testimonial['client_photo']) && !empty($testimonial['client_photo']['url']) &&  sizeof($testimonial['client_photo']) > 0) {
-												echo wp_kses(\LC_Kit_Utils::get_attachment_image_html($testimonial, 'client_photo', 'full'), \LC_Kit_Utils::get_kses_array());
+												echo wp_kses(\LCAKE_Kit_Utils::get_attachment_image_html($testimonial, 'client_photo', 'full'), \LCAKE_Kit_Utils::get_kses_array());
 											?>
 											<?php } ?>
 										</div>

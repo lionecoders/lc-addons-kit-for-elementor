@@ -1,10 +1,10 @@
-.lc-pie-chart-wrapper {
+.lcake-pie-chart-wrapper {
     display: block;
     width: 100%;
     text-align: center; /* Elementor will override this */
 }
 
-.lc-pie-chart-title {
+.lcake-pie-chart-title {
     margin-bottom: 15px;
     text-align: center;
     font-weight: 600;
@@ -12,18 +12,18 @@
 }
 
 /* Make chart and legend alignable via text-align */
-.lc-pie-chart,
-.lc-pie-chart-legend {
+.lcake-pie-chart,
+.lcake-pie-chart-legend {
     display: inline-block;
     vertical-align: middle;
 }
 
-.lc-pie-chart {
+.lcake-pie-chart {
     border-radius: 50%;
     margin-bottom: 20px;
 }
 
-.lc-pie-chart-legend {
+.lcake-pie-chart-legend {
     display: inline-block;
     flex-wrap: wrap;
     justify-content: center;
@@ -31,13 +31,13 @@
     text-align: left; /* keep internal legend text aligned left */
 }
 
-.lc-pie-chart-legend-item {
+.lcake-pie-chart-legend-item {
     display: flex;
     align-items: center;
     font-size: 14px;
 }
 
-.lc-pie-chart-legend-marker {
+.lcake-pie-chart-legend-marker {
     width: 12px;
     height: 12px;
     border-radius: 50%;

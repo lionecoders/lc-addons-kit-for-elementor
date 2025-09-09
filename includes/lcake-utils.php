@@ -401,9 +401,9 @@ class LCAKE_Kit_Utils
         return $html;
     }
 
-    public static function swiper_class($style = 'style1')
+    public static function swiper_class()
     {
-        return 'lc-main-swiper swiper ' . $style;
+        return 'lc-main-swiper swiper';
     }
 
     public static function get_page_by_title($page_title, $post_type = 'page')
@@ -428,4 +428,22 @@ class LCAKE_Kit_Utils
     {
         return preg_replace('/[^A-Za-z0-9 ]/', '', $string);
     }
+
+    public static function lcake_file_enqueue($scripts, $file) {
+        $register_func = 'wp_register_' . $file;
+        $enqueue_func = 'wp_enqueue_' . $file;
+        $folder = ($file === 'script') ? 'js' : 'css';
+    
+        foreach ($scripts as $handle => $data) {
+            $url = LCAKE_EAK_URL . 'assets/'.$folder.'/' . $data['file'];
+            $deps = $data['deps'] ?? [];
+            $in_footer_or_media = $file === 'script' ? true : ($data['media'] ?? 'all');
+    
+            $register_func($handle, $url, $deps, LCAKE_EAK_VERSION, $in_footer_or_media);
+    
+            if (!empty($data['enqueue'])) {
+                $enqueue_func($handle);
+            }
+        }
+    }    
 }

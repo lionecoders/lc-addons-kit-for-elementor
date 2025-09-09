@@ -2,7 +2,7 @@
 
 if (!defined('ABSPATH')) exit;
 
-class LC_Kit_Admin_Settings
+class LCAKE_Kit_Admin_Settings
 {
 
     private $widgets = [];
@@ -18,11 +18,11 @@ class LC_Kit_Admin_Settings
     private function load_widget_classes()
     {
         $widget_dirs = [
-            'lc-kit' => 'LC_Kit_',
+            'lc-kit' => 'LCAKE_Kit_',
         ];
 
         foreach ($widget_dirs as $folder => $prefix) {
-            $path = LC_EAK_PATH . 'includes/widgets/' . $folder . '/';
+            $path = LCAKE_EAK_PATH . 'includes/widgets/' . $folder . '/';
             if (!is_dir($path)) continue;
 
             foreach (glob($path . '*.php') as $file) {
@@ -97,7 +97,7 @@ class LC_Kit_Admin_Settings
         if ($hook !== 'toplevel_page_lc-kit-settings') return;
 
         // Load Tailwind CSS via CDN with version for cache busting
-        wp_enqueue_style('lc-kit-tailwind', LC_EAK_URL . 'assets/css/tailwind.min.css', [], '2.2.19');
+        wp_enqueue_style('lc-kit-tailwind', LCAKE_EAK_URL . 'assets/css/tailwind.min.css', [], '2.2.19');
     }
 
     public function render_settings_page()
@@ -106,7 +106,6 @@ class LC_Kit_Admin_Settings
 ?>
         <div class="wrap">
             <h1 class="text-3xl font-bold mb-6"><?php esc_attr_e('LC Elementor Addons Kit Settings', 'lc-elementor-addons-kit'); ?></h1>
-
             <form method="post" action="options.php">
                 <?php settings_fields('lc_kit_settings_group'); ?>
 

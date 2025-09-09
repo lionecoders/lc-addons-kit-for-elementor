@@ -31,19 +31,19 @@
 										}
 									?>
 										<li>
-																							<<?php echo esc_attr($ratingTag); ?>><?php echo wp_kses($iconStart, \LC_Kit_Utils::get_kses_array()); ?></<?php echo esc_attr($ratingTag); ?>>
+																							<<?php echo esc_attr($ratingTag); ?>><?php echo wp_kses($iconStart, \LCAKE_Kit_Utils::get_kses_array()); ?></<?php echo esc_attr($ratingTag); ?>>
 										</li>
 									<?php } ?>
 								</ul>
 							<?php endif; ?>
 
 							<?php if (isset($testimonial['review']) && !empty($testimonial['review'])) : ?>
-								<p class="lc-commentor-comment"><?php echo isset($testimonial['review']) ? wp_kses($testimonial['review'], \LC_Kit_Utils::get_kses_array()) : ''; ?></p>
+								<p class="lc-commentor-comment"><?php echo isset($testimonial['review']) ? wp_kses($testimonial['review'], \LCAKE_Kit_Utils::get_kses_array()) : ''; ?></p>
 							<?php endif;  ?>
 
 							<span class="lc-profile-info">
 								<strong class="lc-author-name"><?php echo isset($testimonial['client_name']) ? esc_html($testimonial['client_name']) : ''; ?></strong>
-								<span class="lc-author-des"><?php echo isset($testimonial['designation']) ? wp_kses($testimonial['designation'], \LC_Kit_Utils::get_kses_array()) : ''; // phpcs:ignore WordPress.Security.EscapeOutput -- Already escaped by kspan method by lc-kit 
+								<span class="lc-author-des"><?php echo isset($testimonial['designation']) ? wp_kses($testimonial['designation'], \LCAKE_Kit_Utils::get_kses_array()) : ''; // phpcs:ignore WordPress.Security.EscapeOutput -- Already escaped by kspan method by lc-kit 
 															?></span>
 							</span>
 							<div class="xs-overlay elementor-repeater-item-<?php echo esc_attr($testimonial['_id']); ?>"></div>

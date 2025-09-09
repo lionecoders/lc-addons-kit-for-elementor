@@ -13,15 +13,16 @@ if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-class LC_Kit_Testimonial extends \Elementor\Widget_Base
+class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 {
 
 	/*---------------------------
 	 * Meta
 	 *--------------------------*/
+
 	public function get_name()
 	{
-		return 'lc_kit_testimonial';
+		return 'lcake_kit_testimonial';
 	}
 
 	public function get_title()
@@ -40,12 +41,17 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 	 */
 	public function get_categories()
 	{
-		return array('lc-page-kit', 'general');
+		return array('lcake-page-kit');
 	}
 
 	public function get_keywords()
 	{
 		return array('testimonial', 'review', 'quote', 'feedback', 'client', 'rating');
+	}
+
+	public function get_script_depends()
+	{
+		return ['lcake-kit-testimonial-js'];
 	}
 
 	/**
@@ -54,7 +60,7 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 	 */
 	public function get_style_depends()
 	{
-		return array(); // e.g. return array( 'lc-kit-widgets' );
+		return array('lcake-kit-testimonial-css');
 	}
 
 	/*---------------------------
@@ -85,7 +91,7 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 					'style3' => 'Style 3',
 					'style4' => 'Style 4',
 					'style5' => 'Style 5',
-					'style6' => 'Style 6',
+					'style6' => 'Style 6'
 				],
 			]
 		);
@@ -2183,8 +2189,8 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 					'size' => 50,
 				],
 				'selectors' => [
-									'{{WRAPPER}} .lc-testimonial-slider .swiper-button-prev' => 'width: {{SIZE}}{{UNIT}};',
-				'{{WRAPPER}} .lc-testimonial-slider .swiper-button-next' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .lc-testimonial-slider .swiper-button-prev' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .lc-testimonial-slider .swiper-button-next' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -2207,8 +2213,8 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 					'size' => 50,
 				],
 				'selectors' => [
-									'{{WRAPPER}} .lc-testimonial-slider .swiper-button-prev' => 'height: {{SIZE}}{{UNIT}};',
-				'{{WRAPPER}} .lc-testimonial-slider .swiper-button-next' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .lc-testimonial-slider .swiper-button-prev' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .lc-testimonial-slider .swiper-button-next' => 'height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -2253,8 +2259,8 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'default' => '#000000',
 				'selectors' => [
-									'{{WRAPPER}} .lc-testimonial-slider .swiper-button-prev' => 'color: {{VALUE}}',
-				'{{WRAPPER}} .lc-testimonial-slider .swiper-button-next' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .lc-testimonial-slider .swiper-button-prev' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .lc-testimonial-slider .swiper-button-next' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -2303,8 +2309,8 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'default' => '#000000',
 				'selectors' => [
-									'{{WRAPPER}} .lc-testimonial-slider .swiper-button-prev:hover' => 'color: {{VALUE}}',
-				'{{WRAPPER}} .lc-testimonial-slider .swiper-button-next:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .lc-testimonial-slider .swiper-button-prev:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .lc-testimonial-slider .swiper-button-next:hover' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -2348,8 +2354,8 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%', 'em'],
 				'selectors' => [
-									'{{WRAPPER}} .lc-testimonial-slider .swiper-button-prev' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				'{{WRAPPER}} .lc-testimonial-slider .swiper-button-next' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .lc-testimonial-slider .swiper-button-prev' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .lc-testimonial-slider .swiper-button-next' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'separator' => 'before'
 			]
@@ -2459,9 +2465,6 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 
 		];
 
-		// Debug: Log the config being generated
-		error_log('LC Testimonial Config: ' . wp_json_encode($config));
-		
 		// HTML Attribute
 		$this->add_render_attribute(
 			'wrapper',
@@ -2475,7 +2478,7 @@ class LC_Kit_Testimonial extends \Elementor\Widget_Base
 		$this->add_render_attribute(
 			'swiper-container',
 			[
-				'class'	=> \LC_Kit_Utils::swiper_class($style),
+				'class'	=> \LCAKE_Kit_Utils::swiper_class($style),
 			]
 		);
 

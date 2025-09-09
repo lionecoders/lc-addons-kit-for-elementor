@@ -1,27 +1,27 @@
-ul.lc-social-icons {
+ul.lcake-social-icons {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.lc-social-icons--horizontal {
+.lcake-social-icons--horizontal {
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
 
-.lc-social-icons--vertical {
+.lcake-social-icons--vertical {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.lc-social-icons--horizontal.align-left {
+.lcake-social-icons--horizontal.align-left {
     justify-content: flex-start;
 }
-.lc-social-icons--horizontal.align-center {
+.lcake-social-icons--horizontal.align-center {
     justify-content: center;
 }
-.lc-social-icons--horizontal.align-right {
+.lcake-social-icons--horizontal.align-right {
     justify-content: flex-end;
 }

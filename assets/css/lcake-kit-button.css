@@ -1,5 +1,5 @@
 /* Button Wrapper */
-.lc-kit-button-wrapper {
+.lcake-kit-button-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,7 +8,7 @@
 }
 
 /* Core Button Style */
-.lc-kit-button.elementor-button {
+.lcake-kit-button.elementor-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -20,19 +20,19 @@
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.25s ease;
-    background-color: var(--lc-btn-bg, #4a4a4a);
-    color: var(--lc-btn-color, #fff);
+    background-color: var(--lcake-btn-bg, #4a4a4a);
+    color: var(--lcake-btn-color, #fff);
 }
 
 /* Hover Effect */
-.lc-kit-button.elementor-button:hover {
-    background-color: var(--lc-btn-bg-hover, #333);
-    color: var(--lc-btn-color-hover, #fff);
+.lcake-kit-button.elementor-button:hover {
+    background-color: var(--lcake-btn-bg-hover, #333);
+    color: var(--lcake-btn-color-hover, #fff);
     transform: translateY(-1px);
 }
 
 /* Icon */
-.lc-kit-button-icon {
+.lcake-kit-button-icon {
     display: inline-flex;
     align-items: center;
     line-height: 0;
@@ -40,7 +40,7 @@
 }
 
 /* Icon SVG respects font-size */
-.lc-kit-button-icon svg {
+.lcake-kit-button-icon svg {
     width: 1em;
     height: 1em;
     display: inline-block;
@@ -48,7 +48,7 @@
 }
 
 /* Badge */
-.lc-button-badge {
+.lcake-button-badge {
     display: inline-block;
     margin-left: 6px;
     padding: 2px 6px;
@@ -61,11 +61,11 @@
 }
 
 @media (max-width: 480px) {
-    .lc-kit-button.elementor-button {
+    .lcake-kit-button.elementor-button {
         padding: 8px 16px;
         font-size: 14px;
     }
-    .lc-button-badge {
+    .lcake-button-badge {
         font-size: 10px;
     }
 }

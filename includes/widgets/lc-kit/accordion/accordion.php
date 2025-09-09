@@ -9,22 +9,22 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class LC_Kit_Accordion extends \Elementor\Widget_Base {
+class LCAKE_Kit_Accordion extends \Elementor\Widget_Base {
 
     public function get_name() {
-        return 'lc-kit-accordion';
+        return 'lcake-kit-accordion';
     }
 
     public function get_title() {
-        return esc_html__('Accordion', 'lc-elementor-addons-kit');
+        return esc_html__('Accordion', 'lc-addons-kit-for-elementor');
     }
 
     public function get_script_depends() {
-        return ['lc-kit-accordion'];
+        return ['lcake-kit-accordion'];
     }
     
     public function get_style_depends() {
-        return ['lc-kit-accordion'];
+        return ['lcake-kit-accordion'];
     }
 
     public function get_icon() {
@@ -32,7 +32,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
     }
 
     public function get_categories() {
-        return ['lc-page-kit'];
+        return ['lcake-page-kit'];
     }
 
     public function get_keywords() {
@@ -48,7 +48,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -58,9 +58,9 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $repeater->add_control(
             'title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Accordion Title', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Accordion Title', 'lc-addons-kit-for-elementor'),
                 'label_block' => true,
             ]
         );
@@ -68,9 +68,9 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $repeater->add_control(
             'content',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::WYSIWYG,
-                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-addons-kit-for-elementor'),
                 'show_label' => false,
             ]
         );
@@ -78,7 +78,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $repeater->add_control(
             'icon',
             [
-                'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'fas fa-plus',
@@ -90,7 +90,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $repeater->add_control(
             'active_icon',
             [
-                'label' => esc_html__('Active Icon', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Active Icon', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'fas fa-minus',
@@ -102,25 +102,25 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'accordion_items',
             [
-                'label' => esc_html__('Accordion Items', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Accordion Items', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'title' => esc_html__('How do I start using WordPress?', 'lc-elementor-addons-kit'),
-                        'content' => esc_html__('You can start by choosing a domain, getting web hosting, and installing WordPress with one click from most hosting dashboards', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('How do I start using WordPress?', 'lc-addons-kit-for-elementor'),
+                        'content' => esc_html__('You can start by choosing a domain, getting web hosting, and installing WordPress with one click from most hosting dashboards', 'lc-addons-kit-for-elementor'),
                     ],
                     [
-                        'title' => esc_html__('Can I build a website without coding in WordPress?', 'lc-elementor-addons-kit'),
-                        'content' => esc_html__('Yes! WordPress has drag-and-drop builders like Elementor that let you build websites visually, without writing code.', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Can I build a website without coding in WordPress?', 'lc-addons-kit-for-elementor'),
+                        'content' => esc_html__('Yes! WordPress has drag-and-drop builders like Elementor that let you build websites visually, without writing code.', 'lc-addons-kit-for-elementor'),
                     ],
                     [
-                        'title' => esc_html__('What are WordPress themes and plugins?', 'lc-elementor-addons-kit'),
-                        'content' => esc_html__('Themes control your website’s design, and plugins add new features like contact forms, galleries, SEO tools, and more.', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('What are WordPress themes and plugins?', 'lc-addons-kit-for-elementor'),
+                        'content' => esc_html__('Themes control your website’s design, and plugins add new features like contact forms, galleries, SEO tools, and more.', 'lc-addons-kit-for-elementor'),
                     ],
                     [
-                        'title' => esc_html__('How can I learn WordPress faster?', 'lc-elementor-addons-kit'),
-                        'content' => esc_html__('Start by exploring the WordPress dashboard, watching tutorials on YouTube, or trying small changes like editing pages and posts.', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('How can I learn WordPress faster?', 'lc-addons-kit-for-elementor'),
+                        'content' => esc_html__('Start by exploring the WordPress dashboard, watching tutorials on YouTube, or trying small changes like editing pages and posts.', 'lc-addons-kit-for-elementor'),
                     ],
                 ],
                 'title_field' => '{{{ title }}}',
@@ -130,27 +130,27 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'active_item',
             [
-                'label' => esc_html__('Active Item', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Active Item', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => 1,
                 'max' => 10,
                 'default' => 1,
-                'description' => esc_html__('Enter the item number to open by default.', 'lc-elementor-addons-kit'),
+                'description' => esc_html__('Enter the item number to open by default.', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'icon_position',
             [
-                'label' => esc_html__('Icon Position', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon Position', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -162,10 +162,10 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'multiple',
             [
-                'label' => esc_html__('Multiple Items Open', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Multiple Items Open', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'no',
             ]
@@ -178,7 +178,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
               $this->start_controls_section(
             'style_section',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -188,7 +188,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'accordion_title_typography',
-                'selector' => '{{WRAPPER}} .lc-accordion-title',
+                'selector' => '{{WRAPPER}} .lcake-accordion-title',
             ]
         );
 
@@ -199,17 +199,17 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->start_controls_tab(
             'accordion_open_tab_title',
             [
-                'label' => esc_html__('Open', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Open', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'accordion_open_color_title',
             [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -217,10 +217,10 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'accordion_open_hover_color_title',
             [
-                'label' => esc_html__('Hover Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Hover Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-header:hover .lc-accordion-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-header:hover .lcake-accordion-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -230,7 +230,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
             [
                 'name' => 'accordion_open_background_title',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-header',
+                'selector' => '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-header',
             ]
         );
 
@@ -238,18 +238,18 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'accordion_open_border_title',
-                'selector' => '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-header',
+                'selector' => '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-header',
             ]
         );
 
         $this->add_control(
             'accordion_open_border_radius_title',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-header' =>
+                    '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-header' =>
                         'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
@@ -259,7 +259,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'accordion_open_shadow_title',
-                'selector' => '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-header',
+                'selector' => '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-header',
             ]
         );
 
@@ -269,17 +269,17 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->start_controls_tab(
             'accordion_closed_tab_title',
             [
-                'label' => esc_html__('Closed', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Closed', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'accordion_closed_color_title',
             [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-item:not(.active) .lc-accordion-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-accordion-item:not(.active) .lcake-accordion-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -287,10 +287,10 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'accordion_closed_hover_color_title',
             [
-                'label' => esc_html__('Hover Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Hover Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-item:not(.active) .lc-accordion-header:hover .lc-accordion-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-accordion-item:not(.active) .lcake-accordion-header:hover .lcake-accordion-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -300,7 +300,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
             [
                 'name' => 'accordion_closed_background_title',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .lc-accordion-item:not(.active) .lc-accordion-header',
+                'selector' => '{{WRAPPER}} .lcake-accordion-item:not(.active) .lcake-accordion-header',
             ]
         );
 
@@ -308,18 +308,18 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'accordion_closed_border_title',
-                'selector' => '{{WRAPPER}} .lc-accordion-item:not(.active) .lc-accordion-header',
+                'selector' => '{{WRAPPER}} .lcake-accordion-item:not(.active) .lcake-accordion-header',
             ]
         );
 
         $this->add_control(
             'accordion_closed_border_radius_title',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-item:not(.active) .lc-accordion-header' =>
+                    '{{WRAPPER}} .lcake-accordion-item:not(.active) .lcake-accordion-header' =>
                         'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
@@ -329,7 +329,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'accordion_closed_shadow_title',
-                'selector' => '{{WRAPPER}} .lc-accordion-item:not(.active) .lc-accordion-header',
+                'selector' => '{{WRAPPER}} .lcake-accordion-item:not(.active) .lcake-accordion-header',
             ]
         );
 
@@ -349,11 +349,11 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'accordion_title_padding_title',
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-header' =>
+                    '{{WRAPPER}} .lcake-accordion-header' =>
                         'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
@@ -363,7 +363,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'accordion_title_margin_bottom_title',
             [
-                'label' => esc_html__('Margin Bottom', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin Bottom', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -373,7 +373,7 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-item:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion-item:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -382,21 +382,21 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
 
         // Description (Subtitle) Style Section
         $this->start_controls_section(
-            'lc_accordion_description_style',
+            'lcake_accordion_description_style',
             [
-                'label' => esc_html__('Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
         // Text Color
         $this->add_control(
-            'lc_accordion_description_color',
+            'lcake_accordion_description_color',
             [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-content' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-content' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -405,8 +405,8 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'lc_accordion_description_typography',
-                'selector' => '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-content',
+                'name' => 'lcake_accordion_description_typography',
+                'selector' => '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-content',
             ]
         );
 
@@ -414,10 +414,10 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
-                'name' => 'lc_accordion_description_background',
-                'label' => esc_html__('Background', 'lc-elementor-addons-kit'),
+                'name' => 'lcake_accordion_description_background',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-content',
+                'selector' => '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-content',
             ]
         );
 
@@ -425,20 +425,20 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'lc_accordion_description_border',
-                'selector' => '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-content',
+                'name' => 'lcake_accordion_description_border',
+                'selector' => '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-content',
             ]
         );
 
         // Border Radius
         $this->add_control(
-            'lc_accordion_description_border_radius',
+            'lcake_accordion_description_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -447,29 +447,29 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'lc_accordion_description_box_shadow',
-                'selector' => '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-content',
+                'name' => 'lcake_accordion_description_box_shadow',
+                'selector' => '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-content',
             ]
         );
 
         // Padding
         $this->add_responsive_control(
-            'lc_accordion_description_padding',
+            'lcake_accordion_description_padding',
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         // Max Width (Only for specific style, if needed)
         $this->add_responsive_control(
-            'lc_accordion_description_max_width',
+            'lcake_accordion_description_max_width',
             [
-                'label' => esc_html__('Max Width', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Max Width', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['%'],
                 'range' => [
@@ -483,10 +483,10 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
                     'size' => 100,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion-item.active .lc-accordion-content' => 'max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion-item.active .lcake-accordion-content' => 'max-width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
-                    'lc_accordion_style' => 'floating-style',
+                    'lcake_accordion_style' => 'floating-style',
                 ],
             ]
         );
@@ -495,40 +495,40 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
 
         // Accordion Border Style Section
         $this->start_controls_section(
-            'lc_accordion_section_border_style', [
-                'label' => esc_html__('Border', 'lc-elementor-addons-kit'),
+            'lcake_accordion_section_border_style', [
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
-        $this->start_controls_tabs('lc_accordion_border_style_tabs');
+        $this->start_controls_tabs('lcake_accordion_border_style_tabs');
 
         // OPEN TAB
         $this->start_controls_tab(
-            'lc_accordion_border_style_open',
+            'lcake_accordion_border_style_open',
             [
-                'label' => esc_html__('OPEN', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('OPEN', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'lc_accordion_border_open',
-                'label' => esc_html__('Border', 'lc-elementor-addons-kit'),
-                'selector' => '{{WRAPPER}} .lc-accordion .lc-accordion-item.active',
+                'name' => 'lcake_accordion_border_open',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-accordion .lcake-accordion-item.active',
             ]
         );
 
         $this->add_control(
-            'lc_accordion_border_radius_open',
+            'lcake_accordion_border_radius_open',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item.active' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} 0{{UNIT}} 0{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-item.active' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-item.active .lcake-accordion-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} 0{{UNIT}} 0{{UNIT}};',
                 ],
             ]
         );
@@ -536,9 +536,9 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'lc_accordion_box_shadow_open',
-                'label' => esc_html__('Box Shadow', 'lc-elementor-addons-kit'),
-                'selector' => '{{WRAPPER}} .lc-accordion .lc-accordion-item.active',
+                'name' => 'lcake_accordion_box_shadow_open',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-accordion .lcake-accordion-item.active',
             ]
         );
 
@@ -546,30 +546,30 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
 
         // CLOSED TAB
         $this->start_controls_tab(
-            'lc_accordion_border_style_closed',
+            'lcake_accordion_border_style_closed',
             [
-                'label' => esc_html__('CLOSED', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('CLOSED', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'lc_accordion_border_closed',
-                'label' => esc_html__('Border', 'lc-elementor-addons-kit'),
-                'selector' => '{{WRAPPER}} .lc-accordion .lc-accordion-item',
+                'name' => 'lcake_accordion_border_closed',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-accordion .lcake-accordion-item',
             ]
         );
 
         $this->add_control(
-            'lc_accordion_border_radius_closed',
+            'lcake_accordion_border_radius_closed',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-title.collapsed' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-title.collapsed' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -577,9 +577,9 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'lc_accordion_box_shadow_closed',
-                'label' => esc_html__('Box Shadow', 'lc-elementor-addons-kit'),
-                'selector' => '{{WRAPPER}} .lc-accordion .lc-accordion-item',
+                'name' => 'lcake_accordion_box_shadow_closed',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-accordion .lcake-accordion-item',
             ]
         );
 
@@ -587,17 +587,17 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->end_controls_tabs();
 
         $this->add_control(
-            'lc_accordion_last_border_none',
+            'lcake_accordion_last_border_none',
             [
-                'label' => esc_html__('Disable Border for Last Element?', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Disable Border for Last Element?', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
                 'separator' => 'before',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item:last-child' => 'border: none;',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-item:last-child' => 'border: none;',
                 ],
             ]
         );
@@ -606,50 +606,50 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         
         // Icon Style Section
         $this->start_controls_section(
-            'lc_accordion_section_icon_style', [
-                'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
+            'lcake_accordion_section_icon_style', [
+                'label' => esc_html__('Icon', 'lc-addons-kit-for-elementor'),
                 'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
-        $this->start_controls_tabs('lc_accordion_icon_tabs');
+        $this->start_controls_tabs('lcake_accordion_icon_tabs');
 
         // === CLOSED TAB ===
         $this->start_controls_tab(
-            'lc_accordion_icon_closed_tab',
-            ['label' => esc_html__('CLOSED', 'lc-elementor-addons-kit')]
+            'lcake_accordion_icon_closed_tab',
+            ['label' => esc_html__('CLOSED', 'lc-addons-kit-for-elementor')]
         );
 
         $this->add_responsive_control(
-            'lc_accordion_icon_closed_size',
+            'lcake_accordion_icon_closed_size',
             [
-                'label' => esc_html__('Size', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => ['px' => ['min' => 6, 'max' => 300]],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-icon svg' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-item:not(.active) .lcake-accordion-icon svg' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'lc_accordion_icon_closed_color',
+            'lcake_accordion_icon_closed_color',
             [
-                'label' => esc_html__('Closed Icon Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Closed Icon Color', 'lc-addons-kit-for-elementor'),
                 'type'  => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-icon i, {{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-icon svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-item:not(.active) .lcake-accordion-icon i, {{WRAPPER}} .lcake-accordion .lcake-accordion-item:not(.active) .lcake-accordion-icon svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
                 ],
             ]
         );
 
        $this->add_control(
-            'lc_accordion_icon_closed_hover_color',
+            'lcake_accordion_icon_closed_hover_color',
             [
-                'label' => esc_html__('Closed Icon Hover Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Closed Icon Hover Color', 'lc-addons-kit-for-elementor'),
                 'type'  => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-header:hover .lc-accordion-icon i, {{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-header:hover .lc-accordion-icon svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-item:not(.active) .lcake-accordion-header:hover .lcake-accordion-icon i, {{WRAPPER}} .lcake-accordion .lcake-accordion-item:not(.active) .lcake-accordion-header:hover .lcake-accordion-icon svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
                 ],
             ]
         );
@@ -657,17 +657,17 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
-                'name' => 'lc_accordion_icon_closed_bg',
+                'name' => 'lcake_accordion_icon_closed_bg',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-icon',
+                'selector' => '{{WRAPPER}} .lcake-accordion .lcake-accordion-item:not(.active) .lcake-accordion-icon',
             ]
         );
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'lc_accordion_icon_closed_border',
-                'selector' => '{{WRAPPER}} .lc-accordion .lc-accordion-item:not(.active) .lc-accordion-icon',
+                'name' => 'lcake_accordion_icon_closed_border',
+                'selector' => '{{WRAPPER}} .lcake-accordion .lcake-accordion-item:not(.active) .lcake-accordion-icon',
             ]
         );
 
@@ -675,57 +675,57 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
 
         // === OPEN TAB ===
         $this->start_controls_tab(
-            'lc_accordion_icon_open_tab',
-            ['label' => esc_html__('OPEN', 'lc-elementor-addons-kit')]
+            'lcake_accordion_icon_open_tab',
+            ['label' => esc_html__('OPEN', 'lc-addons-kit-for-elementor')]
         );
 
         $this->add_responsive_control(
-            'lc_accordion_icon_open_size',
+            'lcake_accordion_icon_open_size',
             [
-                'label' => esc_html__('Size', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => ['px' => ['min' => 6, 'max' => 300]],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-icon-active svg' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-item.active .lcake-accordion-icon-active svg' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'lc_accordion_icon_open_color',
+            'lcake_accordion_icon_open_color',
             [
-                'label' => esc_html__('Open Icon Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Open Icon Color', 'lc-addons-kit-for-elementor'),
                 'type'  => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-icon-active i, {{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-icon-active svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-item.active .lcake-accordion-icon-active i, {{WRAPPER}} .lcake-accordion .lcake-accordion-item.active .lcake-accordion-icon-active svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
                 ],
             ]
         );
         
         $this->add_control(
-            'lc_accordion_icon_open_hover_color',
+            'lcake_accordion_icon_open_hover_color',
             [
-                'label' => esc_html__('Open Icon Hover Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Open Icon Hover Color', 'lc-addons-kit-for-elementor'),
                 'type'  => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-header:hover .lc-accordion-icon-active i, {{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-header:hover .lc-accordion-icon-active svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-item.active .lcake-accordion-header:hover .lcake-accordion-icon-active i, {{WRAPPER}} .lcake-accordion .lcake-accordion-item.active .lcake-accordion-header:hover .lcake-accordion-icon-active svg' => 'color: {{VALUE}}; fill: {{VALUE}}; stroke: {{VALUE}};',
                 ],
             ]
         );
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
-                'name' => 'lc_accordion_icon_open_bg',
+                'name' => 'lcake_accordion_icon_open_bg',
                 'types' => ['classic', 'gradient'],
-                'selector' => '{{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-icon-active',
+                'selector' => '{{WRAPPER}} .lcake-accordion .lcake-accordion-item.active .lcake-accordion-icon-active',
             ]
         );
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'lc_accordion_icon_open_border',
-                'selector' => '{{WRAPPER}} .lc-accordion .lc-accordion-item.active .lc-accordion-icon-active',
+                'name' => 'lcake_accordion_icon_open_border',
+                'selector' => '{{WRAPPER}} .lcake-accordion .lcake-accordion-item.active .lcake-accordion-icon-active',
             ]
         );
 
@@ -734,38 +734,38 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
 
         // === COMMON CONTROLS ===
         $this->add_control(
-            'lc_accordion_icon_radius',
+            'lcake_accordion_icon_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'separator' => 'before',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-icon, {{WRAPPER}} .lc-accordion .lc-accordion-icon-active' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-icon, {{WRAPPER}} .lcake-accordion .lcake-accordion-icon-active' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'lc_accordion_icon_padding',
+            'lcake_accordion_icon_padding',
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-icon, {{WRAPPER}} .lc-accordion .lc-accordion-icon-active' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-icon, {{WRAPPER}} .lcake-accordion .lcake-accordion-icon-active' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'lc_accordion_icon_margin',
+            'lcake_accordion_icon_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-accordion .lc-accordion-icon, {{WRAPPER}} .lc-accordion .lc-accordion-icon-active' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-accordion .lcake-accordion-icon, {{WRAPPER}} .lcake-accordion .lcake-accordion-icon-active' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -785,49 +785,49 @@ class LC_Kit_Accordion extends \Elementor\Widget_Base {
         
         $multiple = ($settings['multiple'] === 'yes') ? 'yes' : 'no';
 
-        $this->add_render_attribute('wrapper', 'class', 'lc-elementor-addons-kit');
+        $this->add_render_attribute('wrapper', 'class', 'lcake-elementor-addons-kit');
         $this->add_render_attribute('wrapper', 'data-multiple', $multiple);
 
-        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
-        echo '<div class="lc-accordion" data-multiple="' . esc_attr($multiple) . '">';
+        echo '<div ' . esc_attr($this->get_render_attribute_string('wrapper')) . '>';
+        echo '<div class="lcake-accordion" data-multiple="' . esc_attr($multiple) . '">';
 
         
 
         foreach ($settings['accordion_items'] as $index => $item) {
-            $item_class = 'lc-accordion-item';
+            $item_class = 'lcake-accordion-item';
             if ($index + 1 == $settings['active_item']) {
                 $item_class .= ' active';
             }
 
             echo '<div class="' . esc_attr($item_class) . '">';
             $icon_position_class = ($settings['icon_position'] === 'left') ? 'icon-left' : '';
-            echo '<div class="lc-accordion-header ' . esc_attr($icon_position_class) . '">';
-            echo '<div class="lc-accordion-title">' . esc_html($item['title']) . '</div>';
+            echo '<div class="lcake-accordion-header ' . esc_attr($icon_position_class) . '">';
+            echo '<div class="lcake-accordion-title">' . esc_html($item['title']) . '</div>';
 
             if (!empty($item['icon']['value']) || !empty($item['active_icon']['value'])) {
-                echo '<div class="lc-accordion-icon">';
+                echo '<div class="lcake-accordion-icon">';
                 if (!empty($item['icon']['value'])) {
                     \Elementor\Icons_Manager::render_icon($item['icon'], ['aria-hidden' => 'true']);
                 }
                 if (!empty($item['active_icon']['value'])) {
-                    echo '<span class="lc-accordion-icon-active">';
+                    echo '<span class="lcake-accordion-icon-active">';
                     \Elementor\Icons_Manager::render_icon($item['active_icon'], ['aria-hidden' => 'true']);
                     echo '</span>';
                 }
                 echo '</div>';
             }
 
-            echo '</div>'; // .lc-accordion-header
+            echo '</div>';
 
-            echo '<div class="lc-accordion-content">';
-            echo '<div class="lc-accordion-body">';
+            echo '<div class="lcake-accordion-content">';
+            echo '<div class="lcake-accordion-body">';
             echo wp_kses_post($item['content']);
             echo '</div>';
-            echo '</div>'; // .lc-accordion-content
+            echo '</div>'; 
 
-            echo '</div>'; // .lc-accordion-item
+            echo '</div>'; 
         }
-        echo '</div>'; // .lc-accordion
-        echo '</div>'; // .lc-accordion
+        echo '</div>'; 
+        echo '</div>'; 
     }
 }

@@ -2,12 +2,12 @@
     'use strict';
 
     const PieChartWidget = function ($scope) {
-        const $outer = $scope.find('.lc-kit-pie-chart__outer');
+        const $outer = $scope.find('.lcake-kit-pie-chart__outer');
         if (!$outer.length) return;
 
         $outer.each(function () {
             const $wrap = $(this);
-            const $container = $wrap.find('.lc-kit-pie-chart__container').first();
+            const $container = $wrap.find('.lcake-kit-pie-chart__container').first();
             const $canvas = $container.find('canvas').first();
 
             if (!$container.length || !$canvas.length) return;
@@ -93,7 +93,7 @@
     // Init on Elementor frontend
     $(window).on('elementor/frontend/init', function () {
         if (typeof elementorFrontend !== 'undefined') {
-            elementorFrontend.hooks.addAction('frontend/element_ready/lc-kit-pie-chart.default', PieChartWidget);
+            elementorFrontend.hooks.addAction('frontend/element_ready/lcake-kit-pie-chart.default', PieChartWidget);
         }
     });
 

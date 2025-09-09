@@ -30,11 +30,11 @@
 										<div class="lc-commentor-image lc-testimonial--avatar">
 											<?php
 											echo wp_kses(
-												\LC_Kit_Utils::get_attachment_image_html($testimonial, 'client_photo', 'full', [
+												\LCAKE_Kit_Utils::get_attachment_image_html($testimonial, 'client_photo', 'full', [
 													'height' => esc_attr($client_image_size),
 													'width' => esc_attr($client_image_size)
 												]),
-												\LC_Kit_Utils::get_kses_array()
+												\LCAKE_Kit_Utils::get_kses_array()
 											);
 											?>
 										</div>
@@ -48,7 +48,7 @@
 											<strong class="lc-author-name"><?php echo esc_html($testimonial['client_name']); ?></strong>
 										<?php }; ?>
 										<?php if (!empty($testimonial['designation'])) { ?>
-											<span class="lc-author-des"><?php echo wp_kses(\LC_Kit_Utils::kspan($testimonial['designation']), \LC_Kit_Utils::get_kses_array()); // phpcs:ignore WordPress.Security.EscapeOutput -- Already escaped by kspan method by lc-kit 
+											<span class="lc-author-des"><?php echo wp_kses(\LCAKE_Kit_Utils::kspan($testimonial['designation']), \LCAKE_Kit_Utils::get_kses_array()); // phpcs:ignore WordPress.Security.EscapeOutput -- Already escaped by kspan method by lc-kit 
 																		?></span>
 										<?php }; ?>
 									</div>
@@ -67,12 +67,12 @@
 													}
 												?>
 													<li>
-														<<?php echo esc_attr($ratingTag); ?>><?php echo wp_kses($iconStart, \LC_Kit_Utils::get_kses_array()); ?></<?php echo esc_attr($ratingTag); ?>>
+														<<?php echo esc_attr($ratingTag); ?>><?php echo wp_kses($iconStart, \LCAKE_Kit_Utils::get_kses_array()); ?></<?php echo esc_attr($ratingTag); ?>>
 													</li>
 												<?php } ?>
 											</ul>
 										<?php endif; ?>
-										<p><?php echo isset($testimonial['review']) ? wp_kses($testimonial['review'], \LC_Kit_Utils::get_kses_array()) : ''; ?></p>
+										<p><?php echo isset($testimonial['review']) ? wp_kses($testimonial['review'], \LCAKE_Kit_Utils::get_kses_array()) : ''; ?></p>
 									</div>
 								<?php endif;  ?>
 						</<?php echo esc_attr($wrapTag); ?>>
