@@ -34,59 +34,72 @@ class LCAKE_Kit_Widget_Loader
 
     public function register_widgets($widgets_manager)
     {
+        // Get the saved list of enabled widget names (IDs) from the database.
+        // Example: [ 'accordion', 'button', 'icon-box' ]
+        $enabled_widgets = get_option('lcake_kit_enabled_widgets', []);
+
         $folders = [
-            'lc-kit' => 'LCAKE_Kit_'
+            'lc-kit' => 'LCAKE_Kit_',
         ];
 
         foreach ($folders as $folder => $prefix) {
             $path = LCAKE_EAK_PATH . 'includes/widgets/' . $folder . '/';
+            if (!is_dir($path)) {
+                continue;
+            }
 
             // Get all PHP files including those in subdirectories
             $files = glob($path . '*.php');
             $subdir_files = glob($path . '*/*.php');
-            $all_files = array_merge($files, $subdir_files);
+            $all_files = array_merge($files ?: [], $subdir_files ?: []);
 
             foreach ($all_files as $file) {
                 require_once $file;
 
-                $base = basename($file, '.php');
-                $class = $prefix . str_replace(' ', '_', ucwords(str_replace('-', ' ', $base)));
+                // Widget name = filename without extension (e.g., accordion.php → accordion)
+                $widget_name = basename($file, '.php');
+
+                // Convert to PascalCase for class name (e.g., accordion → LCAKE_Kit_Accordion)
+                $class = $prefix . str_replace(' ', '_', ucwords(str_replace('-', ' ', $widget_name)));
 
                 if (class_exists($class)) {
-                    $widgets_manager->register(new $class());
+                    // Only register if widget_name exists in DB option
+                    if (in_array($widget_name, $enabled_widgets, true)) {
+                        $widgets_manager->register(new $class());
+                    }
                 }
             }
         }
     }
-
     public function register_widget_scripts()
     {
         $scripts = [
-            'lcake-kit-accordion' => ['file' => 'lcake-kit-accordion.js', 'deps' => ['jquery'], 'enqueue' => false],
-            'lcake-kit-faq-js' => ['file' => 'lcake-kit-faq.js', 'deps' => ['jquery'], 'enqueue' => true],
-            'lcake-kit-pie-chart-js' => ['file' => 'lcake-kit-pie-chart.js', 'deps' => ['jquery'], 'enqueue' => true],
-            'lcake-kit-testimonial-js' => ['file' => 'lcake-kit-testimonial.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false],
-            'lcake-chartjs' => ['file' => 'chart.min.js', 'deps' => ['jquery'], 'enqueue' => true],
-            'lcake-swiper-js' => ['file' => 'swiper-bundle.min.js', 'deps' => ['jquery'], 'enqueue' => true],
-            'lcake-btsp-js' => ['file' => 'bootstrap.bundle.min.js', 'deps' => ['jquery'], 'enqueue' => true]
+            'lcake-kit-accordion' => ['file' => 'lcake-kit-accordion.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-faq-js' => ['file' => 'lcake-kit-faq.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
+            'lcake-kit-pie-chart-js' => ['file' => 'lcake-kit-pie-chart.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
+            'lcake-kit-testimonial-js' => ['file' => 'lcake-kit-testimonial.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false, 'path' => ''],
+            'lcake-chart-js' => ['file' => 'lcake-chart.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
+            'lcake-swiper-js' => ['file' => 'swiper-bundle.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
+            'lcake-btsp-js' => ['file' => 'bootstrap.bundle.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => '']
         ];
 
-        LCAKE_Kit_Utils::lcake_file_enqueue($scripts, 'script' );
+        LCAKE_Kit_Utils::lcake_file_enqueue($scripts, 'script');
     }
 
     public function register_widget_styles()
     {
         $styles = [
-            'lcake-kit-accordion' => ['file' => 'lcake-kit-accordion.css', 'enqueue' => false],
-            'lcake-kit-button' => ['file' => 'lcake-kit-button.css', 'enqueue' => true],
-            'lcake-kit-social-icons' => ['file' => 'lcake-kit-social-icons.css', 'enqueue' => true],
-            'lcake-kit-faq-css' => ['file' => 'lcake-kit-faq.css', 'enqueue' => true],
-            'lcake-kit-pie-chart-css' => ['file' => 'lcake-kit-pie-chart.css', 'enqueue' => true],
-            'lcake-kit-testimonial-css' => ['file' => 'lcake-kit-testimonial.css', 'enqueue' => false],
-            'lcake-btsp-css' => ['file' => 'bootstrap.min.css', 'enqueue' => true],
-            'lcake-swiper-css' => ['file' => 'swiper-bundle.min.css', 'enqueue' => true],
-        ];        
+            'lcake-kit-accordion' => ['file' => 'lcake-kit-accordion.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-button' => ['file' => 'lcake-kit-button.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-social-icons' => ['file' => 'lcake-kit-social-icons.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-faq-css' => ['file' => 'lcake-kit-faq.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-pie-chart-css' => ['file' => 'lceak-kit-pie-chart.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-testimonial-css' => ['file' => 'lcake-kit-testimonial.css', 'enqueue' => false, 'path' => ''],
+            'lcake-btsp-css' => ['file' => 'bootstrap.min.css', 'enqueue' => true, 'path' => ''],
+            'lcake-swiper-css' => ['file' => 'swiper-bundle.min.css', 'enqueue' => true, 'path' => ''],
+            'lcakeicons' => ['file' => 'lcakeicons.css', 'enqueue' => true, 'path' => 'assets/icons']
+        ];
 
-        LCAKE_Kit_Utils::lcake_file_enqueue($styles, 'style' );
+        LCAKE_Kit_Utils::lcake_file_enqueue($styles, 'style');
     }
 }

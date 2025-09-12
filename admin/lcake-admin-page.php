@@ -1,135 +1,130 @@
 <?php
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 class LCAKE_Kit_Admin_Settings
 {
-
     private $widgets = [];
+    private $menu_slug = 'lcake-kit-settings';
+    private $page_hook = '';
 
     public function __construct()
     {
-        $this->load_widget_classes();
+        $this->load_widget_info();
+
         add_action('admin_menu', [$this, 'add_settings_page']);
-        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_styles']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_assets']);
         add_action('admin_init', [$this, 'register_settings']);
+        add_action('rest_api_init', [$this, 'register_rest_routes']);
     }
 
-    private function load_widget_classes()
+    private function load_widget_info()
     {
-        $widget_dirs = [
-            'lc-kit' => 'LCAKE_Kit_',
-        ];
+        $this->widgets = [];
+        $folders = ['lc-kit']; // add more folders if needed
 
-        foreach ($widget_dirs as $folder => $prefix) {
+        foreach ($folders as $folder) {
             $path = LCAKE_EAK_PATH . 'includes/widgets/' . $folder . '/';
             if (!is_dir($path)) continue;
 
-            foreach (glob($path . '*.php') as $file) {
-                $base = basename($file, '.php');
-                $class = $prefix . $this->format_class_name($base);
-                $label = ucwords(str_replace(['-', '_'], ' ', $base));
-                $this->widgets[$class] = $label;
+            // Find PHP files inside folder and subfolders
+            $files = glob($path . '*.php');
+            $subdir_files = glob($path . '*/*.php');
+            $all_files = array_merge($files, $subdir_files);
+
+            foreach ($all_files as $file) {
+                $base  = basename($file, '.php'); // file name without .php
+                $label = ucwords(str_replace(['-', '_'], ' ', $base)); // convert to "Accordion" style
+
+                $this->widgets[$base] = [
+                    'id'          => $base,
+                    'label'       => $label,
+                    'description' => 'Control the visibility of this widget.',
+                    'icon'        => 'dashicons-admin-generic',
+                    'is_pro'      => (strpos($base, 'pro') !== false),
+                ];
             }
         }
-    }
 
-    private function format_class_name($filename)
-    {
-        $parts = explode('-', $filename);
-        $parts = array_map('ucfirst', $parts);
-        return implode('_', $parts);
+        // Sort widgets alphabetically by label
+        uasort($this->widgets, fn($a, $b) => strcmp($a['label'], $b['label']));
     }
 
     public function add_settings_page()
     {
-        add_menu_page(
-            __('LC Kit', 'lc-elementor-addons-kit'),
-            __('LC Kit', 'lc-elementor-addons-kit'),
-            'manage_options',
-            'lc-kit-settings',
-            [$this, 'render_settings_page'],
-            'dashicons-screenoptions',
-            56
-        );
+        $parent_slug = 'lcake-kit-main-menu';
+        add_menu_page('LC Kit', 'LC Kit', 'manage_options', $parent_slug, [$this, 'render_settings_page'], 'dashicons-screenoptions');
+        $this->page_hook = add_submenu_page($parent_slug, 'LC Kit Widget Manager', 'Widget Manager', 'manage_options', $parent_slug, [$this, 'render_settings_page']);
     }
 
     public function register_settings()
     {
-        register_setting(
-            'lc_kit_settings_group',
-            'lc_kit_enabled_widgets',
-            [
-                'sanitize_callback' => [$this, 'sanitize_widget_settings'],
-                'default' => []
-            ]
-        );
+        register_setting('lcake_kit_settings_group', 'lcake_kit_enabled_widgets', ['type' => 'array', 'default' => []]);
     }
 
-    /**
-     * Sanitize widget settings before saving to database
-     *
-     * @param array $input The input array from the form
-     * @return array Sanitized array
-     */
-    public function sanitize_widget_settings($input)
+    public function register_rest_routes()
     {
-        if (!is_array($input)) {
-            return [];
-        }
+        register_rest_route('lcake-kit/v1', '/save-settings', [
+            'methods' => 'POST',
+            'callback' => [$this, 'handle_save_settings_rest'],
+            'permission_callback' => fn() => current_user_can('manage_options'),
+        ]);
+    }
 
-        $sanitized = [];
-        $valid_widgets = array_keys($this->widgets);
-
-        foreach ($input as $widget_class => $value) {
-            // Only allow known widget classes
-            if (in_array($widget_class, $valid_widgets, true)) {
-                // Sanitize the value to ensure it's boolean
-                $sanitized[$widget_class] = (bool) $value;
+    public function handle_save_settings_rest($request)
+    {
+        $enabled_widgets = $request->get_param('enabled_widgets');
+        $sanitized_enabled = [];
+        if (is_array($enabled_widgets)) {
+            $all_widget_keys = array_keys($this->widgets);
+            foreach ($enabled_widgets as $widget_class) {
+                if (in_array(trim($widget_class), $all_widget_keys)) {
+                    $sanitized_enabled[] = trim($widget_class);
+                }
             }
         }
-
-        return $sanitized;
+        update_option('lcake_kit_enabled_widgets', $sanitized_enabled);
+        return new WP_REST_Response(['success' => true, 'message' => 'Settings saved successfully.'], 200);
     }
 
-    public function enqueue_admin_styles($hook)
+    public function enqueue_admin_assets($hook)
     {
-        if ($hook !== 'toplevel_page_lc-kit-settings') return;
+        if ($hook !== $this->page_hook) return;
 
-        // Load Tailwind CSS via CDN with version for cache busting
-        wp_enqueue_style('lc-kit-tailwind', LCAKE_EAK_URL . 'assets/css/tailwind.min.css', [], '2.2.19');
+        $script_path = 'admin/build/index.js';
+        $script_asset_path = dirname(__FILE__) . '/build/index.asset.php';
+        $script_asset = file_exists($script_asset_path) ? require($script_asset_path) : ['dependencies' => ['wp-element'], 'version' => filemtime(LCAKE_EAK_PATH . $script_path)];
+
+        // The wp_enqueue_script for react-beautiful-dnd has been removed as requested.
+
+        wp_enqueue_script(
+            'lcake-kit-react-app',
+            LCAKE_EAK_URL . $script_path,
+            $script_asset['dependencies'], // Dependency on dnd script is removed.
+            $script_asset['version'],
+            true
+        );
+
+        wp_enqueue_style(
+            'lcake-kit-admin-styles',
+            LCAKE_EAK_URL . 'admin/css/admin-styles.css',
+            [],
+            '3.0.0'
+        );
+
+        wp_localize_script('lcake-kit-react-app', 'LCAKE_SETTINGS', [
+            'all_widgets' => array_values($this->widgets),
+            'enabled_widgets' => get_option('lcake_kit_enabled_widgets', []),
+            'api_url' => rest_url('lcake-kit/v1/save-settings'),
+            'nonce' => wp_create_nonce('wp_rest'),
+        ]);
     }
 
     public function render_settings_page()
     {
-        $enabled_widgets = get_option('lc_kit_enabled_widgets', []);
 ?>
-        <div class="wrap">
-            <h1 class="text-3xl font-bold mb-6"><?php esc_attr_e('LC Elementor Addons Kit Settings', 'lc-elementor-addons-kit'); ?></h1>
-            <form method="post" action="options.php">
-                <?php settings_fields('lc_kit_settings_group'); ?>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <?php foreach ($this->widgets as $class => $label):
-                        $is_enabled = isset($enabled_widgets[$class]) ? (bool) $enabled_widgets[$class] : true;
-                    ?>
-                        <div class="bg-white p-4 rounded shadow flex items-center justify-between">
-                            <label class="text-lg font-medium"><?php echo esc_html($label); ?></label>
-                            <label class="inline-flex relative items-center cursor-pointer">
-                                <input type="checkbox" name="lc_kit_enabled_widgets[<?php echo esc_attr($class); ?>]" value="1" class="sr-only" <?php checked($is_enabled); ?>>
-                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-checked:bg-blue-600 transition-all"></div>
-                                <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full shadow transform peer-checked:translate-x-5 transition-all"></div>
-                            </label>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-
-                <div class="mt-6">
-                    <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700">
-                        <?php esc_attr_e('Save Settings', 'lc-elementor-addons-kit'); ?>
-                    </button>
-                </div>
-            </form>
+        <div class="wrap" id="lcake-kit-react-root">
+            <p>Loading Widget Manager</p>
         </div>
 <?php
     }

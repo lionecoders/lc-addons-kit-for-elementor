@@ -1,4 +1,4 @@
-<div class="lc-testimonial-slider lc_testimonial_style_3 arrow_inside <?php echo (!empty($lc_testimonial_show_dot) && $lc_testimonial_show_dot === 'yes') ? 'lc-slider-dotted' : '' ?>" <?php $this->print_render_attribute_string('wrapper'); ?>>
+<div class="lcake-testimonial-slider lcake_testimonial_style_3 arrow_inside <?php echo (!empty($lcake_testimonial_show_dot) && $lcake_testimonial_show_dot === 'yes') ? 'lcake-slider-dotted' : '' ?>" <?php $this->print_render_attribute_string('wrapper'); ?>>
 	<div <?php $this->print_render_attribute_string('swiper-container'); ?>>
 		<div class="swiper-wrapper">
 			<?php foreach ($testimonials as $testimonial):
@@ -18,10 +18,10 @@
 				} ?>
 				<div class="swiper-slide">
 					<div class="swiper-slide-inner">
-						<<?php echo esc_attr($wrapTag); ?> class="lc-testimonial-card" style="background-image: url(<?php echo esc_url($clientPhoto); ?>);" <?php echo $this->get_render_attribute_string('link-' . esc_attr($testimonial['_id'])); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already escaped by elementor 
+						<<?php echo esc_attr($wrapTag); ?> class="lcake-testimonial-card" style="background-image: url(<?php echo esc_url($clientPhoto); ?>);" <?php echo $this->get_render_attribute_string('link-' . esc_attr($testimonial['_id'])); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already escaped by elementor 
 																																							?>>
-							<?php if ($lc_testimonial_rating_enable == 'yes') : ?>
-								<ul class="lc-stars">
+							<?php if ($lcake_testimonial_rating_enable == 'yes') : ?>
+								<ul class="lcake-stars">
 									<?php
 									$reviewData = isset($testimonial['rating']) ? $testimonial['rating'] : 0;
 									for ($m = 1; $m <= 5; $m++) {
@@ -38,31 +38,31 @@
 							<?php endif; ?>
 
 							<?php if (isset($testimonial['review']) && !empty($testimonial['review'])) : ?>
-								<p class="lc-commentor-comment"><?php echo isset($testimonial['review']) ? wp_kses($testimonial['review'], \LCAKE_Kit_Utils::get_kses_array()) : ''; ?></p>
+								<p class="lcake-commentor-comment"><?php echo isset($testimonial['review']) ? wp_kses($testimonial['review'], \LCAKE_Kit_Utils::get_kses_array()) : ''; ?></p>
 							<?php endif;  ?>
 
-							<span class="lc-profile-info">
-								<strong class="lc-author-name"><?php echo isset($testimonial['client_name']) ? esc_html($testimonial['client_name']) : ''; ?></strong>
-								<span class="lc-author-des"><?php echo isset($testimonial['designation']) ? wp_kses($testimonial['designation'], \LCAKE_Kit_Utils::get_kses_array()) : ''; // phpcs:ignore WordPress.Security.EscapeOutput -- Already escaped by kspan method by lc-kit 
+							<span class="lcake-profile-info">
+								<strong class="lcake-author-name"><?php echo isset($testimonial['client_name']) ? esc_html($testimonial['client_name']) : ''; ?></strong>
+								<span class="lcake-author-des"><?php echo isset($testimonial['designation']) ? wp_kses($testimonial['designation'], \LCAKE_Kit_Utils::get_kses_array()) : ''; // phpcs:ignore WordPress.Security.EscapeOutput -- Already escaped by kspan method by lcake-kit 
 															?></span>
 							</span>
 							<div class="xs-overlay elementor-repeater-item-<?php echo esc_attr($testimonial['_id']); ?>"></div>
-						</<?php echo esc_attr($wrapTag); ?>><!-- .lc-testimonial-card END -->
+						</<?php echo esc_attr($wrapTag); ?>><!-- .lcake-testimonial-card END -->
 					</div>
 				</div>
 			<?php endforeach; ?>
 		</div>
 
-		<?php if (!empty($lc_testimonial_show_dot) && $lc_testimonial_show_dot === 'yes') : ?>
+		<?php if (!empty($lcake_testimonial_show_dot) && $lcake_testimonial_show_dot === 'yes') : ?>
 			<div class="swiper-pagination"></div>
 		<?php endif; ?>
 
-		<?php if (!empty($lc_testimonial_show_arrow) && $lc_testimonial_show_arrow === 'yes') : ?>
+		<?php if (!empty($lcake_testimonial_show_arrow) && $lcake_testimonial_show_arrow === 'yes') : ?>
 			<div class="swiper-navigation-button swiper-button-prev">
-				<?php \Elementor\Icons_Manager::render_icon($lc_testimonial_left_arrows, ['aria-hidden' => 'true']); ?>
+				<?php \Elementor\Icons_Manager::render_icon($lcake_testimonial_left_arrows, ['aria-hidden' => 'true']); ?>
 			</div>
 			<div class="swiper-navigation-button swiper-button-next">
-				<?php \Elementor\Icons_Manager::render_icon($lc_testimonial_right_arrows, ['aria-hidden' => 'true']); ?>
+				<?php \Elementor\Icons_Manager::render_icon($lcake_testimonial_right_arrows, ['aria-hidden' => 'true']); ?>
 			</div>
 		<?php endif; ?>
 	</div>

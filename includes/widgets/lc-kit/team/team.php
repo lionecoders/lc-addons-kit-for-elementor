@@ -2,17 +2,17 @@
 /**
  * Team Widget
  * 
- * @package LC_Elementor_Addons_Kit
+ * @package LCAKE_Elementor_Addons_Kit
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class LC_Kit_Team extends \Elementor\Widget_Base {
+class LCAKE_Kit_Team extends \Elementor\Widget_Base {
 
     public function get_name() {
-        return 'lc-kit-team';
+        return 'lcake-kit-team';
     }
 
     public function get_title() {
@@ -24,7 +24,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
     }
 
     public function get_categories() {
-        return ['lc-page-kit'];
+        return ['lcake-page-kit'];
     }
 
     public function get_keywords() {
@@ -316,7 +316,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-team-member' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -325,7 +325,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'team_member_border',
-                'selector' => '{{WRAPPER}} .lc-team-member',
+                'selector' => '{{WRAPPER}} .lcake-team-member',
             ]
         );
 
@@ -336,7 +336,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-team-member' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -348,7 +348,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-team-member' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -360,7 +360,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-team-member' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -382,7 +382,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-team-member-image img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -394,7 +394,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-image' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-team-member-image' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -415,7 +415,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-name' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-team-member-name' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -424,7 +424,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'name_typography',
-                'selector' => '{{WRAPPER}} .lc-team-member-name',
+                'selector' => '{{WRAPPER}} .lcake-team-member-name',
             ]
         );
 
@@ -435,7 +435,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-name' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-team-member-name' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -456,7 +456,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-position' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-team-member-position' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -465,7 +465,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'position_typography',
-                'selector' => '{{WRAPPER}} .lc-team-member-position',
+                'selector' => '{{WRAPPER}} .lcake-team-member-position',
             ]
         );
 
@@ -476,7 +476,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-position' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-team-member-position' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -500,7 +500,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-description' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-team-member-description' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -509,7 +509,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'description_typography',
-                'selector' => '{{WRAPPER}} .lc-team-member-description',
+                'selector' => '{{WRAPPER}} .lcake-team-member-description',
             ]
         );
 
@@ -520,7 +520,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-team-member-description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -544,7 +544,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-social a' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-team-member-social a' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -555,7 +555,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-social a' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-team-member-social a' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -576,7 +576,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                     'size' => 16,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-social a' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-team-member-social a' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -588,7 +588,7 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-team-member-social' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-team-member-social' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -603,8 +603,8 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
             return;
         }
 
-        $this->add_render_attribute('wrapper', 'class', 'lc-team-wrapper');
-        $this->add_render_attribute('wrapper', 'class', 'lc-team--' . $settings['layout']);
+        $this->add_render_attribute('wrapper', 'class', 'lcake-team-wrapper');
+        $this->add_render_attribute('wrapper', 'class', 'lcake-team--' . $settings['layout']);
 
         if ($settings['layout'] === 'carousel') {
             $this->add_render_attribute('wrapper', 'data-autoplay', $settings['autoplay']);
@@ -618,16 +618,16 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
         echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
 
         if ($settings['layout'] === 'carousel' && $settings['show_arrows'] === 'yes') {
-            echo '<div class="lc-team-arrow lc-team-arrow-prev">&lt;</div>';
+            echo '<div class="lcake-team-arrow lcake-team-arrow-prev">&lt;</div>';
         }
 
-        echo '<div class="lc-team-container">';
+        echo '<div class="lcake-team-container">';
         
         foreach ($settings['team_members'] as $member) {
-            echo '<div class="lc-team-member">';
+            echo '<div class="lcake-team-member">';
             
             if (!empty($member['image']['url'])) {
-                echo '<div class="lc-team-member-image">';
+                echo '<div class="lcake-team-member-image">';
                 if (!empty($member['link']['url'])) {
                     $this->add_link_attributes('link_' . $member['_id'], $member['link']);
                     echo '<a ' . $this->get_render_attribute_string('link_' . $member['_id']) . '>';
@@ -641,22 +641,22 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 echo '</div>';
             }
 
-            echo '<div class="lc-team-member-content">';
+            echo '<div class="lcake-team-member-content">';
             
             if (!empty($member['name'])) {
-                echo '<h3 class="lc-team-member-name">' . esc_html($member['name']) . '</h3>';
+                echo '<h3 class="lcake-team-member-name">' . esc_html($member['name']) . '</h3>';
             }
 
             if (!empty($member['position'])) {
-                echo '<div class="lc-team-member-position">' . esc_html($member['position']) . '</div>';
+                echo '<div class="lcake-team-member-position">' . esc_html($member['position']) . '</div>';
             }
 
             if ($settings['show_description'] === 'yes' && !empty($member['description'])) {
-                echo '<div class="lc-team-member-description">' . esc_html($member['description']) . '</div>';
+                echo '<div class="lcake-team-member-description">' . esc_html($member['description']) . '</div>';
             }
 
             if ($settings['show_social_icons'] === 'yes') {
-                echo '<div class="lc-team-member-social">';
+                echo '<div class="lcake-team-member-social">';
                 
                 if (!empty($member['facebook']['url'])) {
                     echo '<a href="' . esc_url($member['facebook']['url']) . '" target="_blank"><i class="fab fa-facebook-f"></i></a>';
@@ -688,11 +688,11 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
         echo '</div>';
 
         if ($settings['layout'] === 'carousel' && $settings['show_arrows'] === 'yes') {
-            echo '<div class="lc-team-arrow lc-team-arrow-next">&gt;</div>';
+            echo '<div class="lcake-team-arrow lcake-team-arrow-next">&gt;</div>';
         }
 
         if ($settings['layout'] === 'carousel' && $settings['show_dots'] === 'yes') {
-            echo '<div class="lc-team-dots"></div>';
+            echo '<div class="lcake-team-dots"></div>';
         }
 
         echo '</div>';
@@ -701,16 +701,16 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
     protected function content_template() {
         ?>
         <# if (settings.team_members.length > 0) { #>
-            <div class="lc-team-wrapper lc-team--{{ settings.layout }}" data-columns="{{ settings.columns }}">
+            <div class="lcake-team-wrapper lcake-team--{{ settings.layout }}" data-columns="{{ settings.columns }}">
                 <# if (settings.layout === 'carousel' && settings.show_arrows === 'yes') { #>
-                    <div class="lc-team-arrow lc-team-arrow-prev">&lt;</div>
+                    <div class="lcake-team-arrow lcake-team-arrow-prev">&lt;</div>
                 <# } #>
                 
-                <div class="lc-team-container">
+                <div class="lcake-team-container">
                     <# _.each(settings.team_members, function(member) { #>
-                        <div class="lc-team-member">
+                        <div class="lcake-team-member">
                             <# if (member.image.url) { #>
-                                <div class="lc-team-member-image">
+                                <div class="lcake-team-member-image">
                                     <# if (member.link.url) { #>
                                         <a href="{{ member.link.url }}">
                                     <# } #>
@@ -720,18 +720,18 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                                     <# } #>
                                 </div>
                             <# } #>
-                            <div class="lc-team-member-content">
+                            <div class="lcake-team-member-content">
                                 <# if (member.name) { #>
-                                    <h3 class="lc-team-member-name">{{{ member.name }}}</h3>
+                                    <h3 class="lcake-team-member-name">{{{ member.name }}}</h3>
                                 <# } #>
                                 <# if (member.position) { #>
-                                    <div class="lc-team-member-position">{{{ member.position }}}</div>
+                                    <div class="lcake-team-member-position">{{{ member.position }}}</div>
                                 <# } #>
                                 <# if (settings.show_description === 'yes' && member.description) { #>
-                                    <div class="lc-team-member-description">{{{ member.description }}}</div>
+                                    <div class="lcake-team-member-description">{{{ member.description }}}</div>
                                 <# } #>
                                 <# if (settings.show_social_icons === 'yes') { #>
-                                    <div class="lc-team-member-social">
+                                    <div class="lcake-team-member-social">
                                         <# if (member.facebook.url) { #>
                                             <a href="{{ member.facebook.url }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                         <# } #>
@@ -755,11 +755,11 @@ class LC_Kit_Team extends \Elementor\Widget_Base {
                 </div>
                 
                 <# if (settings.layout === 'carousel' && settings.show_arrows === 'yes') { #>
-                    <div class="lc-team-arrow lc-team-arrow-next">&gt;</div>
+                    <div class="lcake-team-arrow lcake-team-arrow-next">&gt;</div>
                 <# } #>
                 
                 <# if (settings.layout === 'carousel' && settings.show_dots === 'yes') { #>
-                    <div class="lc-team-dots"></div>
+                    <div class="lcake-team-dots"></div>
                 <# } #>
                 
             </div>

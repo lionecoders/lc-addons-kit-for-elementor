@@ -1,0 +1,13 @@
+{
+  "name": "lc-addons-kit-for-elementor",
+  "version": "1.0.0",
+  "description": "Admin interface for the LC Addons Kit.",
+  "main": "index.js",
+  "scripts": {
+    "start": "wp-scripts start src/index.js --output-path=build/",
+    "build": "wp-scripts build src/index.js --output-path=build/"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^19.2.4"
+  }
+}

@@ -11,9 +11,9 @@ class LCTestimonialSlider {
         const nextEl = widgetEl.querySelector(".swiper-button-next");
         const prevEl = widgetEl.querySelector(".swiper-button-prev");
 
-        // Get config from the widget wrapper element (lc-testimonial-slider) where data-config is actually set
+        // Get config from the widget wrapper element (lcake-testimonial-slider) where data-config is actually set
         let config = {};
-        const configElement = widgetEl.querySelector(".lc-testimonial-slider");
+        const configElement = widgetEl.querySelector(".lcake-testimonial-slider");
         
         if (configElement && configElement.getAttribute("data-config")) {
             try {
@@ -23,7 +23,6 @@ class LCTestimonialSlider {
                 config = {};
             }
         } else {
-            // Fallback: try to get config from the widget wrapper itself
             try {
                 config = JSON.parse(widgetEl.getAttribute("data-config") || "{}");
             } catch (e) {
@@ -31,13 +30,6 @@ class LCTestimonialSlider {
                 config = {};
             }
         }
-
-        // Debug logging
-        console.log("Widget element:", widgetEl);
-        console.log("Config element:", configElement);
-        console.log("Primary data-config:", configElement?.getAttribute("data-config"));
-        console.log("Fallback data-config:", widgetEl.getAttribute("data-config"));
-        console.log("Final parsed config:", config);
 
         this.swiper = new Swiper(this.containerEl, {
             slidesPerView: 1,
@@ -63,22 +55,19 @@ class LCTestimonialSlider {
     }
 }
 
-// --- INIT SYSTEM ---
 function initLCTestimonialSliders(scope = document) {
-    scope.querySelectorAll(".lc-main-wrapper").forEach((widgetEl) => {
+    scope.querySelectorAll(".lcake-main-wrapper").forEach((widgetEl) => {
         new LCTestimonialSlider(widgetEl);
     });
 }
 
-// ✅ On normal page load
 document.addEventListener("DOMContentLoaded", function () {
     initLCTestimonialSliders();
 });
 
-// ✅ Elementor Editor live preview
 jQuery(window).on("elementor/frontend/init", function () {
     elementorFrontend.hooks.addAction(
-        "frontend/element_ready/lc-kit-testimonial.default",
+        "frontend/element_ready/lcake-kit-testimonial.default",
         function ($scope) {
             initLCTestimonialSliders($scope[0]);
         }

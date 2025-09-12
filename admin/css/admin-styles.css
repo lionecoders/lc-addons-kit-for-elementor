@@ -1,0 +1,211 @@
+/**
+ * LC Kit Admin Styles for React App
+ * Version: 3.3.0 (Grid Layout for Enabled Widgets)
+ */
+
+/* Main Wrapper & Header */
+.lcake-kit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    margin: 0 -20px 20px -20px; /* Overcome WP wrap padding */
+}
+
+.lcake-kit-header-text h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    color: #2c3338;
+}
+
+.lcake-kit-header-text p {
+    font-size: 14px;
+    margin: 4px 0 0;
+    color: #50575e;
+}
+
+.lcake-kit-header-actions .lcake-kit-save-button {
+    font-size: 14px;
+    height: 40px;
+    line-height: 38px;
+    padding: 0 20px;
+    transition: all 0.2s ease-in-out;
+}
+.lcake-kit-save-button.success {
+    background-color: #22c55e !important;
+    border-color: #16a34a !important;
+}
+.lcake-kit-save-button.error {
+    background-color: #ef4444 !important;
+    border-color: #dc2626 !important;
+}
+
+/* Main Content Layout */
+.lcake-kit-main-content {
+    display: flex;
+    gap: 20px;
+}
+
+.lcake-kit-sidebar {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 320px;
+    flex-shrink: 0;
+    background-color: #f6f7f7;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 60vh;
+}
+
+.lcake-kit-sidebar h2,
+.lcake-kit-drop-area h2 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    color: #2c3338;
+}
+
+.lcake-kit-drop-area {
+    flex-grow: 1;
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fcfcfc;
+    /* UPDATED: Flex container to manage scrolling area */
+    display: flex;
+    flex-direction: column;
+    max-height: 60vh; /* Match sidebar height to enable scrolling */
+}
+
+/* Search Bar */
+.lcake-kit-search-wrapper {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.lcake-kit-search-wrapper input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
+}
+
+/* Widget Lists */
+.lcake-kit-widget-list {
+    min-height: 200px;
+    padding: 15px;
+    transition: background-color 0.2s ease;
+    overflow-y: auto; /* Add vertical scrollbar when needed */
+}
+
+.lcake-kit-widget-dropzone {
+    /* UPDATED: Grid layout and scrolling */
+    flex-grow: 1; /* Allow this area to fill the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 10px; /* Spacing between grid items */
+    align-content: start; /* Keep items at the top of the grid */
+}
+
+
+/* Widget Cards */
+.lcake-kit-widget-card {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 0; /* Margin is now handled by grid gap */
+    cursor: grab;
+    user-select: none;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative; /* Needed for the drop indicator */
+}
+
+/* Drop Indicator */
+.lcake-kit-widget-card.is-drag-over::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #2271b1; /* WordPress blue */
+    border-radius: 2px;
+}
+
+
+.lcake-kit-widget-card:hover {
+    border-color: #94a3b8;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.lcake-kit-widget-card:active {
+    cursor: grabbing;
+}
+
+.lcake-kit-widget-card .dashicons {
+    font-size: 20px;
+    margin-right: 12px;
+    color: #50575e;
+}
+
+.lcake-kit-widget-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.4;
+}
+
+.lcake-kit-widget-info strong {
+    font-weight: 600;
+    color: #2c3338;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lcake-kit-widget-info span {
+    font-size: 13px;
+    color: #50575e;
+}
+
+/* PRO Badge */
+.lcake-kit-pro-badge {
+    background-color: #8b5cf6;
+    color: #fff;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+/* Dropzone Placeholder */
+.lcake-kit-drop-placeholder {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #787c82;
+    pointer-events: none; /* Make sure it doesn't interfere with drop events */
+}
+
+.lcake-kit-drop-placeholder.visible {
+    display: block;
+}
+
+.lcake-kit-drop-placeholder p {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+}
