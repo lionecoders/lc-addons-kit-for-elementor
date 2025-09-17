@@ -118,7 +118,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::ICONS,
 				'fa4compatibility' => 'lcake_testimonial_wartermark',
 				'default' => [
-					'value' => 'icon icon-quote',
+					'value' => 'icon lcake-icon-quote',
 					'library' => 'lcakeicons',
 				],
 				'condition' => [
@@ -605,7 +605,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::ICONS,
 				'fa4compatibility' => 'lcake_testimonial_left_arrow',
 				'default' => [
-					'value' => 'lcake-left',
+					'value' => 'icon lcake-left',
 					'library' => 'lcakeicons',
 				],
 				'condition' => [
@@ -621,7 +621,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::ICONS,
 				'fa4compatibility' => 'lcake_testimonial_right_arrow',
 				'default' => [
-					'value' => 'lcake-right',
+					'value' => 'icon lcake-icon-right',
 					'library' => 'lcakeicons',
 				],
 				'condition' => [
@@ -2371,11 +2371,11 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 	protected function render()
 	{
 		echo '<div class="lcake-main-wrapper" >';
-		$this->render_raw();
+		$this->render_template();
 		echo '</div>';
 	}
 
-	protected function render_raw()
+	protected function render_template()
 	{
 
 		$testimonials = [];

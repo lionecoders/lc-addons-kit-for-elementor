@@ -3,73 +3,97 @@ class LCTestimonialSlider {
         this.widgetEl = widgetEl;
         this.containerEl = widgetEl.querySelector(".swiper");
 
-        if (!this.containerEl) return; // exit if no swiper found
+        if (!this.containerEl) return console.warn("No swiper container in:", widgetEl);
+        if (typeof Swiper === "undefined") return console.error("Swiper not loaded");
 
-        // Find pagination + nav only inside this widget
-        console.log(widgetEl);
+        // Prevent re-initialization
+        if (this.containerEl.swiper) this.containerEl.swiper.destroy(true, true);
+
+        // Parse config
+        let config = {};
+        const configEl = widgetEl.querySelector(".lcake-testimonial-slider") || widgetEl;
+        try {
+            config = JSON.parse(configEl.getAttribute("data-config") || "{}");
+        } catch (e) {
+            console.error("Invalid data-config:", e);
+        }
+
         const paginationEl = widgetEl.querySelector(".swiper-pagination");
         const nextEl = widgetEl.querySelector(".swiper-button-next");
         const prevEl = widgetEl.querySelector(".swiper-button-prev");
 
-        // Get config from the widget wrapper element (lcake-testimonial-slider) where data-config is actually set
-        let config = {};
-        const configElement = widgetEl.querySelector(".lcake-testimonial-slider");
-        
-        if (configElement && configElement.getAttribute("data-config")) {
-            try {
-                config = JSON.parse(configElement.getAttribute("data-config"));
-            } catch (e) {
-                console.error("Failed to parse data-config:", e);
-                config = {};
-            }
-        } else {
-            try {
-                config = JSON.parse(widgetEl.getAttribute("data-config") || "{}");
-            } catch (e) {
-                console.error("Failed to parse fallback data-config:", e);
-                config = {};
-            }
-        }
-
+        // Initialize Swiper
         this.swiper = new Swiper(this.containerEl, {
-            slidesPerView: 1,
+            slidesPerView: config.slidesPerView || 1,
             spaceBetween: config.spaceBetween || 10,
             loop: config.loop ?? true,
             speed: config.speed || 1000,
-            // autoplay: config.autoplay ? {
-            //     delay: config.autoplayDelay || 5000,
-            //     disableOnInteraction: false,
-            //     pauseOnMouseEnter: config.pauseOnHover || false,
-            // } : false,
-            pagination: paginationEl ? {
-                el: paginationEl,
-                clickable: true,
+            autoplay: config.autoplay ? {
+                delay: config.autoplayDelay || 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: config.pauseOnHover || false,
             } : false,
-            navigation: (nextEl && prevEl) ? {
-                nextEl: nextEl,
-                prevEl: prevEl,
-            } : false,
+            pagination: paginationEl ? { el: paginationEl, clickable: true } : false,
+            navigation: (nextEl && prevEl) ? { nextEl, prevEl } : false,
             breakpoints: config.breakpoints || {},
             rtl: config.rtl || false,
+            observer: true,
+            observeParents: true,
         });
+
+        widgetEl.dataset.lcTestimonialInitialized = "true";
     }
 }
 
 function initLCTestimonialSliders(scope = document) {
+    if (typeof Swiper === "undefined") {
+        console.warn("Swiper not ready, retrying...");
+        return setTimeout(() => initLCTestimonialSliders(scope), 100);
+    }
+
     scope.querySelectorAll(".lcake-main-wrapper").forEach((widgetEl) => {
-        new LCTestimonialSlider(widgetEl);
+        if (!widgetEl.dataset.lcTestimonialInitialized) {
+            new LCTestimonialSlider(widgetEl);
+        }
     });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    initLCTestimonialSliders();
-});
+// ---------------------
+// Event Listeners
+// ---------------------
 
-jQuery(window).on("elementor/frontend/init", function () {
+// Frontend (non-Elementor)
+document.addEventListener("DOMContentLoaded", () => initLCTestimonialSliders());
+
+// Elementor frontend hook
+jQuery(window).on("elementor/frontend/init", () => {
     elementorFrontend.hooks.addAction(
         "frontend/element_ready/lcake-kit-testimonial.default",
-        function ($scope) {
-            initLCTestimonialSliders($scope[0]);
-        }
+        ($scope) => initLCTestimonialSliders($scope[0])
     );
 });
+
+// Elementor editor (panel + live edit support)
+jQuery(window).on("elementor/init", () => {
+    elementor.hooks.addAction("panel/open_editor/widget/lcake-kit-testimonial", () => {
+        setTimeout(initLCTestimonialSliders, 200);
+    });
+});
+
+// MutationObserver (catch dynamically inserted widgets)
+if ("MutationObserver" in window) {
+    new MutationObserver((mutations) => {
+        for (const m of mutations) {
+            for (const node of m.addedNodes) {
+                if (
+                    node.nodeType === 1 &&
+                    (node.matches?.(".lcake-main-wrapper") ||
+                        node.querySelector?.(".lcake-main-wrapper"))
+                ) {
+                    setTimeout(() => initLCTestimonialSliders(node), 100);
+                    return;
+                }
+            }
+        }
+    }).observe(document.body, { childList: true, subtree: true });
+}

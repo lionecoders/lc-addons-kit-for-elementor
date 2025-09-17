@@ -1,4 +1,4 @@
-<div class="lcake-testimonial-slider arrow_inside <?php echo (!empty($lcake_testimonial_show_dot) && $lcake_testimonial_show_dot === 'yes') ? 'lcake-slider-dotted' : '' ?>" <?php $this->print_render_attribute_string('wrapper'); ?>>
+<div class="lcake-testimonial-slider lcake_testimonial_style_2 arrow_inside <?php echo (!empty($lcake_testimonial_show_dot) && $lcake_testimonial_show_dot === 'yes') ? 'lcake-slider-dotted' : '' ?>" <?php $this->print_render_attribute_string('wrapper'); ?>>
 	<div <?php $this->print_render_attribute_string('swiper-container'); ?>>
 		<div class="swiper-wrapper">
 			<?php

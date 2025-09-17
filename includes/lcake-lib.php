@@ -4,7 +4,8 @@ class LCAKE_Lib
 {
     function __construct()
     {
-        add_filter('elementor/icons_manager/additional_tabs', [$this, 'add_lcake_icon_tab']);
+        // Register custom icon set with Elementor
+        add_filter('elementor/icons_manager/additional_tabs', [$this, 'lcake_icon_tab']);
     }
 
     function lcake_icon_tab($tabs)
@@ -18,8 +19,8 @@ class LCAKE_Lib
             'name'          => 'lcakeicons',
             'label'         => __('LCAKE Icons', 'lc-addons-kit-for-elementor'),
             'labelIcon'     => 'eicon-favorite',
-            'prefix'        => 'lcake-',
-            'displayPrefix' => 'lcake',
+            'prefix'        => 'lcake-icon',
+            'displayPrefix' => 'lcake-icon',
             'enqueue'    => [LCAKE_EAK_URL . 'assets/icons/lcakeicons.css'],
             'ver'           => '1.0.0',
             'native'        => true,

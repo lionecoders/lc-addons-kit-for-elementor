@@ -16,6 +16,31 @@
     display: block;
 }
 
+.lcake-profile-image-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.lcake-profile-image-card::before {
+    position: absolute;
+    content: "";
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 100% !important;
+    -webkit-transition: all .4s 
+ease;
+    transition: all .4s 
+ease;
+    pointer-events: none;
+}
+
+.lcake-profile-image-card:hover::before {
+    background-color: rgba(17, 17, 17, .8);
+    top: 0;
+}
+
+
 .lcake-main-wrapper .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after,
 .lcake-main-wrapper .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
     content: none;
@@ -127,6 +152,7 @@
     padding: 30px 0 ;
 }
 
+.lcake_testimonial_style_2 .lcake-watermark-icon,
 .lcake_testimonial_style_6 .lcake-watermark-icon {
     position: absolute;
     top: 0;

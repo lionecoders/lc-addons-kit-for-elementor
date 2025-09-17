@@ -1,0 +1,829 @@
+/* Team Widget Styles - Cleaned Version */
+
+/* Base Profile Card Styles */
+.profile-card {
+    background-color: #fff;
+    box-shadow: 0 28px 40px 0 rgba(0,0,0,.1);
+    padding: 40px 20px;
+    transition: all .4s ease;
+    position: relative;
+}
+
+.profile-card.text-center .profile-header {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-card:hover {
+    box-shadow: 0 42px 60px 0 rgba(0,0,0,.3);
+}
+
+.profile-card:hover .profile-body .profile-title {
+    color: #2575fc;
+}
+
+/* Profile Icon Styles */
+.profile-icon {
+    display: inline-flex;
+    position: relative;
+    z-index: 0;
+}
+
+.profile-icon[class*=icon-align-] {
+    display: flex;
+}
+
+.profile-icon.icon-align-start {
+    justify-content: flex-start;
+}
+
+.profile-icon.icon-align-center {
+    justify-content: center;
+}
+
+.profile-icon.icon-align-end {
+    justify-content: flex-end;
+}
+
+.profile-icon svg {
+    max-width: 60px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.profile-icon > i {
+    display: block;
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    background-color: #fc0467;
+    border-radius: 50%;
+    font-size: 22px;
+    line-height: 50px;
+    text-align: center;
+    transition: all .4s ease;
+}
+
+/* Profile Body Styles */
+.profile-body {
+    padding-bottom: 20px;
+}
+
+.profile-body .profile-title {
+    font-size: 22px;
+    color: #000;
+    margin: 0;
+}
+
+.profile-body .profile-title > a {
+    color: inherit;
+}
+
+.profile-body .profile-designation {
+    color: rgba(0,0,0,.5);
+    font-size: 13px;
+    transition: all .4s ease;
+    margin-bottom: 15px;
+}
+
+/* Profile Header Styles */
+.profile-header {
+    margin-bottom: 38px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.profile-header > img {
+    width: 160px;
+    height: 160px;
+    transition: all .4s ease;
+}
+
+/* Image Card Styles */
+.profile-image-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-image-card::before {
+    position: absolute;
+    content: "";
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.7);
+    transition: all .4s ease .2s;
+    z-index: 1;
+    backface-visibility: hidden;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.profile-image-card .hover-area {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-20%);
+    z-index: 2;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease;
+}
+
+.profile-image-card .hover-area .profile-title,
+.profile-image-card .hover-area .profile-designation,
+.profile-image-card .hover-area .profile-content {
+    color: #fff;
+}
+
+.profile-image-card:hover .hover-area {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%);
+    transition: all .3s ease .1s;
+}
+
+.profile-image-card:hover::before {
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+    transition: all .4s ease 0s;
+}
+
+/* Image Card Variations */
+.image-card-v2 .profile-image-card::before {
+    background-color: #123075;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    width: auto;
+    height: auto;
+    transform: scale(2);
+    opacity: 0;
+}
+
+.image-card-v2 .profile-image-card:hover::before {
+    opacity: .93;
+    transform: scale(1);
+}
+
+.image-card-v2 .profile-image-card .hover-area {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.image-card-v2 .profile-image-card .profile-body .border-hr {
+    background-color: rgba(255,255,255,.6);
+    margin-bottom: 25px;
+}
+
+.image-card-v2 .profile-image-card .profile-body .profile-content {
+    color: #fff;
+}
+
+.image-card-v2.style-circle .profile-image-card::before {
+    border-radius: inherit;
+}
+
+.image-card-v2.style-circle .profile-image-card::after {
+    content: " ";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.image-card-v2.style-circle .profile-image-card > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.image-card-v3 .profile-image-card::before {
+    display: none;
+}
+
+.image-card-v3 .profile-image-card::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #111;
+    opacity: 0;
+    transition: all .4s ease;
+    pointer-events: none;
+}
+
+.image-card-v3 .profile-image-card .hover-area {
+    top: inherit;
+    bottom: 0;
+    transform: none;
+}
+
+.image-card-v3 .profile-image-card:hover .hover-area {
+    transform: translateY(-40px);
+}
+
+.image-card-v3 .profile-image-card:hover::after {
+    opacity: .8;
+}
+
+.image-card-v3.tiny-gutters {
+    margin-left: -3px;
+    margin-right: -3px;
+}
+
+.image-card-v3.tiny-gutters > [class^=col-] {
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-bottom: 6px;
+}
+
+/* Profile Square Variations */
+.profile-square-v .profile-card {
+    padding: 20px 20px 40px;
+    z-index: 1;
+}
+
+.profile-square-v .profile-card::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #123075;
+    opacity: 0;
+    transition: all .4s ease;
+    z-index: -1;
+    background-size: 101% 102%;
+    backface-visibility: hidden;
+}
+
+.profile-square-v .profile-card .profile-header {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+}
+
+.profile-square-v .profile-card .profile-content {
+    transition: all .4s ease;
+}
+
+.profile-square-v .profile-card:hover::before {
+    opacity: 1;
+}
+
+.profile-square-v .profile-card:hover .profile-body .profile-designation,
+.profile-square-v .profile-card:hover .profile-body .profile-title {
+    color: #fff;
+}
+
+.profile-square-v .profile-card:hover .profile-content {
+    color: #fff;
+}
+
+/* Square Variations */
+.profile-square-v.square-v2 .profile-card::before {
+    display: none;
+}
+
+.profile-square-v.square-v2 .profile-card:hover {
+    background-color: #fff;
+}
+
+.profile-square-v.square-v2 .profile-card:hover .profile-body .profile-title {
+    color: #2575fc;
+}
+
+.profile-square-v.square-v2 .profile-card:hover .profile-body .profile-designation {
+    color: #656565;
+}
+
+.profile-square-v.square-v3 .profile-card:hover {
+    box-shadow: 0 28px 40px 0 rgba(0,0,0,.1);
+}
+
+.profile-square-v.square-v4 .profile-card {
+    max-height: 380px;
+    overflow: hidden;
+}
+
+.profile-square-v.square-v4 .profile-card::before {
+    display: none;
+}
+
+.profile-square-v.square-v4 .profile-card .profile-header {
+    margin-bottom: 0;
+    max-width: 255px;
+    max-height: 255px;
+}
+
+.profile-square-v.square-v4 .profile-card.text-left .profile-header img {
+    left: 0;
+    transform: translate(0,-50%);
+}
+
+.profile-square-v.square-v4 .profile-card.text-right .profile-header img {
+    left: auto;
+    right: 0;
+    transform: translate(0,-50%);
+}
+
+.profile-square-v.square-v4 .profile-card .profile-body {
+    margin-bottom: 0;
+    padding: 35px 20px;
+    transition: all .4s ease;
+    position: relative;
+}
+
+.profile-square-v.square-v4 .profile-card .profile-body::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #123075;
+    opacity: 0;
+    transition: all .4s ease;
+    z-index: -1;
+    background-size: 101% 102%;
+    backface-visibility: hidden;
+}
+
+.profile-square-v.square-v4 .profile-card .profile-body .lcake-team-social-list {
+    opacity: 0;
+    visibility: hidden;
+    transition: all .4s ease;
+}
+
+.profile-square-v.square-v4 .profile-card:hover {
+    box-shadow: none;
+}
+
+.profile-square-v.square-v4 .profile-card:hover .profile-body {
+    transform: translateY(-50px);
+}
+
+.profile-square-v.square-v4 .profile-card:hover .profile-body::before {
+    opacity: 1;
+}
+
+.profile-square-v.square-v4 .profile-card:hover .profile-body .lcake-team-social-list {
+    opacity: 1;
+    visibility: visible;
+}
+
+.profile-square-v.square-v5 .profile-card {
+    padding-bottom: 50px;
+}
+
+.profile-square-v.square-v5 .profile-card .profile-body,
+.profile-square-v.square-v5 .profile-card .profile-header {
+    padding-bottom: 0;
+}
+
+.profile-square-v.square-v5 .profile-card .profile-body {
+    padding: 32px 60px;
+}
+
+.profile-square-v.square-v6 .profile-card {
+    padding-bottom: 35px;
+}
+
+.profile-square-v.square-v6 .profile-card::after {
+    position: absolute;
+    content: "";
+    height: 5px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background-color: #2965f1;
+    opacity: .2;
+    transition: all .4s ease;
+}
+
+.profile-square-v.square-v6 .profile-card .profile-body,
+.profile-square-v.square-v6 .profile-card .profile-header {
+    margin-bottom: 0;
+}
+
+.profile-square-v.square-v6 .profile-card .profile-body {
+    padding: 40px;
+}
+
+.profile-square-v.square-v6 .profile-card:hover {
+    box-shadow: 0 28px 40px 0 rgba(0,0,0,.1);
+}
+
+.profile-square-v.square-v6 .profile-card:hover::after {
+    opacity: 1;
+}
+
+.profile-square-v.square-v6.square-v6-v2 .profile-card::after {
+    display: none;
+}
+
+.profile-square-v.square-v6.square-v6-v2 .profile-card::before {
+    opacity: 0;
+    background-size: 101% 101%;
+}
+
+.profile-square-v.square-v6.square-v6-v2 .profile-card:hover::before {
+    opacity: 1;
+}
+
+.profile-square-v.square-v6.square-v6-v2 .profile-card:hover .profile-body .profile-title {
+    color: #fff;
+}
+
+.profile-square-v.square-v6.square-v6-v2 .profile-card:hover .profile-body .profile-content,
+.profile-square-v.square-v6.square-v6-v2 .profile-card:hover .profile-body .profile-designation {
+    color: #fff;
+}
+
+/* Utility Classes */
+.small-gutters .profile-card {
+    padding: 10px 10px 40px;
+}
+
+.no_gutters .profile-card {
+    padding: 0;
+}
+
+.style-circle .profile-image-card {
+    width: 255px;
+    height: 255px;
+    border-radius: 50%;
+}
+
+.style-circle .profile-image-card.text-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center .profile-header {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Team Style Specific */
+.lcake-team-style-default::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent !important;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity .3s;
+    z-index: -1;
+}
+
+.lcake-team-style-default:hover::before {
+    opacity: 1;
+}
+
+.lcake-team-style-long_height_hover > img,
+.lcake-team-style-overlay > img,
+.lcake-team-style-overlay_details > img {
+    display: block;
+}
+
+.lcake-team-style-long_height_details {
+    overflow: hidden;
+}
+
+.lcake-team-style-hover_info .lcake-team-img {
+    padding-top: 0 !important;
+}
+
+.lcake-team-style-centered_style_details .profile-designation,
+.lcake-team-style-long_height_details .profile-designation,
+.lcake-team-style-long_height_details_hover .profile-designation {
+    margin-bottom: 30px;
+}
+
+.lcake-team-style-hover_info .profile-designation {
+    margin-bottom: 25px;
+}
+
+.lcake-team-style-overlay_circle_hover .profile-designation,
+.lcake-team-style-overlay_details .profile-designation {
+    margin-bottom: 12px;
+}
+
+.lcake-team-img > img {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: inherit;
+}
+
+.lcake-team-img.profile-header > img {
+    object-fit: cover;
+}
+
+.lcake-team-img.profile-image-card > img {
+    width: 100%;
+}
+
+.lcake-team-img-block > img {
+    display: block;
+}
+
+.lcake-team-img-fit > .profile-image-card > img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Social List Styles */
+.lcake-team-social-list {
+    list-style: none;
+}
+
+.lcake-team-social-list > li {
+    display: inline-block;
+}
+
+.lcake-team-social-list > li:not(:last-child) {
+    margin-right: 10px;
+}
+
+.lcake-team-social-list > li > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    text-align: center;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.lcake-team-social-list > li > a:hover {
+    border-radius: 50%;
+}
+
+.lcake-team-social-list > li > a:hover > i::before,
+.lcake-team-social-list > li > a:hover > svg {
+    animation: iconTranslateY .4s forwards;
+}
+
+.lcake-team-social-list > li > a svg {
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+}
+
+.lcake-team-social-list > li > a > i {
+    overflow: hidden;
+}
+
+.lcake-team-social-list > li > a > i::before {
+    display: inline-block;
+    backface-visibility: hidden;
+}
+
+.lcake-team-social-label {
+    display: none;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+.lcake-team-social-list > li > a:hover .lcake-team-social-label {
+    display: block;
+}
+
+/* Image Overlay */
+.lcake-img-overlay {
+    position: relative;
+    overflow: hidden;
+}
+
+.lcake-img-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.lcake-img-overlay:hover::before {
+    opacity: 1;
+}
+
+/* Modal Styles */
+.lcake-team-modal {
+    /* Defer visibility/positioning to Bootstrap's .modal */
+}
+
+/* Bootstrap handles .modal.show display/visibility */
+.lcake-team-modal.lcake-team-modal-open {}
+
+/* Use Bootstrap's .modal-backdrop instead of custom backdrop */
+.lcake-team-backdrop {}
+
+/* Use Bootstrap's body.modal-open */
+.lcake-modal-open {}
+
+.lcake-team-modal .modal-dialog {
+    position: relative;
+    width: auto;
+    max-width: 90%;
+    margin: 1.75rem auto;
+    z-index: 9999;
+}
+
+.lcake-team-modal .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    outline: 0;
+}
+
+.lcake-team-modal .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.lcake-team-modal.lcake-team-modal-open .modal-dialog {}
+
+@keyframes lcake-modal-fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.lcake-team-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    z-index: 10000;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    line-height: 1;
+}
+
+.lcake-team-modal-close:hover {
+    color: #000;
+}
+
+/* Modal Content Styles */
+.lcake-team-modal-title {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #000;
+    font-size: 22px;
+}
+
+.lcake-team-modal-position {
+    margin-bottom: 35px;
+    color: rgba(0,0,0,.5);
+    font-size: 13px;
+}
+
+.lcake-team-modal-img {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.lcake-team-modal-img > img {
+    display: block;
+    width: 100%;
+    box-shadow: 0 28px 40px 0 rgba(0,0,0,.1);
+}
+
+.lcake-team-modal-info {
+    width: 100%;
+}
+
+.lcake-team-modal-info .lcake-team-social-list > li > a {
+    line-height: 32px;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
+}
+
+.lcake-team-modal-info .lcake-team-social-list > li > a svg {
+    max-width: 12px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.lcake-team-modal-content {
+    margin-bottom: 22px;
+}
+
+.lcake-team-modal-content p:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.lcake-team-modal-list {
+    margin-bottom: 25px;
+    padding-left: 0;
+    list-style: none;
+    color: #656565;
+    font-size: 15px;
+}
+
+.lcake-team-modal-list > li {
+    padding: 19px 0;
+    border-top: 1px solid rgba(0,0,0,.05);
+}
+
+.lcake-team-modal-list > li:last-child {
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+.lcake-team-modal-list strong {
+    font-weight: 600;
+    padding-right: 18px;
+}
+
+.lcake-team-modal-list a {
+    color: inherit;
+}
+
+.lcake-team-modal-list a:hover {
+    color: #2575fc;
+}
+
+.lcake-team-popup {
+    transition: color .3s;
+}
+
+/* Responsive Styles */
+@media screen and (min-width: 481px) {
+    .lcake-team-modal-img {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+        margin-bottom: 0;
+    }
+    
+    .lcake-team-modal-info.has-img {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+        padding-left: 30px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .lcake-team-modal-info.has-img {
+        padding-left: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .lcake-team-modal .modal-dialog {
+        max-width: 95%;
+        margin: 0.5rem;
+    }
+    
+    .lcake-team-modal .modal-body {
+        padding: 0.75rem;
+    }
+}
+
+/* Animation Keyframes */
+@keyframes iconTranslateY {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-2px);
+    }
+}

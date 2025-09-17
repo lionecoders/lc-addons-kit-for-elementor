@@ -78,6 +78,7 @@ class LCAKE_Kit_Widget_Loader
             'lcake-kit-faq-js' => ['file' => 'lcake-kit-faq.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
             'lcake-kit-pie-chart-js' => ['file' => 'lcake-kit-pie-chart.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
             'lcake-kit-testimonial-js' => ['file' => 'lcake-kit-testimonial.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false, 'path' => ''],
+            'lcake-team-js' => ['file' => 'lcake-team.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
             'lcake-chart-js' => ['file' => 'lcake-chart.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
             'lcake-swiper-js' => ['file' => 'swiper-bundle.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
             'lcake-btsp-js' => ['file' => 'bootstrap.bundle.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => '']
@@ -95,6 +96,7 @@ class LCAKE_Kit_Widget_Loader
             'lcake-kit-faq-css' => ['file' => 'lcake-kit-faq.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-pie-chart-css' => ['file' => 'lceak-kit-pie-chart.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-testimonial-css' => ['file' => 'lcake-kit-testimonial.css', 'enqueue' => false, 'path' => ''],
+            'lcake-team-css' => ['file' => 'lcake-team.css', 'enqueue' => false, 'path' => ''],
             'lcake-btsp-css' => ['file' => 'bootstrap.min.css', 'enqueue' => true, 'path' => ''],
             'lcake-swiper-css' => ['file' => 'swiper-bundle.min.css', 'enqueue' => true, 'path' => ''],
             'lcakeicons' => ['file' => 'lcakeicons.css', 'enqueue' => true, 'path' => 'assets/icons']
