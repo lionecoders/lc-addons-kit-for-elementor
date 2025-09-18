@@ -9,10 +9,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class LC_Kit_Pricing_Table extends \Elementor\Widget_Base {
+class LCAKE_Kit_Pricing_Table extends \Elementor\Widget_Base {
 
     public function get_name() {
-        return 'lc-kit-pricing-table';
+        return 'lcake-kit-pricing-table';
     }
 
     public function get_title() {
@@ -24,716 +24,2663 @@ class LC_Kit_Pricing_Table extends \Elementor\Widget_Base {
     }
 
     public function get_categories() {
-        return ['lc-page-kit'];
+        return ['lcake-page-kit'];
     }
 
     public function get_keywords() {
         return ['pricing', 'table', 'price', 'plan', 'subscription', 'billing'];
     }
 
-    protected function add_content_controls() {
+    public function get_style_depends() {
+        return ['lcake-kit-pricing-table'];
+    }
+
+    protected function register_controls() {
+
         $this->start_controls_section(
-            'content_section',
+            'lcake_pricing_pricing_plan',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+                'label' => esc_html__('Header', 'lc-elementor-addons-kit'),
             ]
         );
 
-        $repeater = new \Elementor\Repeater();
 
-        $repeater->add_control(
-            'title',
+        $this->add_control(
+			'lcake_pricing_table_title', [
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
+                'label' => esc_html__('Table Title', 'lc-elementor-addons-kit'),
+                'default'   =>  esc_html__('Starter','lc-elementor-addons-kit'),
+				'label_block' => true,
+			]
+		);
+		$this->add_control(
+            'lcake_pricing_title_size',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Basic Plan', 'lc-elementor-addons-kit'),
+                'label' => esc_html__( 'Title HTML Tag', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    'h1' => 'H1',
+                    'h2' => 'H2',
+                    'h3' => 'H3',
+                    'h4' => 'H4',
+                    'h5' => 'H5',
+                    'h6' => 'H6',
+                    'div' => 'div',
+                    'span' => 'span',
+                    'p' => 'p',
+                ],
+                'default' => 'h3',
+                'separator' => 'after',
+            ]
+        );
+        $this->add_control(
+			'lcake_pricing_table_subtitle', [
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
+                'label' => esc_html__('Table Subtitle', 'lc-elementor-addons-kit'),
+                'default'   =>  esc_html__('A small river named Duden flows by their place and supplies','lc-elementor-addons-kit'),
+				'label_block' => true,
+			]
+		);
+		$this->add_control(
+            'lcake_pricing_icon_type',
+            [
+                'label' => esc_html__( 'Header Icon or Image? ', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'none' => [
+                        'title' => esc_html__( 'None', 'lc-elementor-addons-kit' ),
+                        'icon' => 'fa fa-stop-circle',
+					],
+					'icon' => [
+                        'title' => esc_html__( 'Icon', 'lc-elementor-addons-kit' ),
+                        'icon' => 'fa fa-star',
+                    ],
+                    'image' => [
+                        'title' => esc_html__( 'Image', 'lc-elementor-addons-kit' ),
+                        'icon' => 'fa fa-image',
+                    ],
+                ],
+				'default' => 'none',
+				'separator' => 'before',
+				'toggle' => true,
+            ]
+		);
+		
+		$this->add_control(
+            'lcake_pricing_switch_icon',
+            [
+                'label' => esc_html__('Add icon? ', 'lc-elementor-addons-kit'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'label_on' =>esc_html__( 'Yes', 'lc-elementor-addons-kit' ),
+				'label_off' =>esc_html__( 'No', 'lc-elementor-addons-kit' ),
+				'condition' => [
+                    'lcake_pricing_icon_type' => 'icon',
+                ]
+            ]
+		);
+
+        $this->add_control(
+            'lcake_pricing_icons',
+            [
+                'label' => esc_html__( 'Icon', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::ICONS,
+				'fa4compatibility' => 'lcake_pricing_icon',
+                'default' => [
+                    'value' => 'fab fa-amazon',
+                    'library' => 'brands',
+                ],
+                'condition' => [
+					'lcake_pricing_icon_type' => 'icon',
+					'lcake_pricing_switch_icon'	=> 'yes'
+                ]
             ]
         );
 
-        $repeater->add_control(
-            'subtitle',
+        $this->add_control(
+            'lcake_pricing_image',
             [
-                'label' => esc_html__('Subtitle', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Perfect for small businesses', 'lc-elementor-addons-kit'),
+                'label' => esc_html__( 'Choose Image', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+				'dynamic' => [
+					'active' => true,
+				],
+                'default' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                    'id'    => -1
+                ],
+                'condition' => [
+                    'lcake_pricing_icon_type' => 'image',
+				],
             ]
         );
 
-        $repeater->add_control(
-            'price',
+        $this->add_group_control(
+            \Elementor\Group_Control_Image_Size::get_type(),
             [
-                'label' => esc_html__('Price', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('29', 'lc-elementor-addons-kit'),
+                'name' => 'lcake_pricing_thumbnail',
+                'default' => 'thumbnail',
+                'separator' => 'none',
+                'condition' => [
+                    'lcake_pricing_icon_type' => 'image',
+                ]
+            ]
+        );
+		$this->end_controls_section();
+        $this->start_controls_section(
+            'lcake_pricing_pricing_tag',
+            [
+                'label' => esc_html__('Price Tag', 'lc-elementor-addons-kit'),
             ]
         );
 
-        $repeater->add_control(
-            'currency',
-            [
+	    $this->add_control(
+			'lcake_pricing_currency_icon', [
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
                 'label' => esc_html__('Currency', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('$', 'lc-elementor-addons-kit'),
+				'default'   => '$',
+			]
+		);
+        $this->add_control(
+			'lcake_pricing_table_price', [
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
+                'label' => esc_html__('Price', 'lc-elementor-addons-kit'),
+				'default'   => esc_html__('5.99', 'lc-elementor-addons-kit'),
+			]
+		);
+        $this->add_control(
+			'lcake_pricing_table_duration', [
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
+                'label' => esc_html__('Duration', 'lc-elementor-addons-kit'),
+				'default'   => esc_html__('Month', 'lc-elementor-addons-kit'),
+			]
+		);
+		$this->end_controls_section();
+        $this->start_controls_section(
+            'lcake_pricing_features_tab',
+            [
+                'label' =>esc_html__('Features', 'lc-elementor-addons-kit'),
+            ]
+        );
+        $this->add_control(
+            'lcake_pricing_content_style',
+            [
+                'label' => esc_html__( 'Features style', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'paragraph',
+                'options' => [
+                    'paragraph'  => esc_html__( 'Paragraph', 'lc-elementor-addons-kit' ),
+                    'list' => esc_html__( 'List', 'lc-elementor-addons-kit' ),
+                ],
+            ]
+        );
+
+        $this->add_control(
+			'lcake_pricing_table_content', [
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'dynamic' => [
+					'active' => true,
+				],
+                'label' => esc_html__('Table Content', 'lc-elementor-addons-kit'),
+				'label_block' => true,
+				'default' => esc_html__('Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam','lc-elementor-addons-kit'),
+                'condition' => [
+                    'lcake_pricing_content_style' => 'paragraph',
+				],
+			]
+        );
+		$repeater = new \Elementor\Repeater();
+
+        $repeater->add_control(
+            'lcake_pricing_list', [
+                'label' => esc_html__('List text', 'lc-elementor-addons-kit'),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
+				'default' => esc_html__( '15 Email Account' , 'lc-elementor-addons-kit' ),
+				'label_block' => true,
             ]
         );
 
         $repeater->add_control(
-            'period',
-            [
-                'label' => esc_html__('Period', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('/month', 'lc-elementor-addons-kit'),
+            'lcake_pricing_check_icons', [
+				'label' =>esc_html__( 'Icon', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::ICONS,
+                'default' => [
+                    'value' => '',
+                ],
+				'label_block' => true,
             ]
         );
 
         $repeater->add_control(
-            'features',
+            'lcake_pricing_list_icon_color', [
+				'label' =>esc_html__( 'Icon Color', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-lists {{CURRENT_ITEM}} > :is(i, svg)' => 'color: {{VALUE}}; fill: {{VALUE}};',
+				],
+            ]
+		);
+		
+		$repeater->add_responsive_control(
+            'lcake_pricing_list_content_typography_group',
             [
-                'label' => esc_html__('Features', 'lc-elementor-addons-kit'),
+                'label' => esc_html__( 'Icon Size', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 100,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-lists {{CURRENT_ITEM}} > :is(i, svg)' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+		$repeater->add_control(
+			'lcake_pricing_list_info',
+			[
+				'label'	=> esc_html__( 'Info Text', 'lc-elementor-addons-kit' ),
+				'type'	=> \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'lcake_pricing_list_info_icon_color',
+			[
+				'label' =>esc_html__( 'Info Icon Color', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} .lcake-pricing-list-info :is(i, svg)' => 'color: {{VALUE}}; fill: {{VALUE}};',
+				],
+				'condition' => [
+					'lcake_pricing_list_info!' => '',
+				],
+			]
+		);
+
+        $this->add_control(
+            'lcake_pricing_table_content_repeater',
+            [
+                'label' => esc_html__( 'Pricing Content List', 'lc-elementor-addons-kit' ),
                 'type' => \Elementor\Controls_Manager::REPEATER,
-                'fields' => [
+				'fields' => $repeater->get_controls(),
+				'title_field' => '{{lcake_pricing_list}}',
+                'default' => [
                     [
-                        'name' => 'feature_text',
-                        'label' => esc_html__('Feature', 'lc-elementor-addons-kit'),
-                        'type' => \Elementor\Controls_Manager::TEXT,
-                        'default' => esc_html__('Feature 1', 'lc-elementor-addons-kit'),
+                        'item' => esc_html__( '15 Email Account', 'lc-elementor-addons-kit' ),
+                        'check_icon' => 'icon icon-tick',
                     ],
                     [
-                        'name' => 'feature_icon',
-                        'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
-                        'type' => \Elementor\Controls_Manager::ICONS,
-                        'default' => [
-                            'value' => 'fas fa-check',
-                            'library' => 'fa-solid',
+						'item' => esc_html__( '100 GB Space', 'lc-elementor-addons-kit' ),
+						'check_icon' => 'icon icon-tick',
+                    ],
+                    [
+						'item' => esc_html__( '1 Domain Name', 'lc-elementor-addons-kit' ),
+						'check_icon' => 'icon icon-tick',
+                    ],
+                ],
+                'title_field' => '{{{ lcake_pricing_list }}}',
+                'condition' => [
+                    'lcake_pricing_content_style' => 'list',
+				],
+            ]
+        );
+
+        $this->end_controls_section();
+        $this->start_controls_section(
+            'lcake_pricing_button_style_tab',
+            [
+                'label' =>esc_html__('Button', 'lc-elementor-addons-kit'),
+            ]
+        );
+        $this->add_control(
+			'lcake_pricing_btn_text',
+			[
+				'label' =>esc_html__( 'Label', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
+				'default' =>esc_html__( 'Learn more ', 'lc-elementor-addons-kit' ),
+				'placeholder' =>esc_html__( 'Learn more ', 'lc-elementor-addons-kit' ),
+			]
+		);
+
+		$this->add_control(
+			'lcake_pricing_btn_link',
+			[
+				'label' =>esc_html__( 'Link', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::URL,
+				'dynamic' => [
+					'active' => true,
+				],
+				'placeholder' =>esc_url('https://wpmet.com'),
+				'default' => [
+					'url' => '#',
+				],
+			]
+		);
+
+		$this->add_control(
+            'lcake_pricing_btn_icons__switch',
+            [
+                'label' => esc_html__('Add icon? ', 'lc-elementor-addons-kit'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'label_on' =>esc_html__( 'Yes', 'lc-elementor-addons-kit' ),
+                'label_off' =>esc_html__( 'No', 'lc-elementor-addons-kit' ),
+            ]
+		);
+
+		$this->add_control(
+			'lcake_pricing_btn_icons',
+			[
+				'label' =>esc_html__( 'Icon', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::ICONS,
+				'fa4compatibility' => 'lcake_pricing_btn_icon',
+                'default' => [
+                    'value' => '',
+                ],
+				'label_block' => true,
+				'condition'		=> [
+					'lcake_pricing_btn_icons__switch'	=> 'yes'
+				]
+			]
+		);
+
+		$this->add_control(
+			'lcake_pricing_icon_align',
+			[
+				'label' =>esc_html__( 'Icon Position', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'left',
+				'options' => [
+					'left' =>esc_html__( 'Before', 'lc-elementor-addons-kit' ),
+					'right' =>esc_html__( 'After', 'lc-elementor-addons-kit' ),
+				],
+				'condition' => [
+					'lcake_pricing_btn_icons__switch'	=> 'yes'
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+            'lcake_pricing_icon_spacing',
+            [
+                'label' => esc_html__( 'Icon Spacing', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'default' => [
+                    'size' => 10,
+                    'unit' => 'px',
+                ],
+                'range' => [
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn-icon-pos-left i' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn-icon-pos-right i' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn-icon-pos-left svg' => 'margin-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn-icon-pos-right svg' => 'margin-left: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'lcake_pricing_btn_icons__switch'	=> 'yes'
+                ],
+            ]
+        );
+
+	    $this->add_control(
+		    'lcake_pricing_button_class',
+		    [
+			    'label' => esc_html__( 'Class', 'lc-elementor-addons-kit' ),
+			    'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
+			    'placeholder' => esc_html__( 'Class Name', 'lc-elementor-addons-kit' ),
+		    ]
+	    );
+
+	    $this->add_control(
+		    'lcake_pricing_button_id',
+		    [
+			    'label' => esc_html__( 'id', 'lc-elementor-addons-kit' ),
+			    'type' => \Elementor\Controls_Manager::TEXT,
+				'dynamic' => [
+					'active' => true,
+				],
+			    'placeholder' => esc_html__( 'ID', 'lc-elementor-addons-kit' ),
+		    ]
+	    );
+
+
+        $this->end_controls_section();
+
+
+        //Body style start
+        $this->start_controls_section(
+			'lcake_pricing_section_body_style',
+			[
+				'label' =>esc_html__( 'Pricing Body', 'lc-elementor-addons-kit' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'lcake_pricing_pricing_body_bg_sp', [
+				'type' => \Elementor\Controls_Manager::COLOR,
+                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_pricing_content_align',
+			[
+				'label' =>esc_html__( 'Alignment', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left'    => [
+						'title' =>esc_html__( 'Left', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' =>esc_html__( 'Center', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' =>esc_html__( 'Right', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing' => 'text-align: {{VALUE}};'
+                ],
+				'default' => 'center',
+			]
+		);
+
+		$this->end_controls_section();
+
+
+
+        //Price Title style start
+        $this->start_controls_section(
+			'slcake_pricing_ection_title_style',
+			[
+				'label' =>esc_html__( 'Table Title', 'lc-elementor-addons-kit' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+		$this->add_responsive_control(
+			'lcake_pricing_title_align',
+			[
+				'label' =>esc_html__( 'Alignment', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left'    => [
+						'title' =>esc_html__( 'Left', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' =>esc_html__( 'Center', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' =>esc_html__( 'Right', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-title' => 'text-align: {{VALUE}};'
+                ],
+				'default' => '',
+			]
+		);
+        $this->start_controls_tabs( 'lcake_pricing_tabs_title_style' );
+
+        $this->start_controls_tab(
+            'lcake_pricing_tab_title_normal',
+            [
+                'label' =>esc_html__( 'Normal', 'lc-elementor-addons-kit' ),
+            ]
+        );
+        $this->add_control(
+            'lcake_pricing_title_text_color',
+            [
+                'label' =>esc_html__( 'Title Color', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-title' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
+        $this->start_controls_tab(
+            'lcake_pricing_tab_title_hover',
+            [
+                'label' =>esc_html__( 'Hover', 'lc-elementor-addons-kit' ),
+            ]
+        );
+        $this->add_control(
+            'lcake_pricing_title_hover_color',
+            [
+                'label' =>esc_html__( 'Color', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}}:hover .lcake-pricing-header .lcake-pricing-title' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_pricing_title_typography_group',
+                'label' =>esc_html__( 'Title Typography', 'lc-elementor-addons-kit' ),
+                'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-title',
+            ]
+        );
+		$this->add_responsive_control(
+			'lcake_pricing_title_text_padding',
+			[
+				'label' =>esc_html__( 'Padding', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_title_wraper_margin',
+			[
+				'label' =>esc_html__( 'Margin', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+        $this->add_control(
+			'lcake_pricing_titlehr12',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+				'style' => 'thick',
+			]
+		);
+
+        $this->add_responsive_control(
+			'lcake_pricing_title_border_style',
+			[
+				'label' => esc_html_x( 'Border Type', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'' => esc_html__( 'None', 'lc-elementor-addons-kit' ),
+					'solid' => esc_html_x( 'Solid', 'Border Control', 'lc-elementor-addons-kit' ),
+					'double' => esc_html_x( 'Double', 'Border Control', 'lc-elementor-addons-kit' ),
+					'dotted' => esc_html_x( 'Dotted', 'Border Control', 'lc-elementor-addons-kit' ),
+					'dashed' => esc_html_x( 'Dashed', 'Border Control', 'lc-elementor-addons-kit' ),
+					'groove' => esc_html_x( 'Groove', 'Border Control', 'lc-elementor-addons-kit' ),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-title' => 'border-style: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'lcake_pricing_title_border_dimensions',
+			[
+				'label' => esc_html_x( 'Border Width', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-title' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+                'condition' => [
+                    'lcake_pricing_title_border_style!' => '',
+                ],
+
+            ]
+		);
+		$this->start_controls_tabs( 'lcake_pricing_tabs_title_border_style' );
+		$this->start_controls_tab(
+			'lcake_pricing_title_border_normal',
+			[
+				'label' =>esc_html__( 'Normal', 'lc-elementor-addons-kit' ),
+                'condition' => [
+                    'lcake_pricing_title_border_style!' => '',
+                ],
+
+            ]
+		);
+		$this->add_control(
+			'lcake_pricing_title_border_color',
+			[
+				'label' => esc_html_x( 'Border Color', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-title' => 'border-color: {{VALUE}};',
+				],
+                'condition' => [
+                    'lcake_pricing_title_border_style!' => '',
+                ],
+
+            ]
+		);
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'lcake_pricing_title_tab_border_hover',
+			[
+				'label' =>esc_html__( 'Hover', 'lc-elementor-addons-kit' ),
+                'condition' => [
+                    'lcake_pricing_title_border_style!' => '',
+                ],
+
+            ]
+		);
+		$this->add_control(
+			'lcake_pricing_title_hover_border_color',
+			[
+				'label' => esc_html_x( 'Border Color', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}}:hover .lcake-single-pricing .lcake-pricing-header .lcake-pricing-title' => 'border-color: {{VALUE}};',
+				],
+                'condition' => [
+                    'lcake_pricing_title_border_style!' => '',
+                ],
+            ]
+		);
+		$this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+			'lcake_pricing_title_border_radius',
+			[
+				'label' =>esc_html__( 'Border Radius', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px'],
+				'default' => [
+					'top' => '',
+					'right' => '',
+					'bottom' => '' ,
+					'left' => '',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-title' =>  'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_pricing_title_box_shadow_group',
+                'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-title',
+            ]
+        );
+		$this->end_controls_section();
+
+        //Price Subtitle style start
+        $this->start_controls_section(
+			'lcake_pricing_section_subtitle_style',
+			[
+				'label' =>esc_html__( 'Table Subtitle', 'lc-elementor-addons-kit' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'lcake_pricing_table_subtitle!' => '',
+                ]
+			]
+		);
+		$this->add_responsive_control(
+			'lcake_pricing_subtitle_align',
+			[
+				'label' =>esc_html__( 'Alignment', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left'    => [
+						'title' =>esc_html__( 'Left', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' =>esc_html__( 'Center', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' =>esc_html__( 'Right', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-subtitle' => 'text-align: {{VALUE}};'
+                ],
+                'conditions' => [
+                    'terms' => [
+                        [
+                            'name' => 'lcake_pricing_table_subtitle',
+                            'operator' => '!in',
+                            'value' => [''],
                         ],
                     ],
                 ],
-                'default' => [
-                    [
-                        'feature_text' => esc_html__('Feature 1', 'lc-elementor-addons-kit'),
-                    ],
-                    [
-                        'feature_text' => esc_html__('Feature 2', 'lc-elementor-addons-kit'),
-                    ],
-                    [
-                        'feature_text' => esc_html__('Feature 3', 'lc-elementor-addons-kit'),
-                    ],
-                ],
-                'title_field' => '{{{ feature_text }}}',
+				'default' => '',
+			]
+		);
+        $this->start_controls_tabs( 'lcake_pricing_tabs_subtitle_style' );
+
+        $this->start_controls_tab(
+            'lcake_pricing_tab_subtitle_normal',
+            [
+                'label' =>esc_html__( 'Normal', 'lc-elementor-addons-kit' ),
             ]
         );
-
-        $repeater->add_control(
-            'button_text',
+        $this->add_control(
+            'lcake_pricing_subtitle_text_color',
             [
-                'label' => esc_html__('Button Text', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Get Started', 'lc-elementor-addons-kit'),
-            ]
-        );
-
-        $repeater->add_control(
-            'button_link',
-            [
-                'label' => esc_html__('Button Link', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'lc-elementor-addons-kit'),
-            ]
-        );
-
-        $repeater->add_control(
-            'popular',
-            [
-                'label' => esc_html__('Popular', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
-                'return_value' => 'yes',
+                'label' =>esc_html__( 'Color', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-subtitle' => 'color: {{VALUE}};',
+                ],
             ]
         );
-
-        $repeater->add_control(
-            'popular_text',
+        $this->end_controls_tab();
+        $this->start_controls_tab(
+            'lcake_pricing_tab_subtitle_hover',
             [
-                'label' => esc_html__('Popular Text', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Most Popular', 'lc-elementor-addons-kit'),
+                'label' =>esc_html__( 'Hover', 'lc-elementor-addons-kit' ),
+            ]
+        );
+        $this->add_control(
+            'lcake_pricing_subtitle_hover_color',
+            [
+                'label' =>esc_html__( 'Color', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}}:hover .lcake-single-pricing .lcake-pricing-header .lcake-pricing-subtitle' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_pricing_subtitle_typography_group',
+                'label' =>esc_html__( 'Typography', 'lc-elementor-addons-kit' ),
+                'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-subtitle',
+            ]
+        );
+		$this->add_responsive_control(
+			'lcake_pricing_subtitle_text_padding',
+			[
+				'label' =>esc_html__( 'Padding', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-subtitle' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+
+        $this->add_responsive_control(
+			'lcake_pricing_subtitlehr12',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+				'style' => 'thick',
+			]
+		);
+
+        $this->add_responsive_control(
+			'lcake_pricing_subtitle_border_style',
+			[
+				'label' => esc_html_x( 'Border Type', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'' => esc_html__( 'None', 'lc-elementor-addons-kit' ),
+					'solid' => esc_html_x( 'Solid', 'Border Control', 'lc-elementor-addons-kit' ),
+					'double' => esc_html_x( 'Double', 'Border Control', 'lc-elementor-addons-kit' ),
+					'dotted' => esc_html_x( 'Dotted', 'Border Control', 'lc-elementor-addons-kit' ),
+					'dashed' => esc_html_x( 'Dashed', 'Border Control', 'lc-elementor-addons-kit' ),
+					'groove' => esc_html_x( 'Groove', 'Border Control', 'lc-elementor-addons-kit' ),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-subtitle' => 'border-style: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'lcake_pricing_subtitle_border_dimensions',
+			[
+				'label' => esc_html_x( 'Width', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-subtitle' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
                 'condition' => [
-                    'popular' => 'yes',
+                    'lcake_pricing_subtitle_border_style!' => '',
                 ],
-            ]
-        );
-
-        $this->add_control(
-            'pricing_tables',
-            [
-                'label' => esc_html__('Pricing Tables', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::REPEATER,
-                'fields' => $repeater->get_controls(),
-                'default' => [
-                    [
-                        'title' => esc_html__('Basic Plan', 'lc-elementor-addons-kit'),
-                        'subtitle' => esc_html__('Perfect for small businesses', 'lc-elementor-addons-kit'),
-                        'price' => esc_html__('29', 'lc-elementor-addons-kit'),
-                        'currency' => esc_html__('$', 'lc-elementor-addons-kit'),
-                        'period' => esc_html__('/month', 'lc-elementor-addons-kit'),
-                        'button_text' => esc_html__('Get Started', 'lc-elementor-addons-kit'),
-                    ],
-                    [
-                        'title' => esc_html__('Pro Plan', 'lc-elementor-addons-kit'),
-                        'subtitle' => esc_html__('Perfect for growing businesses', 'lc-elementor-addons-kit'),
-                        'price' => esc_html__('99', 'lc-elementor-addons-kit'),
-                        'currency' => esc_html__('$', 'lc-elementor-addons-kit'),
-                        'period' => esc_html__('/month', 'lc-elementor-addons-kit'),
-                        'button_text' => esc_html__('Get Started', 'lc-elementor-addons-kit'),
-                        'popular' => 'yes',
-                    ],
-                    [
-                        'title' => esc_html__('Enterprise Plan', 'lc-elementor-addons-kit'),
-                        'subtitle' => esc_html__('Perfect for large businesses', 'lc-elementor-addons-kit'),
-                        'price' => esc_html__('199', 'lc-elementor-addons-kit'),
-                        'currency' => esc_html__('$', 'lc-elementor-addons-kit'),
-                        'period' => esc_html__('/month', 'lc-elementor-addons-kit'),
-                        'button_text' => esc_html__('Get Started', 'lc-elementor-addons-kit'),
-                    ],
+			]
+		);
+		$this->start_controls_tabs( 'lcake_pricing_tabs_subtitle_border_style' );
+		$this->start_controls_tab(
+			'lcake_pricing_subtitle_border_normal',
+			[
+				'label' =>esc_html__( 'Normal', 'lc-elementor-addons-kit' ),
+                'condition' => [
+                    'lcake_pricing_subtitle_border_style!' => '',
                 ],
-                'title_field' => '{{{ title }}}',
-            ]
-        );
+			]
+		);
 
-        $this->add_control(
-            'columns',
-            [
-                'label' => esc_html__('Columns', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => '3',
-                'options' => [
-                    '1' => '1',
-                    '2' => '2',
-                    '3' => '3',
-                    '4' => '4',
+		$this->add_control(
+			'lcake_pricing_subtitle_border_color',
+			[
+				'label' => esc_html_x( 'Color', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-subtitle' => 'border-color: {{VALUE}};',
+				],
+                'condition' => [
+                    'lcake_pricing_subtitle_border_style!' => '',
                 ],
-            ]
-        );
+			]
+		);
+		$this->end_controls_tab();
 
-        $this->add_control(
-            'show_currency',
-            [
-                'label' => esc_html__('Show Currency', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'show_period',
-            [
-                'label' => esc_html__('Show Period', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
-    protected function add_style_controls() {
-        $this->start_controls_section(
-            'section_style_pricing_table',
-            [
-                'label' => esc_html__('Pricing Table', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            'pricing_table_background_color',
-            [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-item' => 'background-color: {{VALUE}};',
+		$this->start_controls_tab(
+			'lcake_pricing_subtitle_tab_border_hover',
+			[
+				'label' =>esc_html__( 'Hover', 'lc-elementor-addons-kit' ),
+                'condition' => [
+                    'lcake_pricing_subtitle_border_style!' => '',
                 ],
-            ]
-        );
+			]
+		);
+		$this->add_control(
+			'lcake_pricing_subtitle_hover_border_color',
+			[
+				'label' => esc_html_x( 'Color', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}}:hover .lcake-pricing-header .lcake-pricing-subtitle' => 'border-color: {{VALUE}};',
+				],
+                'condition' => [
+                    'lcake_pricing_subtitle_border_style!' => '',
+                ],
+			]
+		);
+		$this->end_controls_tab();
+        $this->end_controls_tabs();
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'pricing_table_border',
-                'selector' => '{{WRAPPER}} .lc-pricing-table-item',
-            ]
-        );
+
 
         $this->add_control(
-            'pricing_table_border_radius',
-            [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
+			'lcake_pricing_subtitlehr13',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+				'style' => 'thick',
+			]
+		);
         $this->add_responsive_control(
-            'pricing_table_padding',
+			'lcake_pricing_subtitle_border_radius',
+			[
+				'label' =>esc_html__( 'Border Radius', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px'],
+				'default' => [
+					'top' => '',
+					'right' => '',
+					'bottom' => '' ,
+					'left' => '',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-subtitle' =>  'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                'name' => 'lcake_pricing_subtitle_box_shadow_group',
+                'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-header .lcake-pricing-subtitle',
+            ]
+        );
+		$this->end_controls_section();
+
+        //Image Style Start
+        $this->start_controls_section(
+            'lcake_pricing_style_image',
+            [
+                'label' => esc_html__( 'Header Image', 'lc-elementor-addons-kit' ),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'lcake_pricing_icon_type' => 'image',
+
                 ],
             ]
         );
-
         $this->add_responsive_control(
-            'pricing_table_margin',
+            'lcake_pricing_image_space',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            'section_style_header',
-            [
-                'label' => esc_html__('Header', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            'header_background_color',
-            [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-header' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'title_color',
-            [
-                'label' => esc_html__('Title Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-title' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .lc-pricing-table-title',
-            ]
-        );
-
-        $this->add_control(
-            'subtitle_color',
-            [
-                'label' => esc_html__('Subtitle Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-subtitle' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'subtitle_typography',
-                'selector' => '{{WRAPPER}} .lc-pricing-table-subtitle',
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            'section_style_price',
-            [
-                'label' => esc_html__('Price', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            'price_color',
-            [
-                'label' => esc_html__('Price Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-price' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'price_typography',
-                'selector' => '{{WRAPPER}} .lc-pricing-table-price',
-            ]
-        );
-
-        $this->add_control(
-            'currency_color',
-            [
-                'label' => esc_html__('Currency Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-currency' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'period_color',
-            [
-                'label' => esc_html__('Period Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-period' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            'section_style_features',
-            [
-                'label' => esc_html__('Features', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_control(
-            'features_color',
-            [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-feature' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'features_typography',
-                'selector' => '{{WRAPPER}} .lc-pricing-table-feature',
-            ]
-        );
-
-        $this->add_control(
-            'feature_icon_color',
-            [
-                'label' => esc_html__('Icon Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-feature-icon' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'feature_icon_size',
-            [
-                'label' => esc_html__('Icon Size', 'lc-elementor-addons-kit'),
+                'label' => esc_html__( 'Margin Bottom', 'lc-elementor-addons-kit' ),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
-                        'min' => 10,
-                        'max' => 50,
-                        'step' => 1,
+                        'min' => 0,
+                        'max' => 100,
                     ],
                 ],
                 'default' => [
-                    'size' => 16,
+                    'size' => 10,
+                    'unit' => 'px',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-feature-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-single-pricing .elementor-pricing-img img' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            'section_style_button',
-            [
-                'label' => esc_html__('Button', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
+        $this->start_controls_tabs(
+            'lcake_pricing_style_tabs_image'
         );
 
-        $this->add_control(
-            'button_background_color',
+        $this->start_controls_tab(
+            'lcake_pricing_style_img_normal_tab',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-button' => 'background-color: {{VALUE}};',
-                ],
+                'label' => esc_html__( 'Normal', 'lc-elementor-addons-kit' ),
             ]
         );
-
-        $this->add_control(
-            'button_color',
-            [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-button' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
         $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'button_typography',
-                'selector' => '{{WRAPPER}} .lc-pricing-table-button',
+                'name' => 'lcake_pricing_imge_border_group',
+                'label' => esc_html__( 'Border', 'lc-elementor-addons-kit' ),
+                'selector' => '{{WRAPPER}} .lcake-single-pricing .elementor-pricing-img img',
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_pricing_image_border_radius',
+            [
+                'label' => esc_html__( 'Border Radius', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing .elementor-pricing-img img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_pricing_iamge_box_shadow_group',
+                'label' => esc_html__( 'Box Shadow', 'lc-elementor-addons-kit' ),
+                'selector' => '{{WRAPPER}} .lcake-single-pricing .elementor-pricing-img img',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'lcake_pricing_style_img_hover_tab',
+            [
+                'label' => esc_html__( 'Hover', 'lc-elementor-addons-kit' ),
             ]
         );
 
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'button_border',
-                'selector' => '{{WRAPPER}} .lc-pricing-table-button',
+                'name' => 'lcake_pricing_imge_border_hover_group',
+                'label' => esc_html__( 'Border', 'lc-elementor-addons-kit' ),
+                'selector' => '{{WRAPPER}}:hover .elementor-pricing-img img',
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_pricing_image_hover_border_radius',
+            [
+                'label' => esc_html__( 'Border Radius', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing .elementor-pricing-img img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_pricing_iamge_box_shadow_hv_group',
+                'label' => esc_html__( 'Box Shadow', 'lc-elementor-addons-kit' ),
+                'selector' => '{{WRAPPER}}:hover .elementor-pricing-img img',
             ]
         );
 
         $this->add_control(
-            'button_border_radius',
+            'lcake_pricing_image_hover_animation',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
+                'label' => esc_html__( 'Animation', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
             ]
         );
 
-        $this->add_responsive_control(
-            'button_padding',
-            [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
 
         $this->end_controls_section();
 
+        //Icon Style Start
         $this->start_controls_section(
-            'section_style_popular',
+            'lcake_pricing_section_style_icon',
             [
-                'label' => esc_html__('Popular Badge', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'label' => esc_html__( 'Header Icon', 'lc-elementor-addons-kit' ),
+                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+					'lcake_pricing_switch_icon'	=> 'yes',
+                    'lcake_pricing_icon_type' => 'icon',
+
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs( 'icon_colors' );
+
+        $this->start_controls_tab(
+            'lcake_pricing_icon_colors_normal',
+            [
+                'label' => esc_html__( 'Normal', 'lc-elementor-addons-kit' ),
             ]
         );
 
         $this->add_control(
-            'popular_background_color',
+            'lcake_pricing_icon_primary_color',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__( 'Color', 'lc-elementor-addons-kit' ),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-popular' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .lcake-single-pricing .elementkit-pricing-icon' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .lcake-pricing-header svg path'	=> 'stroke: {{VALUE}}; fill: {{VALUE}};',
                 ],
             ]
         );
 
         $this->add_control(
-            'popular_color',
+            'lcake_pricing_icon_secondary_color_normal',
             [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__( 'BG Color', 'lc-elementor-addons-kit' ),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-pricing-table-popular' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-single-pricing .elementkit-pricing-icon, {{WRAPPER}} .lcake-pricing-header svg' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
+            \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'popular_typography',
-                'selector' => '{{WRAPPER}} .lc-pricing-table-popular',
+                'name' => 'lcake_pricing_border_group',
+                'label' => esc_html__( 'Border', 'lc-elementor-addons-kit' ),
+                'selector' => '{{WRAPPER}} .elementkit-pricing-icon, {{WRAPPER}} .lcake-pricing-header svg',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_pricing_icon_border_radius',
+            [
+                'label' => esc_html__( 'Border Radius', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing .elementkit-pricing-icon, {{WRAPPER}} .lcake-pricing-header svg' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'lcake_pricing_icon_colors_hover',
+            [
+                'label' => esc_html__( 'Hover', 'lc-elementor-addons-kit' ),
+            ]
+        );
+
+        $this->add_control(
+            'lcake_pricing_hover_primary_color',
+            [
+                'label' => esc_html__( 'Primary Color', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+					'{{WRAPPER}}:hover .elementkit-pricing-icon' => 'color: {{VALUE}};',
+					'{{WRAPPER}}:hover .lcake-pricing-header svg path' => 'stroke: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lcake_pricing_hover_secondary_color',
+            [
+                'label' => esc_html__( 'Secondary Color', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+					'{{WRAPPER}}:hover .elementkit-pricing-icon, {{WRAPPER}}:hover .lcake-pricing-header svg' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_pricing_border_icon_group',
+                'label' => esc_html__( 'Border', 'lc-elementor-addons-kit' ),
+                'selector' => '{{WRAPPER}}:hover .elementkit-pricing-icon, {{WRAPPER}}:hover .lcake-pricing-header svg',
+                'condition' => [
+                    'view!' => 'Stacked',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_pricing_icon_hover_border_radius',
+            [
+                'label' => esc_html__( 'Border Radius', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}}:hover .elementkit-pricing-icon, {{WRAPPER}}:hover .lcake-pricing-header svg' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'lcake_pricing_icons_hover_animation',
+            [
+                'label' => esc_html__( 'Hover Animation', 'lc-elementor-addons-kit' ),
+                'type' =>   \Elementor\Controls_Manager::HOVER_ANIMATION,
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+        $this->add_responsive_control(
+            'lcake_pricing_icon_size',
+            [
+                'label' => esc_html__( 'Size', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 6,
+                        'max' => 300,
+                    ],
+                ],
+                'default' => [
+                    'size' => 40,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+					'{{WRAPPER}} .elementkit-pricing-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .lcake-pricing-header svg'	=> 'max-width: {{SIZE}}{{UNIT}};',
+                ],
+                'separator' => 'before',
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_pricing_icon_space',
+            [
+                'label' => esc_html__( 'Margin Bottom', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => -20,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'size' => 15,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementkit-pricing-icon, {{WRAPPER}} .lcake-pricing-header svg' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_pricing_icon_padding',
+            [
+                'label' => esc_html__( 'Padding', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'size' => 15,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementkit-pricing-icon, {{WRAPPER}} .lcake-pricing-header svg' => 'padding: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_pricing_rotate',
+            [
+                'label' => esc_html__( 'Rotate', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 0,
+                    'unit' => 'deg',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementkit-pricing-icon, {{WRAPPER}} .lcake-pricing-header svg' => 'transform: rotate({{SIZE}}{{UNIT}});',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_pricing_icon_box_shadow_group',
+                'selector' => '{{WRAPPER}} .elementkit-pricing-icon, {{WRAPPER}} .lcake-pricing-header svg',
             ]
         );
 
         $this->end_controls_section();
+
+        //Price Tag style start
+        $this->start_controls_section(
+			'lcake_pricing_section_tag_style',
+			[
+				'label' =>esc_html__( 'Price Tag', 'lc-elementor-addons-kit' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_tag_right',
+			[
+				'label' => esc_html__( 'Right', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => -200,
+						'max' => 200,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => -100,
+						'max' => 100,
+					],
+				],
+				// 'default' => [
+				// 	'unit' => 'px',
+				// 	'size' => 0,
+				// ],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-pricing-tag' => 'right: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_tag_width_width',
+			[
+				'label' => esc_html__( 'Width', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 500,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 200,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-pricing-tag' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_tag_text_padding',
+			[
+				'label' =>esc_html__( 'Padding', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'default' => 	[
+					'top' => '8',
+					'right' => '0',
+					'bottom' => '8',
+					'left' => '0',
+					'unit' => 'px',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'lcake_pricing_tag_text_margin',
+			[
+				'label' =>esc_html__( 'Margin', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'default' => 	[
+					'top' => '0',
+					'right' => '0',
+					'bottom' => '50',
+					'left' => '0',
+					'unit' => 'px',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'lcake_pricing_price_typography_group',
+				'label' =>esc_html__( 'Typography', 'lc-elementor-addons-kit' ),
+				'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-price span',
+			]
+		);
+		$this->add_control(
+			'lcake_pricing_heading_period_style',
+			[
+				'label' => esc_html__( 'Duration', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+		$this->add_control(
+			'lcake_pricing_period_text_color',
+			[
+				'label' =>esc_html__( 'Text Color', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-price .period' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_control(
+			'lcake_pricing_period_text_color_hover',
+			[
+				'label' =>esc_html__( 'Text Hover Color', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}}:hover .lcake-pricing-price-wraper.has-tag .lcake-pricing-price .period' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_pricing_period_typography_group',
+                'label' =>esc_html__( 'Typography', 'lc-elementor-addons-kit' ),
+                'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-price sub.period',
+            ]
+        );
+		$this->add_responsive_control(
+			'lcake_pricing_period_vertical_position',
+			[
+				'label' => esc_html__( 'Vertical Position', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'label_block' => false,
+				'options' => [
+					'top' => [
+						'title' => esc_html__( 'Top', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-v-align-top',
+					],
+					'middle' => [
+						'title' => esc_html__( 'Middle', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-v-align-middle',
+					],
+					'bottom' => [
+						'title' => esc_html__( 'Bottom', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-v-align-bottom',
+					],
+				],
+				'default' => 'top',
+				'selectors_dictionary' => [
+					'top' => 'super',
+					'middle' => 'baseline',
+					'bottom' => 'sub',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-price sub.period' => 'vertical-align: {{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'lcake_pricing_heading_currency_style',
+			[
+				'label' => esc_html__( 'Currency Symbol', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_pricing_currency_size',
+                'label' =>esc_html__( 'Typography', 'lc-elementor-addons-kit' ),
+                'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-price sup.currency',
+            ]
+        );
+
+		$this->add_control(
+			'lcake_pricing_currency_position',
+			[
+				'label' => esc_html__( 'Position', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'label_block' => false,
+				'default' => 'before',
+				'options' => [
+					'before' => [
+						'title' => esc_html__( 'Before', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-h-align-left',
+					],
+					'after' => [
+						'title' => esc_html__( 'After', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-h-align-right',
+					],
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_currency_vertical_position',
+			[
+				'label' => esc_html__( 'Vertical Position', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'label_block' => false,
+				'options' => [
+					'top' => [
+						'title' => esc_html__( 'Top', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-v-align-top',
+					],
+					'middle' => [
+						'title' => esc_html__( 'Middle', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-v-align-middle',
+					],
+					'bottom' => [
+						'title' => esc_html__( 'Bottom', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-v-align-bottom',
+					],
+				],
+				'default' => 'top',
+				'selectors_dictionary' => [
+					'top' => 'super',
+					'middle' => 'baseline',
+					'bottom' => 'sub',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-price sup.currency' => 'vertical-align: {{VALUE}}',
+				],
+			]
+		);
+
+        $this->add_control(
+			'lcake_pricing_taghr1',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+				'style' => 'thick',
+			]
+		);
+		$this->start_controls_tabs( 'lcake_pricing_tabs_price_style' );
+
+		$this->start_controls_tab(
+			'lcake_pricing_tab_tag_normal',
+			[
+				'label' =>esc_html__( 'Normal', 'lc-elementor-addons-kit' ),
+			]
+		);
+
+		$this->add_control(
+			'lcake_pricing_tag_text_color',
+			[
+				'label' =>esc_html__( 'Color', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-price' => 'color: {{VALUE}};',
+				],
+			]
+		);
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            array(
+				'name'     => 'lcake_pricing_tag_bg_color',
+				'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-tag',
+            )
+        );
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'lcake_pricing_tag_tab_hover',
+			[
+				'label' =>esc_html__( 'Hover', 'lc-elementor-addons-kit' ),
+			]
+		);
+
+		$this->add_control(
+			'lcake_pricing_tag_hover_color',
+			[
+				'label' =>esc_html__( 'Color', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}}:hover .lcake-pricing-price-wraper.has-tag .lcake-pricing-price' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+	    $this->add_group_control(
+		    \Elementor\Group_Control_Background::get_type(),
+		    array(
+			    'name'     => 'lcake_pricing_tag_bg_hover_color_group',
+			    'selector' => '{{WRAPPER}}:hover .lcake-pricing-price-wraper.has-tag .lcake-pricing-tag',
+		    )
+	    );
+
+		$this->end_controls_tab();
+        $this->end_controls_tabs();
+
+
+        $this->add_control(
+			'lcake_pricing_taghr2',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+				'style' => 'thick',
+			]
+		);
+
+        $this->add_responsive_control(
+			'lcake_pricing_tag_border_style',
+			[
+				'label' => esc_html_x( 'Border Type', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'' => esc_html__( 'None', 'lc-elementor-addons-kit' ),
+					'solid' => esc_html_x( 'Solid', 'Border Control', 'lc-elementor-addons-kit' ),
+					'double' => esc_html_x( 'Double', 'Border Control', 'lc-elementor-addons-kit' ),
+					'dotted' => esc_html_x( 'Dotted', 'Border Control', 'lc-elementor-addons-kit' ),
+					'dashed' => esc_html_x( 'Dashed', 'Border Control', 'lc-elementor-addons-kit' ),
+					'groove' => esc_html_x( 'Groove', 'Border Control', 'lc-elementor-addons-kit' ),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-tag' => 'border-style: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'lcake_pricing_tag_border_dimensions',
+			[
+				'label' => esc_html_x( 'Width', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-tag' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->start_controls_tabs( 'lcake_pricing_tabs_tag_border_style' );
+		$this->start_controls_tab(
+			'lcake_pricing_tag_border_normal',
+			[
+				'label' =>esc_html__( 'Normal', 'lc-elementor-addons-kit' ),
+			]
+		);
+
+		$this->add_control(
+			'lcake_pricing_tag_border_color',
+			[
+				'label' => esc_html_x( 'Color', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-tag' => 'border-color: {{VALUE}};',
+				],
+			]
+		);
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'lcake_pricing_tag_tab_border_hover',
+			[
+				'label' =>esc_html__( 'Hover', 'lc-elementor-addons-kit' ),
+			]
+		);
+		$this->add_control(
+			'lcake_pricing_tag_hover_border_color',
+			[
+				'label' => esc_html_x( 'Color', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}}:hover .lcake-pricing-price-wraper.has-tag .lcake-pricing-tag' => 'border-color: {{VALUE}};',
+				],
+			]
+		);
+		$this->end_controls_tab();
+        $this->end_controls_tabs();
+
+
+
+        $this->add_control(
+			'lcake_pricing_taghr3',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+				'style' => 'thick',
+			]
+		);
+        $this->add_responsive_control(
+			'lcake_pricing_tag_border_radius',
+			[
+				'label' =>esc_html__( 'Border Radius', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px'],
+				'default' => [
+					'top' => '',
+					'right' => '',
+					'bottom' => '' ,
+					'left' => '',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-tag' =>  'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+        );
+		$this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_pricing_tag_box_shadow_group',
+                'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-price-wraper.has-tag .lcake-pricing-tag',
+            ]
+        );
+
+		$this->end_controls_section();
+
+
+
+
+        //Price Features style start
+        $this->start_controls_section(
+			'lcake_pricing_section_content_style',
+			[
+				'label' =>esc_html__( 'Features', 'lc-elementor-addons-kit' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_btn_align',
+			[
+				'label' =>esc_html__( 'Content Alignment', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'left'    => [
+						'title' =>esc_html__( 'Left', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' =>esc_html__( 'Center', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' =>esc_html__( 'Right', 'lc-elementor-addons-kit' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-content' => 'text-align: {{VALUE}};',
+				],
+				'default' => '',
+
+			]
+		);
+        $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'lcake_pricing_content_typography_group',
+				'label' =>esc_html__( 'List Typography', 'lc-elementor-addons-kit' ),
+				'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-content p,  {{WRAPPER}} .lcake-single-pricing .lcake-pricing-lists > li',
+			]
+		);
+
+        $this->add_control(
+            'lcake_pricing_content_li_type',
+            [
+                'label'     => esc_html__( 'List Type', 'lc-elementor-addons-kit' ),
+                'type'      => \Elementor\Controls_Manager::SELECT,
+                'default'   => 'none',
+                'options'   => [
+                    'none'          => esc_html__( 'None', 'lc-elementor-addons-kit' ),
+                    'disc'          => esc_html__( 'Disc', 'lc-elementor-addons-kit' ),
+                    'decimal'       => esc_html__( 'Number', 'lc-elementor-addons-kit' ),
+                    'lower-alpha'   => esc_html__( 'Alphabet', 'lc-elementor-addons-kit' ),
+                    'lower-roman'   => esc_html__( 'Roman', 'lc-elementor-addons-kit' ),
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-lists > li' => 'list-style: {{VALUE}};',
+                ],
+                'condition' => [
+                    'lcake_pricing_content_style' => 'list',
+                ],
+            ]
+        );
+
+        $this->add_control(
+			'lcake_pricing_fhr1',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+				'style' => 'thick',
+			]
+		);
+		$this->start_controls_tabs( 'lcake_pricing_tabs_content_style' );
+
+		$this->start_controls_tab(
+			'lcake_pricing_content_tab',
+			[
+				'label' =>esc_html__( 'Normal', 'lc-elementor-addons-kit' ),
+			]
+		);
+			$this->add_control(
+				'lcake_pricing_content_text_color',
+				[
+					'label' =>esc_html__( 'Color', 'lc-elementor-addons-kit' ),
+					'type' => \Elementor\Controls_Manager::COLOR,
+					'default' => '',
+					'selectors' => [
+						'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-content p' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-lists > li' => 'color: {{VALUE}};',
+					],
+				]
+			);
+			$this->add_group_control(
+				\Elementor\Group_Control_Border::get_type(),
+				[
+					'name' 		=> 'lcake_pricing_features_n_bd',
+					'selector'	=> '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-content',
+				]
+			);
+		$this->end_controls_tab();
+		$this->start_controls_tab(
+			'lcake_pricing_content_tab_hover',
+			[
+				'label' =>esc_html__( 'Hover', 'lc-elementor-addons-kit' ),
+			]
+		);
+        $this->add_control(
+            'lcake_pricing_content_hover_color',
+            [
+                'label' =>esc_html__( 'Color', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}}:hover .lcake-pricing-content p' => 'color: {{VALUE}};',
+                    '{{WRAPPER}}:hover .lcake-pricing-lists li' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' 		=> 'lcake_pricing_features_h_bd',
+                'selector'	=> '{{WRAPPER}}:hover .lcake-single-pricing .lcake-pricing-content',
+            ]
+        );
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+
+		$this->add_control(
+			'lcake_pricing_list_divider',
+			[
+				'label' => esc_html__( 'Divider', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'default' => 'no',
+				'separator' => 'before',
+				'condition' => [
+                    'lcake_pricing_content_style' => 'list',
+                ]
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_divider_style',
+			[
+				'label' => esc_html__( 'Style', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'solid' => esc_html__( 'Solid', 'lc-elementor-addons-kit' ),
+					'double' => esc_html__( 'Double', 'lc-elementor-addons-kit' ),
+					'dotted' => esc_html__( 'Dotted', 'lc-elementor-addons-kit' ),
+					'dashed' => esc_html__( 'Dashed', 'lc-elementor-addons-kit' ),
+				],
+				'default' => 'solid',
+				'condition' => [
+					'list_divider' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-lists li' => 'border-top-style: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'lcake_pricing_divider_color',
+			[
+				'label' => esc_html__( 'Color', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '#ddd',
+				'condition' => [
+					'lcake_pricing_list_divider' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-lists li' => 'border-top-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_divider_weight',
+			[
+				'label' => esc_html__( 'Weight', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'default' => [
+					'size' => 2,
+					'unit' => 'px',
+				],
+				'range' => [
+					'px' => [
+						'min' => 1,
+						'max' => 10,
+					],
+				],
+				'condition' => [
+					'lcake_pricing_list_divider' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-lists li' => 'border-top-width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_divider_width',
+			[
+				'label' => esc_html__( 'Width', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'condition' => [
+					'lcake_pricing_list_divider' => 'yes',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-lists li:before' => 'margin-left: calc((100% - {{SIZE}}%)/2); margin-right: calc((100% - {{SIZE}}%)/2)',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_divider_gap',
+			[
+				'label' => esc_html__( 'List Gap', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'default' => [
+					'size' => 15,
+					'unit' => 'px',
+				],
+				'range' => [
+					'px' => [
+						'min' => 1,
+						'max' => 50,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-lists li:before' => 'margin-top: {{SIZE}}{{UNIT}}; margin-bottom: {{SIZE}}{{UNIT}}',
+				],
+                'condition' => [
+                    'lcake_pricing_content_style' => 'list',
+                ]
+			]
+		);
+
+        $this->add_control(
+			'lcake_pricing_fhr5',
+			[
+				'type' => \Elementor\Controls_Manager::DIVIDER,
+				'style' => 'thick',
+			]
+		);
+		$this->add_responsive_control(
+			'lcake_pricing_features_body_margin',
+			[
+				'label' =>esc_html__( 'Margin', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'default' => [
+					'top' => 0,
+					'left' => 0,
+					'right' => 0,
+					'bottom' => 50,
+					'unit' => 'px',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_responsive_control(
+			'lcake_pricing_features_body_padding',
+			[
+				'label' =>esc_html__( 'Padding', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing .lcake-pricing-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'features_icon_heading',
+			[
+				'label'		=> esc_html__( 'Icon', 'lc-elementor-addons-kit' ),
+				'type'		=> \Elementor\Controls_Manager::HEADING,
+				'separator'	=> 'before',
+			]
+		);
+
+		$this->add_responsive_control(
+			'features_icon_spacing',
+			[
+				'label'		=> esc_html__( 'Spacing', 'lc-elementor-addons-kit' ),
+				'type'		=> \Elementor\Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => 10,
+                    'unit' => 'px',
+                ],
+				'selectors'	=> [
+					'{{WRAPPER}} .lcake-pricing-lists > li > i' => 'padding-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .lcake-pricing-lists > li > svg' => 'margin-right: {{SIZE}}{{UNIT}};',
+				]
+			]
+		);
+
+		$this->add_responsive_control(
+			'features_icon_align',
+			[
+				'label'		=> esc_html__( 'Vertical Align', 'lc-elementor-addons-kit' ),
+				'type'		=> \Elementor\Controls_Manager::NUMBER,
+				'selectors'	=> [
+					'{{WRAPPER}} .lcake-pricing-lists > li > i, {{WRAPPER}} .lcake-pricing-lists > li > svg' => 'vertical-align: {{SIZE}}px;',
+				]
+			]
+		);
+
+		$this->end_controls_section();
+
+
+        //Button style start
+        $this->start_controls_section(
+			'lcake_pricing_section_btn_style',
+			[
+				'label' =>esc_html__( 'Button', 'lc-elementor-addons-kit' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_pricing_btn_typography_group',
+                'label' =>esc_html__( 'Typography', 'lc-elementor-addons-kit' ),
+                'selector' => '{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn',
+            ]
+		);
+		$this->add_responsive_control(
+            'lcake_pricing_btn_icon_size',
+            [
+                'label' => esc_html__( 'Icon Size', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 100,
+                        'step' => 5,
+                    ],
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-btn i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-btn svg path' => 'max-width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+		);
+
+		$this->add_responsive_control(
+			'pricing_btn_width',
+			[
+				'label'		=> __( 'Width (%)', 'lc-elementor-addons-kit' ),
+				'type'		=> \Elementor\Controls_Manager::SLIDER,
+				'selectors'	=> [
+					'{{WRAPPER}} .lcake-pricing-btn' => 'width: {{SIZE}}%;',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'pricing_btn_align',
+			[
+				'label'		=> __( 'Alignment', 'lc-elementor-addons-kit' ),
+				'type'		=> \Elementor\Controls_Manager::CHOOSE,
+				'options'	=> [
+					'left' => [
+						'title' => __( 'Left', 'lc-elementor-addons-kit' ),
+						'icon'	=> 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'lc-elementor-addons-kit' ),
+						'icon'	=> 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'lc-elementor-addons-kit' ),
+						'icon'	=> 'eicon-text-align-right',
+					],
+				],
+				'selectors'	=> [
+					'{{WRAPPER}} .lcake-pricing-btn-wraper' => 'text-align: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_text_padding',
+			[
+				'label' =>esc_html__( 'Padding', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		
+        $this->add_control(
+            'lcake_pricing_hr1',
+            [
+                'type' => \Elementor\Controls_Manager::DIVIDER,
+                'style' => 'thick',
+            ]
+        );
+
+        $this->start_controls_tabs( 'lcake_pricing_tabs_button_style' );
+
+        $this->start_controls_tab(
+            'lcake_pricing_tab_button_normal',
+            [
+                'label' =>esc_html__( 'Normal', 'lc-elementor-addons-kit' ),
+            ]
+        );
+
+        $this->add_control(
+            'lcake_pricing_btn_text_color',
+            [
+                'label' =>esc_html__( 'Text Color', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn svg path'	=> 'stroke: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            array(
+                'name'     => 'lcake_pricing_btn_bg_color_group',
+				'exclude' => ['image'], // PHPCS:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
+                'selector' => '{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn',
+            )
+        );
+
+        $this->add_responsive_control(
+			'lcake_pricing_btn_border_style',
+			[
+				'label' => esc_html_x( 'Border Type', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'' => esc_html__( 'None', 'lc-elementor-addons-kit' ),
+					'solid' => esc_html_x( 'Solid', 'Border Control', 'lc-elementor-addons-kit' ),
+					'double' => esc_html_x( 'Double', 'Border Control', 'lc-elementor-addons-kit' ),
+					'dotted' => esc_html_x( 'Dotted', 'Border Control', 'lc-elementor-addons-kit' ),
+					'dashed' => esc_html_x( 'Dashed', 'Border Control', 'lc-elementor-addons-kit' ),
+					'groove' => esc_html_x( 'Groove', 'Border Control', 'lc-elementor-addons-kit' ),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn' => 'border-style: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_btn_border_dimensions',
+			[
+				'label' => esc_html_x( 'Width', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+                'condition' => [
+                    'lcake_pricing_btn_border_style!' => '',
+                ]
+			]
+		);
+
+		$this->add_control(
+			'lcake_pricing_btn_border_color',
+			[
+				'label' => esc_html_x( 'Border Color', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn' => 'border-color: {{VALUE}};',
+				],
+                'condition' => [
+                    'lcake_pricing_btn_border_style!' => '',
+                ]
+			]
+		);
+
+        $this->add_responsive_control(
+			'lcake_pricing_btn_border_radius',
+			[
+				'label' =>esc_html__( 'Border Radius', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px'],
+				'default' => [
+					'top' => '',
+					'right' => '',
+					'bottom' => '' ,
+					'left' => '',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn' =>  'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+        );
+
+		$this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_pricing_button_box_shadow_group',
+                'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-btn',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'lcake_pricing_btn_tab_button_hover',
+            [
+                'label' =>esc_html__( 'Hover', 'lc-elementor-addons-kit' ),
+            ]
+        );
+
+        $this->add_control(
+            'lcake_pricing_btn_hover_color',
+            [
+                'label' =>esc_html__( 'Text Color', 'lc-elementor-addons-kit' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn:hover svg path'	=> 'stroke: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            array(
+                'name'     => 'lcake_pricing_btn_bg_hover_color_group',
+				'exclude' => ['image'], // PHPCS:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
+                'selector' => '{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn:hover',
+            )
+        );
+
+        $this->add_responsive_control(
+			'lcake_pricing_btn_hover_border_style',
+			[
+				'label' => esc_html_x( 'Border Type', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'' => esc_html__( 'None', 'lc-elementor-addons-kit' ),
+					'solid' => esc_html_x( 'Solid', 'Border Control', 'lc-elementor-addons-kit' ),
+					'double' => esc_html_x( 'Double', 'Border Control', 'lc-elementor-addons-kit' ),
+					'dotted' => esc_html_x( 'Dotted', 'Border Control', 'lc-elementor-addons-kit' ),
+					'dashed' => esc_html_x( 'Dashed', 'Border Control', 'lc-elementor-addons-kit' ),
+					'groove' => esc_html_x( 'Groove', 'Border Control', 'lc-elementor-addons-kit' ),
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn:hover' => 'border-style: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'lcake_pricing_btn_hover_border_dimensions',
+			[
+				'label' => esc_html_x( 'Width', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn:hover' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+                'condition' => [
+                    'lcake_pricing_btn_hover_border_style!' => '',
+                ]
+			]
+		);
+
+		$this->add_control(
+			'lcake_pricing_btn_hover_border_color',
+			[
+				'label' => esc_html_x( 'Border Color', 'Border Control', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} a.lcake-pricing-btn:hover' => 'border-color: {{VALUE}};',
+				],
+                'condition' => [
+                    'lcake_pricing_btn_hover_border_style!' => '',
+                ]
+			]
+		);
+
+        $this->add_responsive_control(
+			'lcake_pricing_btn_hover_border_radius',
+			[
+				'label' =>esc_html__( 'Border Radius', 'lc-elementor-addons-kit' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px'],
+				'default' => [
+					'top' => '',
+					'right' => '',
+					'bottom' => '' ,
+					'left' => '',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-single-pricing a.lcake-pricing-btn:hover' =>  'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+        );
+
+		$this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_pricing_button_box_shadow_hover_group',
+                'selector' => '{{WRAPPER}} .lcake-single-pricing .lcake-pricing-btn:hover',
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+		$this->end_controls_section();
+
+		// Custom Order Style Start
+		$this->start_controls_section(
+			'lcake_pricing_order',
+			[
+				'label' =>esc_html__( 'Custom Ordering', 'lc-elementor-addons-kit' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+			$this->add_control(
+				'lcake_pricing_order_enable',
+				[
+					'label' 		=> esc_html__( 'Enable Ordering', 'lc-elementor-addons-kit' ),
+					'type' 			=> \Elementor\Controls_Manager::SWITCHER,
+					'label_block'	=> false,
+					'return_value' 	=> 'yes',
+					'default' 		=> 'no',
+				]
+			);
+
+			$this->add_control(
+				'lcake_pricing_order_header',
+				[
+					'label' 		=> esc_html__( 'Header', 'lc-elementor-addons-kit' ),
+					'type' 			=> \Elementor\Controls_Manager::SLIDER,
+					'size_units' => [ 'px'],
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 4,
+							'step' => 1,
+						],
+					],
+					'condition'		=> [
+						'lcake_pricing_order_enable'	=> 'yes',
+					]
+				]
+			);
+
+			$this->add_control(
+				'lcake_pricing_order_price',
+				[
+					'label' 		=> esc_html__( 'Price Tag', 'lc-elementor-addons-kit' ),
+					'type' 			=> \Elementor\Controls_Manager::SLIDER,
+					'size_units' => [ 'px'],
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 4,
+							'step' => 1,
+						],
+					],
+					'condition'		=> [
+						'lcake_pricing_order_enable'	=> 'yes',
+					]
+				]
+			);
+
+			$this->add_control(
+				'lcake_pricing_order_features',
+				[
+					'label' 		=> esc_html__( 'Features', 'lc-elementor-addons-kit' ),
+					'type' 			=> \Elementor\Controls_Manager::SLIDER,
+					'size_units' => [ 'px'],
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 4,
+							'step' => 1,
+						],
+					],
+					'condition'		=> [
+						'lcake_pricing_order_enable'	=> 'yes',
+					]
+				]
+			);
+
+			$this->add_control(
+				'lcake_pricing_order_button',
+				[
+					'label' 		=> esc_html__( 'Button', 'lc-elementor-addons-kit' ),
+					'type' 			=> \Elementor\Controls_Manager::SLIDER,
+					'size_units' => [ 'px'],
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 4,
+							'step' => 1,
+						],
+					],
+					'condition'		=> [
+						'lcake_pricing_order_enable'	=> 'yes',
+					]
+				]
+			);
+		$this->end_controls_section();
+		
     }
 
-    protected function render() {
-        $settings = $this->get_settings_for_display();
-
-        if (empty($settings['pricing_tables'])) {
-            return;
-        }
-
-        $this->add_render_attribute('wrapper', 'class', 'lc-pricing-table-wrapper');
-        $this->add_render_attribute('wrapper', 'data-columns', $settings['columns']);
-
-        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
-        
-        foreach ($settings['pricing_tables'] as $table) {
-            $item_class = 'lc-pricing-table-item';
-            if ($table['popular'] === 'yes') {
-                $item_class .= ' lc-pricing-table-popular-item';
-            }
-
-            echo '<div class="' . esc_attr($item_class) . '">';
-            
-            if ($table['popular'] === 'yes' && !empty($table['popular_text'])) {
-                echo '<div class="lc-pricing-table-popular">' . esc_html($table['popular_text']) . '</div>';
-            }
-
-            echo '<div class="lc-pricing-table-header">';
-            
-            if (!empty($table['title'])) {
-                echo '<div class="lc-pricing-table-title">' . esc_html($table['title']) . '</div>';
-            }
-
-            if (!empty($table['subtitle'])) {
-                echo '<div class="lc-pricing-table-subtitle">' . esc_html($table['subtitle']) . '</div>';
-            }
-
-            echo '</div>';
-
-            echo '<div class="lc-pricing-table-price-section">';
-            
-            if ($settings['show_currency'] === 'yes' && !empty($table['currency'])) {
-                echo '<span class="lc-pricing-table-currency">' . esc_html($table['currency']) . '</span>';
-            }
-
-            if (!empty($table['price'])) {
-                echo '<span class="lc-pricing-table-price">' . esc_html($table['price']) . '</span>';
-            }
-
-            if ($settings['show_period'] === 'yes' && !empty($table['period'])) {
-                echo '<span class="lc-pricing-table-period">' . esc_html($table['period']) . '</span>';
-            }
-
-            echo '</div>';
-
-            if (!empty($table['features'])) {
-                echo '<div class="lc-pricing-table-features">';
-                foreach ($table['features'] as $feature) {
-                    echo '<div class="lc-pricing-table-feature">';
-                    if (!empty($feature['feature_icon']['value'])) {
-                        echo '<span class="lc-pricing-table-feature-icon">';
-                        \Elementor\Icons_Manager::render_icon($feature['feature_icon'], ['aria-hidden' => 'true']);
-                        echo '</span>';
-                    }
-                    echo '<span class="lc-pricing-table-feature-text">' . esc_html($feature['feature_text']) . '</span>';
-                    echo '</div>';
-                }
-                echo '</div>';
-            }
-
-            if (!empty($table['button_text']) && !empty($table['button_link']['url'])) {
-                $this->add_link_attributes('button_' . $table['_id'], $table['button_link']);
-                echo '<div class="lc-pricing-table-button-wrapper">';
-                echo '<a ' . $this->get_render_attribute_string('button_' . $table['_id']) . ' class="lc-pricing-table-button">';
-                echo esc_html($table['button_text']);
-                echo '</a>';
-                echo '</div>';
-            }
-
-            echo '</div>';
-        }
-
+    protected function render( ) {
+        echo '<div class="lcake-main-wrapper" >';
+            $this->render_raw();
         echo '</div>';
     }
 
-    protected function content_template() {
-        ?>
-        <# if (settings.pricing_tables.length > 0) { #>
-            <div class="lc-pricing-table-wrapper" data-columns="{{ settings.columns }}">
-                <# _.each(settings.pricing_tables, function(table) { #>
-                    <div class="lc-pricing-table-item<# if (table.popular === 'yes') { #> lc-pricing-table-popular-item<# } #>">
-                        <# if (table.popular === 'yes' && table.popular_text) { #>
-                            <div class="lc-pricing-table-popular">{{{ table.popular_text }}}</div>
-                        <# } #>
-                        
-                        <div class="lc-pricing-table-header">
-                            <# if (table.title) { #>
-                                <div class="lc-pricing-table-title">{{{ table.title }}}</div>
-                            <# } #>
-                            <# if (table.subtitle) { #>
-                                <div class="lc-pricing-table-subtitle">{{{ table.subtitle }}}</div>
-                            <# } #>
-                        </div>
-                        
-                        <div class="lc-pricing-table-price-section">
-                            <# if (settings.show_currency === 'yes' && table.currency) { #>
-                                <span class="lc-pricing-table-currency">{{{ table.currency }}}</span>
-                            <# } #>
-                            <# if (table.price) { #>
-                                <span class="lc-pricing-table-price">{{{ table.price }}}</span>
-                            <# } #>
-                            <# if (settings.show_period === 'yes' && table.period) { #>
-                                <span class="lc-pricing-table-period">{{{ table.period }}}</span>
-                            <# } #>
-                        </div>
-                        
-                        <# if (table.features && table.features.length > 0) { #>
-                            <div class="lc-pricing-table-features">
-                                <# _.each(table.features, function(feature) { #>
-                                    <div class="lc-pricing-table-feature">
-                                        <# if (feature.feature_icon && feature.feature_icon.value) { #>
-                                            <span class="lc-pricing-table-feature-icon">
-                                                <i class="{{ feature.feature_icon.value }}" aria-hidden="true"></i>
-                                            </span>
-                                        <# } #>
-                                        <span class="lc-pricing-table-feature-text">{{{ feature.feature_text }}}</span>
-                                    </div>
-                                <# }); #>
-                            </div>
-                        <# } #>
-                        
-                        <# if (table.button_text && table.button_link.url) { #>
-                            <div class="lc-pricing-table-button-wrapper">
-                                <a href="{{ table.button_link.url }}" class="lc-pricing-table-button">
-                                    {{{ table.button_text }}}
-                                </a>
-                            </div>
-                        <# } #>
-                    </div>
-                <# }); #>
+    protected function render_raw( ) {
+
+		$settings = $this->get_settings_for_display();
+		extract($settings);
+
+
+		$options_lcake_pricing_title_size = array_keys([
+			'h1' => 'H1',
+			'h2' => 'H2',
+			'h3' => 'H3',
+			'h4' => 'H4',
+			'h5' => 'H5',
+			'h6' => 'H6',
+			'div' => 'div',
+			'span' => 'span',
+			'p' => 'p',
+		]);
+
+        $lcake_pricing_title_size_validate = \LCAKE_Kit_Utils::esc_options( $lcake_pricing_title_size, $options_lcake_pricing_title_size, 'h3');
+
+        $table_title = $settings[ 'lcake_pricing_table_title' ];
+        $table_subtitle = $settings[ 'lcake_pricing_table_subtitle' ];
+		$table_content = $settings[ 'lcake_pricing_table_content' ];
+		$currency_icon = $settings[ 'lcake_pricing_currency_icon' ];
+		$table_price = $settings[ 'lcake_pricing_table_price' ];
+		$table_duration = $settings[ 'lcake_pricing_table_duration' ];
+		$table_content_repeater = $settings[ 'lcake_pricing_table_content_repeater' ];
+        $content_style = $settings[ 'lcake_pricing_content_style' ];
+
+        //For button
+        $btn_text = $settings['lcake_pricing_btn_text'];
+        $btn_class = ($settings['lcake_pricing_button_class'] != '') ? $settings['lcake_pricing_button_class'] : '';
+        $btn_id = ($settings['lcake_pricing_button_id'] != '') ? $settings['lcake_pricing_button_id'] : '';
+        $icon_align = $settings['lcake_pricing_icon_align'];
+
+		if ( ! empty( $settings['lcake_pricing_btn_link']['url'] ) ) {
+			$this->add_link_attributes( 'button', $settings['lcake_pricing_btn_link'] );
+		}
+
+
+		// $tag_align = $settings['lcake_pricing_tag_align'];
+		$currency_position = $settings['lcake_pricing_currency_position'];
+		$this->add_render_attribute( 'icon-align', 'class', 'xs-button-icon xs-align-icon-' . $settings['lcake_pricing_icon_align'] );
+
+		$image = '';
+        if ( ! empty( $settings['lcake_pricing_image']['url'] ) ) {
+            $this->add_render_attribute( 'image', 'src', $settings['lcake_pricing_image']['url'] );
+            $this->add_render_attribute( 'image', 'alt', \Elementor\Control_Media::get_image_alt( $settings['lcake_pricing_image'] ) );
+
+            $image_html = \Elementor\Group_Control_Image_Size::get_attachment_image_html( $settings, 'lcake_pricing_thumbnail', 'lcake_pricing_image' );
+
+
+            $image = '<figure class="elementor-pricing-img">' . $image_html . '</figure>';
+        }
+
+
+		// Custom Orders
+		$header_order = !empty($lcake_pricing_order_header) ? $lcake_pricing_order_header['size'] : '';
+		$price_order = !empty($lcake_pricing_order_price) ? $lcake_pricing_order_price['size']: '';
+		$features_order = !empty($lcake_pricing_order_features) ? $lcake_pricing_order_features['size'] : '';
+		$button_order = !empty($lcake_pricing_order_button) ? $lcake_pricing_order_button['size'] : '';
+		?>
+
+
+        <div class="lcake-single-pricing <?php echo esc_attr($settings['lcake_pricing_order_enable'] == 'yes' ? 'd-flex flex-column' : ''); ?>" >
+            <div class="lcake-pricing-header <?php echo esc_attr($header_order ? 'order-'. $header_order : ''); ?>">
+				<?php if($settings['lcake_pricing_icon_type'] == 'image') : ?>
+                    <?php echo wp_kses($image, \LCAKE_Kit_Utils::get_kses_array());?>
+                <?php endif; ?>
+				<?php if($settings['lcake_pricing_icon_type'] == 'icon') : ?>					
+					<?php
+						// new icon
+						$migrated = isset( $settings['__fa4_migrated']['lcake_pricing_icons'] );
+						// Check if its a new widget without previously selected icon using the old Icon control
+						$is_new = empty( $settings['lcake_pricing_icon'] );
+						if ( $is_new || $migrated ) {
+							// new icon
+							\Elementor\Icons_Manager::render_icon( $settings['lcake_pricing_icons'], [ 'aria-hidden' => 'true', 'class'    => [
+								'elementkit-pricing-icon',
+								'elementor-animation-'. esc_attr($settings['lcake_pricing_icons_hover_animation'])
+							] ] );
+						} else {
+							?>
+							<i class="<?php echo esc_attr($settings['lcake_pricing_icon']); ?> elementkit-pricing-icon <?php echo 'elementor-animation-'. esc_attr($settings['lcake_pricing_icons_hover_animation']); ?>" aria-hidden="true"></i>
+							<?php
+						}
+					?>
+									
+				<?php endif; ?>
+
+				<?php if($table_title != ''): ?>
+                    <<?php echo wp_kses($lcake_pricing_title_size_validate, \LCAKE_Kit_Utils::get_kses_array());?>
+					class=" lcake-pricing-title"><?php echo esc_html($table_title); ?>
+                    </<?php echo wp_kses($lcake_pricing_title_size_validate, \LCAKE_Kit_Utils::get_kses_array()); ?>>
+				<?php endif; ?>
+				<?php if($table_subtitle != ''): ?>
+                	<p class=" lcake-pricing-subtitle"><?php echo esc_html($table_subtitle); ?></p>
+				<?php endif; ?>
             </div>
-        <# } #>
-        <?php
+			<?php if ($currency_icon != '' && $table_price !== '') { ?>
+            <div class=" lcake-pricing-price-wraper has-tag <?php echo esc_attr($price_order ? 'order-'. $price_order : ''); ?>">
+                <div class="lcake-pricing-tag"></div>
+                <span class="lcake-pricing-price">
+					<?php if($currency_position == 'before'): ?>
+						<sup class="currency"><?php echo esc_html($currency_icon); ?></sup>
+					<?php endif; ?>
+					<span><?php echo esc_html($table_price); ?></span>
+					<?php if($currency_position == 'after'): ?>
+						<sup class="currency"><?php echo esc_html($currency_icon); ?></sup>
+					<?php endif; ?>
+
+					<?php if ( $table_duration !== '' ): ?>
+					<sub class="period"><?php echo esc_html($table_duration); ?></sub>
+					<?php endif; ?>
+				</span>
+            </div>
+			<?php } ?>
+            <div class="lcake-pricing-content <?php echo esc_attr($features_order ? 'order-'. $features_order : ''); ?>">
+
+                <?php if($content_style == 'paragraph'){ ?>
+                    <p> <?php echo wp_kses($table_content, \LCAKE_Kit_Utils::get_kses_array()); ?></p>
+                <?php } ?>
+                <?php if($content_style == 'list'){ ?>
+                    <ul class="lcake-pricing-lists">
+                        <?php foreach($table_content_repeater as $repeat){  ?>
+							<li class="elementor-repeater-item-<?php echo esc_attr( $repeat[ '_id' ] ); ?>">
+								<?php \Elementor\Icons_Manager::render_icon( $repeat['lcake_pricing_check_icons'], [ 'aria-hidden' => 'true' ] ); ?>
+								<?php // echo esc_html($repeat['lcake_pricing_list']); ?>
+
+								<?php echo esc_html($repeat['lcake_pricing_list']); ?>
+								
+								<?php if ( !empty( $repeat[ 'lcake_pricing_list_info' ] ) ): ?>
+									<div class="lcake-pricing-list-info" data-info-tip="true">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>
+										<span></span>
+										<p class="lcake-pricing-list-info-content lcake-pricing-<?php echo esc_attr( $this->get_ID() ); ?> lcake-pricing-list-info-<?php echo esc_attr( $repeat[ '_id' ] ); ?>" data-info-tip-content="true"><?php echo esc_attr( $repeat[ 'lcake_pricing_list_info' ] ); ?></p>
+									</div>
+								<?php endif; ?>
+							</li>
+                        <?php } ?>
+                    </ul>
+                <?php } ?>
+            </div>
+            <div class="lcake-pricing-btn-wraper <?php echo esc_attr($button_order ? 'order-'. $button_order : ''); ?>">
+				<a <?php echo $this->get_render_attribute_string( 'button' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already escaped by elementor ?> class="lcake-pricing-btn <?php echo esc_attr( $btn_class ); ?> lcake-pricing-btn-icon-pos-<?php echo esc_attr($icon_align); ?>" <?php if($settings['lcake_pricing_button_id'] != '') { ?> id="<?php echo esc_attr( $btn_id ); ?>" <?php } ?>>
+					<?php
+					if ( $settings['lcake_pricing_btn_icons'] != '' && $icon_align == 'left' ):
+						// new icon
+						$migrated = isset( $settings['__fa4_migrated']['lcake_pricing_btn_icons'] );
+						// Check if its a new widget without previously selected icon using the old Icon control
+						$is_new = empty( $settings['lcake_pricing_btn_icon'] );
+						if ( $is_new || $migrated ) {
+							// new icon
+							\Elementor\Icons_Manager::render_icon( $settings['lcake_pricing_btn_icons'], [ 'aria-hidden' => 'true' ] );
+						} else {
+							?>
+							<i class="<?php echo esc_attr($settings['lcake_pricing_btn_icon']); ?>" aria-hidden="true"></i>
+							<?php
+						}
+					endif;
+
+					echo esc_html( $btn_text );
+					
+					if ( $settings['lcake_pricing_btn_icons'] != '' && $icon_align == 'right' ):
+						// new icon
+						$migrated = isset( $settings['__fa4_migrated']['lcake_pricing_btn_icons'] );
+						// Check if its a new widget without previously selected icon using the old Icon control
+						$is_new = empty( $settings['lcake_pricing_btn_icon'] );
+						if ( $is_new || $migrated ) {
+							// new icon
+							\Elementor\Icons_Manager::render_icon( $settings['lcake_pricing_btn_icons'], [ 'aria-hidden' => 'true' ] );
+						} else {
+							?>
+							<i class="<?php echo esc_attr($settings['lcake_pricing_btn_icon']); ?>" aria-hidden="true"></i>
+							<?php
+						}
+					endif;
+					?>
+				</a>
+            </div>
+        </div>
+
+    <?php
     }
 } 

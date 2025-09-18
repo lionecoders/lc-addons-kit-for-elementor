@@ -23,6 +23,15 @@ class LCAKE_Kit_Widget_Loader
             ]
         );
 
+        // Backward compatibility: some widgets still reference 'lc-page-kit'
+        $elements_manager->add_category(
+            'lc-page-kit',
+            [
+                'title' => __('LC Page Kit', 'lc-elementor-addons-kit'),
+                'icon'  => 'eicon-folder',
+            ]
+        );
+
         $elements_manager->add_category(
             'lc-header-footer-kit',
             [
@@ -101,6 +110,7 @@ class LCAKE_Kit_Widget_Loader
         $styles = [
             'lcake-kit-accordion' => ['file' => 'lcake-kit-accordion.css', 'enqueue' => false, 'path' => ''],
             'lcake-kit-button' => ['file' => 'lcake-kit-button.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-price-table' => ['file' => 'lcake-kit-price-table.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-social-icons' => ['file' => 'lcake-kit-social-icons.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-faq-css' => ['file' => 'lcake-kit-faq.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-pie-chart-css' => ['file' => 'lceak-kit-pie-chart.css', 'enqueue' => true, 'path' => ''],
