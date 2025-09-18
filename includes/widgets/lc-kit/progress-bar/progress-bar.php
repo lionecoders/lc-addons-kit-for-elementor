@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Progress Bar Widget
  * 
@@ -9,241 +10,349 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class LC_Kit_Progress_Bar extends \Elementor\Widget_Base {
+class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
+{
 
-    public function get_name() {
-        return 'lc-kit-progress-bar';
+    public function get_name()
+    {
+        return 'lcake-kit-progress-bar';
     }
 
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('Progress Bar', 'lc-elementor-addons-kit');
     }
 
-    public function get_icon() {
-        return 'eicon-skill-bar';
+    public function get_icon()
+    {
+        return 'eicon-lcake-bar';
     }
 
-    public function get_categories() {
-        return ['lc-page-kit'];
+    public function get_categories()
+    {
+        return ['lcake-page-kit'];
     }
 
-    public function get_keywords() {
+    public function get_keywords()
+    {
         return ['progress', 'bar', 'skill', 'percentage', 'meter'];
     }
 
-    protected function add_content_controls() {
-        $this->start_controls_section(
-            'content_section',
-            [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-            ]
-        );
-
-        $this->add_control(
-            'title',
-            [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Skill Name', 'lc-elementor-addons-kit'),
-                'label_block' => true,
-            ]
-        );
-
-        $this->add_control(
-            'progress_type',
-            [
-                'label' => esc_html__('Type', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'line',
-                'options' => [
-                    'line' => esc_html__('Line', 'lc-elementor-addons-kit'),
-                    'circle' => esc_html__('Circle', 'lc-elementor-addons-kit'),
-                    'half-circle' => esc_html__('Half Circle', 'lc-elementor-addons-kit'),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'percent',
-            [
-                'label' => esc_html__('Percentage', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['%'],
-                'range' => [
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'unit' => '%',
-                    'size' => 50,
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'display_percentage',
-            [
-                'label' => esc_html__('Display Percentage', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'inner_text',
-            [
-                'label' => esc_html__('Inner Text', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('e.g. Web Design', 'lc-elementor-addons-kit'),
-                'condition' => [
-                    'progress_type' => ['circle', 'half-circle'],
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'view',
-            [
-                'label' => esc_html__('View', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::HIDDEN,
-                'default' => 'traditional',
-            ]
-        );
-
-        $this->end_controls_section();
+    public function get_script_depends()
+    {
+        return ['lcake-kit-progress-bar-js'];
     }
 
-    protected function add_style_controls() {
+    public function get_style_depends()
+    {
+        return ['lcake-kit-progress-bar-css'];
+    }
+
+    protected function register_controls()
+    {
         $this->start_controls_section(
-            'section_progress_style',
+            'lcake_progressbar_content',
             [
                 'label' => esc_html__('Progress Bar', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_control(
-            'bar_color',
+            'lcake_progressbar_style',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-progress-bar-fill' => 'background-color: {{VALUE}};',
-                    '{{WRAPPER}} .lc-progress-circle-fill' => 'stroke: {{VALUE}};',
+                'label' => esc_html__('Style', 'lc-elementor-addons-kit'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => '',
+                'options' => [
+                    '' => esc_html__('Default', 'lc-elementor-addons-kit'),
+                    'inner-content skill-big' => esc_html__('Inner Content', 'lc-elementor-addons-kit'),
+                    'skilltrack-style2' => esc_html__('Track Shadow', 'lc-elementor-addons-kit'),
+                    'tooltip-style3' => esc_html__('Tooltip (Classic)', 'lc-elementor-addons-kit'),
+                    'tooltip-style2' => esc_html__('Tooltip (Boxed)', 'lc-elementor-addons-kit'),
+                    'tooltip-style' => esc_html__('Tooltip (Rounded)', 'lc-elementor-addons-kit'),
+                    'pin-style' => esc_html__('Tooltip (Pin)', 'lc-elementor-addons-kit'),
+                    'style-switch' => esc_html__('Switch', 'lc-elementor-addons-kit'),
+                    'style-ribbon' => esc_html__('Ribbon', 'lc-elementor-addons-kit'),
+                    'style-stripe skill-medium tooltip-style' => esc_html__('Striped', 'lc-elementor-addons-kit'),
                 ],
             ]
         );
 
         $this->add_control(
-            'bar_background_color',
+            'lcake_progressbar_icons',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-progress-bar-bg' => 'background-color: {{VALUE}};',
-                    '{{WRAPPER}} .lc-progress-circle-bg' => 'stroke: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'bar_height',
-            [
-                'label' => esc_html__('Height', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 1,
-                        'max' => 50,
-                        'step' => 1,
-                    ],
-                ],
+                'label'         => esc_html__('Add Icon', 'lc-elementor-addons-kit'),
+                'label_block'   => true,
+                'type'          => \Elementor\Controls_Manager::ICONS,
+                'fa4compatibility' => 'lcake_progressbar_icon',
                 'default' => [
-                    'size' => 6,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-progress-bar-bg' => 'height: {{SIZE}}{{UNIT}};',
+                    'value' => 'icon icon-arrow-right',
+                    'library' => 'lcakeicons',
                 ],
                 'condition' => [
-                    'progress_type' => 'line',
+                    'lcake_progressbar_style' => ['inner-content skill-big'],
                 ],
             ]
         );
 
+
         $this->add_control(
-            'bar_border_radius',
+            'lcake_progressbar_title',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 50,
-                        'step' => 1,
-                    ],
+                'label'         => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label_block'   => true,
+                'type'          => \Elementor\Controls_Manager::TEXT,
+                'dynamic'         => [
+                    'active' => true,
                 ],
-                'default' => [
-                    'size' => 3,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-progress-bar-bg' => 'border-radius: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .lc-progress-bar-fill' => 'border-radius: {{SIZE}}{{UNIT}};',
-                ],
-                'condition' => [
-                    'progress_type' => 'line',
-                ],
+                'default'       => 'WordPress',
             ]
         );
 
         $this->add_control(
-            'bar_stroke_width',
+            'lcake_progressbar_percentage',
             [
-                'label' => esc_html__('Stroke Width', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label'     => esc_html__('Percentage', 'lc-elementor-addons-kit'),
+                'type'      => \Elementor\Controls_Manager::NUMBER,
+                'dynamic'     => [
+                    'active' => true,
+                ],
+                'min'       => 1,
+                'max'       => 100,
+                'step'      => 1,
+                'default'   => 90,
+            ]
+        );
+
+        $this->add_control(
+            'lcake_progressbar_percentage_show',
+            [
+                'label' => esc_html__('Hide Percentage Number? ', 'lc-elementor-addons-kit'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'no',
+                'return_value' => 'none',
+                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
+                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-bar-group .lcake-percentage-wrapper' => 'display: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_progressbar_data_duration',
+            [
+                'label'     => esc_html__('Animation Duration', 'lc-elementor-addons-kit'),
+                'type'      => \Elementor\Controls_Manager::SLIDER,
+                'dynamic'     => [
+                    'active' => true,
+                ],
+                'size_units' => ['px'],
                 'range' => [
                     'px' => [
-                        'min' => 1,
-                        'max' => 50,
-                        'step' => 1,
+                        'min' => 100,
+                        'max' => 10000,
+                        'step' => 5,
                     ],
+
                 ],
                 'default' => [
-                    'size' => 6,
+                    'size' => 3500,
+                ],
+
+            ]
+        );
+
+        $this->end_controls_section();
+
+
+        // Bar Styles
+        $this->start_controls_section(
+            'lcake_progressbar_bar_style',
+            [
+                'label' => esc_html__('Bar', 'lc-elementor-addons-kit'),
+                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name'      => 'lcake_progressbar_background',
+                'label'     => esc_html__('Background', 'lc-elementor-addons-kit'),
+                'types'     => ['classic', 'gradient'],
+                'selector'  => '{{WRAPPER}} .lcake-bar-group .lcake-bar',
+                'default'   => '#f5f5f5'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_progressbar_bar_height',
+            [
+                'label'         => esc_html__('Height', 'lc-elementor-addons-kit'),
+                'type'          => \Elementor\Controls_Manager::SLIDER,
+                'size_units'    => ['px', 'em'],
+                'range'  => [
+                    'px' => [
+                        'min'   => 1,
+                        'max'   => 200,
+                    ],
+                ],
+                'separator'  => 'before',
+                'condition' => [
+                    'lcake_progressbar_style!' => ['style-switch'],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-progress-circle-bg' => 'stroke-width: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .lc-progress-circle-fill' => 'stroke-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-bar-group .lcake-bar' => 'height: {{SIZE}}{{UNIT}};',
                 ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_progressbar_bar_shadow',
+                'label' => esc_html__('Shadow', 'lc-elementor-addons-kit'),
+                'selector' => '{{WRAPPER}} .lcake-bar-group .lcake-bar',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_progressbar_bar_radius',
+            [
+                'label'      => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors'  => [
+                    '{{WRAPPER}} .lcake-bar-group .lcake-bar' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_progressbar_bar_padding',
+            [
+                'label'      => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
                 'condition' => [
-                    'progress_type' => ['circle', 'half-circle'],
+                    'lcake_progressbar_style!' => ['style-switch'],
+                ],
+                'selectors'  => [
+                    '{{WRAPPER}} .lcake-bar-group .lcake-bar' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_progressbar_bar_margin',
+            [
+                'label'      => esc_html__('Margin Bottom', 'lc-elementor-addons-kit'),
+                'type'       => \Elementor\Controls_Manager::SLIDER,
+                'size_units'    => ['px', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-bar-group .lcake-bar' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+
+            ]
+        );
+
+        $this->end_controls_section();
+
+
+        // Track Styles
+        $this->start_controls_section(
+            'lcake_progressbar_track_style',
+            [
+                'label'  => esc_html__('Track', 'lc-elementor-addons-kit'),
+                'tab'    => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name'      => 'lcake_progressbar_track_color',
+                'label'     => esc_html__('Track Color', 'lc-elementor-addons-kit'),
+                'types'     => ['classic', 'gradient'],
+
+                'condition' => [
+                    'lcake_progressbar_style!' => ['style-stripe skill-medium tooltip-style'],
+                ],
+                'selector'  => '{{WRAPPER}} .lcake-bar-group .lcake-bar-track',
+            ]
+        );
+        //lcake_progressbar_style style-stripe skill-medium tooltip-style
+        $this->add_responsive_control(
+            'lcake_progressbar_strip_color',
+            [
+                'label'      => esc_html__('Stripe Color', 'lc-elementor-addons-kit'),
+                'type'       => \Elementor\Controls_Manager::COLOR,
+                'condition' => [
+                    'lcake_progressbar_style' => ['style-stripe skill-medium tooltip-style'],
+                ],
+                'selectors'  => [
+                    '{{WRAPPER}} .style-stripe .lcake-single-skill-bar .lcake-bar-track' => 'background: repeating-linear-gradient(to right, {{VALUE}}, {{VALUE}} 4px, #FFFFFF 4px, #FFFFFF 8px);',
+                ],
+
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_progressbar_switch_color',
+            [
+                'label'      => esc_html__('Switch Color', 'lc-elementor-addons-kit'),
+                'type'       => \Elementor\Controls_Manager::COLOR,
+                'condition' => [
+                    'lcake_progressbar_style' => ['style-switch'],
+                ],
+                'selectors'  => [
+                    '{{WRAPPER}} .lcake-bar-group .lcake-single-skill-bar .lcake-bar-track:before' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-bar-group .lcake-single-skill-bar .lcake-bar-track:after' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_progressbar_track_shadow',
+                'label' => esc_html__('Shadow', 'lc-elementor-addons-kit'),
+                'selector' => '{{WRAPPER}} .lcake-bar-group .lcake-bar-track',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_progressbar_track_radius',
+            [
+                'label'      => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors'  => [
+                    '{{WRAPPER}} .lcake-bar-group .lcake-bar-track' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->end_controls_section();
 
+
+        // Title Styles
         $this->start_controls_section(
-            'section_title_style',
+            'lcake_progressbar_title_style',
             [
                 'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
-        $this->add_control(
-            'title_color',
+        $this->add_responsive_control(
+            'lcake_progressbar_title_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-progress-title' => 'color: {{VALUE}};',
+                'label'      => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'type'       => \Elementor\Controls_Manager::COLOR,
+                'selectors'  => [
+                    '{{WRAPPER}} .lcake-bar-group .lcake-skill-title' => 'color: {{VALUE}};'
                 ],
             ]
         );
@@ -251,43 +360,56 @@ class LC_Kit_Progress_Bar extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .lc-progress-title',
+                'name'       => 'lcake_progressbar_title_typography',
+                'selector'   => '{{WRAPPER}} .lcake-bar-group .lcake-skill-title',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Text_Shadow::get_type(),
+            [
+                'name'       => 'lcake_progressbar_title_shadow',
+                'selector'   => '{{WRAPPER}} .lcake-bar-group .lcake-skill-title',
             ]
         );
 
         $this->add_responsive_control(
-            'title_margin',
+            'lcake_progressbar_margin_bottom',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
+                'type'          => \Elementor\Controls_Manager::SLIDER,
+                'label'         => esc_html__('Margin Bottom', 'lc-elementor-addons-kit'),
+                'size_units'    => ['px'],
+                'range'  => [
+                    'px' => [
+                        'min'   => 1,
+                        'max'   => 100,
+                    ],
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-progress-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-bar-content' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->end_controls_section();
 
+
+        // Percent Styles
         $this->start_controls_section(
-            'section_percentage_style',
+            'lcake_progressbar_percent_style',
             [
-                'label' => esc_html__('Percentage', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-                'condition' => [
-                    'display_percentage' => 'yes',
-                ],
+                'label' => esc_html__('Percent', 'lc-elementor-addons-kit'),
+                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
-        $this->add_control(
-            'percentage_color',
+        $this->add_responsive_control(
+            'lcake_progressbar_percent_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-progress-percentage' => 'color: {{VALUE}};',
+                'label'      => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'type'       => \Elementor\Controls_Manager::COLOR,
+                'selectors'  => [
+                    '{{WRAPPER}} .lcake-bar-group .lcake-percentage-wrapper' => 'color: {{VALUE}};'
                 ],
             ]
         );
@@ -295,132 +417,183 @@ class LC_Kit_Progress_Bar extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'percentage_typography',
-                'selector' => '{{WRAPPER}} .lc-progress-percentage',
+                'name'       => 'lcake_progressbar_percent_typography',
+                'selector'   => '{{WRAPPER}} .lcake-bar-group .lcake-percentage-wrapper',
             ]
         );
 
         $this->add_responsive_control(
-            'percentage_margin',
+            'lcake_progressbar_percent_tooltip_bg',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
+                'label'      => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'type'       => \Elementor\Controls_Manager::COLOR,
+                'condition' => [
+                    'lcake_progressbar_style' => ['tooltip-style', 'style-stripe skill-medium tooltip-style'],
+                ],
+                'selectors'  => [
+                    '{{WRAPPER}} .lcake-bar-group .lcake-single-skill-bar .svg-content > svg' => 'fill: {{VALUE}};'
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_progressbar_percent_pin_bg',
+            [
+                'label'      => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'type'       => \Elementor\Controls_Manager::COLOR,
+                'condition' => [
+                    'lcake_progressbar_style' => ['style-ribbon', 'pin-style', 'tooltip-style2', 'tooltip-style3'],
+                ],
+                'selectors'  => [
+                    '{{WRAPPER}} .lcake-bar-group .lcake-single-skill-bar .lcake-percentage-wrapper,
+                    {{WRAPPER}} .lcake-bar-group.pin-style .lcake-single-skill-bar .lcake-percentage-wrapper:before' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-bar-group .lcake-single-skill-bar .lcake-percentage-wrapper:before' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Text_Shadow::get_type(),
+            [
+                'name'       => 'lcake_progressbar_percent_shadow',
+                'selector'   => '{{WRAPPER}} .lcake-bar-group .lcake-percentage-wrapper',
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // Icon Styles
+        $this->start_controls_section(
+            'lcake_progressbar_icon_style',
+            [
+                'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
+                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'lcake_progressbar_style!' => '',
+                    'lcake_progressbar_style' => 'inner-content skill-big'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_progressbar_icon_color',
+            [
+                'label'      => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'type'       => \Elementor\Controls_Manager::COLOR,
+                'selectors'  => [
+                    '{{WRAPPER}} .lcake-bar-group .bar-track > span i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-bar-group .lcake-bar-track > span svg path'  => 'stroke: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_progressbar_icon_typography',
+            [
+                'type'          => \Elementor\Controls_Manager::SLIDER,
+                'label'         => esc_html__('Icon Size', 'lc-elementor-addons-kit'),
+                'size_units'    => ['px', 'em'],
+                'range'  => [
+                    'px' => [
+                        'min'   => 1,
+                        'max'   => 200,
+                    ],
+                ],
+                'default' => ['unit' => 'px', 'size' => '15'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-progress-percentage' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-bar-group .bar-track > span i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-bar-group .bar-track > span svg'   => 'max-width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->end_controls_section();
+
     }
 
-    protected function render() {
+    protected function render()
+    {
+        echo '<div class="lcake-main-wrapper" >';
+        $this->render_raw();
+        echo '</div>';
+    }
+
+    protected function render_raw()
+    {
         $settings = $this->get_settings_for_display();
+        extract($settings);
 
-        $this->add_render_attribute('wrapper', 'class', 'lc-progress-wrapper');
-        $this->add_render_attribute('wrapper', 'class', 'lc-progress--' . $settings['progress_type']);
+?>
+        <div class="lcake-bar-trigger">
+            <div class="lcake-bar-group <?php echo esc_attr($lcake_progressbar_style); ?>" data-progress-bar="">
+                <div class="lcake-single-skill-bar">
+                    <?php if ('style-switch' != $lcake_progressbar_style): ?>
+                        <div class="lcake-bar-content">
+                            <span class="lcake-lcake-skill-title"><?php echo esc_html($lcake_progressbar_title); ?></span>
+                        </div>
 
-        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
+                        <div class="lcake-bar">
+                            <div class="lcake-bar-track">
+                                <?php if ('inner-content skill-big' == $lcake_progressbar_style):
 
-        if (!empty($settings['title'])) {
-            echo '<div class="lc-progress-title">' . esc_html($settings['title']) . '</div>';
-        }
+                                    // new icon
+                                    $migrated = isset($settings['__fa4_migrated']['lcake_progressbar_icons']);
+                                    $is_new = empty($settings['lcake_progressbar_icon']);
+                                ?>
 
-        if ($settings['progress_type'] === 'line') {
-            $this->render_line_progress($settings);
-        } else {
-            $this->render_circle_progress($settings);
-        }
+                                    <span class="lcake-bar-icon">
+                                        <?php
+                                        if ($is_new || $migrated) {
+                                            \Elementor\Icons_Manager::render_icon($settings['lcake_progressbar_icons'], ['aria-hidden' => 'true']);
+                                        } else {
+                                        ?>
+                                            <i class="<?php echo esc_attr($settings['lcake_progressbar_icon']); ?>" aria-hidden="true"></i>
+                                        <?php
+                                        }
+                                        ?>
+                                    </span>
+                                <?php endif; ?>
 
-        echo '</div>';
-    }
+                                <div class="lcake-percentage-wrapper">
+                                    <span class="lcake-number-percentage" data-value="<?php echo esc_attr($lcake_progressbar_percentage); ?>" data-animation-duration="<?php echo esc_attr($lcake_progressbar_data_duration['size']); ?>">0</span>%
 
-    private function render_line_progress($settings) {
-        $percentage = $settings['percent']['size'];
-        
-        echo '<div class="lc-progress-bar">';
-        echo '<div class="lc-progress-bar-bg">';
-        echo '<div class="lc-progress-bar-fill" style="width: ' . esc_attr($percentage) . '%"></div>';
-        echo '</div>';
-        
-        if ($settings['display_percentage'] === 'yes') {
-            echo '<div class="lc-progress-percentage">' . esc_html($percentage) . '%</div>';
-        }
-        
-        echo '</div>';
-    }
+                                    <?php if ('tooltip-style' == $lcake_progressbar_style): ?>
+                                        <div class="lcake-svg-content">
+                                            <svg version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" preserveAspectRatio="none" viewBox="0 0 116 79.6">
+                                                <g>
+                                                    <path d="M0,18.3v21.3C0,49.8,8.2,58,18.3,58h5.9c7.8,0,15.3,3.1,20.8,8.6l13,13l13-13c5.5-5.5,13-8.6,20.8-8.6h5.9 c10.1,0,18.3-8.2,18.3-18.3V18.3C116,8.2,107.8,0,97.7,0H18.3C8.2,0,0,8.2,0,18.3z" />
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    <?php elseif ('style-stripe skill-medium tooltip-style' == $lcake_progressbar_style): ?>
+                                        <div class="lcake-svg-content">
+                                            <svg version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" preserveAspectRatio="none" viewBox="0 0 116 79.6">
+                                                <g>
+                                                    <path d="M0,18.3v21.3C0,49.8,8.2,58,18.3,58h5.9c7.8,0,15.3,3.1,20.8,8.6l13,13l13-13c5.5-5.5,13-8.6,20.8-8.6h5.9 c10.1,0,18.3-8.2,18.3-18.3V18.3C116,8.2,107.8,0,97.7,0H18.3C8.2,0,0,8.2,0,18.3z" />
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <div class="lcake-content-group">
+                            <div class="lcake-bar-content">
+                                <span class="lcake-lcake-skill-title"><?php echo esc_html($lcake_progressbar_title); ?></span>
+                            </div>
 
-    private function render_circle_progress($settings) {
-        $percentage = $settings['percent']['size'];
-        $radius = 50;
-        $circumference = 2 * M_PI * $radius;
-        $stroke_dasharray = $circumference;
-        $stroke_dashoffset = $circumference - ($percentage / 100) * $circumference;
-        
-        if ($settings['progress_type'] === 'half-circle') {
-            $stroke_dasharray = $circumference / 2;
-            $stroke_dashoffset = ($circumference / 2) - ($percentage / 100) * ($circumference / 2);
-        }
+                            <div class="lcake-bar">
+                                <div class="lcake-bar-track"></div>
+                            </div>
+                        </div>
 
-        echo '<div class="lc-progress-circle">';
-        echo '<svg viewBox="0 0 120 120" class="lc-progress-circle-svg">';
-        
-        if ($settings['progress_type'] === 'half-circle') {
-            echo '<circle cx="60" cy="60" r="' . $radius . '" class="lc-progress-circle-bg" stroke-dasharray="' . $stroke_dasharray . '" stroke-dashoffset="0" transform="rotate(-90 60 60)"></circle>';
-            echo '<circle cx="60" cy="60" r="' . $radius . '" class="lc-progress-circle-fill" stroke-dasharray="' . $stroke_dasharray . '" stroke-dashoffset="' . $stroke_dashoffset . '" transform="rotate(-90 60 60)"></circle>';
-        } else {
-            echo '<circle cx="60" cy="60" r="' . $radius . '" class="lc-progress-circle-bg"></circle>';
-            echo '<circle cx="60" cy="60" r="' . $radius . '" class="lc-progress-circle-fill" stroke-dasharray="' . $stroke_dasharray . '" stroke-dashoffset="' . $stroke_dashoffset . '" transform="rotate(-90 60 60)"></circle>';
-        }
-        
-        echo '</svg>';
-        
-        echo '<div class="lc-progress-circle-content">';
-        if ($settings['display_percentage'] === 'yes') {
-            echo '<div class="lc-progress-percentage">' . esc_html($percentage) . '%</div>';
-        }
-        if (!empty($settings['inner_text'])) {
-            echo '<div class="lc-progress-inner-text">' . esc_html($settings['inner_text']) . '</div>';
-        }
-        echo '</div>';
-        
-        echo '</div>';
-    }
-
-    protected function content_template() {
-        ?>
-        <div class="lc-progress-wrapper lc-progress--{{ settings.progress_type }}">
-            <# if (settings.title) { #>
-                <div class="lc-progress-title">{{{ settings.title }}}</div>
-            <# } #>
-            
-            <# if (settings.progress_type === 'line') { #>
-                <div class="lc-progress-bar">
-                    <div class="lc-progress-bar-bg">
-                        <div class="lc-progress-bar-fill" style="width: {{ settings.percent.size }}%"></div>
-                    </div>
-                    <# if (settings.display_percentage === 'yes') { #>
-                        <div class="lc-progress-percentage">{{{ settings.percent.size }}}%</div>
-                    <# } #>
+                        <span class="lcake-percentage-wrapper">
+                            <span class="lcake-number-percentage" data-value="<?php echo esc_attr($lcake_progressbar_percentage); ?>" data-animation-duration="<?php echo esc_attr($lcake_progressbar_data_duration['size']); ?>">0</span>%
+                        </span>
+                    <?php endif; ?>
                 </div>
-            <# } else { #>
-                <div class="lc-progress-circle">
-                    <svg viewBox="0 0 120 120" class="lc-progress-circle-svg">
-                        <circle cx="60" cy="60" r="50" class="lc-progress-circle-bg"></circle>
-                        <circle cx="60" cy="60" r="50" class="lc-progress-circle-fill" stroke-dasharray="314" stroke-dashoffset="{{ 314 - (settings.percent.size / 100) * 314 }}" transform="rotate(-90 60 60)"></circle>
-                    </svg>
-                    <div class="lc-progress-circle-content">
-                        <# if (settings.display_percentage === 'yes') { #>
-                            <div class="lc-progress-percentage">{{{ settings.percent.size }}}%</div>
-                        <# } #>
-                        <# if (settings.inner_text) { #>
-                            <div class="lc-progress-inner-text">{{{ settings.inner_text }}}</div>
-                        <# } #>
-                    </div>
-                </div>
-            <# } #>
+            </div>
         </div>
-        <?php
+<?php
     }
-} 
+}

@@ -1,0 +1,736 @@
+.lcake-main-wrapper .skill-medium .lcake-bar {
+    height: 10px
+}
+
+.lcake-main-wrapper .skill-medium.skill-radius .lcake-bar,.lcake-main-wrapper .skill-medium.skill-radius .lcake-bar-track {
+    border-radius: 5px
+}
+
+.lcake-main-wrapper .skill-big .lcake-bar {
+    height: 35px
+}
+
+.lcake-main-wrapper .skill-big.skill-radius .lcake-bar,.lcake-main-wrapper .skill-big.skill-radius .lcake-bar-track {
+    border-radius: 17.5px
+}
+
+.lcake-main-wrapper .lcake-bar-trigger svg {
+    width: 100%;
+    height: auto
+}
+
+.lcake-main-wrapper .lcake-single-skill-bar:not(:last-child) {
+    margin-bottom: 25px
+}
+
+.lcake-main-wrapper .lcake-single-skill-bar.color-1 .lcake-bar .lcake-bar-track {
+    background-color: #ff3984
+}
+
+.lcake-main-wrapper .lcake-single-skill-bar.color-2 .lcake-bar .lcake-bar-track {
+    background-color: #cc24fc
+}
+
+.lcake-main-wrapper .lcake-single-skill-bar.color-3 .lcake-bar .lcake-bar-track {
+    background-color: #00e49a
+}
+
+.lcake-main-wrapper .lcake-single-skill-bar.color-4 .lcake-bar .lcake-bar-track {
+    background-color: #4285f4
+}
+
+.lcake-main-wrapper .lcake-single-skill-bar.color-5 .lcake-bar .lcake-bar-track {
+    background-color: #7ed500
+}
+
+.lcake-main-wrapper .lcake-single-skill-bar.color-6 .lcake-bar .lcake-bar-track {
+    background-color: #f96933
+}
+
+.lcake-main-wrapper .lcake-single-skill-bar.color-7 .lcake-bar .lcake-bar-track {
+    background-color: #53f8a2
+}
+
+.lcake-main-wrapper .lcake-single-skill-bar.color-8 .lcake-bar .lcake-bar-track {
+    background-color: #fe8f75
+}
+
+.lcake-main-wrapper .lcake-single-skill-bar.color-9 .lcake-bar .lcake-bar-track {
+    background-color: #35ed7e
+}
+
+.lcake-main-wrapper .lcake-single-skill-bar.color-10 .lcake-bar .lcake-bar-track {
+    background-color: #9460ff
+}
+
+.lcake-main-wrapper .lcake-bar {
+    height: 3px;
+    background-color: #f5f5f5
+}
+
+.lcake-main-wrapper .lcake-bar .lcake-bar-track {
+    width: 0%;
+    background-color: #333;
+    display: block;
+    height: 100%;
+    overflow: visible!important;
+    position: relative
+}
+
+.lcake-main-wrapper .lcake-bar .lcake-bar-track .lcake-percentage-wrapper {
+    position: absolute;
+    right: 0;
+    top: -33px;
+    z-index: 1
+}
+
+.lcake-main-wrapper .lcake-bar .lcake-bar-track .fa,.lcake-main-wrapper .lcake-bar .lcake-bar-track .icon,.lcake-main-wrapper .lcake-bar .lcake-bar-track .lcake-bar-track-icon {
+    position: absolute;
+    right: 19px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #000
+}
+
+.lcake-main-wrapper .lcake-bar .lcake-bar-track .fa+.lcake-percentage-wrapper,.lcake-main-wrapper .lcake-bar .lcake-bar-track .icon+.lcake-percentage-wrapper,.lcake-main-wrapper .lcake-bar .lcake-bar-track .lcake-bar-track-icon+.lcake-percentage-wrapper {
+    padding-right: 57px
+}
+
+.lcake-main-wrapper .lcake-bar .lcake-bar-track .fa svg,.lcake-main-wrapper .lcake-bar .lcake-bar-track .icon svg,.lcake-main-wrapper .lcake-bar .lcake-bar-track .lcake-bar-track-icon svg {
+    max-width: 15px;
+    height: auto;
+    vertical-align: middle
+}
+
+.lcake-main-wrapper .lcake-bar-content {
+    margin-bottom: 7px
+}
+
+.lcake-main-wrapper .lcake-bar-content .lcake-skill-title {
+    font-weight: 700;
+    color: #000
+}
+
+.lcake-main-wrapper .lcake-percentage-wrapper {
+    color: #000
+}
+
+.lcake-main-wrapper .lcake-percentage-wrapper.style2 {
+    font-size: 13px;
+    font-weight: 700
+}
+
+.lcake-main-wrapper .inner-content .lcake-single-skill-bar {
+    position: relative
+}
+
+.lcake-main-wrapper .inner-content .lcake-single-skill-bar .lcake-bar-content {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin-bottom: 0;
+    padding-left: 30px
+}
+
+.lcake-main-wrapper .inner-content .lcake-single-skill-bar .lcake-skill-title {
+    color: #fff
+}
+
+.lcake-main-wrapper .inner-content .lcake-bar-track .lcake-percentage-wrapper {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #fff;
+    padding-right: 30px
+}
+
+.lcake-main-wrapper .inner-content .lcake-bar-track .fa,.lcake-main-wrapper .inner-content .lcake-bar-track .icon {
+    color: #fff
+}
+
+.lcake-main-wrapper .skilltrack-style2 .lcake-single-skill-bar .lcake-bar {
+    height: 30px;
+    background-color: #fff;
+    padding: 10px;
+    -webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,.25);
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.25);
+    border-radius: 15px
+}
+
+.lcake-main-wrapper .skilltrack-style2 .lcake-single-skill-bar .lcake-bar .lcake-bar-track {
+    height: 10px;
+    border-radius: 5px
+}
+
+.lcake-main-wrapper .skilltrack-style2 .lcake-single-skill-bar .lcake-bar .lcake-bar-track .lcake-percentage-wrapper {
+    top: -39px
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar .lcake-percentage-wrapper {
+    color: #fff;
+    height: 30px;
+    padding: 0 10px;
+    z-index: 1;
+    text-align: center;
+    right: calc(0% - 22px);
+    top: -34px
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar .lcake-percentage-wrapper .lcake-svg-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    fill: #333;
+    height: 100%;
+    width: 100%
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar.color-1 .lcake-svg-content>svg {
+    fill: #ff3984
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar.color-2 .lcake-svg-content>svg {
+    fill: #cc24fc
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar.color-3 .lcake-svg-content>svg {
+    fill: #00e49a
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar.color-4 .lcake-svg-content>svg {
+    fill: #4285f4
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar.color-5 .lcake-svg-content>svg {
+    fill: #7ed500
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar.color-6 .lcake-svg-content>svg {
+    fill: #f96933
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar.color-7 .lcake-svg-content>svg {
+    fill: #53f8a2
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar.color-8 .lcake-svg-content>svg {
+    fill: #fe8f75
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar.color-9 .lcake-svg-content>svg {
+    fill: #35ed7e
+}
+
+.lcake-main-wrapper .tooltip-style .lcake-single-skill-bar.color-10 .lcake-svg-content>svg {
+    fill: #9460ff
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar .lcake-percentage-wrapper {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 50%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    right: calc(0% - 15.5px);
+    top: -39.9px
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar .lcake-percentage-wrapper::before {
+    position: absolute;
+    content: "";
+    bottom: -5px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 3px;
+    height: 5px;
+    background-color: #333
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-1 .lcake-percentage-wrapper {
+    background-color: #ff3984
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-1 .lcake-percentage-wrapper::before {
+    background-color: #ff3984
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-2 .lcake-percentage-wrapper {
+    background-color: #cc24fc
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-2 .lcake-percentage-wrapper::before {
+    background-color: #cc24fc
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-3 .lcake-percentage-wrapper {
+    background-color: #00e49a
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-3 .lcake-percentage-wrapper::before {
+    background-color: #00e49a
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-4 .lcake-percentage-wrapper {
+    background-color: #4285f4
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-4 .lcake-percentage-wrapper::before {
+    background-color: #4285f4
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-5 .lcake-percentage-wrapper {
+    background-color: #7ed500
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-5 .lcake-percentage-wrapper::before {
+    background-color: #7ed500
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-6 .lcake-percentage-wrapper {
+    background-color: #f96933
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-6 .lcake-percentage-wrapper::before {
+    background-color: #f96933
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-7 .lcake-percentage-wrapper {
+    background-color: #53f8a2
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-7 .lcake-percentage-wrapper::before {
+    background-color: #53f8a2
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-8 .lcake-percentage-wrapper {
+    background-color: #fe8f75
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-8 .lcake-percentage-wrapper::before {
+    background-color: #fe8f75
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-9 .lcake-percentage-wrapper {
+    background-color: #35ed7e
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-9 .lcake-percentage-wrapper::before {
+    background-color: #35ed7e
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-10 .lcake-percentage-wrapper {
+    background-color: #9460ff
+}
+
+.lcake-main-wrapper .pin-style .lcake-single-skill-bar.color-10 .lcake-percentage-wrapper::before {
+    background-color: #9460ff
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar .lcake-percentage-wrapper {
+    height: 22px;
+    padding: 0 8px;
+    background-color: #333;
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+    z-index: 1;
+    right: -20px;
+    top: -31px
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar .lcake-percentage-wrapper::before {
+    position: absolute;
+    content: "";
+    bottom: -6px;
+    left: 50%;
+    -webkit-transform: translateX(-50%) rotate(45deg);
+    transform: translateX(-50%) rotate(45deg);
+    width: 14px;
+    height: 14px;
+    background-color: inherit;
+    z-index: -1
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar.color-1 .lcake-percentage-wrapper {
+    background-color: #ff3984
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar.color-2 .lcake-percentage-wrapper {
+    background-color: #cc24fc
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar.color-3 .lcake-percentage-wrapper {
+    background-color: #00e49a
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar.color-4 .lcake-percentage-wrapper {
+    background-color: #4285f4
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar.color-5 .lcake-percentage-wrapper {
+    background-color: #7ed500
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar.color-6 .lcake-percentage-wrapper {
+    background-color: #f96933
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar.color-7 .lcake-percentage-wrapper {
+    background-color: #53f8a2
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar.color-8 .lcake-percentage-wrapper {
+    background-color: #fe8f75
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar.color-9 .lcake-percentage-wrapper {
+    background-color: #35ed7e
+}
+
+.lcake-main-wrapper .tooltip-style2 .lcake-single-skill-bar.color-10 .lcake-percentage-wrapper {
+    background-color: #9460ff
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar .lcake-percentage-wrapper {
+    height: 24px;
+    line-height: 24px;
+    display: inline-block;
+    color: #fff;
+    font-size: 13px;
+    background-color: #333;
+    text-align: center;
+    padding: 0 11px;
+    border-radius: 4.32px;
+    border-bottom-right-radius: 0
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar .lcake-percentage-wrapper::before {
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: -8px;
+    color: #333;
+    border-top: solid currentColor;
+    border-right: solid currentColor;
+    border-left: solid transparent;
+    border-bottom: solid transparent;
+    border-width: 4px
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-1 .lcake-percentage-wrapper {
+    background-color: #ff3984
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-1 .lcake-percentage-wrapper::before {
+    color: #ff3984
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-2 .lcake-percentage-wrapper {
+    background-color: #cc24fc
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-2 .lcake-percentage-wrapper::before {
+    color: #cc24fc
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-3 .lcake-percentage-wrapper {
+    background-color: #00e49a
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-3 .lcake-percentage-wrapper::before {
+    color: #00e49a
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-4 .lcake-percentage-wrapper {
+    background-color: #4285f4
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-4 .lcake-percentage-wrapper::before {
+    color: #4285f4
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-5 .lcake-percentage-wrapper {
+    background-color: #7ed500
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-5 .lcake-percentage-wrapper::before {
+    color: #7ed500
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-6 .lcake-percentage-wrapper {
+    background-color: #f96933
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-6 .lcake-percentage-wrapper::before {
+    color: #f96933
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-7 .lcake-percentage-wrapper {
+    background-color: #53f8a2
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-7 .lcake-percentage-wrapper::before {
+    color: #53f8a2
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-8 .lcake-percentage-wrapper {
+    background-color: #fe8f75
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-8 .lcake-percentage-wrapper::before {
+    color: #fe8f75
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-9 .lcake-percentage-wrapper {
+    background-color: #35ed7e
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-9 .lcake-percentage-wrapper::before {
+    color: #35ed7e
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-10 .lcake-percentage-wrapper {
+    background-color: #9460ff
+}
+
+.lcake-main-wrapper .tooltip-style3 .lcake-single-skill-bar.color-10 .lcake-percentage-wrapper::before {
+    color: #9460ff
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar .lcake-bar-content {
+    margin-bottom: 18px
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar .lcake-content-group {
+    width: calc(100% - 50px);
+    display: inline-block
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar .lcake-percentage-wrapper {
+    float: right;
+    position: relative;
+    top: 31px
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar .lcake-bar-track::after,.lcake-main-wrapper .style-switch .lcake-single-skill-bar .lcake-bar-track::before {
+    position: absolute;
+    content: "";
+    right: 0;
+    border-radius: 50%;
+    color: #333
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar .lcake-bar-track::before {
+    top: -12.5px;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    border: 1px solid currentColor;
+    -webkit-box-shadow: -1.216px 6.894px 15px 0 rgba(0,0,0,.07),inset 0 2px 3px 0 rgba(0,0,0,.2);
+    box-shadow: -1.216px 6.894px 15px 0 rgba(0,0,0,.07),inset 0 2px 3px 0 rgba(0,0,0,.2)
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar .lcake-bar-track::after {
+    width: 8px;
+    height: 8px;
+    background-color: currentColor;
+    top: -3px;
+    right: 8px
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-1 .lcake-bar-track::after,.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-1 .lcake-bar-track::before {
+    color: #ff3984
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-2 .lcake-bar-track::after,.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-2 .lcake-bar-track::before {
+    color: #cc24fc
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-3 .lcake-bar-track::after,.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-3 .lcake-bar-track::before {
+    color: #00e49a
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-4 .lcake-bar-track::after,.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-4 .lcake-bar-track::before {
+    color: #4285f4
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-5 .lcake-bar-track::after,.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-5 .lcake-bar-track::before {
+    color: #7ed500
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-6 .lcake-bar-track::after,.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-6 .lcake-bar-track::before {
+    color: #f96933
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-7 .lcake-bar-track::after,.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-7 .lcake-bar-track::before {
+    color: #53f8a2
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-8 .lcake-bar-track::after,.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-8 .lcake-bar-track::before {
+    color: #fe8f75
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-9 .lcake-bar-track::after,.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-9 .lcake-bar-track::before {
+    color: #35ed7e
+}
+
+.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-10 .lcake-bar-track::after,.lcake-main-wrapper .style-switch .lcake-single-skill-bar.color-10 .lcake-bar-track::before {
+    color: #9460ff
+}
+
+.lcake-main-wrapper .style-stripe .lcake-single-skill-bar .lcake-bar-track {
+    background: repeating-linear-gradient(to right,#333,#333 4px,#fff 4px,#fff 8px)
+}
+
+.lcake-main-wrapper .style-stripe .lcake-single-skill-bar.color-1 .lcake-bar-track {
+    background: repeating-linear-gradient(to right,#ff3984,#ff3984 4px,#fff 4px,#fff 8px)
+}
+
+.lcake-main-wrapper .style-stripe .lcake-single-skill-bar.color-2 .lcake-bar-track {
+    background: repeating-linear-gradient(to right,#cc24fc,#cc24fc 4px,#fff 4px,#fff 8px)
+}
+
+.lcake-main-wrapper .style-stripe .lcake-single-skill-bar.color-3 .lcake-bar-track {
+    background: repeating-linear-gradient(to right,#00e49a,#00e49a 4px,#fff 4px,#fff 8px)
+}
+
+.lcake-main-wrapper .style-stripe .lcake-single-skill-bar.color-4 .lcake-bar-track {
+    background: repeating-linear-gradient(to right,#4285f4,#4285f4 4px,#fff 4px,#fff 8px)
+}
+
+.lcake-main-wrapper .style-stripe .lcake-single-skill-bar.color-5 .lcake-bar-track {
+    background: repeating-linear-gradient(to right,#7ed500,#7ed500 4px,#fff 4px,#fff 8px)
+}
+
+.lcake-main-wrapper .style-stripe .lcake-single-skill-bar.color-6 .lcake-bar-track {
+    background: repeating-linear-gradient(to right,#f96933,#f96933 4px,#fff 4px,#fff 8px)
+}
+
+.lcake-main-wrapper .style-stripe .lcake-single-skill-bar.color-7 .lcake-bar-track {
+    background: repeating-linear-gradient(to right,#53f8a2,#53f8a2 4px,#fff 4px,#fff 8px)
+}
+
+.lcake-main-wrapper .style-stripe .lcake-single-skill-bar.color-8 .lcake-bar-track {
+    background: repeating-linear-gradient(to right,#fe8f75,#fe8f75 4px,#fff 4px,#fff 8px)
+}
+
+.lcake-main-wrapper .style-stripe .lcake-single-skill-bar.color-9 .lcake-bar-track {
+    background: repeating-linear-gradient(to right,#35ed7e,#35ed7e 4px,#fff 4px,#fff 8px)
+}
+
+.lcake-main-wrapper .style-stripe .lcake-single-skill-bar.color-10 .lcake-bar-track {
+    background: repeating-linear-gradient(to right,#9460ff,#9460ff 4px,#fff 4px,#fff 8px)
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar .lcake-percentage-wrapper {
+    height: 35px;
+    line-height: 35px;
+    color: #fff;
+    background-color: #333;
+    text-align: center;
+    padding: 0 8px;
+    top: -10px;
+    z-index: 1
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar .lcake-percentage-wrapper::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: -10px;
+    color: #1a1a1a;
+    border-top: solid #fff;
+    border-left: solid #fff;
+    border-right: solid currentColor;
+    border-bottom: solid currentColor;
+    border-width: 5px
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-1 .lcake-percentage-wrapper {
+    background-color: #cc2e6a
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-1 .lcake-percentage-wrapper::before {
+    color: #801d42
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-2 .lcake-percentage-wrapper {
+    background-color: #a31dca
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-2 .lcake-percentage-wrapper::before {
+    color: #66127e
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-3 .lcake-percentage-wrapper {
+    background-color: #00b67b
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-3 .lcake-percentage-wrapper::before {
+    color: #00724d
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-4 .lcake-percentage-wrapper {
+    background-color: #356ac3
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-4 .lcake-percentage-wrapper::before {
+    color: #21437a
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-5 .lcake-percentage-wrapper {
+    background-color: #65aa00
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-5 .lcake-percentage-wrapper::before {
+    color: #3f6b00
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-6 .lcake-percentage-wrapper {
+    background-color: #c75429
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-6 .lcake-percentage-wrapper::before {
+    color: #7d351a
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-7 .lcake-percentage-wrapper {
+    background-color: #42c682
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-7 .lcake-percentage-wrapper::before {
+    color: #2a7c51
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-8 .lcake-percentage-wrapper {
+    background-color: #cb725e
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-8 .lcake-percentage-wrapper::before {
+    color: #7f483b
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-9 .lcake-percentage-wrapper {
+    background-color: #2abe65
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-9 .lcake-percentage-wrapper::before {
+    color: #1b773f
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-10 .lcake-percentage-wrapper {
+    background-color: #764dcc
+}
+
+.lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-10 .lcake-percentage-wrapper::before {
+    color: #4a3080
+}

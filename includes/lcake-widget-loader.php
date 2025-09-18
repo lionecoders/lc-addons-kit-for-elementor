@@ -24,7 +24,7 @@ class LCAKE_Kit_Widget_Loader
         );
 
         $elements_manager->add_category(
-            'lcake-header-footer-kit',
+            'lc-header-footer-kit',
             [
                 'title' => __('LC Header Footer kit', 'lc-elementor-addons-kit'),
                 'icon'  => 'eicon-header',
@@ -40,6 +40,7 @@ class LCAKE_Kit_Widget_Loader
 
         $folders = [
             'lc-kit' => 'LCAKE_Kit_',
+            'lc-header-footer' => 'LC_Header_Footer_',
         ];
 
         foreach ($folders as $folder => $prefix) {
@@ -63,7 +64,13 @@ class LCAKE_Kit_Widget_Loader
                 $class = $prefix . str_replace(' ', '_', ucwords(str_replace('-', ' ', $widget_name)));
 
                 if (class_exists($class)) {
-                    // Only register if widget_name exists in DB option
+                    // If no specific selection saved, register all by default
+                    if (empty($enabled_widgets) || !is_array($enabled_widgets)) {
+                        $widgets_manager->register(new $class());
+                        continue;
+                    }
+
+                    // Otherwise, only register if enabled in settings
                     if (in_array($widget_name, $enabled_widgets, true)) {
                         $widgets_manager->register(new $class());
                     }
@@ -74,10 +81,12 @@ class LCAKE_Kit_Widget_Loader
     public function register_widget_scripts()
     {
         $scripts = [
+            'lcake-kit-tab-js' => ['file' => 'lcake-kit-tab.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-accordion' => ['file' => 'lcake-kit-accordion.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-faq-js' => ['file' => 'lcake-kit-faq.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
             'lcake-kit-pie-chart-js' => ['file' => 'lcake-kit-pie-chart.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
             'lcake-kit-testimonial-js' => ['file' => 'lcake-kit-testimonial.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-progress-bar-js' => ['file' => 'lcake-kit-progress-bar.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lcake-team-js' => ['file' => 'lcake-team.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
             'lcake-chart-js' => ['file' => 'lcake-chart.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
             'lcake-swiper-js' => ['file' => 'swiper-bundle.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
@@ -97,6 +106,8 @@ class LCAKE_Kit_Widget_Loader
             'lcake-kit-pie-chart-css' => ['file' => 'lceak-kit-pie-chart.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-testimonial-css' => ['file' => 'lcake-kit-testimonial.css', 'enqueue' => false, 'path' => ''],
             'lcake-team-css' => ['file' => 'lcake-team.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-tab-css' => ['file' => 'lcake-kit-tab.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-progress-bar-css' => ['file' => 'lcake-kit-progress-bar.css', 'enqueue' => false, 'path' => ''],
             'lcake-btsp-css' => ['file' => 'bootstrap.min.css', 'enqueue' => true, 'path' => ''],
             'lcake-swiper-css' => ['file' => 'swiper-bundle.min.css', 'enqueue' => true, 'path' => ''],
             'lcakeicons' => ['file' => 'lcakeicons.css', 'enqueue' => true, 'path' => 'assets/icons']
