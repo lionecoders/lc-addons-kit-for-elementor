@@ -91,7 +91,7 @@ A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC K
 == Installation ==
 
 1. **Download** the plugin files
-2. **Upload** to `/wp-content/plugins/lc-elementor-addons-kit/`
+2. **Upload** to `/wp-content/plugins/lc-addons-kit-for-elementor/`
 3. **Activate** the plugin through the 'Plugins' menu in WordPress
 4. **Configure** widget settings via 'LC Kit' menu in admin dashboard
 
@@ -153,8 +153,8 @@ Initial release with 41+ professional widgets and dashboard control panel.
 
 ### Plugin Structure
 ```
-lc-elementor-addons-kit/
-├── lc-elementor-addons-kit.php          # Main plugin file
+lc-addons-kit-for-elementor/
+├── lc-addons-kit-for-elementor.php          # Main plugin file
 ├── admin/
 │   └── settings-page.php                # Admin settings page
 ├── includes/

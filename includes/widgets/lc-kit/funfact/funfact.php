@@ -16,7 +16,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('Funfact', 'lc-elementor-addons-kit');
+        return esc_html__('Funfact', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -39,7 +39,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -49,7 +49,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $repeater->add_control(
             'number',
             [
-                'label' => esc_html__('Number', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Number', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'default' => 100,
                 'min' => 0,
@@ -60,25 +60,25 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $repeater->add_control(
             'title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Funfact Title', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Funfact Title', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $repeater->add_control(
             'description',
             [
-                'label' => esc_html__('Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $repeater->add_control(
             'icon',
             [
-                'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'fas fa-star',
@@ -90,56 +90,56 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $repeater->add_control(
             'prefix',
             [
-                'label' => esc_html__('Prefix', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Prefix', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('+', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('+', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $repeater->add_control(
             'suffix',
             [
-                'label' => esc_html__('Suffix', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Suffix', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('K', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('K', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $repeater->add_control(
             'link',
             [
-                'label' => esc_html__('Link', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Link', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('https://your-link.com', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'funfact_items',
             [
-                'label' => esc_html__('Funfact Items', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Funfact Items', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
                         'number' => 100,
-                        'title' => esc_html__('Happy Clients', 'lc-elementor-addons-kit'),
-                        'description' => esc_html__('Satisfied customers worldwide', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Happy Clients', 'lc-addons-kit-for-elementor'),
+                        'description' => esc_html__('Satisfied customers worldwide', 'lc-addons-kit-for-elementor'),
                     ],
                     [
                         'number' => 500,
-                        'title' => esc_html__('Projects Completed', 'lc-elementor-addons-kit'),
-                        'description' => esc_html__('Successful projects delivered', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Projects Completed', 'lc-addons-kit-for-elementor'),
+                        'description' => esc_html__('Successful projects delivered', 'lc-addons-kit-for-elementor'),
                     ],
                     [
                         'number' => 50,
-                        'title' => esc_html__('Team Members', 'lc-elementor-addons-kit'),
-                        'description' => esc_html__('Expert professionals', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Team Members', 'lc-addons-kit-for-elementor'),
+                        'description' => esc_html__('Expert professionals', 'lc-addons-kit-for-elementor'),
                     ],
                     [
                         'number' => 10,
-                        'title' => esc_html__('Years Experience', 'lc-elementor-addons-kit'),
-                        'description' => esc_html__('Industry expertise', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Years Experience', 'lc-addons-kit-for-elementor'),
+                        'description' => esc_html__('Industry expertise', 'lc-addons-kit-for-elementor'),
                     ],
                 ],
                 'title_field' => '{{{ title }}}',
@@ -149,7 +149,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_control(
             'columns',
             [
-                'label' => esc_html__('Columns', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Columns', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => '4',
                 'options' => [
@@ -166,26 +166,26 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_control(
             'animation_duration',
             [
-                'label' => esc_html__('Animation Duration', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Animation Duration', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => 500,
                 'max' => 5000,
                 'step' => 100,
                 'default' => 2000,
-                'description' => esc_html__('Duration in milliseconds', 'lc-elementor-addons-kit'),
+                'description' => esc_html__('Duration in milliseconds', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'animation_delay',
             [
-                'label' => esc_html__('Animation Delay', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Animation Delay', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => 0,
                 'max' => 2000,
                 'step' => 100,
                 'default' => 0,
-                'description' => esc_html__('Delay before animation starts (ms)', 'lc-elementor-addons-kit'),
+                'description' => esc_html__('Delay before animation starts (ms)', 'lc-addons-kit-for-elementor'),
             ]
         );
 
@@ -196,7 +196,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_funfact',
             [
-                'label' => esc_html__('Funfact', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Funfact', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -204,19 +204,19 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'funfact_alignment',
             [
-                'label' => esc_html__('Alignment', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Alignment', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Center', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -229,7 +229,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_control(
             'funfact_background_color',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-funfact-item' => 'background-color: {{VALUE}};',
@@ -248,7 +248,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_control(
             'funfact_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -260,7 +260,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'funfact_padding',
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -272,7 +272,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'funfact_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -286,7 +286,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_icon',
             [
-                'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -294,7 +294,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_control(
             'icon_size',
             [
-                'label' => esc_html__('Size', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -314,7 +314,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_control(
             'icon_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-funfact-icon' => 'color: {{VALUE}};',
@@ -325,7 +325,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_control(
             'icon_background_color',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-funfact-icon' => 'background-color: {{VALUE}};',
@@ -336,7 +336,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'icon_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -350,7 +350,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_number',
             [
-                'label' => esc_html__('Number', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Number', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -358,7 +358,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_control(
             'number_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-funfact-number' => 'color: {{VALUE}};',
@@ -377,7 +377,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'number_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -391,7 +391,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -399,7 +399,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_control(
             'title_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-funfact-title' => 'color: {{VALUE}};',
@@ -418,7 +418,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'title_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -432,7 +432,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_description',
             [
-                'label' => esc_html__('Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -440,7 +440,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_control(
             'description_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-funfact-description' => 'color: {{VALUE}};',
@@ -459,7 +459,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'description_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [

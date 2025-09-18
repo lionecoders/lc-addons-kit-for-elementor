@@ -16,7 +16,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('Contact Form 7', 'lc-elementor-addons-kit');
+        return esc_html__('Contact Form 7', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -35,7 +35,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -43,29 +43,29 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'form_id',
             [
-                'label' => esc_html__('Select Form', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Select Form', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => $this->get_contact_form_7_forms(),
                 'default' => '',
-                'description' => esc_html__('Select a Contact Form 7 form to display. Make sure Contact Form 7 plugin is installed and activated.', 'lc-elementor-addons-kit'),
+                'description' => esc_html__('Select a Contact Form 7 form to display. Make sure Contact Form 7 plugin is installed and activated.', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'form_title',
             [
-                'label' => esc_html__('Form Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Form Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Enter form title', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('Enter form title', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'form_description',
             [
-                'label' => esc_html__('Form Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Form Description', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'placeholder' => esc_html__('Enter form description', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('Enter form description', 'lc-addons-kit-for-elementor'),
                 'rows' => 3,
             ]
         );
@@ -73,10 +73,10 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'show_form_title',
             [
-                'label' => esc_html__('Show Form Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Form Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -85,10 +85,10 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'show_form_description',
             [
-                'label' => esc_html__('Show Form Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Form Description', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -101,7 +101,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_form',
             [
-                'label' => esc_html__('Form', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Form', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -109,7 +109,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'form_background_color',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-contact-form-7' => 'background-color: {{VALUE}};',
@@ -128,7 +128,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'form_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -140,7 +140,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'form_padding',
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -154,7 +154,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_form_title' => 'yes',
@@ -165,7 +165,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'title_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-contact-form-7-title' => 'color: {{VALUE}};',
@@ -184,7 +184,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'title_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -198,7 +198,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_description',
             [
-                'label' => esc_html__('Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_form_description' => 'yes',
@@ -209,7 +209,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'description_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-contact-form-7-description' => 'color: {{VALUE}};',
@@ -228,7 +228,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'description_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -242,7 +242,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_inputs',
             [
-                'label' => esc_html__('Input Fields', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Input Fields', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -250,7 +250,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'input_background_color',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-contact-form-7 input[type="text"],
@@ -268,7 +268,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'input_color',
             [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-contact-form-7 input[type="text"],
@@ -316,7 +316,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'input_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -335,7 +335,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'input_padding',
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -354,7 +354,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'input_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -368,7 +368,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_button',
             [
-                'label' => esc_html__('Submit Button', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Submit Button', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -376,7 +376,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'button_background_color',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-contact-form-7 input[type="submit"],
@@ -388,7 +388,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'button_color',
             [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-contact-form-7 input[type="submit"],
@@ -418,7 +418,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_control(
             'button_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -431,7 +431,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'button_padding',
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -459,7 +459,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         }
         
         if (empty($forms)) {
-            $forms[''] = esc_html__('No forms found', 'lc-elementor-addons-kit');
+            $forms[''] = esc_html__('No forms found', 'lc-addons-kit-for-elementor');
         }
         
         return $forms;
@@ -469,7 +469,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $settings = $this->get_settings_for_display();
 
         if (empty($settings['form_id'])) {
-            echo '<div class="lc-contact-form-7-error">' . esc_html__('Please select a Contact Form 7 form.', 'lc-elementor-addons-kit') . '</div>';
+            echo '<div class="lc-contact-form-7-error">' . esc_html__('Please select a Contact Form 7 form.', 'lc-addons-kit-for-elementor') . '</div>';
             return;
         }
 
@@ -488,7 +488,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         if (function_exists('wpcf7_contact_form')) {
             echo do_shortcode('[contact-form-7 id="' . esc_attr($settings['form_id']) . '"]');
         } else {
-            echo '<div class="lc-contact-form-7-error">' . esc_html__('Contact Form 7 plugin is not installed or activated.', 'lc-elementor-addons-kit') . '</div>';
+            echo '<div class="lc-contact-form-7-error">' . esc_html__('Contact Form 7 plugin is not installed or activated.', 'lc-addons-kit-for-elementor') . '</div>';
         }
 
         echo '</div>';
@@ -511,7 +511,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 </div>
             <# } else { #>
                 <div class="lc-contact-form-7-error">
-                    <?php echo esc_html__('Please select a Contact Form 7 form.', 'lc-elementor-addons-kit'); ?>
+                    <?php echo esc_html__('Please select a Contact Form 7 form.', 'lc-addons-kit-for-elementor'); ?>
                 </div>
             <# } #>
         </div>

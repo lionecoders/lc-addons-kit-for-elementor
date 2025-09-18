@@ -16,7 +16,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('Client Logo', 'lc-elementor-addons-kit');
+        return esc_html__('Client Logo', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -39,7 +39,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -49,7 +49,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $repeater->add_control(
             'logo',
             [
-                'label' => esc_html__('Logo', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Logo', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -60,39 +60,39 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $repeater->add_control(
             'title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Client Name', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Client Name', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $repeater->add_control(
             'link',
             [
-                'label' => esc_html__('Link', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Link', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('https://your-link.com', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'logos',
             [
-                'label' => esc_html__('Logos', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Logos', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'title' => esc_html__('Client #1', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Client #1', 'lc-addons-kit-for-elementor'),
                     ],
                     [
-                        'title' => esc_html__('Client #2', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Client #2', 'lc-addons-kit-for-elementor'),
                     ],
                     [
-                        'title' => esc_html__('Client #3', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Client #3', 'lc-addons-kit-for-elementor'),
                     ],
                     [
-                        'title' => esc_html__('Client #4', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Client #4', 'lc-addons-kit-for-elementor'),
                     ],
                 ],
                 'title_field' => '{{{ title }}}',
@@ -102,12 +102,12 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'layout',
             [
-                'label' => esc_html__('Layout', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Layout', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 'grid',
                 'options' => [
-                    'grid' => esc_html__('Grid', 'lc-elementor-addons-kit'),
-                    'carousel' => esc_html__('Carousel', 'lc-elementor-addons-kit'),
+                    'grid' => esc_html__('Grid', 'lc-addons-kit-for-elementor'),
+                    'carousel' => esc_html__('Carousel', 'lc-addons-kit-for-elementor'),
                 ],
             ]
         );
@@ -115,7 +115,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'columns',
             [
-                'label' => esc_html__('Columns', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Columns', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => '4',
                 'tablet_default' => '2',
@@ -137,10 +137,10 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'show_title',
             [
-                'label' => esc_html__('Show Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -152,7 +152,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'carousel_section',
             [
-                'label' => esc_html__('Carousel Settings', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Carousel Settings', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
                 'condition' => [
                     'layout' => 'carousel',
@@ -163,10 +163,10 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'autoplay',
             [
-                'label' => esc_html__('Autoplay', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Autoplay', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -175,7 +175,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'autoplay_speed',
             [
-                'label' => esc_html__('Autoplay Speed', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Autoplay Speed', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => 1000,
                 'max' => 10000,
@@ -190,10 +190,10 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'pause_on_hover',
             [
-                'label' => esc_html__('Pause on Hover', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Pause on Hover', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => [
@@ -205,10 +205,10 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'show_arrows',
             [
-                'label' => esc_html__('Show Arrows', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Arrows', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -217,10 +217,10 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'show_dots',
             [
-                'label' => esc_html__('Show Dots', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Dots', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -229,7 +229,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'slides_to_show',
             [
-                'label' => esc_html__('Slides to Show', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Slides to Show', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => 1,
                 'max' => 10,
@@ -240,7 +240,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'slides_to_scroll',
             [
-                'label' => esc_html__('Slides to Scroll', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Slides to Scroll', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => 1,
                 'max' => 10,
@@ -255,7 +255,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_logo',
             [
-                'label' => esc_html__('Logo', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Logo', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -263,7 +263,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'logo_width',
             [
-                'label' => esc_html__('Width', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Width', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
                 'range' => [
@@ -291,7 +291,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'logo_height',
             [
-                'label' => esc_html__('Height', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Height', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
                 'range' => [
@@ -319,7 +319,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'logo_opacity',
             [
-                'label' => esc_html__('Opacity', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Opacity', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -340,7 +340,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'logo_hover_opacity',
             [
-                'label' => esc_html__('Hover Opacity', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Hover Opacity', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -369,7 +369,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'logo_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -381,7 +381,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'logo_padding',
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -393,7 +393,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'logo_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -407,7 +407,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_title' => 'yes',
@@ -418,7 +418,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'title_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-client-logo-title' => 'color: {{VALUE}};',
@@ -437,7 +437,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'title_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -451,7 +451,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_arrows',
             [
-                'label' => esc_html__('Arrows', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Arrows', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'layout' => 'carousel',
@@ -463,7 +463,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'arrows_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-client-logo-arrow' => 'color: {{VALUE}};',
@@ -474,7 +474,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'arrows_background_color',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-client-logo-arrow' => 'background-color: {{VALUE}};',
@@ -485,7 +485,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'arrows_size',
             [
-                'label' => esc_html__('Size', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -508,7 +508,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_dots',
             [
-                'label' => esc_html__('Dots', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Dots', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'layout' => 'carousel',
@@ -520,7 +520,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'dots_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-client-logo-dot' => 'background-color: {{VALUE}};',
@@ -531,7 +531,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'dots_active_color',
             [
-                'label' => esc_html__('Active Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Active Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-client-logo-dot.active' => 'background-color: {{VALUE}};',
@@ -542,7 +542,7 @@ class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
         $this->add_control(
             'dots_size',
             [
-                'label' => esc_html__('Size', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [

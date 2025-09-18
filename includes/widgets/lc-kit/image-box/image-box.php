@@ -16,7 +16,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('Image Box', 'lc-elementor-addons-kit');
+        return esc_html__('Image Box', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -35,7 +35,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -43,7 +43,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'image',
             [
-                'label' => esc_html__('Image', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Image', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -62,9 +62,9 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Image Box Title', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Image Box Title', 'lc-addons-kit-for-elementor'),
                 'label_block' => true,
             ]
         );
@@ -72,9 +72,9 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'description',
             [
-                'label' => esc_html__('Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'lc-addons-kit-for-elementor'),
                 'rows' => 10,
                 'separator' => 'none',
             ]
@@ -83,9 +83,9 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'link',
             [
-                'label' => esc_html__('Link', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Link', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('https://your-link.com', 'lc-addons-kit-for-elementor'),
                 'separator' => 'before',
             ]
         );
@@ -93,9 +93,9 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'link_text',
             [
-                'label' => esc_html__('Link Text', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Link Text', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Read More', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Read More', 'lc-addons-kit-for-elementor'),
                 'condition' => [
                     'link[url]!' => '',
                 ],
@@ -105,20 +105,20 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'position',
             [
-                'label' => esc_html__('Image Position', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Image Position', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'default' => 'top',
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-h-align-left',
                     ],
                     'top' => [
-                        'title' => esc_html__('Top', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Top', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-v-align-top',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
@@ -130,7 +130,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'title_size',
             [
-                'label' => esc_html__('Title HTML Tag', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title HTML Tag', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
                     'h1' => 'H1',
@@ -154,7 +154,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_image',
             [
-                'label' => esc_html__('Image', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Image', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -162,7 +162,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'image_space',
             [
-                'label' => esc_html__('Spacing', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Spacing', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em'],
                 'range' => [
@@ -182,7 +182,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'image_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -194,7 +194,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'image_opacity',
             [
-                'label' => esc_html__('Opacity', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Opacity', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -220,7 +220,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'image_hover_animation',
             [
-                'label' => esc_html__('Hover Animation', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Hover Animation', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
             ]
         );
@@ -230,7 +230,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_content',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -238,23 +238,23 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'text_align',
             [
-                'label' => esc_html__('Alignment', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Alignment', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Center', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                     'justify' => [
-                        'title' => esc_html__('Justified', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Justified', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-text-align-justify',
                     ],
                 ],
@@ -267,12 +267,12 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'content_vertical_alignment',
             [
-                'label' => esc_html__('Vertical Alignment', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Vertical Alignment', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'top' => esc_html__('Top', 'lc-elementor-addons-kit'),
-                    'middle' => esc_html__('Middle', 'lc-elementor-addons-kit'),
-                    'bottom' => esc_html__('Bottom', 'lc-elementor-addons-kit'),
+                    'top' => esc_html__('Top', 'lc-addons-kit-for-elementor'),
+                    'middle' => esc_html__('Middle', 'lc-addons-kit-for-elementor'),
+                    'bottom' => esc_html__('Bottom', 'lc-addons-kit-for-elementor'),
                 ],
                 'default' => 'top',
                 'selectors_dictionary' => [
@@ -295,7 +295,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -303,7 +303,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'title_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-image-box-title' => 'color: {{VALUE}};',
@@ -322,7 +322,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'title_bottom_space',
             [
-                'label' => esc_html__('Spacing', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Spacing', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -341,7 +341,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_description',
             [
-                'label' => esc_html__('Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -349,7 +349,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'description_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-image-box-description' => 'color: {{VALUE}};',
@@ -368,7 +368,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'description_bottom_space',
             [
-                'label' => esc_html__('Spacing', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Spacing', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -387,7 +387,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_link',
             [
-                'label' => esc_html__('Link', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Link', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -395,7 +395,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'link_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-image-box-link' => 'color: {{VALUE}};',

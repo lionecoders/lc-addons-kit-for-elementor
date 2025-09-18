@@ -16,7 +16,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('Lottie', 'lc-elementor-addons-kit');
+        return esc_html__('Lottie', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -39,7 +39,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -47,29 +47,29 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'lottie_url',
             [
-                'label' => esc_html__('Lottie URL', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Lottie URL', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://example.com/animation.json', 'lc-elementor-addons-kit'),
-                'description' => esc_html__('Enter the URL to your Lottie JSON file', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('https://example.com/animation.json', 'lc-addons-kit-for-elementor'),
+                'description' => esc_html__('Enter the URL to your Lottie JSON file', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'lottie_file',
             [
-                'label' => esc_html__('Lottie File', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Lottie File', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'media_type' => 'application/json',
-                'description' => esc_html__('Upload your Lottie JSON file', 'lc-elementor-addons-kit'),
+                'description' => esc_html__('Upload your Lottie JSON file', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'lottie_json',
             [
-                'label' => esc_html__('Lottie JSON', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Lottie JSON', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'description' => esc_html__('Paste your Lottie JSON code directly', 'lc-elementor-addons-kit'),
+                'description' => esc_html__('Paste your Lottie JSON code directly', 'lc-addons-kit-for-elementor'),
                 'rows' => 10,
             ]
         );
@@ -77,10 +77,10 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'autoplay',
             [
-                'label' => esc_html__('Autoplay', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Autoplay', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -89,10 +89,10 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'loop',
             [
-                'label' => esc_html__('Loop', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Loop', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -101,7 +101,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'speed',
             [
-                'label' => esc_html__('Speed', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Speed', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -113,19 +113,19 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
                 'default' => [
                     'size' => 1,
                 ],
-                'description' => esc_html__('Animation playback speed', 'lc-elementor-addons-kit'),
+                'description' => esc_html__('Animation playback speed', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'direction',
             [
-                'label' => esc_html__('Direction', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Direction', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 1,
                 'options' => [
-                    1 => esc_html__('Forward', 'lc-elementor-addons-kit'),
-                    -1 => esc_html__('Reverse', 'lc-elementor-addons-kit'),
+                    1 => esc_html__('Forward', 'lc-addons-kit-for-elementor'),
+                    -1 => esc_html__('Reverse', 'lc-addons-kit-for-elementor'),
                 ],
             ]
         );
@@ -133,13 +133,13 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'renderer',
             [
-                'label' => esc_html__('Renderer', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Renderer', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 'svg',
                 'options' => [
-                    'svg' => esc_html__('SVG', 'lc-elementor-addons-kit'),
-                    'canvas' => esc_html__('Canvas', 'lc-elementor-addons-kit'),
-                    'html' => esc_html__('HTML', 'lc-elementor-addons-kit'),
+                    'svg' => esc_html__('SVG', 'lc-addons-kit-for-elementor'),
+                    'canvas' => esc_html__('Canvas', 'lc-addons-kit-for-elementor'),
+                    'html' => esc_html__('HTML', 'lc-addons-kit-for-elementor'),
                 ],
             ]
         );
@@ -147,10 +147,10 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'show_controls',
             [
-                'label' => esc_html__('Show Controls', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Controls', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -159,10 +159,10 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'pause_on_hover',
             [
-                'label' => esc_html__('Pause on Hover', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Pause on Hover', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -175,7 +175,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_lottie',
             [
-                'label' => esc_html__('Lottie', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Lottie', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -183,7 +183,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'width',
             [
-                'label' => esc_html__('Width', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Width', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'vw'],
                 'range' => [
@@ -216,7 +216,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'height',
             [
-                'label' => esc_html__('Height', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Height', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%', 'vh'],
                 'range' => [
@@ -249,7 +249,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'background_color',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-lottie-container' => 'background-color: {{VALUE}};',
@@ -268,7 +268,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -280,7 +280,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'padding',
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -292,7 +292,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -306,7 +306,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_controls',
             [
-                'label' => esc_html__('Controls', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Controls', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_controls' => 'yes',
@@ -317,7 +317,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'controls_background_color',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-lottie-controls' => 'background-color: {{VALUE}};',
@@ -328,7 +328,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'controls_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-lottie-controls button' => 'color: {{VALUE}};',
@@ -339,7 +339,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'controls_size',
             [
-                'label' => esc_html__('Size', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -360,7 +360,7 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
         $this->add_control(
             'controls_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -411,10 +411,10 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
 
         if ($settings['show_controls'] === 'yes') {
             echo '<div class="lc-lottie-controls">';
-            echo '<button class="lc-lottie-play" title="' . esc_attr__('Play', 'lc-elementor-addons-kit') . '">▶</button>';
-            echo '<button class="lc-lottie-pause" title="' . esc_attr__('Pause', 'lc-elementor-addons-kit') . '">⏸</button>';
-            echo '<button class="lc-lottie-stop" title="' . esc_attr__('Stop', 'lc-elementor-addons-kit') . '">⏹</button>';
-            echo '<button class="lc-lottie-restart" title="' . esc_attr__('Restart', 'lc-elementor-addons-kit') . '">⏮</button>';
+            echo '<button class="lc-lottie-play" title="' . esc_attr__('Play', 'lc-addons-kit-for-elementor') . '">▶</button>';
+            echo '<button class="lc-lottie-pause" title="' . esc_attr__('Pause', 'lc-addons-kit-for-elementor') . '">⏸</button>';
+            echo '<button class="lc-lottie-stop" title="' . esc_attr__('Stop', 'lc-addons-kit-for-elementor') . '">⏹</button>';
+            echo '<button class="lc-lottie-restart" title="' . esc_attr__('Restart', 'lc-addons-kit-for-elementor') . '">⏮</button>';
             echo '</div>';
         }
         
@@ -453,10 +453,10 @@ class LC_Kit_Lottie extends \Elementor\Widget_Base {
                 
                 <# if (settings.show_controls === 'yes') { #>
                     <div class="lc-lottie-controls">
-                        <button class="lc-lottie-play" title="<?php echo esc_attr__('Play', 'lc-elementor-addons-kit'); ?>">▶</button>
-                        <button class="lc-lottie-pause" title="<?php echo esc_attr__('Pause', 'lc-elementor-addons-kit'); ?>">⏸</button>
-                        <button class="lc-lottie-stop" title="<?php echo esc_attr__('Stop', 'lc-elementor-addons-kit'); ?>">⏹</button>
-                        <button class="lc-lottie-restart" title="<?php echo esc_attr__('Restart', 'lc-elementor-addons-kit'); ?>">⏮</button>
+                        <button class="lc-lottie-play" title="<?php echo esc_attr__('Play', 'lc-addons-kit-for-elementor'); ?>">▶</button>
+                        <button class="lc-lottie-pause" title="<?php echo esc_attr__('Pause', 'lc-addons-kit-for-elementor'); ?>">⏸</button>
+                        <button class="lc-lottie-stop" title="<?php echo esc_attr__('Stop', 'lc-addons-kit-for-elementor'); ?>">⏹</button>
+                        <button class="lc-lottie-restart" title="<?php echo esc_attr__('Restart', 'lc-addons-kit-for-elementor'); ?>">⏮</button>
                     </div>
                 <# } #>
                 

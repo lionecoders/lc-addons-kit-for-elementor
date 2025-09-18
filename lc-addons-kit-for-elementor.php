@@ -53,7 +53,7 @@ class LCAKE_Elementor_Addons_Kit
     public function elementor_missing_notice()
     {
         echo '<div class="notice notice-warning"><p>';
-        echo esc_html__('LC Elementor Addons Kit requires Elementor to be installed and activated.', 'lc-elementor-addons-kit');
+        echo esc_html__('LC Elementor Addons Kit requires Elementor to be installed and activated.', 'lc-addons-kit-for-elementor');
         echo '</p></div>';
     }
 }

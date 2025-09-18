@@ -33,7 +33,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
      * Get widget title
      */
     public function get_title() {
-        return esc_html__('Icon Box', 'lc-elementor-addons-kit');
+        return esc_html__('Icon Box', 'lc-addons-kit-for-elementor');
     }
 
     /**
@@ -50,7 +50,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'icon',
             [
-                'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::ICONS,
                 'default' => [
                     'value' => 'fas fa-star',
@@ -62,29 +62,29 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Icon Box Title', 'lc-elementor-addons-kit'),
-                'placeholder' => esc_html__('Enter your title', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Icon Box Title', 'lc-addons-kit-for-elementor'),
+                'placeholder' => esc_html__('Enter your title', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'description',
             [
-                'label' => esc_html__('Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'lc-elementor-addons-kit'),
-                'placeholder' => esc_html__('Enter your description', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'lc-addons-kit-for-elementor'),
+                'placeholder' => esc_html__('Enter your description', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'link',
             [
-                'label' => esc_html__('Link', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Link', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('https://your-link.com', 'lc-addons-kit-for-elementor'),
                 'default' => [
                     'url' => '',
                     'is_external' => false,
@@ -96,13 +96,13 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'icon_position',
             [
-                'label' => esc_html__('Icon Position', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon Position', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 'top',
                 'options' => [
-                    'top' => esc_html__('Top', 'lc-elementor-addons-kit'),
-                    'left' => esc_html__('Left', 'lc-elementor-addons-kit'),
-                    'right' => esc_html__('Right', 'lc-elementor-addons-kit'),
+                    'top' => esc_html__('Top', 'lc-addons-kit-for-elementor'),
+                    'left' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
+                    'right' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
                 ],
             ]
         );
@@ -110,7 +110,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'icon_size',
             [
-                'label' => esc_html__('Icon Size', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon Size', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'range' => [
@@ -147,7 +147,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'icon_color',
             [
-                'label' => esc_html__('Icon Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-kit-icon-box-icon i' => 'color: {{VALUE}};',
@@ -159,7 +159,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'icon_background_color',
             [
-                'label' => esc_html__('Icon Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-kit-icon-box-icon' => 'background-color: {{VALUE}};',
@@ -178,7 +178,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'icon_border_radius',
             [
-                'label' => esc_html__('Icon Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -191,7 +191,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'title_color',
             [
-                'label' => esc_html__('Title Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-kit-icon-box-title' => 'color: {{VALUE}};',
@@ -211,7 +211,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'description_color',
             [
-                'label' => esc_html__('Description Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Description Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-kit-icon-box-description' => 'color: {{VALUE}};',
@@ -231,7 +231,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'box_background_color',
             [
-                'label' => esc_html__('Box Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Box Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-kit-icon-box' => 'background-color: {{VALUE}};',
@@ -250,7 +250,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'box_border_radius',
             [
-                'label' => esc_html__('Box Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Box Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -262,7 +262,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'box_padding',
             [
-                'label' => esc_html__('Box Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Box Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [

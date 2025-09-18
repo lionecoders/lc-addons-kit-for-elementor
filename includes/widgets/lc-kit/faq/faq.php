@@ -16,7 +16,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('FAQ', 'lc-elementor-addons-kit');
+        return esc_html__('FAQ', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -40,7 +40,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
     $this->start_controls_section(
         'lc_faq_content_section',
         [
-            'label' => esc_html__('FAQ', 'lc-elementor-addons-kit'),
+            'label' => esc_html__('FAQ', 'lc-addons-kit-for-elementor'),
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]
     );
@@ -50,9 +50,9 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
     $repeater->add_control(
         'title',
         [
-            'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+            'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
             'type' => \Elementor\Controls_Manager::TEXT,
-            'default' => esc_html__('Accordion Title', 'lc-elementor-addons-kit'),
+            'default' => esc_html__('Accordion Title', 'lc-addons-kit-for-elementor'),
             'label_block' => true,
         ]
     );
@@ -60,9 +60,9 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
     $repeater->add_control(
         'content',
         [
-            'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+            'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
             'type' => \Elementor\Controls_Manager::WYSIWYG,
-            'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-elementor-addons-kit'),
+            'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-addons-kit-for-elementor'),
             'show_label' => false,
         ]
     );
@@ -72,7 +72,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
     $repeater->add_control(
         'icon',
         [
-            'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
+            'label' => esc_html__('Icon', 'lc-addons-kit-for-elementor'),
             'type' => \Elementor\Controls_Manager::ICONS,
             'default' => [
                 'value' => 'fas fa-plus',
@@ -84,7 +84,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
     $repeater->add_control(
         'active_icon',
         [
-            'label' => esc_html__('Active Icon', 'lc-elementor-addons-kit'),
+            'label' => esc_html__('Active Icon', 'lc-addons-kit-for-elementor'),
             'type' => \Elementor\Controls_Manager::ICONS,
             'default' => [
                 'value' => 'fas fa-minus',
@@ -97,25 +97,25 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
     $this->add_control(
         'lc_faq_content_items',
         [
-            'label' => esc_html__('Tab Content', 'lc-elementor-addons-kit'),
+            'label' => esc_html__('Tab Content', 'lc-addons-kit-for-elementor'),
             'type' => \Elementor\Controls_Manager::REPEATER,
             'fields' => $repeater->get_controls(),
             'default' => [
                 [
-                    'title' => esc_html__('Can I build a professional website without knowing how to code?', 'lc-elementor-addons-kit'),
-                    'content' => esc_html__('Yes! With Elementor and WordPress, you can easily design stunning websites using drag-and-drop tools—no coding needed', 'lc-elementor-addons-kit'),
+                    'title' => esc_html__('Can I build a professional website without knowing how to code?', 'lc-addons-kit-for-elementor'),
+                    'content' => esc_html__('Yes! With Elementor and WordPress, you can easily design stunning websites using drag-and-drop tools—no coding needed', 'lc-addons-kit-for-elementor'),
                 ],
                 [
-                    'title' => esc_html__('What’s the difference between WordPress and Elementor?', 'lc-elementor-addons-kit'),
-                    'content' => esc_html__('WordPress is a website platform, while Elementor is a page builder plugin that lets you customize your site visually. Learn how they work together here.', 'lc-elementor-addons-kit'),
+                    'title' => esc_html__('What’s the difference between WordPress and Elementor?', 'lc-addons-kit-for-elementor'),
+                    'content' => esc_html__('WordPress is a website platform, while Elementor is a page builder plugin that lets you customize your site visually. Learn how they work together here.', 'lc-addons-kit-for-elementor'),
                 ],
                 [
-                    'title' => esc_html__('Is Elementor good for beginners?', 'lc-elementor-addons-kit'),
-                    'content' => esc_html__('Absolutely! Elementor is designed for users of all skill levels. Start learning new design skills right from this platform.', 'lc-elementor-addons-kit'),
+                    'title' => esc_html__('Is Elementor good for beginners?', 'lc-addons-kit-for-elementor'),
+                    'content' => esc_html__('Absolutely! Elementor is designed for users of all skill levels. Start learning new design skills right from this platform.', 'lc-addons-kit-for-elementor'),
                 ],
                 [
-                    'title' => esc_html__('How can I improve my website design using Elementor?', 'lc-elementor-addons-kit'),
-                    'content' => esc_html__('From animations to responsive layouts, Elementor offers powerful tools. Explore tips and tutorials here to keep learning new things', 'lc-elementor-addons-kit'),
+                    'title' => esc_html__('How can I improve my website design using Elementor?', 'lc-addons-kit-for-elementor'),
+                    'content' => esc_html__('From animations to responsive layouts, Elementor offers powerful tools. Explore tips and tutorials here to keep learning new things', 'lc-addons-kit-for-elementor'),
                 ],
             ],
             'title_field' => '{{{ title }}}',
@@ -125,22 +125,22 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_control(
             'lc_faq_active_item',
             [
-                'label' => esc_html__('Active Item', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Active Item', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => 1,
                 'max' => 10,
                 'default' => 1,
-                'description' => esc_html__('Enter the number of the item that should be open by default. Leave empty to have all items closed.', 'lc-elementor-addons-kit'),
+                'description' => esc_html__('Enter the number of the item that should be open by default. Leave empty to have all items closed.', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'lc_faq_active_multiple',
             [
-                'label' => esc_html__('Multiple Items Open', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Multiple Items Open', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -153,7 +153,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'lc_style_section',
             [
-                'label' => esc_html__('Style', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Style', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -161,7 +161,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_control(
             'lc_style_border_width',
             [
-                'label' => esc_html__('Border Width', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Width', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -182,7 +182,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_control(
             'lc_style_border_color',
             [
-                'label' => esc_html__('Border Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-faq-item' => 'border-color: {{VALUE}};',
@@ -193,7 +193,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_control(
             'lc_style_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -205,7 +205,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'lc_style_item_spacing',
             [
-                'label' => esc_html__('Item Spacing', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Item Spacing', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -229,7 +229,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'lc_question_style_section',
             [
-                'label' => esc_html__('Question', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Question', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -247,14 +247,14 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->start_controls_tab(
             'lc_question_normal_tab',
             [
-                'label' => esc_html__('Normal', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'lc_question_background_color',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-faq-question' => 'background-color: {{VALUE}};',
@@ -265,7 +265,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_control(
             'lc_question_color',
             [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-faq-question' => 'color: {{VALUE}};',
@@ -278,14 +278,14 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->start_controls_tab(
             'lc_question_hover_tab',
             [
-                'label' => esc_html__('Hover', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'lc_question_background_color_hover',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-faq-question:hover' => 'background-color: {{VALUE}};',
@@ -296,7 +296,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_control(
             'lc_question_color_hover',
             [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-faq-question:hover' => 'color: {{VALUE}};',
@@ -309,14 +309,14 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->start_controls_tab(
             'question_active_tab',
             [
-                'label' => esc_html__('Active', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Active', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'lc_question_background_color_active',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-faq-item.active .lc-faq-question' => 'background-color: {{VALUE}};',
@@ -327,7 +327,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_control(
             'lc_question_color_active',
             [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-faq-item.active .lc-faq-question' => 'color: {{VALUE}};',
@@ -342,7 +342,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'lc_question_padding',
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -358,7 +358,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'lc_answer_style_section',
             [
-                'label' => esc_html__('Answer', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Answer', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -366,7 +366,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_control(
             'lc_answer_background_color',
             [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-faq-answer' => 'background-color: {{VALUE}};',
@@ -377,7 +377,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_control(
             'lc_answer_color',
             [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-faq-answer-content' => 'color: {{VALUE}};',
@@ -396,7 +396,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'lc_answer_padding',
             [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [

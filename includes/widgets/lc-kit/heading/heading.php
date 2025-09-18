@@ -33,7 +33,7 @@ class LC_Kit_Heading extends \Elementor\Widget_Base {
      * Get widget title
      */
     public function get_title() {
-        return esc_html__('Heading', 'lc-elementor-addons-kit');
+        return esc_html__('Heading', 'lc-addons-kit-for-elementor');
     }
 
     /**
@@ -50,17 +50,17 @@ class LC_Kit_Heading extends \Elementor\Widget_Base {
         $this->add_control(
             'heading_text',
             [
-                'label' => esc_html__('Heading Text', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Heading Text', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Enter your heading', 'lc-elementor-addons-kit'),
-                'placeholder' => esc_html__('Enter your heading', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Enter your heading', 'lc-addons-kit-for-elementor'),
+                'placeholder' => esc_html__('Enter your heading', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'heading_tag',
             [
-                'label' => esc_html__('HTML Tag', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('HTML Tag', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 'h2',
                 'options' => [
@@ -80,19 +80,19 @@ class LC_Kit_Heading extends \Elementor\Widget_Base {
         $this->add_control(
             'heading_alignment',
             [
-                'label' => esc_html__('Alignment', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Alignment', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Center', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -111,7 +111,7 @@ class LC_Kit_Heading extends \Elementor\Widget_Base {
         $this->add_control(
             'heading_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-kit-heading' => 'color: {{VALUE}};',
@@ -138,7 +138,7 @@ class LC_Kit_Heading extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'heading_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [

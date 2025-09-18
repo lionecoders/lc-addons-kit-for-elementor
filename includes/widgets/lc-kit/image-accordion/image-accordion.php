@@ -16,7 +16,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('Image Accordion Widget', 'lc-elementor-addons-kit');
+        return esc_html__('Image Accordion Widget', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -35,7 +35,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -45,7 +45,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $repeater->add_control(
             'image',
             [
-                'label' => esc_html__('Image', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Image', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -56,48 +56,48 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $repeater->add_control(
             'title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Accordion Item', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Accordion Item', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $repeater->add_control(
             'description',
             [
-                'label' => esc_html__('Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $repeater->add_control(
             'link',
             [
-                'label' => esc_html__('Link', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Link', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('https://your-link.com', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'accordion_items',
             [
-                'label' => esc_html__('Accordion Items', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Accordion Items', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'title' => esc_html__('Accordion Item #1', 'lc-elementor-addons-kit'),
-                        'description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Accordion Item #1', 'lc-addons-kit-for-elementor'),
+                        'description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-addons-kit-for-elementor'),
                     ],
                     [
-                        'title' => esc_html__('Accordion Item #2', 'lc-elementor-addons-kit'),
-                        'description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Accordion Item #2', 'lc-addons-kit-for-elementor'),
+                        'description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-addons-kit-for-elementor'),
                     ],
                     [
-                        'title' => esc_html__('Accordion Item #3', 'lc-elementor-addons-kit'),
-                        'description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-elementor-addons-kit'),
+                        'title' => esc_html__('Accordion Item #3', 'lc-addons-kit-for-elementor'),
+                        'description' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-addons-kit-for-elementor'),
                     ],
                 ],
                 'title_field' => '{{{ title }}}',
@@ -107,7 +107,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'height',
             [
-                'label' => esc_html__('Height', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Height', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'vh'],
                 'range' => [
@@ -135,7 +135,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'active_item',
             [
-                'label' => esc_html__('Active Item', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Active Item', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'min' => 1,
                 'max' => 10,
@@ -150,7 +150,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'style_section',
             [
-                'label' => esc_html__('Style', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Style', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -158,7 +158,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -170,7 +170,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'overlay_color',
             [
-                'label' => esc_html__('Overlay Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Overlay Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-image-accordion-item::before' => 'background-color: {{VALUE}};',
@@ -181,7 +181,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'overlay_opacity',
             [
-                'label' => esc_html__('Overlay Opacity', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Overlay Opacity', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'range' => [
                     'px' => [
@@ -202,7 +202,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'title_style_section',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -218,7 +218,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'title_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-image-accordion-title' => 'color: {{VALUE}};',
@@ -240,7 +240,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'description_style_section',
             [
-                'label' => esc_html__('Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -256,7 +256,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
         $this->add_control(
             'description_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-image-accordion-description' => 'color: {{VALUE}};',
@@ -306,7 +306,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
             if (!empty($item['link']['url'])) {
                 $this->add_link_attributes('link_' . $index, $item['link']);
                 echo '<a ' . $this->get_render_attribute_string('link_' . $index) . ' class="lc-image-accordion-link">';
-                echo esc_html__('Learn More', 'lc-elementor-addons-kit');
+                echo esc_html__('Learn More', 'lc-addons-kit-for-elementor');
                 echo '</a>';
             }
 
@@ -337,7 +337,7 @@ class LC_Kit_Image_Accordion extends \Elementor\Widget_Base {
                             <# } #>
                             <# if (item.link.url) { #>
                                 <a href="{{ item.link.url }}" class="lc-image-accordion-link">
-                                    <?php echo esc_html__('Learn More', 'lc-elementor-addons-kit'); ?>
+                                    <?php echo esc_html__('Learn More', 'lc-addons-kit-for-elementor'); ?>
                                 </a>
                             <# } #>
                         </div>

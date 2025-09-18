@@ -20,7 +20,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return esc_html__('Progress Bar', 'lc-elementor-addons-kit');
+        return esc_html__('Progress Bar', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon()
@@ -53,27 +53,27 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->start_controls_section(
             'lcake_progressbar_content',
             [
-                'label' => esc_html__('Progress Bar', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Progress Bar', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'lcake_progressbar_style',
             [
-                'label' => esc_html__('Style', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Style', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => '',
                 'options' => [
-                    '' => esc_html__('Default', 'lc-elementor-addons-kit'),
-                    'inner-content skill-big' => esc_html__('Inner Content', 'lc-elementor-addons-kit'),
-                    'skilltrack-style2' => esc_html__('Track Shadow', 'lc-elementor-addons-kit'),
-                    'tooltip-style3' => esc_html__('Tooltip (Classic)', 'lc-elementor-addons-kit'),
-                    'tooltip-style2' => esc_html__('Tooltip (Boxed)', 'lc-elementor-addons-kit'),
-                    'tooltip-style' => esc_html__('Tooltip (Rounded)', 'lc-elementor-addons-kit'),
-                    'pin-style' => esc_html__('Tooltip (Pin)', 'lc-elementor-addons-kit'),
-                    'style-switch' => esc_html__('Switch', 'lc-elementor-addons-kit'),
-                    'style-ribbon' => esc_html__('Ribbon', 'lc-elementor-addons-kit'),
-                    'style-stripe skill-medium tooltip-style' => esc_html__('Striped', 'lc-elementor-addons-kit'),
+                    '' => esc_html__('Default', 'lc-addons-kit-for-elementor'),
+                    'inner-content skill-big' => esc_html__('Inner Content', 'lc-addons-kit-for-elementor'),
+                    'skilltrack-style2' => esc_html__('Track Shadow', 'lc-addons-kit-for-elementor'),
+                    'tooltip-style3' => esc_html__('Tooltip (Classic)', 'lc-addons-kit-for-elementor'),
+                    'tooltip-style2' => esc_html__('Tooltip (Boxed)', 'lc-addons-kit-for-elementor'),
+                    'tooltip-style' => esc_html__('Tooltip (Rounded)', 'lc-addons-kit-for-elementor'),
+                    'pin-style' => esc_html__('Tooltip (Pin)', 'lc-addons-kit-for-elementor'),
+                    'style-switch' => esc_html__('Switch', 'lc-addons-kit-for-elementor'),
+                    'style-ribbon' => esc_html__('Ribbon', 'lc-addons-kit-for-elementor'),
+                    'style-stripe skill-medium tooltip-style' => esc_html__('Striped', 'lc-addons-kit-for-elementor'),
                 ],
             ]
         );
@@ -81,7 +81,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_control(
             'lcake_progressbar_icons',
             [
-                'label'         => esc_html__('Add Icon', 'lc-elementor-addons-kit'),
+                'label'         => esc_html__('Add Icon', 'lc-addons-kit-for-elementor'),
                 'label_block'   => true,
                 'type'          => \Elementor\Controls_Manager::ICONS,
                 'fa4compatibility' => 'lcake_progressbar_icon',
@@ -99,7 +99,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_control(
             'lcake_progressbar_title',
             [
-                'label'         => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label'         => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'label_block'   => true,
                 'type'          => \Elementor\Controls_Manager::TEXT,
                 'dynamic'         => [
@@ -112,7 +112,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_control(
             'lcake_progressbar_percentage',
             [
-                'label'     => esc_html__('Percentage', 'lc-elementor-addons-kit'),
+                'label'     => esc_html__('Percentage', 'lc-addons-kit-for-elementor'),
                 'type'      => \Elementor\Controls_Manager::NUMBER,
                 'dynamic'     => [
                     'active' => true,
@@ -127,12 +127,12 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_control(
             'lcake_progressbar_percentage_show',
             [
-                'label' => esc_html__('Hide Percentage Number? ', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Hide Percentage Number? ', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
                 'default' => 'no',
                 'return_value' => 'none',
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'selectors' => [
                     '{{WRAPPER}} .lcake-bar-group .lcake-percentage-wrapper' => 'display: {{VALUE}};',
                 ],
@@ -142,7 +142,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_data_duration',
             [
-                'label'     => esc_html__('Animation Duration', 'lc-elementor-addons-kit'),
+                'label'     => esc_html__('Animation Duration', 'lc-addons-kit-for-elementor'),
                 'type'      => \Elementor\Controls_Manager::SLIDER,
                 'dynamic'     => [
                     'active' => true,
@@ -170,7 +170,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->start_controls_section(
             'lcake_progressbar_bar_style',
             [
-                'label' => esc_html__('Bar', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Bar', 'lc-addons-kit-for-elementor'),
                 'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -179,7 +179,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
             \Elementor\Group_Control_Background::get_type(),
             [
                 'name'      => 'lcake_progressbar_background',
-                'label'     => esc_html__('Background', 'lc-elementor-addons-kit'),
+                'label'     => esc_html__('Background', 'lc-addons-kit-for-elementor'),
                 'types'     => ['classic', 'gradient'],
                 'selector'  => '{{WRAPPER}} .lcake-bar-group .lcake-bar',
                 'default'   => '#f5f5f5'
@@ -189,7 +189,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_bar_height',
             [
-                'label'         => esc_html__('Height', 'lc-elementor-addons-kit'),
+                'label'         => esc_html__('Height', 'lc-addons-kit-for-elementor'),
                 'type'          => \Elementor\Controls_Manager::SLIDER,
                 'size_units'    => ['px', 'em'],
                 'range'  => [
@@ -212,7 +212,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'lcake_progressbar_bar_shadow',
-                'label' => esc_html__('Shadow', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Shadow', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-bar-group .lcake-bar',
             ]
         );
@@ -220,7 +220,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_bar_radius',
             [
-                'label'      => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label'      => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors'  => [
@@ -232,7 +232,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_bar_padding',
             [
-                'label'      => esc_html__('Padding', 'lc-elementor-addons-kit'),
+                'label'      => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'condition' => [
@@ -247,7 +247,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_bar_margin',
             [
-                'label'      => esc_html__('Margin Bottom', 'lc-elementor-addons-kit'),
+                'label'      => esc_html__('Margin Bottom', 'lc-addons-kit-for-elementor'),
                 'type'       => \Elementor\Controls_Manager::SLIDER,
                 'size_units'    => ['px', 'em'],
                 'selectors' => [
@@ -264,7 +264,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->start_controls_section(
             'lcake_progressbar_track_style',
             [
-                'label'  => esc_html__('Track', 'lc-elementor-addons-kit'),
+                'label'  => esc_html__('Track', 'lc-addons-kit-for-elementor'),
                 'tab'    => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -273,7 +273,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
             \Elementor\Group_Control_Background::get_type(),
             [
                 'name'      => 'lcake_progressbar_track_color',
-                'label'     => esc_html__('Track Color', 'lc-elementor-addons-kit'),
+                'label'     => esc_html__('Track Color', 'lc-addons-kit-for-elementor'),
                 'types'     => ['classic', 'gradient'],
 
                 'condition' => [
@@ -286,7 +286,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_strip_color',
             [
-                'label'      => esc_html__('Stripe Color', 'lc-elementor-addons-kit'),
+                'label'      => esc_html__('Stripe Color', 'lc-addons-kit-for-elementor'),
                 'type'       => \Elementor\Controls_Manager::COLOR,
                 'condition' => [
                     'lcake_progressbar_style' => ['style-stripe skill-medium tooltip-style'],
@@ -301,7 +301,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_switch_color',
             [
-                'label'      => esc_html__('Switch Color', 'lc-elementor-addons-kit'),
+                'label'      => esc_html__('Switch Color', 'lc-addons-kit-for-elementor'),
                 'type'       => \Elementor\Controls_Manager::COLOR,
                 'condition' => [
                     'lcake_progressbar_style' => ['style-switch'],
@@ -317,7 +317,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'lcake_progressbar_track_shadow',
-                'label' => esc_html__('Shadow', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Shadow', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-bar-group .lcake-bar-track',
             ]
         );
@@ -325,7 +325,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_track_radius',
             [
-                'label'      => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label'      => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type'       => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors'  => [
@@ -341,7 +341,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->start_controls_section(
             'lcake_progressbar_title_style',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -349,7 +349,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_title_color',
             [
-                'label'      => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label'      => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type'       => \Elementor\Controls_Manager::COLOR,
                 'selectors'  => [
                     '{{WRAPPER}} .lcake-bar-group .lcake-skill-title' => 'color: {{VALUE}};'
@@ -377,7 +377,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
             'lcake_progressbar_margin_bottom',
             [
                 'type'          => \Elementor\Controls_Manager::SLIDER,
-                'label'         => esc_html__('Margin Bottom', 'lc-elementor-addons-kit'),
+                'label'         => esc_html__('Margin Bottom', 'lc-addons-kit-for-elementor'),
                 'size_units'    => ['px'],
                 'range'  => [
                     'px' => [
@@ -398,7 +398,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->start_controls_section(
             'lcake_progressbar_percent_style',
             [
-                'label' => esc_html__('Percent', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Percent', 'lc-addons-kit-for-elementor'),
                 'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -406,7 +406,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_percent_color',
             [
-                'label'      => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label'      => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type'       => \Elementor\Controls_Manager::COLOR,
                 'selectors'  => [
                     '{{WRAPPER}} .lcake-bar-group .lcake-percentage-wrapper' => 'color: {{VALUE}};'
@@ -425,7 +425,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_percent_tooltip_bg',
             [
-                'label'      => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label'      => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type'       => \Elementor\Controls_Manager::COLOR,
                 'condition' => [
                     'lcake_progressbar_style' => ['tooltip-style', 'style-stripe skill-medium tooltip-style'],
@@ -439,7 +439,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_percent_pin_bg',
             [
-                'label'      => esc_html__('Background Color', 'lc-elementor-addons-kit'),
+                'label'      => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type'       => \Elementor\Controls_Manager::COLOR,
                 'condition' => [
                     'lcake_progressbar_style' => ['style-ribbon', 'pin-style', 'tooltip-style2', 'tooltip-style3'],
@@ -466,7 +466,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->start_controls_section(
             'lcake_progressbar_icon_style',
             [
-                'label' => esc_html__('Icon', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Icon', 'lc-addons-kit-for-elementor'),
                 'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'lcake_progressbar_style!' => '',
@@ -478,7 +478,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'lcake_progressbar_icon_color',
             [
-                'label'      => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label'      => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type'       => \Elementor\Controls_Manager::COLOR,
                 'selectors'  => [
                     '{{WRAPPER}} .lcake-bar-group .bar-track > span i' => 'color: {{VALUE}};',
@@ -490,7 +490,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
             'lcake_progressbar_icon_typography',
             [
                 'type'          => \Elementor\Controls_Manager::SLIDER,
-                'label'         => esc_html__('Icon Size', 'lc-elementor-addons-kit'),
+                'label'         => esc_html__('Icon Size', 'lc-addons-kit-for-elementor'),
                 'size_units'    => ['px', 'em'],
                 'range'  => [
                     'px' => [

@@ -26,7 +26,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
      * Get widget title
      */
     public function get_title() {
-        return esc_html__('Post Grid', 'lc-elementor-addons-kit');
+        return esc_html__('Post Grid', 'lc-addons-kit-for-elementor');
     }
 
     /**
@@ -50,17 +50,17 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Latest Posts', 'lc-elementor-addons-kit'),
-                'placeholder' => esc_html__('Enter title', 'lc-elementor-addons-kit'),
+                'default' => esc_html__('Latest Posts', 'lc-addons-kit-for-elementor'),
+                'placeholder' => esc_html__('Enter title', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'posts_per_page',
             [
-                'label' => esc_html__('Posts Per Page', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Posts Per Page', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'default' => 6,
                 'min' => 1,
@@ -71,7 +71,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'columns',
             [
-                'label' => esc_html__('Columns', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Columns', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => '3',
                 'options' => [
@@ -87,15 +87,15 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'orderby',
             [
-                'label' => esc_html__('Order By', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Order By', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 'date',
                 'options' => [
-                    'date' => esc_html__('Date', 'lc-elementor-addons-kit'),
-                    'title' => esc_html__('Title', 'lc-elementor-addons-kit'),
-                    'menu_order' => esc_html__('Menu Order', 'lc-elementor-addons-kit'),
-                    'rand' => esc_html__('Random', 'lc-elementor-addons-kit'),
-                    'comment_count' => esc_html__('Comment Count', 'lc-elementor-addons-kit'),
+                    'date' => esc_html__('Date', 'lc-addons-kit-for-elementor'),
+                    'title' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
+                    'menu_order' => esc_html__('Menu Order', 'lc-addons-kit-for-elementor'),
+                    'rand' => esc_html__('Random', 'lc-addons-kit-for-elementor'),
+                    'comment_count' => esc_html__('Comment Count', 'lc-addons-kit-for-elementor'),
                 ],
             ]
         );
@@ -103,12 +103,12 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'order',
             [
-                'label' => esc_html__('Order', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Order', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 'DESC',
                 'options' => [
-                    'ASC' => esc_html__('Ascending', 'lc-elementor-addons-kit'),
-                    'DESC' => esc_html__('Descending', 'lc-elementor-addons-kit'),
+                    'ASC' => esc_html__('Ascending', 'lc-addons-kit-for-elementor'),
+                    'DESC' => esc_html__('Descending', 'lc-addons-kit-for-elementor'),
                 ],
             ]
         );
@@ -116,10 +116,10 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'show_thumbnail',
             [
-                'label' => esc_html__('Show Thumbnail', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Thumbnail', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'default' => 'yes',
             ]
         );
@@ -127,10 +127,10 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'show_title',
             [
-                'label' => esc_html__('Show Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'default' => 'yes',
             ]
         );
@@ -138,10 +138,10 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'show_excerpt',
             [
-                'label' => esc_html__('Show Excerpt', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Excerpt', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'default' => 'yes',
             ]
         );
@@ -149,7 +149,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'excerpt_length',
             [
-                'label' => esc_html__('Excerpt Length', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Excerpt Length', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'default' => 20,
                 'min' => 5,
@@ -163,10 +163,10 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'show_date',
             [
-                'label' => esc_html__('Show Date', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Date', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'default' => 'yes',
             ]
         );
@@ -174,10 +174,10 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'show_author',
             [
-                'label' => esc_html__('Show Author', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Author', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'default' => 'no',
             ]
         );
@@ -190,7 +190,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'title_color',
             [
-                'label' => esc_html__('Title Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-post-grid-title' => 'color: {{VALUE}};',
@@ -209,7 +209,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'post_title_color',
             [
-                'label' => esc_html__('Post Title Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Post Title Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-post-grid-item-title' => 'color: {{VALUE}};',
@@ -220,7 +220,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'post_title_hover_color',
             [
-                'label' => esc_html__('Post Title Hover Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Post Title Hover Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-post-grid-item-title:hover' => 'color: {{VALUE}};',
@@ -239,7 +239,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'excerpt_color',
             [
-                'label' => esc_html__('Excerpt Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Excerpt Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-post-grid-item-excerpt' => 'color: {{VALUE}};',
@@ -258,7 +258,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'meta_color',
             [
-                'label' => esc_html__('Meta Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Meta Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-post-grid-item-meta' => 'color: {{VALUE}};',
@@ -277,7 +277,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'grid_background_color',
             [
-                'label' => esc_html__('Grid Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Grid Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-post-grid' => 'background-color: {{VALUE}};',
@@ -288,7 +288,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'item_background_color',
             [
-                'label' => esc_html__('Item Background Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Item Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-post-grid-item' => 'background-color: {{VALUE}};',
@@ -307,7 +307,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_control(
             'item_border_radius',
             [
-                'label' => esc_html__('Item Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Item Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -319,7 +319,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'item_padding',
             [
-                'label' => esc_html__('Item Padding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Item Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -331,7 +331,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'grid_gap',
             [
-                'label' => esc_html__('Grid Gap', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Grid Gap', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em'],
                 'range' => [
@@ -416,7 +416,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
 
                                         <?php if ($show_author === 'yes') : ?>
                                             <span class="lc-post-grid-item-author">
-                                                <?php echo esc_html__('by', 'lc-elementor-addons-kit'); ?> 
+                                                <?php echo esc_html__('by', 'lc-addons-kit-for-elementor'); ?> 
                                                 <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))); ?>">
                                                     <?php the_author(); ?>
                                                 </a>
@@ -429,7 +429,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
                     <?php endwhile; ?>
                 </div>
             <?php else : ?>
-                <p class="lc-post-grid-empty"><?php echo esc_html__('No posts found.', 'lc-elementor-addons-kit'); ?></p>
+                <p class="lc-post-grid-empty"><?php echo esc_html__('No posts found.', 'lc-addons-kit-for-elementor'); ?></p>
             <?php endif; ?>
 
             <?php wp_reset_postdata(); ?>
@@ -461,26 +461,26 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
                         <div class="lc-post-grid-item-content">
                             <# if (settings.show_title === 'yes') { #>
                                 <h4 class="lc-post-grid-item-title">
-                                    <a href="#"><?php echo esc_html__('Sample Post Title', 'lc-elementor-addons-kit'); ?></a>
+                                    <a href="#"><?php echo esc_html__('Sample Post Title', 'lc-addons-kit-for-elementor'); ?></a>
                                 </h4>
                             <# } #>
 
                             <# if (settings.show_excerpt === 'yes') { #>
                                 <div class="lc-post-grid-item-excerpt">
-                                    <?php echo esc_html__('This is a sample excerpt for the post grid widget. It shows how the content will appear in the grid layout.', 'lc-elementor-addons-kit'); ?>
+                                    <?php echo esc_html__('This is a sample excerpt for the post grid widget. It shows how the content will appear in the grid layout.', 'lc-addons-kit-for-elementor'); ?>
                                 </div>
                             <# } #>
 
                             <# if (settings.show_date === 'yes' || settings.show_author === 'yes') { #>
                                 <div class="lc-post-grid-item-meta">
                                     <# if (settings.show_date === 'yes') { #>
-                                        <span class="lc-post-grid-item-date"><?php echo esc_html__('January 1, 2024', 'lc-elementor-addons-kit'); ?></span>
+                                        <span class="lc-post-grid-item-date"><?php echo esc_html__('January 1, 2024', 'lc-addons-kit-for-elementor'); ?></span>
                                     <# } #>
 
                                     <# if (settings.show_author === 'yes') { #>
                                         <span class="lc-post-grid-item-author">
-                                            <?php echo esc_html__('by', 'lc-elementor-addons-kit'); ?> 
-                                            <a href="#"><?php echo esc_html__('Admin', 'lc-elementor-addons-kit'); ?></a>
+                                            <?php echo esc_html__('by', 'lc-addons-kit-for-elementor'); ?> 
+                                            <a href="#"><?php echo esc_html__('Admin', 'lc-addons-kit-for-elementor'); ?></a>
                                         </span>
                                     <# } #>
                                 </div>

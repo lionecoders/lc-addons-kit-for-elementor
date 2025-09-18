@@ -18,7 +18,7 @@ class LCAKE_Kit_Widget_Loader
         $elements_manager->add_category(
             'lcake-page-kit',
             [
-                'title' => __('LC Page Kit', 'lc-elementor-addons-kit'),
+                'title' => __('LC Page Kit', 'lc-addons-kit-for-elementor'),
                 'icon'  => 'eicon-folder',
             ]
         );
@@ -27,7 +27,7 @@ class LCAKE_Kit_Widget_Loader
         $elements_manager->add_category(
             'lc-page-kit',
             [
-                'title' => __('LC Page Kit', 'lc-elementor-addons-kit'),
+                'title' => __('LC Page Kit', 'lc-addons-kit-for-elementor'),
                 'icon'  => 'eicon-folder',
             ]
         );
@@ -35,7 +35,7 @@ class LCAKE_Kit_Widget_Loader
         $elements_manager->add_category(
             'lc-header-footer-kit',
             [
-                'title' => __('LC Header Footer kit', 'lc-elementor-addons-kit'),
+                'title' => __('LC Header Footer kit', 'lc-addons-kit-for-elementor'),
                 'icon'  => 'eicon-header',
             ]
         );
@@ -90,6 +90,9 @@ class LCAKE_Kit_Widget_Loader
     public function register_widget_scripts()
     {
         $scripts = [
+            'lcake-kit-jquery-event-move' => ['file' => 'jquery.event.move.min.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-twentytwenty' => ['file' => 'jquery.twentytwenty.min.js', 'deps' => ['jquery', 'lcake-kit-jquery-event-move'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-image-comparison' => ['file' => 'image-comparison.js', 'deps' => ['jquery', 'elementor-frontend', 'lcake-kit-twentytwenty'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-tab-js' => ['file' => 'lcake-kit-tab.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-accordion' => ['file' => 'lcake-kit-accordion.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-faq-js' => ['file' => 'lcake-kit-faq.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
@@ -108,10 +111,12 @@ class LCAKE_Kit_Widget_Loader
     public function register_widget_styles()
     {
         $styles = [
+            'lcake-kit-twentytwenty' => ['file' => 'twentytwenty.min.css', 'enqueue' => false, 'path' => ''],
             'lcake-kit-accordion' => ['file' => 'lcake-kit-accordion.css', 'enqueue' => false, 'path' => ''],
             'lcake-kit-button' => ['file' => 'lcake-kit-button.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-price-table' => ['file' => 'lcake-kit-price-table.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-social-icons' => ['file' => 'lcake-kit-social-icons.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-image-comparison' => ['file' => 'image-comparison.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-faq-css' => ['file' => 'lcake-kit-faq.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-pie-chart-css' => ['file' => 'lceak-kit-pie-chart.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-testimonial-css' => ['file' => 'lcake-kit-testimonial.css', 'enqueue' => false, 'path' => ''],

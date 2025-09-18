@@ -16,7 +16,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('Video', 'lc-elementor-addons-kit');
+        return esc_html__('Video', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -35,7 +35,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -43,14 +43,14 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'video_type',
             [
-                'label' => esc_html__('Video Type', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Video Type', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 'youtube',
                 'options' => [
-                    'youtube' => esc_html__('YouTube', 'lc-elementor-addons-kit'),
-                    'vimeo' => esc_html__('Vimeo', 'lc-elementor-addons-kit'),
-                    'dailymotion' => esc_html__('Dailymotion', 'lc-elementor-addons-kit'),
-                    'hosted' => esc_html__('Self Hosted', 'lc-elementor-addons-kit'),
+                    'youtube' => esc_html__('YouTube', 'lc-addons-kit-for-elementor'),
+                    'vimeo' => esc_html__('Vimeo', 'lc-addons-kit-for-elementor'),
+                    'dailymotion' => esc_html__('Dailymotion', 'lc-addons-kit-for-elementor'),
+                    'hosted' => esc_html__('Self Hosted', 'lc-addons-kit-for-elementor'),
                 ],
             ]
         );
@@ -58,17 +58,17 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'video_url',
             [
-                'label' => esc_html__('Video URL', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Video URL', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Enter video URL', 'lc-elementor-addons-kit'),
-                'description' => esc_html__('Enter the video URL (YouTube, Vimeo, Dailymotion, or self-hosted video file)', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('Enter video URL', 'lc-addons-kit-for-elementor'),
+                'description' => esc_html__('Enter the video URL (YouTube, Vimeo, Dailymotion, or self-hosted video file)', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'video_file',
             [
-                'label' => esc_html__('Video File', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Video File', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'media_type' => 'video',
                 'condition' => [
@@ -80,7 +80,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'poster',
             [
-                'label' => esc_html__('Poster Image', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Poster Image', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -91,18 +91,18 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'video_title',
             [
-                'label' => esc_html__('Video Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Video Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Enter video title', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('Enter video title', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
             'video_description',
             [
-                'label' => esc_html__('Video Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Video Description', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'placeholder' => esc_html__('Enter video description', 'lc-elementor-addons-kit'),
+                'placeholder' => esc_html__('Enter video description', 'lc-addons-kit-for-elementor'),
                 'rows' => 3,
             ]
         );
@@ -110,10 +110,10 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'show_title',
             [
-                'label' => esc_html__('Show Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -122,10 +122,10 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'show_description',
             [
-                'label' => esc_html__('Show Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Description', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -136,7 +136,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'video_settings_section',
             [
-                'label' => esc_html__('Video Settings', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Video Settings', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -144,10 +144,10 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'autoplay',
             [
-                'label' => esc_html__('Autoplay', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Autoplay', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -156,10 +156,10 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'mute',
             [
-                'label' => esc_html__('Mute', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Mute', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -168,10 +168,10 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'loop',
             [
-                'label' => esc_html__('Loop', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Loop', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
             ]
@@ -180,10 +180,10 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'controls',
             [
-                'label' => esc_html__('Show Controls', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Controls', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
             ]
@@ -192,10 +192,10 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'show_info',
             [
-                'label' => esc_html__('Show Info', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Info', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => [
@@ -207,10 +207,10 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'modestbranding',
             [
-                'label' => esc_html__('Modest Branding', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Modest Branding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('No', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
                 'condition' => [
@@ -222,10 +222,10 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'rel',
             [
-                'label' => esc_html__('Show Related Videos', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Show Related Videos', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
                 'default' => '',
                 'condition' => [
@@ -241,7 +241,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_video',
             [
-                'label' => esc_html__('Video', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Video', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -249,7 +249,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'video_width',
             [
-                'label' => esc_html__('Width', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Width', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
                 'range' => [
@@ -277,7 +277,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'video_height',
             [
-                'label' => esc_html__('Height', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Height', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'vh'],
                 'range' => [
@@ -305,7 +305,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'video_border_radius',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
@@ -335,7 +335,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_title',
             [
-                'label' => esc_html__('Title', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_title' => 'yes',
@@ -346,7 +346,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'title_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-video-title' => 'color: {{VALUE}};',
@@ -365,7 +365,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'title_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -379,7 +379,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'section_style_description',
             [
-                'label' => esc_html__('Description', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'show_description' => 'yes',
@@ -390,7 +390,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_control(
             'description_color',
             [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lc-video-description' => 'color: {{VALUE}};',
@@ -409,7 +409,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'description_margin',
             [
-                'label' => esc_html__('Margin', 'lc-elementor-addons-kit'),
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
@@ -501,7 +501,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
         $video_url = $this->get_video_url($settings);
         
         if (empty($video_url)) {
-            echo '<div class="lc-video-error">' . esc_html__('Please provide a valid video URL or file.', 'lc-elementor-addons-kit') . '</div>';
+            echo '<div class="lc-video-error">' . esc_html__('Please provide a valid video URL or file.', 'lc-addons-kit-for-elementor') . '</div>';
             return;
         }
 
@@ -519,7 +519,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
             if (!empty($settings['poster']['url'])) echo ' poster="' . esc_url($settings['poster']['url']) . '"';
             echo '>';
             echo '<source src="' . esc_url($video_url) . '" type="video/mp4">';
-            echo esc_html__('Your browser does not support the video tag.', 'lc-elementor-addons-kit');
+            echo esc_html__('Your browser does not support the video tag.', 'lc-addons-kit-for-elementor');
             echo '</video>';
         } else {
             // Embedded video
@@ -527,7 +527,7 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
             if ($embed_url) {
                 echo '<iframe src="' . esc_url($embed_url) . '" frameborder="0" allowfullscreen></iframe>';
             } else {
-                echo '<div class="lc-video-error">' . esc_html__('Invalid video URL.', 'lc-elementor-addons-kit') . '</div>';
+                echo '<div class="lc-video-error">' . esc_html__('Invalid video URL.', 'lc-addons-kit-for-elementor') . '</div>';
             }
         }
 
@@ -548,13 +548,13 @@ class LC_Kit_Video extends \Elementor\Widget_Base {
             <# if (settings.video_type === 'hosted' && settings.video_file.url) { #>
                 <video<# if (settings.autoplay === 'yes') { #> autoplay<# } #><# if (settings.mute === 'yes') { #> muted<# } #><# if (settings.loop === 'yes') { #> loop<# } #><# if (settings.controls === 'yes') { #> controls<# } #><# if (settings.poster.url) { #> poster="{{ settings.poster.url }}"<# } #>>
                     <source src="{{ settings.video_file.url }}" type="video/mp4">
-                    <?php echo esc_html__('Your browser does not support the video tag.', 'lc-elementor-addons-kit'); ?>
+                    <?php echo esc_html__('Your browser does not support the video tag.', 'lc-addons-kit-for-elementor'); ?>
                 </video>
             <# } else if (settings.video_url) { #>
                 <iframe src="{{ settings.video_url }}" frameborder="0" allowfullscreen></iframe>
             <# } else { #>
                 <div class="lc-video-error">
-                    <?php echo esc_html__('Please provide a valid video URL or file.', 'lc-elementor-addons-kit'); ?>
+                    <?php echo esc_html__('Please provide a valid video URL or file.', 'lc-addons-kit-for-elementor'); ?>
                 </div>
             <# } #>
         </div>

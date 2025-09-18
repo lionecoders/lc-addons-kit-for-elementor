@@ -2,21 +2,21 @@
 /**
  * Image Comparison Widget
  * 
- * @package LC_Elementor_Addons_Kit
+ * @package LCAKE_Elementor_Addons_Kit
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class LC_Kit_Image_Comparison extends \Elementor\Widget_Base {
+class LCAKE_Kit_Image_Comparison extends \Elementor\Widget_Base {
 
     public function get_name() {
-        return 'lc-kit-image-comparison';
+        return 'lcake-kit-image-comparison';
     }
 
     public function get_title() {
-        return esc_html__('Image Comparison', 'lc-elementor-addons-kit');
+        return esc_html__('Image Comparison', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -24,7 +24,7 @@ class LC_Kit_Image_Comparison extends \Elementor\Widget_Base {
     }
 
     public function get_categories() {
-        return ['lc-page-kit'];
+        return ['lcake-page-kit'];
     }
 
     public function get_keywords() {
@@ -32,462 +32,660 @@ class LC_Kit_Image_Comparison extends \Elementor\Widget_Base {
     }
 
     public function get_script_depends() {
-        return ['lc-image-comparison'];
+        return ['lcake-kit-image-comparison','lcake-kit-twentytwenty','lcake-kit-jquery-event-move'];
     }
 
-    protected function add_content_controls() {
+    public function get_style_depends() {
+        return ['lcake-kit-image-comparison','lcake-kit-twentytwenty'];
+    }
+
+    protected function register_controls() {
+
         $this->start_controls_section(
-            'content_section',
+            'lcake_img_comparison_section_items',
             [
-                'label' => esc_html__('Content', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+                'label' => esc_html__( 'Items', 'lc-addons-kit-for-elementor' ),
             ]
         );
+
 
         $this->add_control(
-            'before_image',
+            'lcake_img_comparison_container_style',
             [
-                'label' => esc_html__('Before Image', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'after_image',
-            [
-                'label' => esc_html__('After Image', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Image_Size::get_type(),
-            [
-                'name' => 'before_image',
-                'default' => 'large',
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Image_Size::get_type(),
-            [
-                'name' => 'after_image',
-                'default' => 'large',
-            ]
-        );
-
-        $this->add_control(
-            'before_label',
-            [
-                'label' => esc_html__('Before Label', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Before', 'lc-elementor-addons-kit'),
-            ]
-        );
-
-        $this->add_control(
-            'after_label',
-            [
-                'label' => esc_html__('After Label', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('After', 'lc-elementor-addons-kit'),
-            ]
-        );
-
-        $this->add_control(
-            'default_offset',
-            [
-                'label' => esc_html__('Default Offset', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'size' => 50,
-                ],
-                'description' => esc_html__('Default position of the slider (percentage)', 'lc-elementor-addons-kit'),
-            ]
-        );
-
-        $this->add_control(
-            'orientation',
-            [
-                'label' => esc_html__('Orientation', 'lc-elementor-addons-kit'),
+                'label' => esc_html__( 'Container Style', 'lc-addons-kit-for-elementor' ),
                 'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'horizontal',
                 'options' => [
-                    'horizontal' => esc_html__('Horizontal', 'lc-elementor-addons-kit'),
-                    'vertical' => esc_html__('Vertical', 'lc-elementor-addons-kit'),
+                    'horizontal' => esc_html__( 'Horizontal', 'lc-addons-kit-for-elementor' ),
+                    'vertical' => esc_html__( 'Vertical', 'lc-addons-kit-for-elementor' ),
+                ],
+                'default' => 'vertical',
+            ]
+        );
+        $this->add_control(
+            'lcake_img_comparison_before_heading_section',
+            [
+                'label' => esc_html__( 'Before', 'lc-addons-kit-for-elementor' ),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'lcake_img_comparison_image_before',
+            [
+                'label' => esc_html__( 'Choose Image', 'lc-addons-kit-for-elementor' ),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'default' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+					'id'    => -1
                 ],
             ]
         );
-
         $this->add_control(
-            'show_labels',
+            'lcake_img_comparison_label_before',
             [
-                'label' => esc_html__('Show Labels', 'lc-elementor-addons-kit'),
+                'label' => esc_html__( 'Label', 'lc-addons-kit-for-elementor' ),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'default' => 'Before',
+            ]
+        );
+        $this->add_control(
+            'lcake_img_comparison_after_heading_section',
+            [
+                'label' => esc_html__( 'After', 'lc-addons-kit-for-elementor' ),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'lcake_img_comparison_image_after',
+            [
+                'label' => esc_html__( 'Choose Image', 'lc-addons-kit-for-elementor' ),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'default' => [
+                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+					'id'    => -1
+                ],
+            ]
+        );
+        $this->add_control(
+            'lcake_img_comparison_label_after',
+            [
+                'label' => esc_html__( 'Label', 'lc-addons-kit-for-elementor' ),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'default' => 'After',
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'lcake_img_comparison_section_settings',
+            [
+                'label' => esc_html__( 'Settings', 'lc-addons-kit-for-elementor' ),
+            ]
+        );
+        $this->add_control(
+			'lcake_img_comparison_offset',
+			[
+				'label' => esc_html__( 'Offset', 'lc-addons-kit-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ '%' ],
+				'range' => [
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => '%',
+					'size' => 50,
+				],
+                'description' => esc_html__('How much of the before image is visible when the page loads', 'lc-addons-kit-for-elementor'),
+			]
+		);
+        $this->add_control(
+            'lcake_img_comparison_overlay',
+            [
+                'label' => esc_html__( 'Remove overlay?', 'lc-addons-kit-for-elementor' ),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
-                'return_value' => 'yes',
-                'default' => 'yes',
+                'label_on' => esc_html__( 'Yes', 'lc-addons-kit-for-elementor' ),
+                'label_off' => esc_html__( 'No', 'lc-addons-kit-for-elementor' ),
+                'return_value' => true,
+                'default' => false,
+                'description' => esc_html__('Do not show the overlay with before and after', 'lc-addons-kit-for-elementor'),
             ]
         );
-
         $this->add_control(
-            'show_handle',
+            'lcake_img_comparison_move_slider_on_hover',
             [
-                'label' => esc_html__('Show Handle', 'lc-elementor-addons-kit'),
+                'label' => esc_html__( 'Move slider on hover?', 'lc-addons-kit-for-elementor' ),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-elementor-addons-kit'),
-                'label_off' => esc_html__('Hide', 'lc-elementor-addons-kit'),
-                'return_value' => 'yes',
-                'default' => 'yes',
+                'label_on' => esc_html__( 'Yes', 'lc-addons-kit-for-elementor' ),
+                'label_off' => esc_html__( 'No', 'lc-addons-kit-for-elementor' ),
+                'return_value' => true,
+                'default' => false,
+                'description' => esc_html__('Move slider on mouse hover?', 'lc-addons-kit-for-elementor'),
             ]
         );
-
-        $this->end_controls_section();
-    }
-
-    protected function add_style_controls() {
-        $this->start_controls_section(
-            'section_style_comparison',
-            [
-                'label' => esc_html__('Comparison', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
         $this->add_control(
-            'border_radius',
+            'lcake_img_comparison_click_to_move',
             [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
+                'label' => esc_html__( 'Click to move?', 'lc-addons-kit-for-elementor' ),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__( 'Yes', 'lc-addons-kit-for-elementor' ),
+                'label_off' => esc_html__( 'No', 'lc-addons-kit-for-elementor' ),
+                'return_value' => true,
+                'default' => false,
+                'description' => esc_html__('Allow a user to click (or tap) anywhere on the image to move the slider to that location.', 'lc-addons-kit-for-elementor'),
             ]
         );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'comparison_border',
-                'selector' => '{{WRAPPER}} .lc-image-comparison',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'comparison_padding',
-            [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
         $this->end_controls_section();
 
-        $this->start_controls_section(
-            'section_style_labels',
-            [
-                'label' => esc_html__('Labels', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-                'condition' => [
-                    'show_labels' => 'yes',
-                ],
-            ]
-        );
+        /**
+		 * General Style Section
+		 */
+		$this->start_controls_section(
+			'lcake_img_comparison_general_style',
+			array(
+				'label'      => esc_html__( 'General', 'lc-addons-kit-for-elementor' ),
+				'tab'        => \Elementor\Controls_Manager::TAB_STYLE,
+				'show_label' => false,
+			)
+		);
 
-        $this->add_control(
-            'label_background_color',
-            [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison-label' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'        => 'lcake_img_comparison_container_border',
+				'label'       => esc_html__( 'Border', 'lc-addons-kit-for-elementor' ),
+				'placeholder' => '1px',
+				'default'     => '1px',
+				'selector'  => '{{WRAPPER}} .lcake-image-comparison',
+			)
+		);
 
-        $this->add_control(
-            'label_color',
-            [
-                'label' => esc_html__('Text Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison-label' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->add_responsive_control(
+			'lcake_img_comparison_container_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-image-comparison' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
 
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'label_typography',
-                'selector' => '{{WRAPPER}} .lc-image-comparison-label',
-            ]
-        );
+		$this->add_responsive_control(
+			'lcake_img_comparison_container_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-image-comparison' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
 
-        $this->add_responsive_control(
-            'label_padding',
-            [
-                'label' => esc_html__('Padding', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison-label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+		$this->add_group_control(
+			\Elementor\Group_Control_Box_Shadow::get_type(),
+			array(
+				'name' => 'lcake_img_comparison_container_box_shadow',
+				'exclude' => array('box_shadow_position'), // PHPCS:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
+				'selector' => '{{WRAPPER}} .lcake-image-comparison',
+			)
+		);
 
-        $this->add_control(
-            'label_border_radius',
-            [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison-label' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+		$this->end_controls_section();
 
-        $this->end_controls_section();
+		/**
+		 * Label Style Section
+		 */
+		$this->start_controls_section(
+			'lcake_img_comparison_label_style',
+			array(
+				'label'      => esc_html__( 'Label', 'lc-addons-kit-for-elementor' ),
+				'tab'        => \Elementor\Controls_Manager::TAB_STYLE,
+				'show_label' => false,
+				'condition' => ['lcake_img_comparison_overlay!' => 'true'],
+			)
+		);
 
-        $this->start_controls_section(
-            'section_style_handle',
-            [
-                'label' => esc_html__('Handle', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-                'condition' => [
-                    'show_handle' => 'yes',
-                ],
-            ]
-        );
+		$this->start_controls_tabs( 'lcake_img_comparison_tabs_label_styles' );
 
-        $this->add_control(
-            'handle_background_color',
-            [
-                'label' => esc_html__('Background Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison-handle' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->start_controls_tab(
+			'lcake_img_comparison_tab_label_before',
+			array(
+				'label' => esc_html__( 'Before', 'lc-addons-kit-for-elementor' ),
+			)
+		);
 
-        $this->add_control(
-            'handle_border_color',
-            [
-                'label' => esc_html__('Border Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison-handle' => 'border-color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->add_responsive_control(
+			'lcake_img_comparison_before_label_color',
+			array(
+				'label' => esc_html__( 'Color', 'lc-addons-kit-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-before-label:before' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-after-label:before' => 'color: {{VALUE}}',
+				),
+			)
+		);
 
-        $this->add_control(
-            'handle_size',
-            [
-                'label' => esc_html__('Size', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 20,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'size' => 40,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison-handle' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'lcake_img_comparison_before_label_typography_group',
+				'selector' => '{{WRAPPER}} .lcake-image-comparison .twentytwenty-before-label:before',
+			)
+		);
 
-        $this->add_control(
-            'handle_border_width',
-            [
-                'label' => esc_html__('Border Width', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 10,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'size' => 2,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison-handle' => 'border-width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			array(
+				'name'     => 'lcake_img_comparison_before_label_background_group',
+				'selector' => '{{WRAPPER}} .lcake-image-comparison .twentytwenty-before-label:before',
+			)
+		);
 
-        $this->add_control(
-            'handle_border_radius',
-            [
-                'label' => esc_html__('Border Radius', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison-handle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
+		$this->add_responsive_control(
+			'lcake_img_comparison_before_label_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-before-label:before' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
 
-        $this->end_controls_section();
+		$this->add_responsive_control(
+			'lcake_img_comparison_before_label_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-before-label:before' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+		$this->end_controls_tab();
 
-        $this->start_controls_section(
-            'section_style_divider',
-            [
-                'label' => esc_html__('Divider Line', 'lc-elementor-addons-kit'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
+		$this->start_controls_tab(
+			'lcake_img_comparison_tab_label_after',
+			array(
+				'label' => esc_html__( 'After', 'lc-addons-kit-for-elementor' ),
+			)
+		);
 
-        $this->add_control(
-            'divider_color',
-            [
-                'label' => esc_html__('Color', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison-divider' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->add_responsive_control(
+			'lcake_img_comparison_after_label_color',
+			array(
+				'label' => esc_html__( 'Color', 'lc-addons-kit-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-after-label:before' => 'color: {{VALUE}}',
+				),
+			)
+		);
 
-        $this->add_control(
-            'divider_width',
-            [
-                'label' => esc_html__('Width', 'lc-elementor-addons-kit'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 1,
-                        'max' => 10,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'size' => 2,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-image-comparison-divider' => 'width: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'lcake_img_comparison_after_label_typography_group',
+				'selector' => '{{WRAPPER}} .lcake-image-comparison .twentytwenty-after-label:before',
+			)
+		);
 
-        $this->end_controls_section();
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			array(
+				'name'     => 'lcake_img_comparison_after_label_background_group',
+				'selector' => '{{WRAPPER}} .lcake-image-comparison .twentytwenty-after-label:before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_after_label_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-after-label:before' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_after_label_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-after-label:before' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
+		/**
+		 * Handle Style Section
+		 */
+		$this->start_controls_section(
+			'lcake_img_comparison_handle_style',
+			array(
+				'label'      => esc_html__( 'Handle', 'lc-addons-kit-for-elementor' ),
+				'tab'        => \Elementor\Controls_Manager::TAB_STYLE,
+				'show_label' => false,
+			)
+		);
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_handle_control_width',
+			array(
+				'label'      => esc_html__( 'Control Width', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 20,
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-handle'  => 'width: {{SIZE}}{{UNIT}}; margin-left: calc( {{SIZE}}{{UNIT}} / -2 );',
+				)
+			)
+		);
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_handle_control_height',
+			array(
+				'label'      => esc_html__( 'Height', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 20,
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-handle' => 'height: {{SIZE}}{{UNIT}};margin-top: calc( {{SIZE}}{{UNIT}} / -2 );',
+				)
+			)
+		);
+
+		$this->start_controls_tabs( 'lcake_img_comparison_tabs_handle_styles' );
+
+		$this->start_controls_tab(
+			'lcake_img_comparison_tab_handle_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			array(
+				'name'     => 'lcake_img_comparison_handle_control_background_group',
+				'selector' => '{{WRAPPER}} .lcake-image-comparison .twentytwenty-handle',
+			)
+		);
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_handle_arrow_color',
+			array(
+				'label' => esc_html__( 'Arrow Color', 'lc-addons-kit-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'default'     => '#000',
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-handle .twentytwenty-left-arrow' => 'border-right-color: {{VALUE}}',
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-handle .twentytwenty-right-arrow' => 'border-left-color: {{VALUE}}',
+				),
+				'condition' => [
+					'lcake_img_comparison_container_style' => 'horizontal'
+				]
+			)
+		);
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_handle_arrow_color_vertical',
+			array(
+				'label' => esc_html__( 'Arrow Color', 'lc-addons-kit-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+                'default'     => '#000',
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-handle .twentytwenty-up-arrow' => 'border-bottom-color: {{VALUE}}',
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-handle .twentytwenty-down-arrow' => 'border-top-color: {{VALUE}}',
+				),
+				'condition' => [
+					'lcake_img_comparison_container_style' => 'vertical'
+				]
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Box_Shadow::get_type(),
+			array(
+				'name' => 'lcake_img_comparison_handle_control_box_shadow_group',
+				'selector' => '{{WRAPPER}} .lcake-image-comparison .twentytwenty-handle',
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'lcake_img_comparison_tab_handle_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			array(
+				'name'     => 'lcake_img_comparison_handle_control_background_hover_group',
+				'selector' => '{{WRAPPER}} .lcake-image-comparison:hover .twentytwenty-handle',
+			)
+		);
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_handle_arrow_color_hover',
+			array(
+				'label' => esc_html__( 'Arrow Color', 'lc-addons-kit-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-image-comparison:hover .twentytwenty-handle .twentytwenty-left-arrow' => 'border-right-color: {{VALUE}}',
+					'{{WRAPPER}} .lcake-image-comparison:hover .twentytwenty-handle .twentytwenty-right-arrow' => 'border-left-color: {{VALUE}}',
+				),
+				'condition' => [
+					'lcake_img_comparison_container_style' => 'horizontal'
+				]
+			)
+		);
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_handle_arrow_color_hover_vertical',
+			array(
+				'label' => esc_html__( 'Arrow Color', 'lc-addons-kit-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-image-comparison:hover .twentytwenty-handle .twentytwenty-up-arrow' => 'border-bottom-color: {{VALUE}}',
+					'{{WRAPPER}} .lcake-image-comparison:hover .twentytwenty-handle .twentytwenty-down-arrow' => 'border-top-color: {{VALUE}}',
+				),
+				'condition' => [
+					'lcake_img_comparison_container_style' => 'vertical'
+				]
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Box_Shadow::get_type(),
+			array(
+				'name' => 'lcake_img_comparison_handle_control_box_shadow_hover_group',
+				'selector' => '{{WRAPPER}} .lcake-image-comparison:hover .twentytwenty-handle',
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_handle_divider_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-handle' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_handle_divider_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-handle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'lcake_img_comparison_heading_handle_divider_style',
+			array(
+				'label'     => esc_html__( 'Handle Divider', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_handle_divider_width',
+			array(
+				'label'      => esc_html__( 'Divider Thickness', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 1,
+						'max' => 10,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .twentytwenty-horizontal .twentytwenty-handle:before, {{WRAPPER}} .twentytwenty-horizontal .twentytwenty-handle:after' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .twentytwenty-vertical .twentytwenty-handle:before, {{WRAPPER}} .twentytwenty-vertical .twentytwenty-handle:after' => 'height: {{SIZE}}{{UNIT}};',
+				)
+			)
+		);
+
+		$this->add_responsive_control(
+			'lcake_img_comparison_handle_divider_color',
+			array(
+				'label'   => esc_html__( 'Divider Color', 'lc-addons-kit-for-elementor' ),
+				'type'    => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-image-comparison .twentytwenty-handle:before, {{WRAPPER}} .lcake-image-comparison .twentytwenty-handle:after' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
     }
 
     protected function render() {
+        echo '<div class="lcake-main-wrapper">';
+            $this->render_raw();
+        echo '</div>';
+    }
+    
+    protected function render_raw() {
         $settings = $this->get_settings_for_display();
-
-        if (empty($settings['before_image']['url']) || empty($settings['after_image']['url'])) {
-            return;
+    
+        // Wrapper class based on orientation
+        if ($settings['lcake_img_comparison_container_style'] == 'vertical') {
+            $this->add_render_attribute('image_comparison_wrapper', 'class', 'lcake-image-comparison image-comparison-container-vertical');
+        } else {
+            $this->add_render_attribute('image_comparison_wrapper', 'class', 'lcake-image-comparison image-comparison-container');
         }
+    
+        // Sanitize labels
+        $label_after  = LCAKE_Kit_Utils::remove_special_chars($settings['lcake_img_comparison_label_after']);
+        $label_before = LCAKE_Kit_Utils::remove_special_chars($settings['lcake_img_comparison_label_before']);
+    
+        // Add data attributes for JS
+        $offset_pct = isset($settings['lcake_img_comparison_offset']['size']) ? floatval($settings['lcake_img_comparison_offset']['size']) / 100 : 0.5;
+        $overlay    = !empty($settings['lcake_img_comparison_overlay']) ? 'true' : 'false';
+        $hoverMove  = !empty($settings['lcake_img_comparison_move_slider_on_hover']) ? 'true' : 'false';
+        $clickMove  = !empty($settings['lcake_img_comparison_click_to_move']) ? 'true' : 'false';
 
-        $this->add_render_attribute('wrapper', 'class', 'lc-image-comparison');
-        $this->add_render_attribute('wrapper', 'data-orientation', $settings['orientation']);
-        $this->add_render_attribute('wrapper', 'data-offset', $settings['default_offset']['size']);
-        $this->add_render_attribute('wrapper', 'data-show-labels', $settings['show_labels']);
-        $this->add_render_attribute('wrapper', 'data-show-handle', $settings['show_handle']);
-
-        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
-        
-        echo '<div class="lc-image-comparison-container">';
-        
-        // Before image
-        echo '<div class="lc-image-comparison-before">';
-        echo '<img src="' . esc_url($settings['before_image']['url']) . '" alt="' . esc_attr($settings['before_label']) . '">';
-        if ($settings['show_labels'] === 'yes' && !empty($settings['before_label'])) {
-            echo '<div class="lc-image-comparison-label lc-image-comparison-label-before">' . esc_html($settings['before_label']) . '</div>';
+        $this->add_render_attribute(
+            'image_comparison_wrapper',
+            [
+                'data-offset'               => esc_attr($offset_pct),
+                'data-overlay'              => esc_attr($overlay),
+                'data-label_after'          => esc_attr($label_after),
+                'data-label_before'         => esc_attr($label_before),
+                'data-move_slider_on_hover' => esc_attr($hoverMove),
+                'data-click_to_move'        => esc_attr($clickMove),
+            ]
+        );
+    
+        // Collect both images
+        $image_html = '';
+        if (!empty($settings['lcake_img_comparison_image_before']['url'])) {
+            $image_html .= \Elementor\Group_Control_Image_Size::get_attachment_image_html(
+                $settings,
+                'thumbnail',
+                'lcake_img_comparison_image_before'
+            );
         }
-        echo '</div>';
-        
-        // After image
-        echo '<div class="lc-image-comparison-after">';
-        echo '<img src="' . esc_url($settings['after_image']['url']) . '" alt="' . esc_attr($settings['after_label']) . '">';
-        if ($settings['show_labels'] === 'yes' && !empty($settings['after_label'])) {
-            echo '<div class="lc-image-comparison-label lc-image-comparison-label-after">' . esc_html($settings['after_label']) . '</div>';
+    
+        if (!empty($settings['lcake_img_comparison_image_after']['url'])) {
+            $image_html .= \Elementor\Group_Control_Image_Size::get_attachment_image_html(
+                $settings,
+                'thumbnail',
+                'lcake_img_comparison_image_after'
+            );
         }
-        echo '</div>';
-        
-        // Divider line
-        echo '<div class="lc-image-comparison-divider"></div>';
-        
-        // Handle
-        if ($settings['show_handle'] === 'yes') {
-            echo '<div class="lc-image-comparison-handle">';
-            echo '<div class="lc-image-comparison-handle-arrow lc-image-comparison-handle-arrow-left">&lt;</div>';
-            echo '<div class="lc-image-comparison-handle-arrow lc-image-comparison-handle-arrow-right">&gt;</div>';
-            echo '</div>';
-        }
-        
-        echo '</div>';
-        
-        echo '</div>';
-    }
-
-    protected function content_template() {
         ?>
-        <# if (settings.before_image.url && settings.after_image.url) { #>
-            <div class="lc-image-comparison" 
-                 data-orientation="{{ settings.orientation }}"
-                 data-offset="{{ settings.default_offset.size }}"
-                 data-show-labels="{{ settings.show_labels }}"
-                 data-show-handle="{{ settings.show_handle }}">
-                
-                <div class="lc-image-comparison-container">
-                    
-                    <div class="lc-image-comparison-before">
-                        <img src="{{ settings.before_image.url }}" alt="{{ settings.before_label }}">
-                        <# if (settings.show_labels === 'yes' && settings.before_label) { #>
-                            <div class="lc-image-comparison-label lc-image-comparison-label-before">{{{ settings.before_label }}}</div>
-                        <# } #>
-                    </div>
-                    
-                    <div class="lc-image-comparison-after">
-                        <img src="{{ settings.after_image.url }}" alt="{{ settings.after_label }}">
-                        <# if (settings.show_labels === 'yes' && settings.after_label) { #>
-                            <div class="lc-image-comparison-label lc-image-comparison-label-after">{{{ settings.after_label }}}</div>
-                        <# } #>
-                    </div>
-                    
-                    <div class="lc-image-comparison-divider"></div>
-                    
-                    <# if (settings.show_handle === 'yes') { #>
-                        <div class="lc-image-comparison-handle">
-                            <div class="lc-image-comparison-handle-arrow lc-image-comparison-handle-arrow-left">&lt;</div>
-                            <div class="lc-image-comparison-handle-arrow lc-image-comparison-handle-arrow-right">&gt;</div>
-                        </div>
-                    <# } #>
-                    
-                </div>
-                
-            </div>
-        <# } #>
+    
+        <div <?php $this->print_render_attribute_string('image_comparison_wrapper'); ?>>
+            <?php echo wp_kses($image_html, \LCAKE_Kit_Utils::get_kses_array()); ?>
+        </div>
+    
         <?php
-    }
+    }    
+
 } 

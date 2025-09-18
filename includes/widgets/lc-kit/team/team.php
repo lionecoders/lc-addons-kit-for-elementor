@@ -20,7 +20,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
     public function get_title()
     {
 
-        return esc_html__('Team', 'lc-elementor-addons-kit');
+        return esc_html__('Team', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon()

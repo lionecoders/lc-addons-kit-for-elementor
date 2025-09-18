@@ -62,7 +62,7 @@ A powerful Elementor addon plugin by Lionescoders that offers a wide range of wi
 ## Installation
 
 1. **Download** the plugin files
-2. **Upload** to `/wp-content/plugins/lc-elementor-addons-kit/`
+2. **Upload** to `/wp-content/plugins/lc-addons-kit-for-elementor/`
 3. **Activate** the plugin through the 'Plugins' menu in WordPress
 4. **Configure** widget settings via 'LC Kit' menu in admin dashboard
 
@@ -124,8 +124,8 @@ A powerful Elementor addon plugin by Lionescoders that offers a wide range of wi
 
 ### Plugin Structure
 ```
-lc-elementor-addons-kit/
-├── lc-elementor-addons-kit.php          # Main plugin file
+lc-addons-kit-for-elementor/
+├── lc-addons-kit-for-elementor.php          # Main plugin file
 ├── admin/
 │   └── settings-page.php                # Admin settings page
 ├── includes/
@@ -163,7 +163,7 @@ lc-elementor-addons-kit/
        }
        
        public function get_title() {
-           return esc_html__('Your Widget', 'lc-elementor-addons-kit');
+           return esc_html__('Your Widget', 'lc-addons-kit-for-elementor');
        }
        
        // Add your widget implementation
