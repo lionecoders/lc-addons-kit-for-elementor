@@ -1,5 +1,5 @@
-=== LC Elementor Addons Kit ===
-Contributors: lionescoders
+=== LC Addons Kit for Elementor ===
+Contributors: mandeepsingh
 Tags: elementor, widgets, addons, page-builder, lc-kit
 Requires at least: 5.0
 Tested up to: 6.8
@@ -12,7 +12,7 @@ A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC K
 
 == Description ==
 
-**LC Elementor Addons Kit** is a comprehensive Elementor addon plugin developed by Lionescoders that provides a wide range of professional widgets to enhance your Elementor page building experience.
+**LC Elementor Addons Kit** is a comprehensive Elementor addon plugin developed by Lionecoders that provides a wide range of professional widgets to enhance your Elementor page building experience.
 
 = 🎯 **Core Features** =
 
@@ -187,7 +187,7 @@ lc-addons-kit-for-elementor/
 
 == Credits ==
 
-Developed by [Lionescoders](https://lionescoders.com)
+Developed by [Lionecoders](https://lionecoders.com)
 
 == License ==
 

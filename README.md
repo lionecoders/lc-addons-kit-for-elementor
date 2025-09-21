@@ -2,7 +2,7 @@
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-A powerful Elementor addon plugin by Lionescoders that offers a wide range of widgets categorized into 'LC Kit' and 'LC Header & Footer kit'. Includes a dashboard settings panel to enable/disable individual widgets from appearing in Elementor editor.
+A powerful Elementor addon plugin by Lionecoders that offers a wide range of widgets categorized into 'LC Kit' and 'LC Header & Footer kit'. Includes a dashboard settings panel to enable/disable individual widgets from appearing in Elementor editor.
 
 ## Features
 
@@ -260,7 +260,7 @@ For the full license text, see the [LICENSE](LICENSE) file in this repository.
 
 ## Credits
 
-Developed by [Lionescoders](https://lionescoders.com)
+Developed by [Lionecoders](https://lionecoders.com)
 
 ## Contributing
 

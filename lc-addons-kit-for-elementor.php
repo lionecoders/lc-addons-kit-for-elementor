@@ -5,7 +5,7 @@
  * Plugin URI: https://lionecoders.com
  * Description: A powerful Elementor addon plugin that offers a wide range of widgets categorized into 'LC Kit' and 'LC Header & Footer kit'.
  * Version: 1.0.0
- * Author: Lionescoders
+ * Author: Lionecoders
  * Author URI: https://lionecoders.com/contact/
  * Text Domain: lc-addons-kit-for-elementor
  * Requires at least: 5.0
