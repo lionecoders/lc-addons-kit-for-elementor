@@ -97,12 +97,15 @@ class LCAKE_Kit_Widget_Loader
             'lcake-kit-accordion' => ['file' => 'lcake-kit-accordion.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-faq-js' => ['file' => 'lcake-kit-faq.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
             'lcake-kit-pie-chart-js' => ['file' => 'lcake-kit-pie-chart.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
-            'lcake-kit-testimonial-js' => ['file' => 'lcake-kit-testimonial.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-testimonial-js' => ['file' => 'lcake-kit-testimonial.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-progress-bar-js' => ['file' => 'lcake-kit-progress-bar.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lcake-team-js' => ['file' => 'lcake-team.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
             'lcake-chart-js' => ['file' => 'lcake-chart.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
-            'lcake-swiper-js' => ['file' => 'swiper-bundle.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
-            'lcake-btsp-js' => ['file' => 'bootstrap.bundle.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => '']
+            'lcake-btsp-js' => ['file' => 'bootstrap.bundle.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
+            'lcake-dialog-js' => ['file' => 'dialog.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
+            'lcake-kit-image-accordion' => ['file' => 'lcake-kit-image-accordion.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lcake-swiper-js' => ['file' => 'swiper-bundle.min.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false, 'path' => '']
         ];
 
         LCAKE_Kit_Utils::lcake_file_enqueue($scripts, 'script');
@@ -125,7 +128,9 @@ class LCAKE_Kit_Widget_Loader
             'lcake-kit-progress-bar-css' => ['file' => 'lcake-kit-progress-bar.css', 'enqueue' => false, 'path' => ''],
             'lcake-btsp-css' => ['file' => 'bootstrap.min.css', 'enqueue' => true, 'path' => ''],
             'lcake-swiper-css' => ['file' => 'swiper-bundle.min.css', 'enqueue' => true, 'path' => ''],
-            'lcakeicons' => ['file' => 'lcakeicons.css', 'enqueue' => true, 'path' => 'assets/icons']
+            'lcakeicons' => ['file' => 'lcakeicons.css', 'enqueue' => true, 'path' => 'assets/icons'],
+            'lcake-kit-image-accordion' => ['file' => 'lcake-kit-image-accordion.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.css', 'enqueue' => false, 'path' => '']
         ];
 
         LCAKE_Kit_Utils::lcake_file_enqueue($styles, 'style');

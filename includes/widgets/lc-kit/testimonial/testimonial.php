@@ -47,12 +47,12 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 
 	public function get_script_depends()
 	{
-		return ['lcake-kit-testimonial-js', 'lcake-kit-swiper-js','lcake-btsp-js'];
+		return ['lcake-kit-testimonial-js', 'lcake-swiper-js','lcake-btsp-js'];
 	}
 
 	public function get_style_depends()
 	{
-		return ['lcake-kit-testimonial-css', 'lcake-kit-swiper-css', 'lcake-btsp-css'];
+		return ['lcake-kit-testimonial-css', 'lcake-swiper-css', 'lcake-btsp-css'];
 	}
 
 	protected function register_controls()

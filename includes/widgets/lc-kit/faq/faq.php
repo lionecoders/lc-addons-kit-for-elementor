@@ -9,10 +9,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class LC_Kit_FAQ extends \Elementor\Widget_Base {
+class LCAKE_Kit_FAQ extends \Elementor\Widget_Base {
 
     public function get_name() {
-        return 'lc-kit-faq';
+        return 'lcake-kit-faq';
     }
 
     public function get_title() {
@@ -24,7 +24,7 @@ class LC_Kit_FAQ extends \Elementor\Widget_Base {
     }
 
     public function get_categories() {
-        return ['lc-page-kit'];
+        return ['lcake-page-kit'];
     }
 
     public function get_keywords() {

@@ -1,0 +1,180 @@
+.lcake-wid-con .lcake-image-accordion-wraper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    min-height: 366px;
+    position: relative
+}
+
+.lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    min-height: 460px;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion::before {
+    position: absolute;
+    content: "";
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    background: -webkit-gradient(linear,left bottom,left top,from(black),color-stop(60%,rgba(255,255,255,0)));
+    background: linear-gradient(0deg,#000 0,rgba(255,255,255,0) 60%);
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    opacity: 0
+}
+
+.lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion .lcake-accordion-content {
+    width: 100%
+}
+
+.lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion .lcake-accordion-title {
+    color: #fff;
+    margin-bottom: 0
+}
+
+.lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion .lcake-accordion-title-wraper {
+    position: relative;
+    -webkit-transition: all .6s ease;
+    transition: all .6s ease;
+    top: 100px;
+    opacity: 0;
+    visibility: hidden;
+    display: block
+}
+
+.lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion .lcake-btn-wraper {
+    position: relative;
+    -webkit-transition: all .7s ease;
+    transition: all .7s ease;
+    top: 100px;
+    opacity: 0;
+    visibility: hidden
+}
+
+.lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion .lcake-icon-wraper {
+    margin-bottom: 20px;
+    position: relative;
+    -webkit-transition: all .6s ease;
+    transition: all .6s ease;
+    top: -100px;
+    opacity: 0;
+    visibility: hidden
+}
+
+.lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion .lcake-icon-wraper .icon-outline {
+    color: #fff
+}
+
+.lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion .lcake-icon-wraper svg {
+    max-width: 16px;
+    height: auto;
+    vertical-align: middle
+}
+
+.lcake-image-accordion-click .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion--input:checked+label,.lcake-image-accordion-hover .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion--input:checked+label,.lcake-image-accordion-hover .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion:hover {
+    -webkit-box-flex: 3;
+    -ms-flex: 3;
+    flex: 3
+}
+
+.lcake-image-accordion-click .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion--input:checked+label::before,.lcake-image-accordion-hover .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion--input:checked+label::before,.lcake-image-accordion-hover .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion:hover::before {
+    top: 0;
+    opacity: 1
+}
+
+.lcake-image-accordion-click .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion--input:checked+label .lcake-accordion-title-wraper,.lcake-image-accordion-click .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion--input:checked+label .lcake-btn-wraper,.lcake-image-accordion-click .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion--input:checked+label .lcake-icon-wraper,.lcake-image-accordion-hover .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion--input:checked+label .lcake-accordion-title-wraper,.lcake-image-accordion-hover .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion--input:checked+label .lcake-btn-wraper,.lcake-image-accordion-hover .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion--input:checked+label .lcake-icon-wraper,.lcake-image-accordion-hover .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion:hover .lcake-accordion-title-wraper,.lcake-image-accordion-hover .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion:hover .lcake-btn-wraper,.lcake-image-accordion-hover .lcake-wid-con .lcake-image-accordion-wraper .lcake-single-image-accordion:hover .lcake-icon-wraper {
+    top: 0;
+    opacity: 1;
+    visibility: visible
+}
+
+.lcake-wid-con .lcake-image-accordion-actions {
+    display: block
+}
+
+.lcake-wid-con .lcake-image-accordion-actions>a {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-transition: all .3s;
+    transition: all .3s
+}
+
+.lcake-wid-con .lcake-image-accordion-actions>a>svg {
+    width: 100%
+}
+
+.lcake-wid-con .lcake-accordion-title {
+    color: #000;
+    font-size: 22px;
+    margin-bottom: 0;
+    display: block;
+    font-weight: 700;
+    line-height: 1
+}
+
+.lcake-wid-con .lcake-accordion-title svg {
+    max-width: 28px;
+    height: auto;
+    vertical-align: middle
+}
+
+.lcake-wid-con .lcake-accordion-title.icon-title {
+    font-size: 28px;
+    display: inline-block
+}
+
+.lcake-wid-con .lcake-accordion-title.icon-title>i {
+    position: relative;
+    top: 3px;
+    display: inline-block
+}
+
+.lcake-wid-con .lcake-accordion-title.icon-title .icon-right {
+    padding-left: 15px
+}
+
+.lcake-wid-con .lcake-accordion-title.icon-title .icon-left {
+    padding-right: 15px
+}
+
+.lcake-wid-con .icon-outline {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    color: #000;
+    text-align: center;
+    border: 1px solid currentColor
+}
+
+.lcake-wid-con .icon-outline.circle {
+    border-radius: 50%
+}
+
+.lcake-image-accordion--btn {
+    font-weight: 400
+}

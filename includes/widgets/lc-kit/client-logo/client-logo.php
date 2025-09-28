@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Client Logo Widget
  * 
@@ -9,667 +10,1655 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class LC_Kit_Client_Logo extends \Elementor\Widget_Base {
+// Align Elementor references like FAQ widget so settings apply correctly
 
-    public function get_name() {
-        return 'lc-kit-client-logo';
+
+class LCAKE_Kit_Client_Logo extends Elementor\Widget_Base
+{
+
+    public function get_name()
+    {
+        return 'lcake-kit-client-logo';
     }
 
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('Client Logo', 'lc-addons-kit-for-elementor');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-carousel';
     }
 
-    public function get_categories() {
-        return ['lc-page-kit'];
+    public function get_categories()
+    {
+        return ['lcake-page-kit'];
     }
 
-    public function get_keywords() {
+    public function get_keywords()
+    {
         return ['client', 'logo', 'brand', 'carousel', 'slider', 'partners'];
     }
 
-    public function get_script_depends() {
-        return ['lc-client-logo'];
+    public function get_script_depends()
+    {
+        return ['lcake-kit-client-logo', 'lcake-swiper-js'];
     }
 
-    protected function add_content_controls() {
+    public function get_style_depends()
+    {
+        return ['lcake-swiper-css', 'lcake-kit-client-logo'];
+    }
+
+    protected function register_controls()
+    {
+
         $this->start_controls_section(
-            'content_section',
+            'lcake_client_logo_section_client',
             [
-                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+                'label' => esc_html__('Logo', 'lc-addons-kit-for-elementor'),
             ]
         );
 
-        $repeater = new \Elementor\Repeater();
+        $this->add_control(
+            'lcake_client_logo_slide_style',
+            [
+                'label' => esc_html__('Slide Style ', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SELECT,
+                'default' => 'simple_logo_image',
+                'options' => [
+                    'simple_logo_image'  => esc_html__('Simple', 'lc-addons-kit-for-elementor'),
+                    'banner_logo_image' => esc_html__('Banner', 'lc-addons-kit-for-elementor'),
+                ],
+            ]
+        );
+
+        $repeater = new Elementor\Repeater();
 
         $repeater->add_control(
-            'logo',
+            'lcake_client_logo_list_title',
             [
-                'label' => esc_html__('Logo', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
+                'label' => esc_html__('Client Name', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'default' => esc_html__('List Title', 'lc-addons-kit-for-elementor'),
+                'label_block' => true,
+            ]
+        );
+
+        $repeater->add_control(
+            'lcake_client_logo_image_normal',
+            [
+                'label' => esc_html__('Client Logo', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => [
-                    'url' => \Elementor\Utils::get_placeholder_image_src(),
+                    'url' => Elementor\Utils::get_placeholder_image_src(),
+                    'id'    => -1
                 ],
             ]
         );
 
         $repeater->add_control(
-            'title',
+            'lcake_client_logo_enable_hover_logo',
             [
-                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Client Name', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Enable Hover Logo', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
+                'return_value' => 'yes',
+                'default' => '',
             ]
         );
 
         $repeater->add_control(
-            'link',
+            'lcake_client_logo_image_hover',
             [
-                'label' => esc_html__('Link', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Hover Logo', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::MEDIA,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'default' => [
+                    'url' => Elementor\Utils::get_placeholder_image_src(),
+                    'id'    => -1
+                ],
+                'condition' => [
+                    'lcake_client_logo_enable_hover_logo' => 'yes'
+                ]
             ]
         );
 
-        $this->add_control(
-            'logos',
+        $repeater->add_control(
+            'lcake_client_logo_enable_link',
             [
-                'label' => esc_html__('Logos', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::REPEATER,
+                'label' => esc_html__('Enable Link', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
+                'return_value' => 'yes',
+            ]
+        );
+
+        $repeater->add_control(
+            'lcake_client_logo_website_link',
+            [
+                'label' => esc_html__('Link', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::URL,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'placeholder' => esc_html__('https://wpmet.com', 'lc-addons-kit-for-elementor'),
+                'show_external' => true,
+                'condition' => [
+                    'lcake_client_logo_enable_link' => 'yes'
+                ],
+            ]
+        );
+
+
+        $this->add_control(
+            'lcake_client_logo_repiter',
+            [
+                'label' => esc_html__('Repeater List', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'title' => esc_html__('Client #1', 'lc-addons-kit-for-elementor'),
+                        'lcake_client_logo_list_title' => esc_html__('Title #1', 'lc-addons-kit-for-elementor'),
                     ],
                     [
-                        'title' => esc_html__('Client #2', 'lc-addons-kit-for-elementor'),
+                        'lcake_client_logo_list_title' => esc_html__('Title #2', 'lc-addons-kit-for-elementor'),
                     ],
                     [
-                        'title' => esc_html__('Client #3', 'lc-addons-kit-for-elementor'),
+                        'lcake_client_logo_list_title' => esc_html__('Title #3', 'lc-addons-kit-for-elementor'),
                     ],
                     [
-                        'title' => esc_html__('Client #4', 'lc-addons-kit-for-elementor'),
+                        'lcake_client_logo_list_title' => esc_html__('Title #4', 'lc-addons-kit-for-elementor'),
+                    ],
+                    [
+                        'lcake_client_logo_list_title' => esc_html__('Title #5', 'lc-addons-kit-for-elementor'),
                     ],
                 ],
-                'title_field' => '{{{ title }}}',
-            ]
-        );
-
-        $this->add_control(
-            'layout',
-            [
-                'label' => esc_html__('Layout', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'grid',
-                'options' => [
-                    'grid' => esc_html__('Grid', 'lc-addons-kit-for-elementor'),
-                    'carousel' => esc_html__('Carousel', 'lc-addons-kit-for-elementor'),
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'columns',
-            [
-                'label' => esc_html__('Columns', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => '4',
-                'tablet_default' => '2',
-                'mobile_default' => '1',
-                'options' => [
-                    '1' => '1',
-                    '2' => '2',
-                    '3' => '3',
-                    '4' => '4',
-                    '5' => '5',
-                    '6' => '6',
-                ],
-                'condition' => [
-                    'layout' => 'grid',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'show_title',
-            [
-                'label' => esc_html__('Show Title', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
-                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
-                'return_value' => 'yes',
-                'default' => '',
+                'title_field' => '{{{ lcake_client_logo_list_title }}}',
             ]
         );
 
         $this->end_controls_section();
 
-        // Carousel Settings
+        // setting section
+
         $this->start_controls_section(
-            'carousel_section',
+            'lcake_client_logo_slider_settings',
             [
-                'label' => esc_html__('Carousel Settings', 'lc-addons-kit-for-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-                'condition' => [
-                    'layout' => 'carousel',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'autoplay',
-            [
-                'label' => esc_html__('Autoplay', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
-                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'autoplay_speed',
-            [
-                'label' => esc_html__('Autoplay Speed', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'min' => 1000,
-                'max' => 10000,
-                'step' => 500,
-                'default' => 3000,
-                'condition' => [
-                    'autoplay' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'pause_on_hover',
-            [
-                'label' => esc_html__('Pause on Hover', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
-                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-                'condition' => [
-                    'autoplay' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'show_arrows',
-            [
-                'label' => esc_html__('Show Arrows', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
-                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'show_dots',
-            [
-                'label' => esc_html__('Show Dots', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
-                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
-                'return_value' => 'yes',
-                'default' => '',
-            ]
-        );
-
-        $this->add_control(
-            'slides_to_show',
-            [
-                'label' => esc_html__('Slides to Show', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 10,
-                'default' => 4,
-            ]
-        );
-
-        $this->add_control(
-            'slides_to_scroll',
-            [
-                'label' => esc_html__('Slides to Scroll', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 10,
-                'default' => 1,
-            ]
-        );
-
-        $this->end_controls_section();
-    }
-
-    protected function add_style_controls() {
-        $this->start_controls_section(
-            'section_style_logo',
-            [
-                'label' => esc_html__('Logo', 'lc-addons-kit-for-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'label' => esc_html__('Settings', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_responsive_control(
-            'logo_width',
+            'lcake_client_logo_left_right_spacing',
             [
-                'label' => esc_html__('Width', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
+                'label' => esc_html__('Spacing Left Right', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'default' => [
+                    'size' => 15,
+                ],
+                'tablet_default' => [
+                    'size' => 10,
+                ],
+                'mobile_default' => [
+                    'size' => 10,
+                ],
                 'range' => [
                     'px' => [
-                        'min' => 50,
-                        'max' => 300,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 10,
-                        'max' => 100,
+                        'min' => 0,
+                        'max' => 50,
                         'step' => 1,
                     ],
                 ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 150,
-                ],
+                'render_type' => 'template',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo img' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-clients-slider' => '--lcake_client_logo_left_right_spacing: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_responsive_control(
-            'logo_height',
+            'lcake_client_logo_slidetosho',
             [
-                'label' => esc_html__('Height', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => ['px', '%'],
+                'label' => esc_html__('Slides To Show', 'lc-addons-kit-for-elementor'),
+                'type' =>  Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'range' => [
                     'px' => [
-                        'min' => 30,
-                        'max' => 200,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 10,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 80,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo img' => 'height: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'logo_opacity',
-            [
-                'label' => esc_html__('Opacity', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'max' => 1,
-                        'min' => 0.1,
-                        'step' => 0.1,
-                    ],
-                ],
-                'default' => [
-                    'size' => 0.7,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo img' => 'opacity: {{SIZE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'logo_hover_opacity',
-            [
-                'label' => esc_html__('Hover Opacity', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'max' => 1,
-                        'min' => 0.1,
-                        'step' => 0.1,
-                    ],
-                ],
-                'default' => [
-                    'size' => 1,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo:hover img' => 'opacity: {{SIZE}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'logo_border',
-                'selector' => '{{WRAPPER}} .lc-client-logo',
-            ]
-        );
-
-        $this->add_control(
-            'logo_border_radius',
-            [
-                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'logo_padding',
-            [
-                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'logo_margin',
-            [
-                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            'section_style_title',
-            [
-                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-                'condition' => [
-                    'show_title' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'title_color',
-            [
-                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo-title' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .lc-client-logo-title',
-            ]
-        );
-
-        $this->add_responsive_control(
-            'title_margin',
-            [
-                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            'section_style_arrows',
-            [
-                'label' => esc_html__('Arrows', 'lc-addons-kit-for-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-                'condition' => [
-                    'layout' => 'carousel',
-                    'show_arrows' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'arrows_color',
-            [
-                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo-arrow' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'arrows_background_color',
-            [
-                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo-arrow' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'arrows_size',
-            [
-                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 20,
-                        'max' => 60,
-                        'step' => 1,
-                    ],
-                ],
-                'default' => [
-                    'size' => 40,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo-arrow' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
-            'section_style_dots',
-            [
-                'label' => esc_html__('Dots', 'lc-addons-kit-for-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-                'condition' => [
-                    'layout' => 'carousel',
-                    'show_dots' => 'yes',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'dots_color',
-            [
-                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo-dot' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'dots_active_color',
-            [
-                'label' => esc_html__('Active Color', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo-dot.active' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'dots_size',
-            [
-                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 6,
+                        'min' => 1,
                         'max' => 20,
                         'step' => 1,
                     ],
                 ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'size' => 4,
+                    'unit' => 'px',
+                ],
+                'tablet_default' => [
+                    'size' => 2,
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
+                    'size' => 1,
+                    'unit' => 'px',
+                ],
                 'default' => [
-                    'size' => 10,
+                    'size' => 4,
+                    'unit' => 'px',
+                ],
+                'render_type' => 'template',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-price-card-slider' => '--lcake_client_logo_slidetosho:  {{SIZE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_slidesToScroll',
+            [
+                'label' => esc_html__('Slides To Scroll', 'lc-addons-kit-for-elementor'),
+                'type' =>  Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 20,
+                        'step' => 1,
+                    ],
+                ],
+                'devices' => ['desktop', 'tablet', 'mobile'],
+                'desktop_default' => [
+                    'size' => 1,
+                    'unit' => 'px',
+                ],
+                'tablet_default' => [
+                    'size' => 1,
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
+                    'size' => 1,
+                    'unit' => 'px',
+                ],
+                'default' => [
+                    'size' => 1,
+                    'unit' => 'px',
+                ],
+            ]
+        );
+
+
+
+        $this->add_control(
+            'lcake_client_logo_autoplay',
+            [
+                'label' => esc_html__('Autoplay', 'lc-addons-kit-for-elementor'),
+                'type' =>  Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+        $this->add_control(
+            'lcake_client_logo_speed',
+            [
+                'label' => esc_html__('Speed (ms)', 'lc-addons-kit-for-elementor'),
+                'type' =>  Elementor\Controls_Manager::NUMBER,
+                'min' => 1000,
+                'max' => 15000,
+                'step' => 100,
+                'default' => 1000,
+                'condition' => [
+                    'lcake_client_logo_autoplay' => 'yes',
+                ]
+            ]
+        );
+        $this->add_control(
+            'lcake_client_logo_pause_on_hover',
+            [
+                'label' => esc_html__('Pause on Hover', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+                'condition' => [
+                    'lcake_client_logo_autoplay' => 'yes',
+                ]
+            ]
+        );
+        $this->add_control(
+            'lcake_client_logo_show_arrow',
+            [
+                'label' => esc_html__('Show arrow', 'lc-addons-kit-for-elementor'),
+                'type' =>   Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
+                'return_value' => 'yes',
+                'default' => '',
+            ]
+        );
+        $this->add_control(
+            'lcake_client_logo_loop',
+            [
+                'label' => esc_html__('Enable Loop?', 'lc-addons-kit-for-elementor'),
+                'type' =>   Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
+                'return_value' => 'yes',
+                'default' => '',
+            ]
+        );
+        $this->add_control(
+            'lcake_client_logo_left_arrow_icon',
+            [
+                'label' => esc_html__('Left arrow Icon', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::ICONS,
+                'fa4compatibility' => 'lcake_client_logo_left_arrow',
+                'default' => [
+                    'value' => 'icon icon-left-arrow2',
+                    'library' => 'lcakeicons',
+                ],
+                'condition' => [
+                    'lcake_client_logo_show_arrow' => 'yes',
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_right_arrow_icon',
+            [
+                'label' => esc_html__('Right arrow Icon', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::ICONS,
+                'fa4compatibility' => 'lcake_client_logo_right_arrow',
+                'default' => [
+                    'value' => 'icon icon-right-arrow2',
+                    'library' => 'lcakeicons',
+                ],
+                'condition' => [
+                    'lcake_client_logo_show_arrow' => 'yes',
+                ]
+            ]
+        );
+        $this->add_control(
+            'lcake_client_logo_show_dot',
+            [
+                'label' => esc_html__('Show dots', 'lc-addons-kit-for-elementor'),
+                'type' =>   Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
+                'return_value' => 'yes',
+                'default' => '',
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_additional_option_heading',
+            [
+                'label' => esc_html__('Additional Options', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_rows',
+            [
+                'label' => esc_html__('Rows', 'lc-addons-kit-for-elementor'),
+                'description' => esc_html__('Setting this to more than 1 initializes grid mode. Use slidesPerRow to set how many slides should be in each row.
+				', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SELECT,
+                'default' => 1,
+                'options' => [
+                    '1'  => esc_html__('One row', 'lc-addons-kit-for-elementor'),
+                    '2' => esc_html__('Two row', 'lc-addons-kit-for-elementor'),
+                    '3' => esc_html__('Three row', 'lc-addons-kit-for-elementor'),
+                ],
+            ]
+        );
+        $this->add_control(
+            'lcake_client_logo_separator',
+            [
+                'label' => esc_html__('Show Separator', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
+                'return_value' => 'yes',
+                'default' => '',
+            ]
+        );
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'lcake_client_logo_container_style_tab',
+            [
+                'label' => esc_html__('Container', 'lc-addons-kit-for-elementor'),
+                'tab' => Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_client_logo_container_bg_color',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-clients-slider .lcake-main-swiper'
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_container_padding',
+            [
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_client_logo_container_margin',
+            [
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_container_min_height',
+            [
+                'label' => esc_html__('Min Height', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'step' => 1,
+                    ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-client-logo-dot' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-clients-slider .single-client' => 'min-height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->end_controls_section();
+
+        // style tab
+        // Logo
+
+        $this->start_controls_section(
+            'lcake_client_logo_image_style',
+            [
+                'label' => esc_html__('Logo', 'lc-addons-kit-for-elementor'),
+                'tab'   => Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    // 'lcake_client_logo_slide_style' => 'simple_logo_image',
+                ]
+            ]
+        );
+
+        $this->start_controls_tabs('lcake_client_logo_image_style_tabs');
+
+        $this->start_controls_tab(
+            'lcake_client_logo_image_style_normal_tab',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_client_logo_client_logo_background_group',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-clients-slider .single-client',
+            ]
+        );
+
+
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'lcake_client_logo_image_style_hover_tab',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_client_logo_background_hover_group',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-clients-slider.banner_logo_image .single-client:before, {{WRAPPER}} .lcake-clients-slider.hover-bg-gradient .single-client:before',
+                'condition' => [
+                    'lcake_client_logo_slide_style' => 'banner_logo_image'
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_client_logo_background_simple_hover_group',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient', 'video'],
+                'selector' => '{{WRAPPER}} .lcake-clients-slider .single-client:hover',
+                'condition' => [
+                    'lcake_client_logo_slide_style' => 'simple_logo_image'
+                ]
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+            'lcake_client_logo_image_style_border_radious',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .single-client' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_hover_animation_driction',
+            [
+                'label' => esc_html__('Overlay Direction', 'lc-addons-kit-for-elementor'),
+                'type' =>   Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'hover_from_left' => [
+                        'title' => esc_html__('From Left', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'fa fa-caret-right',
+                    ],
+                    'hover_from_top' => [
+                        'title' => esc_html__('From Top', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'fa fa-caret-down',
+                    ],
+                    'hover_from_bottom' => [
+                        'title' => esc_html__('From Bottom', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'fa fa-caret-up',
+                    ],
+                    'hover_from_right' => [
+                        'title' => esc_html__('From Right', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'fa fa-caret-left',
+                    ],
+
+                ],
+                'default' => 'hover_from_bottom',
+                'toggle' => true,
+                'condition'  => [
+                    'lcake_client_logo_slide_style' => 'banner_logo_image'
+                ]
+            ]
+        );
+
+
+        $this->add_group_control(
+            Elementor\Group_Control_Background::get_type(),
+            array(
+                'name'     => 'lcake_client_logo_hover_animation_color',
+                'label' => esc_html__('Hover Background', 'lc-addons-kit-for-elementor'),
+                'default' => '',
+                'selector' => '{{WRAPPER}} .lcake-clients-slider.banner_logo_image .single-client:before',
+                'condition'  => [
+                    'lcake_client_logo_slide_style' => 'banner_logo_image'
+                ]
+            )
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_margin',
+            [
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .single-client' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_padding',
+            [
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .single-client' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
+        $this->start_controls_tabs(
+            'lcake_client_logo_border_control'
+        );
+
+        $this->start_controls_tab(
+            'lcake_client_logo_border_style_normal_tab',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_client_logo_image_box_shadow_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-clients-slider .single-client',
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_client_logo_image_style_border_group',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-clients-slider .single-client',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'lcake_client_logo_border_style_hover_tab',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_client_logo_image_box_shadow_hover_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-clients-slider.simple_logo_image .single-client:hover',
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_client_logo_image_style_hover_border_group',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-clients-slider .single-client:hover',
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->start_controls_tabs('lcake_client_logo_normal_tab');
+
+        $this->start_controls_tab(
+            'lcake_client_logo_style_normal_tab',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_opacity',
+            [
+                'label' => esc_html__('Opacity', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => [''],
+                'range' => [
+                    '' => [
+                        'min' => 0,
+                        'max' => 1,
+                        'step' => .1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => '',
+                    'size' => 1,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .simple_logo_image .single-client .content-image .main-image' => 'opacity: {{SIZE}};filter: alpha(opacity={{SIZE}})',
+                    '{{WRAPPER}} .lcake-clients-slider .single-client img' => 'opacity: {{SIZE}};filter: alpha(opacity={{SIZE}})',
+                ],
+            ]
+        );
+
+
+        $this->end_controls_tab();
+
+        //  hover tab
+
+        $this->start_controls_tab(
+            'lcake_client_logo_style_hover_tab',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_opacity_hover',
+            [
+                'label' => esc_html__('Opacity', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => [''],
+                'range' => [
+                    '' => [
+                        'min' => 0,
+                        'max' => 1,
+                        'step' => .1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => '',
+                    'size' => 1,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .simple_logo_image .single-client:hover .content-image img' => 'opacity: {{SIZE}};filter: alpha(opacity={{SIZE}})',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_hover_opacity',
+            [
+                'label' => esc_html__('Opacity Hover', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => [''],
+                'range' => [
+                    '' => [
+                        'min' => 0,
+                        'max' => 1,
+                        'step' => .1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => '',
+                    'size' => 1,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .simple_logo_image .single-client:hover .content-image .main-image' => 'opacity: {{SIZE}};filter: alpha(opacity={{SIZE}})',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+        $this->end_controls_section();
+
+        //  Navigation section
+
+        $this->start_controls_section(
+            'lcake_client_logo_section_navigation',
+            [
+                'label' => esc_html__('Arrows', 'lc-addons-kit-for-elementor'),
+                'tab'   => Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'lcake_client_logo_show_arrow' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_arrow_pos',
+            [
+                'label' => esc_html__('Position', 'lc-addons-kit-for-elementor'),
+                'type' =>   Elementor\Controls_Manager::SELECT,
+                'default' => 'arrow_inside',
+                'options' => [
+                    'arrow_outside'  => esc_html__('Outside', 'lc-addons-kit-for-elementor'),
+                    'arrow_inside' => esc_html__('Inside', 'lc-addons-kit-for-elementor'),
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_arrow_size',
+            [
+                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 10,
+                        'max' => 200,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 20,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button svg' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_arrow_padding',
+            [
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'default'    => [
+                    'unit'     => 'px',
+                    'top'      => 15,
+                    'right'    => 15,
+                    'bottom'   => 15,
+                    'left'     => 15,
+                    'isLinked' => true
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_client_logo_arrow_border_group',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_arrow_border_radious',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name'      => 'lcake_client_logo_arrow_shadow',
+                'selector'  => '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button',
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_position_popover_toggle',
+            [
+                'label' => esc_html__('Arrow Position', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::POPOVER_TOGGLE,
+                'label_off' => esc_html__('Default', 'lc-addons-kit-for-elementor'),
+                'label_on' => esc_html__('Custom', 'lc-addons-kit-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->start_popover();
+
+        $this->add_control(
+            'lcake_client_logo_arrow_pos_head',
+            [
+                'label' => esc_html__('Left Arrow Position', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::HEADING
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_arrow_left_pos',
+            [
+                'label' => esc_html__('Left Arrow Position (X)', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
+
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button.swiper-button-prev' => 'left: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    "lcake_client_logo_position_popover_toggle!" => '',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_arrow_left_vertical_pos',
+            [
+                'label' => esc_html__('Left Arrow Position (Y)', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
+
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button.swiper-button-prev' => 'top: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    "lcake_client_logo_position_popover_toggle!" => '',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_arrow_right_pos_head',
+            [
+                'label' => esc_html__('Right Arrow Position', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_arrow_right_pos',
+            [
+                'label' => esc_html__('Right Arrow Position (X)', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button.swiper-button-next' => 'right: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    "lcake_client_logo_position_popover_toggle!" => '',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_arrow_right_vertical_pos',
+            [
+                'label' => esc_html__('Right Arrow Position (Y)', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => -1000,
+                        'max' => 1000,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button.swiper-button-next' => 'top: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    "lcake_client_logo_position_popover_toggle!" => '',
+                ],
+            ]
+        );
+
+        $this->end_popover();
+        // Arrow Normal
+
+        $this->start_controls_tabs('lcake_logo_style_tabs');
+
+        $this->start_controls_tab(
+            'lcake_logo_arrow_normal_tab',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_arrow_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::COLOR,
+                'default' => '#101010',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button svg' => 'fill: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_arrow_background',
+            [
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button' => 'background: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        //  Arrow hover tab
+
+        $this->start_controls_tab(
+            'lcake_client_logo_arrow_hover_tab',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_arrow_hv_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button:hover svg' => 'fill: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_arrow_hover_background',
+            [
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-navigation-button:hover' => 'background: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
+
+
+        // Dots
+
+        $this->start_controls_section(
+            'lcake_client_logo_navigation_dot',
+            [
+                'label' => esc_html__('Dots', 'lc-addons-kit-for-elementor'),
+                'tab'   => Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'lcake_client_logo_show_dot' => 'yes'
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_client_logo_dot_style',
+            [
+                'label' => esc_html__('Dot Style', 'lc-addons-kit-for-elementor'),
+                'type' =>  Elementor\Controls_Manager::SELECT,
+                'default' => 'dot_dotted',
+                'options' => [
+                    'dot_default'  => esc_html__('Default', 'lc-addons-kit-for-elementor'),
+                    'dot_dashed' => esc_html__('Dashed', 'lc-addons-kit-for-elementor'),
+                    'dot_dotted' => esc_html__('Dotted', 'lc-addons-kit-for-elementor'),
+                    'dot_paginated' => esc_html__('Paginate', 'lc-addons-kit-for-elementor'),
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_dots_left_right_spacing',
+            [
+                'label' => esc_html__('Spacing Left Right', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'default' => [
+                    'size' => 8,
+                ],
+                'tablet_default' => [
+                    'size' => 10,
+                ],
+                'mobile_default' => [
+                    'size' => 10,
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-pagination > span' => 'margin-right: {{SIZE}}{{UNIT}};margin-left: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_dots_top_to_bottom',
+            [
+                'label' => esc_html__('Spacing Top To Bottom', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => -120,
+                        'max' => 120,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => -50,
+                ],
+
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-pagination' => 'bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_dot_color',
+            [
+                'label' => esc_html__('Dot Color', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider.dot_paginated .swiper-pagination > span' => 'color: {{VALUE}}',
+                ],
+                'condition' => [
+                    'lcake_client_logo_client_logo_dot_style' => 'dot_paginated'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_dot_width',
+            [
+                'label' => esc_html__('Width', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-pagination > span' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_dot_height',
+            [
+                'label' => esc_html__('Height', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 8,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-pagination > span' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_dot_border_radius',
+            [
+                'label' => esc_html__('Border radius', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-pagination > span' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_client_logo_dot_background',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-clients-slider .swiper-pagination > span',
+            ]
+        );
+
+        $this->add_control(
+            'lcake_client_logo_dot_active_heading',
+            [
+                'label' => esc_html__('Active', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_client_logo_dot_active_background',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-clients-slider .swiper-pagination span.swiper-pagination-bullet-active',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_dot_active_width',
+            [
+                'label' => esc_html__('Width', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 40,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-pagination span.swiper-pagination-bullet-active' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'lcake_client_logo_client_logo_dot_style' => 'dot_dashed'
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_dot_active_scale',
+            [
+                'label' => esc_html__('Height', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => .5,
+                        'max' => 3,
+                        'step' => 0.1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 1.2,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .swiper-pagination span.swiper-pagination-bullet-active' => 'transform: scale({{SIZE}});',
+                ],
+                'condition' => [
+                    'lcake_client_logo_client_logo_dot_style' => 'dot_dotted'
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        //  Separator
+        $this->start_controls_section(
+            'lcake_client_logo_separator_section',
+            [
+                'label' => esc_html__('Separator', 'lc-addons-kit-for-elementor'),
+                'tab' => Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'lcake_client_logo_separator' => 'yes'
+                ]
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_client_logo_separator_height',
+            [
+                'label' => esc_html__('Hight', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 5,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 30,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .lcake-client-slider-item.log-separator:after' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_separator_width',
+            [
+                'label' => esc_html__('Width', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 10,
+                        'step' => 1,
+                    ],
+
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 2,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .lcake-client-slider-item.log-separator:after' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_separator_top_bottom_position',
+            [
+                'label' => esc_html__('Top Bottom Position', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['%'],
+                'range' => [
+                    '%' => [
+                        'min' => -10,
+                        'max' => 110,
+                        'step' => 1,
+                    ],
+
+                ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 50,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .lcake-client-slider-item.log-separator:after' => 'top: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_client_logo_separator_left_right_position',
+            [
+                'label' => esc_html__('Left Right Position', 'lc-addons-kit-for-elementor'),
+                'type' => Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['%'],
+                'range' => [
+                    '%' => [
+                        'min' => -5,
+                        'max' => 120,
+                        'step' => 1,
+                    ],
+
+                ],
+                'default' => [
+                    'unit' => '%',
+                    'size' => 100,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-clients-slider .lcake-client-slider-item.log-separator:after' => 'left: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs('lcake_client_logo_seperator_color_tabs');
+
+        $this->start_controls_tab(
+            'lcake_client_logo_seperator_color_normal_tab',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_client_logo_seperator_bg_color',
+                'label' => esc_html__('Separator Color', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-clients-slider .lcake-client-slider-item.log-separator:after',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'lcake_client_logo_seperator_color_hover_tab',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_group_control(
+            Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_client_logo_seperator_bg_color_hover',
+                'label' => esc_html__('Separator Color', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-clients-slider:hover .lcake-client-slider-item.log-separator:after',
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+        $this->end_controls_section();
+
     }
 
-    protected function render() {
+    protected function render()
+    {
+        echo '<div class="lcake-wid-con" >';
+        $this->render_raw();
+        echo '</div>';
+    }
+
+    protected function render_raw()
+    {
+
         $settings = $this->get_settings_for_display();
+        extract($settings);
+        $logos = $settings['lcake_client_logo_repiter'];
 
-        if (empty($settings['logos'])) {
-            return;
+        // Config
+        $config = [
+            'rtl'                => is_rtl(),
+            'arrows'            => !empty($settings['lcake_client_logo_show_arrow']),
+            'dots'                => !empty($settings['lcake_client_logo_show_dot']),
+            'autoplay'            => !empty($settings['lcake_client_logo_autoplay']),
+            'speed'                => !empty($settings['lcake_client_logo_speed']) ? $settings['lcake_client_logo_speed'] : 1000,
+            'slidesPerView'        => !empty($settings['lcake_client_logo_slidetosho']['size']) ? $settings['lcake_client_logo_slidetosho']['size'] : 4,
+            'slidesPerGroup'    => !empty($settings['lcake_client_logo_slidesToScroll']['size']) ? $settings['lcake_client_logo_slidesToScroll']['size'] : 1,
+            'pauseOnHover'        => !empty($settings['lcake_client_logo_pause_on_hover']),
+            'loop'                => (!empty($settings['lcake_client_logo_loop']) && $settings['lcake_client_logo_loop'] == 'yes' && !empty($settings['lcake_client_logo_rows']) && $settings['lcake_client_logo_rows'] == 1) ? true : false,
+            'spaceBetween'        => !empty($settings['lcake_client_logo_left_right_spacing']['size']) ? $settings['lcake_client_logo_left_right_spacing']['size'] : 15,
+            'breakpoints'        => [
+                320 => [
+                    'slidesPerView'        => !empty($settings['lcake_client_logo_slidetosho']['mobile']['size']) ? $settings['lcake_client_logo_slidetosho']['mobile']['size'] : 1,
+                    'slidesPerGroup'    => !empty($settings['lcake_client_logo_slidesToScroll']['mobile']['size']) ? $settings['lcake_client_logo_slidesToScroll']['mobile']['size'] : 1,
+                    'spaceBetween'        => !empty($settings['lcake_client_logo_left_right_spacing']['mobile']['size']) ? $settings['lcake_client_logo_left_right_spacing']['mobile']['size'] : 10,
+                ],
+                768 => [
+                    'slidesPerView'        => !empty($settings['lcake_client_logo_slidetosho']['tablet']['size']) ? $settings['lcake_client_logo_slidetosho']['tablet']['size'] : 2,
+                    'slidesPerGroup'    => !empty($settings['lcake_client_logo_slidesToScroll']['tablet']['size']) ? $settings['lcake_client_logo_slidesToScroll']['tablet']['size'] : 1,
+                    'spaceBetween'        => !empty($settings['lcake_client_logo_left_right_spacing']['tablet']['size']) ? $settings['lcake_client_logo_left_right_spacing']['tablet']['size'] : 10,
+                ],
+                1024 => [
+                    'slidesPerView'        => !empty($settings['lcake_client_logo_slidetosho']['size']) ? $settings['lcake_client_logo_slidetosho']['size'] : 4,
+                    'slidesPerGroup'    => !empty($settings['lcake_client_logo_slidesToScroll']['size']) ? $settings['lcake_client_logo_slidesToScroll']['size'] : 1,
+                    'spaceBetween'        => !empty($settings['lcake_client_logo_left_right_spacing']['size']) ? $settings['lcake_client_logo_left_right_spacing']['size'] : 15,
+                ]
+            ],
+        ];
+
+        if (!empty($settings['lcake_client_logo_rows']) && $settings['lcake_client_logo_rows'] > 1) {
+            $config['grid'] = [
+                'fill'    => 'row',
+                'rows'    => (int) $settings['lcake_client_logo_rows']
+            ];
         }
 
-        $this->add_render_attribute('wrapper', 'class', 'lc-client-logo-wrapper');
-        $this->add_render_attribute('wrapper', 'class', 'lc-client-logo--' . $settings['layout']);
+        $this->add_render_attribute('wrapper', 'class', 'lcake-clients-slider');
+        $this->add_render_attribute('wrapper', 'class', !empty($settings['lcake_client_logo_show_dot']) ? 'slider-dotted' : '');
+        $this->add_render_attribute('wrapper', 'class', $settings['lcake_client_logo_arrow_pos']);
+        $this->add_render_attribute('wrapper', 'class', $settings['lcake_client_logo_client_logo_dot_style']);
+        $this->add_render_attribute('wrapper', 'class', $settings['lcake_client_logo_hover_animation_driction']);
+        $this->add_render_attribute('wrapper', 'class', $settings['lcake_client_logo_slide_style']);
 
-        if ($settings['layout'] === 'carousel') {
-            $this->add_render_attribute('wrapper', 'data-autoplay', $settings['autoplay']);
-            $this->add_render_attribute('wrapper', 'data-autoplay-speed', $settings['autoplay_speed']);
-            $this->add_render_attribute('wrapper', 'data-pause-on-hover', $settings['pause_on_hover']);
-            $this->add_render_attribute('wrapper', 'data-slides-to-show', $settings['slides_to_show']);
-            $this->add_render_attribute('wrapper', 'data-slides-to-scroll', $settings['slides_to_scroll']);
-        } else {
-            $this->add_render_attribute('wrapper', 'data-columns', $settings['columns']);
-        }
+        $this->add_render_attribute('wrapper', 'data-config', wp_json_encode($config));
 
-        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
+        $this->add_render_attribute('wrapper', 'data-direction', $settings['lcake_client_logo_hover_animation_driction']);
 
-        if ($settings['layout'] === 'carousel' && $settings['show_arrows'] === 'yes') {
-            echo '<div class="lc-client-logo-arrow lc-client-logo-arrow-prev">&lt;</div>';
-        }
+        $seperotor_enable = $settings['lcake_client_logo_separator'] == 'yes' ? 'log-separator' : '';
+?>
+        <div <?php echo $this->get_render_attribute_string('wrapper') // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already escaped by elementor 
+                ?>>
+            <div class="<?php echo esc_attr(LCAKE_Kit_Utils::swiper_class()); ?>">
+                <div class="swiper-wrapper">
+                    <?php
+                    $count = 1;
+                    foreach ($logos as $logo) :
+                        if (! empty($logo['lcake_client_logo_website_link']['url'])) {
+                            $this->add_link_attributes('button-' . $count, $logo['lcake_client_logo_website_link']);
+                        }
+                    ?>
+                        <div class="lcake-client-slider-item swiper-slide <?php echo esc_attr($seperotor_enable); ?>">
+                            <div class="swiper-slide-inner">
+                                <div class="single-client image-switcher" title="<?php echo esc_attr($logo['lcake_client_logo_list_title']); ?>">
+                                    <?php if ($logo['lcake_client_logo_enable_link'] == 'yes') :  ?>
+                                        <a <?php $this->print_render_attribute_string('button-' . esc_attr($count)); ?>>
+                                            <span class="content-image">
+                                                <?php
+                                                echo wp_kses(
+                                                    LCAKE_Kit_Utils::get_attachment_image_html($logo, 'lcake_client_logo_image_normal', null, [
+                                                        'class' => $logo['lcake_client_logo_enable_hover_logo'] == 'yes' ? 'main-image' :  ''
+                                                    ]),
+                                                    LCAKE_Kit_Utils::get_kses_array()
+                                                );
 
-        echo '<div class="lc-client-logo-container">';
-        
-        foreach ($settings['logos'] as $logo) {
-            echo '<div class="lc-client-logo">';
-            
-            if (!empty($logo['logo']['url'])) {
-                if (!empty($logo['link']['url'])) {
-                    $this->add_link_attributes('link_' . $logo['_id'], $logo['link']);
-                    echo '<a ' . $this->get_render_attribute_string('link_' . $logo['_id']) . '>';
-                }
-                
-                echo '<img src="' . esc_url($logo['logo']['url']) . '" alt="' . esc_attr($logo['title']) . '">';
-                
-                if (!empty($logo['link']['url'])) {
-                    echo '</a>';
-                }
-            }
+                                                if (!empty($logo['lcake_client_logo_enable_hover_logo'])) {
+                                                    echo wp_kses(
+                                                        LCAKE_Kit_Utils::get_attachment_image_html($logo, 'lcake_client_logo_image_hover', 'full', [
+                                                            'class' => 'hover-image'
+                                                        ]),
+                                                        LCAKE_Kit_Utils::get_kses_array()
+                                                    );
+                                                }
+                                                ?>
+                                            </span>
+                                        </a>
+                                    <?php else:  ?>
+                                        <div class="content-image">
+                                            <?php
+                                            echo wp_kses(
+                                                LCAKE_Kit_Utils::get_attachment_image_html($logo, 'lcake_client_logo_image_normal', 'full', [
+                                                    'class' => $logo['lcake_client_logo_enable_hover_logo'] == 'yes' ? 'main-image' :  ''
+                                                ]),
+                                                LCAKE_Kit_Utils::get_kses_array()
+                                            );
 
-            if ($settings['show_title'] === 'yes' && !empty($logo['title'])) {
-                echo '<div class="lc-client-logo-title">' . esc_html($logo['title']) . '</div>';
-            }
-
-            echo '</div>';
-        }
-
-        echo '</div>';
-
-        if ($settings['layout'] === 'carousel' && $settings['show_arrows'] === 'yes') {
-            echo '<div class="lc-client-logo-arrow lc-client-logo-arrow-next">&gt;</div>';
-        }
-
-        if ($settings['layout'] === 'carousel' && $settings['show_dots'] === 'yes') {
-            echo '<div class="lc-client-logo-dots"></div>';
-        }
-
-        echo '</div>';
-    }
-
-    protected function content_template() {
-        ?>
-        <# if (settings.logos.length > 0) { #>
-            <div class="lc-client-logo-wrapper lc-client-logo--{{ settings.layout }}" 
-                 data-autoplay="{{ settings.autoplay }}"
-                 data-autoplay-speed="{{ settings.autoplay_speed }}"
-                 data-pause-on-hover="{{ settings.pause_on_hover }}"
-                 data-slides-to-show="{{ settings.slides_to_show }}"
-                 data-slides-to-scroll="{{ settings.slides_to_scroll }}"
-                 data-columns="{{ settings.columns }}">
-                
-                <# if (settings.layout === 'carousel' && settings.show_arrows === 'yes') { #>
-                    <div class="lc-client-logo-arrow lc-client-logo-arrow-prev">&lt;</div>
-                <# } #>
-                
-                <div class="lc-client-logo-container">
-                    <# _.each(settings.logos, function(logo) { #>
-                        <div class="lc-client-logo">
-                            <# if (logo.logo.url) { #>
-                                <# if (logo.link.url) { #>
-                                    <a href="{{ logo.link.url }}">
-                                <# } #>
-                                <img src="{{ logo.logo.url }}" alt="{{ logo.title }}">
-                                <# if (logo.link.url) { #>
-                                    </a>
-                                <# } #>
-                            <# } #>
-                            <# if (settings.show_title === 'yes' && logo.title) { #>
-                                <div class="lc-client-logo-title">{{{ logo.title }}}</div>
-                            <# } #>
+                                            if ($logo['lcake_client_logo_enable_hover_logo']) {
+                                                echo wp_kses(
+                                                    LCAKE_Kit_Utils::get_attachment_image_html($logo, 'lcake_client_logo_image_hover', 'full', [
+                                                        'class' => 'hover-image'
+                                                    ]),
+                                                    LCAKE_Kit_Utils::get_kses_array()
+                                                );
+                                            }
+                                            ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                         </div>
-                    <# }); #>
+                    <?php $count++;
+                    endforeach; ?>
                 </div>
-                
-                <# if (settings.layout === 'carousel' && settings.show_arrows === 'yes') { #>
-                    <div class="lc-client-logo-arrow lc-client-logo-arrow-next">&gt;</div>
-                <# } #>
-                
-                <# if (settings.layout === 'carousel' && settings.show_dots === 'yes') { #>
-                    <div class="lc-client-logo-dots"></div>
-                <# } #>
-            </div>
-        <# } #>
-        <?php
+
+                <?php if ($settings['lcake_client_logo_show_dot'] == 'yes') : ?>
+                    <div class="swiper-pagination"></div>
+                <?php endif; ?>
+
+                <?php if (!empty($settings['lcake_client_logo_show_arrow'])) : ?>
+                    <div class="swiper-navigation-button swiper-button-prev">
+                        <?php Elementor\Icons_Manager::render_icon($settings['lcake_client_logo_left_arrow_icon'], ['aria-hidden' => 'true']); ?>
+                    </div>
+                    <div class="swiper-navigation-button swiper-button-next">
+                        <?php Elementor\Icons_Manager::render_icon($settings['lcake_client_logo_right_arrow_icon'], ['aria-hidden' => 'true']); ?>
+                    </div>
+                <?php endif; ?>
+            </div><!-- .lcake-clients-slider END -->
+        </div>
+<?php
     }
-} 
+}
