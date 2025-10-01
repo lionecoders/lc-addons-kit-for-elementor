@@ -51,6 +51,20 @@ class LCAKE_Kit_Client_Logo extends Elementor\Widget_Base
         return ['lcake-swiper-css', 'lcake-kit-client-logo'];
     }
 
+    public function __construct($data = [], $args = null)
+    {
+        parent::__construct($data, $args);
+        
+        // Enqueue scripts in editor
+        add_action('elementor/editor/before_enqueue_scripts', [$this, 'enqueue_editor_scripts']);
+    }
+
+    public function enqueue_editor_scripts()
+    {
+        wp_enqueue_script('lcake-swiper-js');
+        wp_enqueue_script('lcake-kit-client-logo');
+    }
+
     protected function register_controls()
     {
 
@@ -1518,7 +1532,7 @@ class LCAKE_Kit_Client_Logo extends Elementor\Widget_Base
 
     protected function render()
     {
-        echo '<div class="lcake-wid-con" >';
+        echo '<div class="lcake-main-wrapper" >';
         $this->render_raw();
         echo '</div>';
     }

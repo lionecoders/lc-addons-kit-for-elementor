@@ -403,7 +403,7 @@ class LCAKE_Kit_Utils
 
     public static function swiper_class()
     {
-        return 'lc-main-swiper swiper';
+        return 'lcake-main-swiper swiper';
     }
 
     public static function get_page_by_title($page_title, $post_type = 'page')

@@ -1,0 +1,351 @@
+.elementor-element .swiper .elementor-swiper-button,.elementor-element .swiper~.elementor-swiper-button,.elementor-lightbox .swiper .elementor-swiper-button,.elementor-lightbox .swiper~.elementor-swiper-button {
+    color: rgba(237,237,237,.9);
+    cursor: pointer;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 1
+}
+
+.elementor-element .swiper .elementor-swiper-button svg,.elementor-element .swiper~.elementor-swiper-button svg,.elementor-lightbox .swiper .elementor-swiper-button svg,.elementor-lightbox .swiper~.elementor-swiper-button svg {
+    fill: rgba(237,237,237,.9);
+    height: 1em;
+    width: 1em
+}
+
+.lcake-main-wrapper .lcake-clients-slider .lcake-client-slider-item.log-separator {
+    position: relative
+}
+
+.lcake-main-wrapper .lcake-clients-slider .lcake-client-slider-item.log-separator::after {
+    content: "";
+    background: #e7e7e7;
+    position: absolute;
+    z-index: 999;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-navigation-button.swiper-button-next {
+    left: inherit
+}
+
+.lcake-main-wrapper .lcake-clients-slider .hover-bg-gradient .single-client::before {
+    position: absolute;
+    content: "";
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #f2709c;
+    background: linear-gradient(315deg,#f2709c 0,#fe8f75 60%);
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    z-index: -1
+}
+
+.lcake-main-wrapper .lcake-clients-slider .single-client {
+    min-height: 170px;
+    z-index: 5;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #fff;
+    -webkit-box-shadow: 5px 10px 15px 0 rgba(0,0,0,.1);
+    box-shadow: 5px 10px 15px 0 rgba(0,0,0,.1);
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease
+}
+
+.lcake-main-wrapper .lcake-clients-slider .single-client img {
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+.lcake-main-wrapper .lcake-clients-slider .single-client .content-image {
+    display: block;
+}
+
+.lcake-main-wrapper .lcake-clients-slider .single-client .content-image>.hover-image {
+    display: none;
+}
+
+.lcake-main-wrapper .lcake-clients-slider .single-client.image-switcher:hover .content-image>.hover-image {
+    display: block;
+}
+.lcake-main-wrapper .lcake-clients-slider .single-client.image-switcher:hover .content-image>.main-image {
+    display: none;
+}
+
+.lcake-main-wrapper .lcake-clients-slider .single-client:hover {
+    z-index: 6
+}
+
+.lcake-main-wrapper .lcake-clients-slider .single-client:hover::before {
+    opacity: 1;
+    top: 0
+}
+
+.lcake-main-wrapper .lcake-clients-slider .client-slider-item {
+    position: relative
+}
+
+.lcake-main-wrapper .lcake-clients-slider.simple_logo_image .single-client::before {
+    display: none
+}
+
+.lcake-main-wrapper .lcake-clients-slider.banner_logo_image .single-client::before {
+    position: absolute;
+    content: "";
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #f2709c;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    z-index: -1
+}
+
+.lcake-main-wrapper .lcake-clients-slider.banner_logo_image .single-client:hover::before {
+    opacity: 1;
+    top: 0
+}
+
+.lcake-main-wrapper .lcake-clients-slider.banner_logo_image.hover_from_top .single-client::before {
+    top: -100%
+}
+
+.lcake-main-wrapper .lcake-clients-slider.banner_logo_image.hover_from_top .single-client:hover::before {
+    top: 0
+}
+
+.lcake-main-wrapper .lcake-clients-slider.banner_logo_image.hover_from_left .single-client::before {
+    top: 0;
+    left: -100%
+}
+
+.lcake-main-wrapper .lcake-clients-slider.banner_logo_image.hover_from_left .single-client:hover::before {
+    left: 0
+}
+
+.lcake-main-wrapper .lcake-clients-slider.banner_logo_image.hover_from_right .single-client::before {
+    top: 0;
+    left: 100%
+}
+
+.lcake-main-wrapper .lcake-clients-slider.banner_logo_image.hover_from_right .single-client:hover::before {
+    left: 0
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-button-next,.lcake-main-wrapper .lcake-clients-slider .swiper-button-prev {
+    z-index: 1
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-button-next::before,.lcake-main-wrapper .lcake-clients-slider .swiper-button-prev::before {
+    color: #000
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-navigation-button {
+    position: absolute;
+    border: 0;
+    background: 0 0;
+    z-index: 1;
+    padding: 0;
+    height: initial!important;
+    width: initial!important;
+    line-height: initial!important;
+    font-size: 20px;
+    color: #000;
+    padding: 15px
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-navigation-button .swiper-button-next {
+    left: 100%
+}
+
+.lcake-main-wrapper .lcake-clients-slider.arrow_inside .swiper-button-prev {
+    left: 15px
+}
+
+.lcake-main-wrapper .lcake-clients-slider.arrow_inside .swiper-button-next {
+    right: 15px;
+    left: inherit
+}
+
+.lcake-main-wrapper .lcake-clients-slider.arrow_outside .swiper-button-prev {
+    left: -60px
+}
+
+.lcake-main-wrapper .lcake-clients-slider.arrow_outside .swiper-button-next {
+    right: -60px
+}
+
+.lcake-main-wrapper .swiper-pagination {
+    line-height: 1
+}
+
+.lcake-main-wrapper .swiper-pagination span {
+    background-color: #ededed;
+    padding: 0
+}
+
+.lcake-main-wrapper .swiper-pagination span.swiper-pagination-bullet-active {
+    opacity: 1;
+    background-color: #62606b
+}
+
+.lcake-main-wrapper .dot_dashed .swiper-pagination span,.lcake-main-wrapper .dot_dotted .swiper-pagination span {
+    background-color: #101010;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease
+}
+
+.lcake-main-wrapper .dot_dashed .swiper-pagination span.swiper-pagination-bullet-active,.lcake-main-wrapper .dot_dotted .swiper-pagination span.swiper-pagination-bullet-active {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    opacity: 1
+}
+
+.lcake-main-wrapper .dot_dashed .swiper-pagination>span.swiper-pagination-bullet-active {
+    width: 40px;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    border-radius: 4px
+}
+
+.lcake-main-wrapper .dot_paginated .swiper-pagination {
+    counter-reset: myCounter
+}
+
+.lcake-main-wrapper .dot_paginated .swiper-pagination>span {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #fff;
+    -webkit-box-shadow: 3.536px 3.536px 10px 0 rgba(0,0,0,.1);
+    box-shadow: 3.536px 3.536px 10px 0 rgba(0,0,0,.1);
+    color: #565656;
+    opacity: 1;
+    font-weight: 700;
+    border-radius: 50%
+}
+
+.lcake-main-wrapper .dot_paginated .swiper-pagination>span::before {
+    counter-increment: myCounter;
+    content: counter(myCounter)
+}
+
+.lcake-main-wrapper .dot_paginated .swiper-pagination>span.swiper-pagination-bullet-active {
+    background-color: #2575fc;
+    color: #fff
+}
+
+.lcake-main-wrapper .dot_paginated .swiper-pagination>span>button {
+    display: none
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-container:not(.swiper-container-initialized) .swiper-slide {
+    max-width: calc(100% / var(--lcake_client_logo_slidetosho,4));
+    margin-right: var(--lcake_client_logo_left_right_spacing,15px)
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper:not(.swiper-initialized) .swiper-slide {
+    max-width: calc(100% / var(--lcake_client_logo_slidetosho,4));
+    margin-right: var(--lcake_client_logo_left_right_spacing,15px)
+}
+
+/* Swiper container styles */
+.lcake-main-wrapper .lcake-clients-slider .lcake-main-swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-slide {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Navigation button styles */
+.lcake-main-wrapper .lcake-clients-slider .swiper-navigation-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-navigation-button.swiper-button-prev {
+    left: 0;
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-navigation-button.swiper-button-next {
+    right: 0;
+}
+
+/* Pagination styles */
+.lcake-main-wrapper .lcake-clients-slider .swiper-pagination {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-pagination span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lcake-main-wrapper .lcake-clients-slider .swiper-pagination span.swiper-pagination-bullet-active {
+    background-color: #007cba;
+    transform: scale(1.2);
+}
+
+/* No image placeholder */
+.lcake-main-wrapper .lcake-clients-slider .single-client .no-image-placeholder {
+    background-color: #f0f0f0;
+    color: #999;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    width: 100%;
+    border: 1px dashed #ccc;
+}
+
+.lcake-main-wrapper .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after,
+.lcake-main-wrapper .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+    content: none;
+}   
