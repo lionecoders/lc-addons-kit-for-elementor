@@ -126,6 +126,21 @@ ease;
     object-fit: cover;
 }
 
+/* Fix for anchor tags in testimonial style 4 */
+.lcake-main-wrapper .lcake_testimonial_style_4 a .lcake-testimonial--avatar img{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Ensure anchor tags in testimonials don't interfere with layout */
+.lcake-main-wrapper .lcake_testimonial_style_4 a.lcake-single-testimonial-slider{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
 .lcake_testimonial_style_4 .lcake-commentor-bio {
     position: absolute;
     left: 0;
@@ -150,6 +165,22 @@ ease;
 
 .lcake_testimonial_style_6 .lcake-commentor-bio {
     padding: 30px 0 ;
+}
+
+/* Client image alignment for style6 */
+.lcake_testimonial_style_6 .lcake-commentor-bio.client_left,
+.lcake_testimonial_style_4 .lcake-commentor-bio.client_left {
+    text-align: left;
+}
+
+.lcake_testimonial_style_6 .lcake-commentor-bio.client_center,
+.lcake_testimonial_style_4 .lcake-commentor-bio.client_center {
+    text-align: center;
+}
+
+.lcake_testimonial_style_6 .lcake-commentor-bio.client_right,
+.lcake_testimonial_style_4 .lcake-commentor-bio.client_right {
+    text-align: right;
 }
 
 .lcake_testimonial_style_2 .lcake-watermark-icon,
