@@ -1,7 +1,7 @@
 /* Team Widget Styles - Cleaned Version */
 
 /* Base Profile Card Styles */
-.profile-card {
+.lcake-profile-card {
     background-color: #fff;
     box-shadow: 0 28px 40px 0 rgba(0,0,0,.1);
     padding: 40px 20px;
@@ -9,49 +9,49 @@
     position: relative;
 }
 
-.profile-card.text-center .profile-header {
+.lcake-profile-card.text-center .lcake-profile-header {
     margin-left: auto;
     margin-right: auto;
 }
 
-.profile-card:hover {
+.lcake-profile-card:hover {
     box-shadow: 0 42px 60px 0 rgba(0,0,0,.3);
 }
 
-.profile-card:hover .profile-body .profile-title {
+.lcake-profile-card:hover .lcake-profile-body .lcake-profile-title {
     color: #2575fc;
 }
 
 /* Profile Icon Styles */
-.profile-icon {
+.lcake-profile-icon {
     display: inline-flex;
     position: relative;
     z-index: 0;
 }
 
-.profile-icon[class*=icon-align-] {
+.lcake-profile-icon[class*=icon-align-] {
     display: flex;
 }
 
-.profile-icon.icon-align-start {
+.lcake-profile-icon.icon-align-start {
     justify-content: flex-start;
 }
 
-.profile-icon.icon-align-center {
+.lcake-profile-icon.icon-align-center {
     justify-content: center;
 }
 
-.profile-icon.icon-align-end {
+.lcake-profile-icon.icon-align-end {
     justify-content: flex-end;
 }
 
-.profile-icon svg {
+.lcake-profile-icon svg {
     max-width: 60px;
     height: auto;
     vertical-align: middle;
 }
 
-.profile-icon > i {
+.lcake-profile-icon > i {
     display: block;
     width: 60px;
     height: 60px;
@@ -65,21 +65,21 @@
 }
 
 /* Profile Body Styles */
-.profile-body {
+.lcake-profile-body {
     padding-bottom: 20px;
 }
 
-.profile-body .profile-title {
+.lcake-profile-body .lcake-profile-title {
     font-size: 22px;
     color: #000;
     margin: 0;
 }
 
-.profile-body .profile-title > a {
+.lcake-profile-body .lcake-profile-title > a {
     color: inherit;
 }
 
-.profile-body .profile-designation {
+.lcake-profile-body .lcake-profile-designation {
     color: rgba(0,0,0,.5);
     font-size: 13px;
     transition: all .4s ease;
@@ -87,7 +87,7 @@
 }
 
 /* Profile Header Styles */
-.profile-header {
+.lcake-profile-header {
     margin-bottom: 38px;
     position: relative;
     overflow: hidden;
@@ -95,19 +95,19 @@
     max-width: 100%;
 }
 
-.profile-header > img {
+.lcake-profile-header > img {
     width: 160px;
     height: 160px;
     transition: all .4s ease;
 }
 
 /* Image Card Styles */
-.profile-image-card {
+.lcake-profile-image-card {
     position: relative;
     overflow: hidden;
 }
 
-.profile-image-card::before {
+.lcake-profile-image-card::before {
     position: absolute;
     content: "";
     top: 100%;
@@ -122,7 +122,7 @@
     visibility: hidden;
 }
 
-.profile-image-card .hover-area {
+.lcake-profile-image-card .hover-area {
     position: absolute;
     top: 50%;
     transform: translateY(-20%);
@@ -133,20 +133,20 @@
     transition: all .3s ease;
 }
 
-.profile-image-card .hover-area .profile-title,
-.profile-image-card .hover-area .profile-designation,
-.profile-image-card .hover-area .profile-content {
+.lcake-profile-image-card .lcake-hover-area .lcake-profile-title,
+.lcake-profile-image-card .lcake-hover-area .lcake-profile-designation,
+.lcake-profile-image-card .lcake-hover-area .lcake-profile-content {
     color: #fff;
 }
 
-.profile-image-card:hover .hover-area {
+.lcake-profile-image-card:hover .lcake-hover-area {
     opacity: 1;
     visibility: visible;
     transform: translateY(-50%);
     transition: all .3s ease .1s;
 }
 
-.profile-image-card:hover::before {
+.lcake-profile-image-card:hover::before {
     top: 0;
     opacity: 1;
     visibility: visible;
@@ -154,7 +154,7 @@
 }
 
 /* Image Card Variations */
-.image-card-v2 .profile-image-card::before {
+.lcake-image-card-v2 .lcake-profile-image-card::before {
     background-color: #123075;
     top: 20px;
     left: 20px;
@@ -166,36 +166,36 @@
     opacity: 0;
 }
 
-.image-card-v2 .profile-image-card:hover::before {
+.lcake-image-card-v2 .lcake-profile-image-card:hover::before {
     opacity: .93;
     transform: scale(1);
 }
 
-.image-card-v2 .profile-image-card .hover-area {
+.lcake-image-card-v2 .lcake-profile-image-card .lcake-hover-area {
     padding-left: 50px;
     padding-right: 50px;
 }
 
-.image-card-v2 .profile-image-card .profile-body .border-hr {
+.lcake-image-card-v2 .lcake-profile-image-card .lcake-profile-body .lcake-border-hr {
     background-color: rgba(255,255,255,.6);
     margin-bottom: 25px;
 }
 
-.image-card-v2 .profile-image-card .profile-body .profile-content {
+.lcake-image-card-v2 .lcake-profile-image-card .lcake-profile-body .lcake-profile-content {
     color: #fff;
 }
 
-.image-card-v2.style-circle .profile-image-card::before {
+.lcake-image-card-v2.lcake-style-circle .lcake-profile-image-card::before {
     border-radius: inherit;
 }
 
-.image-card-v2.style-circle .profile-image-card::after {
+.lcake-image-card-v2.lcake-style-circle .lcake-profile-image-card::after {
     content: " ";
     display: block;
     padding-bottom: 100%;
 }
 
-.image-card-v2.style-circle .profile-image-card > img {
+.lcake-image-card-v2.lcake-style-circle .lcake-profile-image-card > img {
     position: absolute;
     top: 0;
     left: 0;
@@ -205,11 +205,11 @@
     object-position: center;
 }
 
-.image-card-v3 .profile-image-card::before {
+.lcake-image-card-v3 .lcake-profile-image-card::before {
     display: none;
 }
 
-.image-card-v3 .profile-image-card::after {
+.lcake-image-card-v3 .lcake-profile-image-card::after {
     position: absolute;
     content: "";
     left: 0;
@@ -222,38 +222,38 @@
     pointer-events: none;
 }
 
-.image-card-v3 .profile-image-card .hover-area {
+.lcake-image-card-v3 .lcake-profile-image-card .lcake-hover-area {
     top: inherit;
     bottom: 0;
     transform: none;
 }
 
-.image-card-v3 .profile-image-card:hover .hover-area {
+.lcake-image-card-v3 .lcake-profile-image-card:hover .lcake-hover-area {
     transform: translateY(-40px);
 }
 
-.image-card-v3 .profile-image-card:hover::after {
+.lcake-image-card-v3 .lcake-profile-image-card:hover::after {
     opacity: .8;
 }
 
-.image-card-v3.tiny-gutters {
+.lcake-image-card-v3.tiny-gutters {
     margin-left: -3px;
     margin-right: -3px;
 }
 
-.image-card-v3.tiny-gutters > [class^=col-] {
+.lcake-image-card-v3.tiny-gutters > [class^=col-] {
     padding-left: 3px;
     padding-right: 3px;
     margin-bottom: 6px;
 }
 
 /* Profile Square Variations */
-.profile-square-v .profile-card {
+.lcake-profile-square-v .lcake-profile-card {
     padding: 20px 20px 40px;
     z-index: 1;
 }
 
-.profile-square-v .profile-card::before {
+.lcake-profile-square-v .lcake-profile-card::before {
     position: absolute;
     content: "";
     top: 0;
@@ -268,84 +268,84 @@
     backface-visibility: hidden;
 }
 
-.profile-square-v .profile-card .profile-header {
+.lcake-profile-square-v .lcake-profile-card .lcake-profile-header {
     width: 100%;
     height: 100%;
     border-radius: 0;
 }
 
-.profile-square-v .profile-card .profile-content {
+.lcake-profile-square-v .lcake-profile-card .lcake-profile-content {
     transition: all .4s ease;
 }
 
-.profile-square-v .profile-card:hover::before {
+.lcake-profile-square-v .lcake-profile-card:hover::before {
     opacity: 1;
 }
 
-.profile-square-v .profile-card:hover .profile-body .profile-designation,
-.profile-square-v .profile-card:hover .profile-body .profile-title {
+.lcake-profile-square-v .lcake-profile-card:hover .lcake-profile-body .lcake-profile-designation,
+.lcake-profile-square-v .lcake-profile-card:hover .lcake-profile-body .lcake-profile-title {
     color: #fff;
 }
 
-.profile-square-v .profile-card:hover .profile-content {
+.lcake-profile-square-v .lcake-profile-card:hover .lcake-profile-content {
     color: #fff;
 }
 
 /* Square Variations */
-.profile-square-v.square-v2 .profile-card::before {
+.lcake-profile-square-v.square-v2 .lcake-profile-card::before {
     display: none;
 }
 
-.profile-square-v.square-v2 .profile-card:hover {
+.lcake-profile-square-v.square-v2 .lcake-profile-card:hover {
     background-color: #fff;
 }
 
-.profile-square-v.square-v2 .profile-card:hover .profile-body .profile-title {
+.lcake-profile-square-v.square-v2 .lcake-profile-card:hover .lcake-profile-body .lcake-profile-title {
     color: #2575fc;
 }
 
-.profile-square-v.square-v2 .profile-card:hover .profile-body .profile-designation {
+.lcake-profile-square-v.square-v2 .lcake-profile-card:hover .lcake-profile-body .lcake-profile-designation {
     color: #656565;
 }
 
-.profile-square-v.square-v3 .profile-card:hover {
+.lcake-profile-square-v.square-v3 .lcake-profile-card:hover {
     box-shadow: 0 28px 40px 0 rgba(0,0,0,.1);
 }
 
-.profile-square-v.square-v4 .profile-card {
+.lcake-profile-square-v.square-v4 .lcake-profile-card {
     max-height: 380px;
     overflow: hidden;
 }
 
-.profile-square-v.square-v4 .profile-card::before {
+.lcake-profile-square-v.square-v4 .lcake-profile-card::before {
     display: none;
 }
 
-.profile-square-v.square-v4 .profile-card .profile-header {
+.lcake-profile-square-v.square-v4 .lcake-profile-card .lcake-profile-header {
     margin-bottom: 0;
     max-width: 255px;
     max-height: 255px;
 }
 
-.profile-square-v.square-v4 .profile-card.text-left .profile-header img {
+.lcake-profile-square-v.square-v4 .lcake-profile-card.text-left .lcake-profile-header img {
     left: 0;
     transform: translate(0,-50%);
 }
 
-.profile-square-v.square-v4 .profile-card.text-right .profile-header img {
+.lcake-profile-square-v.square-v4 .lcake-profile-card.text-right .lcake-profile-header img {
     left: auto;
     right: 0;
     transform: translate(0,-50%);
 }
 
-.profile-square-v.square-v4 .profile-card .profile-body {
+.lcake-profile-square-v.square-v4 .lcake-profile-card .lcake-profile-body {
     margin-bottom: 0;
     padding: 35px 20px;
     transition: all .4s ease;
     position: relative;
 }
 
-.profile-square-v.square-v4 .profile-card .profile-body::before {
+.lcake-profile-square-v.square-v4 .lcake-profile-card .lcake-profile-body::before {
     position: absolute;
     content: "";
     top: 0;
@@ -360,47 +360,47 @@
     backface-visibility: hidden;
 }
 
-.profile-square-v.square-v4 .profile-card .profile-body .lcake-team-social-list {
+.lcake-profile-square-v.square-v4 .lcake-profile-card .lcake-profile-body .lcake-team-social-list {
     opacity: 0;
     visibility: hidden;
     transition: all .4s ease;
 }
 
-.profile-square-v.square-v4 .profile-card:hover {
+.lcake-profile-square-v.square-v4 .lcake-profile-card:hover {
     box-shadow: none;
 }
 
-.profile-square-v.square-v4 .profile-card:hover .profile-body {
+.lcake-profile-square-v.square-v4 .lcake-profile-card:hover .lcake-profile-body {
     transform: translateY(-50px);
 }
 
-.profile-square-v.square-v4 .profile-card:hover .profile-body::before {
+.lcake-profile-square-v.square-v4 .lcake-profile-card:hover .lcake-profile-body::before {
     opacity: 1;
 }
 
-.profile-square-v.square-v4 .profile-card:hover .profile-body .lcake-team-social-list {
+.lcake-profile-square-v.square-v4 .lcake-profile-card:hover .lcake-profile-body .lcake-team-social-list {
     opacity: 1;
     visibility: visible;
 }
 
-.profile-square-v.square-v5 .profile-card {
+.lcake-profile-square-v.square-v5 .lcake-profile-card {
     padding-bottom: 50px;
 }
 
-.profile-square-v.square-v5 .profile-card .profile-body,
-.profile-square-v.square-v5 .profile-card .profile-header {
+.lcake-profile-square-v.square-v5 .lcake-profile-card .lcake-profile-body,
+.lcake-profile-square-v.square-v5 .lcake-profile-card .lcake-profile-header {
     padding-bottom: 0;
 }
 
-.profile-square-v.square-v5 .profile-card .profile-body {
+.lcake-profile-square-v.square-v5 .lcake-profile-card .lcake-profile-body {
     padding: 32px 60px;
 }
 
-.profile-square-v.square-v6 .profile-card {
+.lcake-profile-square-v.square-v6 .lcake-profile-card {
     padding-bottom: 35px;
 }
 
-.profile-square-v.square-v6 .profile-card::after {
+.lcake-profile-square-v.square-v6 .lcake-profile-card::after {
     position: absolute;
     content: "";
     height: 5px;
@@ -412,66 +412,66 @@
     transition: all .4s ease;
 }
 
-.profile-square-v.square-v6 .profile-card .profile-body,
-.profile-square-v.square-v6 .profile-card .profile-header {
+.lcake-profile-square-v.square-v6 .lcake-profile-card .lcake-profile-body,
+.lcake-profile-square-v.square-v6 .lcake-profile-card .lcake-profile-header {
     margin-bottom: 0;
 }
 
-.profile-square-v.square-v6 .profile-card .profile-body {
+.lcake-profile-square-v.square-v6 .lcake-profile-card .lcake-profile-body {
     padding: 40px;
 }
 
-.profile-square-v.square-v6 .profile-card:hover {
+.lcake-profile-square-v.square-v6 .lcake-profile-card:hover {
     box-shadow: 0 28px 40px 0 rgba(0,0,0,.1);
 }
 
-.profile-square-v.square-v6 .profile-card:hover::after {
+.lcake-profile-square-v.square-v6 .lcake-profile-card:hover::after {
     opacity: 1;
 }
 
-.profile-square-v.square-v6.square-v6-v2 .profile-card::after {
+.lcake-profile-square-v.square-v6.square-v6-v2 .lcake-profile-card::after {
     display: none;
 }
 
-.profile-square-v.square-v6.square-v6-v2 .profile-card::before {
+.lcake-profile-square-v.square-v6.square-v6-v2 .lcake-profile-card::before {
     opacity: 0;
     background-size: 101% 101%;
 }
 
-.profile-square-v.square-v6.square-v6-v2 .profile-card:hover::before {
+.lcake-profile-square-v.square-v6.square-v6-v2 .lcake-profile-card:hover::before {
     opacity: 1;
 }
 
-.profile-square-v.square-v6.square-v6-v2 .profile-card:hover .profile-body .profile-title {
+.lcake-profile-square-v.square-v6.square-v6-v2 .lcake-profile-card:hover .lcake-profile-body .lcake-profile-title {
     color: #fff;
 }
 
-.profile-square-v.square-v6.square-v6-v2 .profile-card:hover .profile-body .profile-content,
-.profile-square-v.square-v6.square-v6-v2 .profile-card:hover .profile-body .profile-designation {
+.lcake-profile-square-v.square-v6.square-v6-v2 .lcake-profile-card:hover .lcake-profile-body .lcake-profile-content,
+.lcake-profile-square-v.square-v6.square-v6-v2 .lcake-profile-card:hover .lcake-profile-body .lcake-profile-designation {
     color: #fff;
 }
 
 /* Utility Classes */
-.small-gutters .profile-card {
+.small-gutters .lcake-profile-card {
     padding: 10px 10px 40px;
 }
 
-.no_gutters .profile-card {
+.no_gutters .lcake-profile-card {
     padding: 0;
 }
 
-.style-circle .profile-image-card {
+.lcake-style-circle .lcake-profile-image-card {
     width: 255px;
     height: 255px;
     border-radius: 50%;
 }
 
-.style-circle .profile-image-card.text-center {
+.lcake-style-circle .lcake-profile-image-card.text-center {
     margin-left: auto;
     margin-right: auto;
 }
 
-.text-center .profile-header {
+.lcake-text-center .lcake-profile-header {
     margin-left: auto;
     margin-right: auto;
 }
@@ -509,18 +509,18 @@
     padding-top: 0 !important;
 }
 
-.lcake-team-style-centered_style_details .profile-designation,
-.lcake-team-style-long_height_details .profile-designation,
-.lcake-team-style-long_height_details_hover .profile-designation {
+.lcake-team-style-centered_style_details .lcake-profile-designation,
+.lcake-team-style-long_height_details .lcake-profile-designation,
+.lcake-team-style-long_height_details_hover .lcake-profile-designation {
     margin-bottom: 30px;
 }
 
-.lcake-team-style-hover_info .profile-designation {
+.lcake-team-style-hover_info .lcake-profile-designation {
     margin-bottom: 25px;
 }
 
-.lcake-team-style-overlay_circle_hover .profile-designation,
-.lcake-team-style-overlay_details .profile-designation {
+.lcake-team-style-overlay_circle_hover .lcake-profile-designation,
+.lcake-team-style-overlay_details .lcake-profile-designation {
     margin-bottom: 12px;
 }
 
@@ -530,11 +530,11 @@
     border-radius: inherit;
 }
 
-.lcake-team-img.profile-header > img {
+.lcake-team-img.lcake-profile-header > img {
     object-fit: cover;
 }
 
-.lcake-team-img.profile-image-card > img {
+.lcake-team-img.lcake-profile-image-card > img {
     width: 100%;
 }
 
@@ -542,7 +542,7 @@
     display: block;
 }
 
-.lcake-team-img-fit > .profile-image-card > img {
+.lcake-team-img-fit > .lcake-profile-image-card > img {
     height: 100%;
     object-fit: cover;
     object-position: center;
@@ -700,6 +700,14 @@
     line-height: 1;
 }
 
+.lcake-team-modal-close.lcake-team-close-btn-align-left {
+    left: 10px;
+    right: auto;
+}
+.lcake-team-modal-close.lcake-team-close-btn-align-right {
+    left: auto;
+    right: 10px;
+}
 .lcake-team-modal-close:hover {
     color: #000;
 }
@@ -791,7 +799,8 @@
     .lcake-team-modal-img {
         flex: 0 0 33.333333%;
         max-width: 33.333333%;
-        margin-bottom: 0;
+        margin-bottom: 10;
+        padding-left: 30px;
     }
     
     .lcake-team-modal-info.has-img {

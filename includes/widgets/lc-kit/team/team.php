@@ -5,6 +5,7 @@
  * @package LCAKE_Elementor_Addons_Kit
  */
 
+use Elementor\Icons_Manager;
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -266,9 +267,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'default' => [
 
-                    'value' => 'icon icon-team1',
+                    'value' => 'fas fa-star',
 
-                    'library' => 'lcakeicons',
+                    'library' => 'fa-solid',
 
                 ],
 
@@ -279,6 +280,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
                     'lcake_team_toggle_icon' => 'yes',
 
                 ],
+                'label_block' => true,
 
             ]
 
@@ -1033,12 +1035,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 ],
 
-                'selectors' => [
-
-                    '{{WRAPPER}} .lcake-team-modal-close' => '{{VALUE}}: 10px;',
-
-                ],
-
                 'default' => 'right',
 
                 'condition' => [
@@ -1116,7 +1112,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'types' => ['classic', 'gradient', 'video'],
 
-                'selector' => '{{WRAPPER}} .profile-card, {{WRAPPER}} .profile-image-card',
+                'selector' => '{{WRAPPER}} .lcake-profile-card, {{WRAPPER}} .lcake-profile-image-card',
 
             ]
 
@@ -1129,7 +1125,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'name'      => 'lcake_team_content_box_shadow',
 
-                'selector'  => '{{WRAPPER}} .profile-card, {{WRAPPER}} .profile-image-card',
+                'selector'  => '{{WRAPPER}} .lcake-profile-card, {{WRAPPER}} .lcake-profile-image-card',
 
             ]
 
@@ -1167,7 +1163,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'types' => ['classic', 'gradient'],
 
-                'selector' => '{{WRAPPER}} .profile-card:hover, {{WRAPPER}} .profile-image-card:hover, {{WRAPPER}} .profile-card::before, {{WRAPPER}} .profile-image-card::before, {{WRAPPER}} div .profile-card .profile-body::before, {{WRAPPER}} .image-card-v3 .profile-image-card:after',
+                'selector' => '{{WRAPPER}} .lcake-profile-card:hover, {{WRAPPER}} .lcake-profile-image-card:hover, {{WRAPPER}} .lcake-profile-card::before, {{WRAPPER}} .lcake-profile-image-card::before, {{WRAPPER}} div .lcake-profile-card .profile-body::before, {{WRAPPER}} .lcake-image-card-v3 .lcake-profile-image-card:after',
 
             ]
 
@@ -1182,7 +1178,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'name'      => 'lcake_team_content_box_shadow_hover_group',
 
-                'selector'  => '{{WRAPPER}} .profile-card:hover, {{WRAPPER}} .profile-image-card:hover',
+                'selector'  => '{{WRAPPER}} .lcake-profile-card:hover, {{WRAPPER}} .lcake-profile-image-card:hover',
 
             ]
 
@@ -1330,7 +1326,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-square-v .profile-card' => 'max-height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-square-v .lcake-profile-card' => 'max-height: {{SIZE}}{{UNIT}};',
 
                 ],
                 'condition' => [
@@ -1381,7 +1377,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-card, {{WRAPPER}} .profile-image-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-card, {{WRAPPER}} .lcake-profile-image-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
                 ],
 
@@ -1400,8 +1396,8 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
                 'size_units' => ['px', 'em', '%'],
 
                 'selectors' => [
-                    '{{WRAPPER}} .profile-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .profile-square-v .profile-card .profile-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-square-v .lcake-profile-card .lcake-profile-body' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1413,7 +1409,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
 
-                'selector' => '{{WRAPPER}} .profile-card, {{WRAPPER}} .profile-image-card',
+                'selector' => '{{WRAPPER}} .lcake-profile-card, {{WRAPPER}} .lcake-profile-image-card',
             ]
         );
 
@@ -1430,7 +1426,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
                     'left' => '',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .profile-card, {{WRAPPER}} .profile-image-card' =>  'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-card, {{WRAPPER}} .lcake-profile-image-card' =>  'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1460,7 +1456,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'types' => ['gradient'],
 
-                'selector' => '{{WRAPPER}} .image-card-v2 .profile-image-card::before',
+                'selector' => '{{WRAPPER}} .lcake-image-card-v2 .profile-image-card::before',
 
                 'condition' => [
 
@@ -1559,9 +1555,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-square-v.square-v4 .profile-card .profile-header' => 'padding-top: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-square-v.square-v4 .lcake-profile-card .lcake-profile-header' => 'padding-top: {{SIZE}}{{UNIT}};',
 
-                    '{{WRAPPER}} .profile-header > img, {{WRAPPER}} .profile-image-card img, {{WRAPPER}} .profile-image-card, {{WRAPPER}} .profile-header ' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};'
+                    '{{WRAPPER}} .lcake-profile-header > img, {{WRAPPER}} .lcake-profile-image-card img, {{WRAPPER}} .lcake-profile-image-card, {{WRAPPER}} .lcake-profile-header ' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};'
 
                 ],
 
@@ -1574,60 +1570,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
-
-        $this->add_responsive_control(
-
-            'lcake_team_image_border_radius',
-
-            [
-
-                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
-
-                'type' => \Elementor\Controls_Manager::SLIDER,
-
-                'size_units' => ['px', '%', 'em'],
-
-                'range'  => [
-
-                    'px' => [
-
-                        'min'   => 0,
-
-                        'max'   => 100,
-
-                    ],
-
-                    '%' => [
-
-                        'min'   => 0,
-
-                        'max'   => 100,
-
-                    ],
-
-                ],
-
-                'selectors' => [
-
-                    '{{WRAPPER}} .profile-header > img, {{WRAPPER}} .profile-image-card img' => 'border-radius: {{SIZE}}{{UNIT}};'
-
-                ],
-
-                'default' => [
-
-                    'unit' => '%',
-
-                    'size' => 0,
-
-                ]
-
-            ]
-
-        );
-
-
 
         $this->add_responsive_control(
 
@@ -1661,7 +1603,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-card .profile-header' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-card .lcake-profile-header' => 'height: {{SIZE}}{{UNIT}};',
 
                 ],
 
@@ -1685,7 +1627,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-card .profile-header' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-card .lcake-profile-header' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
                 ],
 
@@ -1745,7 +1687,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-card .profile-header' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-card .lcake-profile-header' => 'width: {{SIZE}}{{UNIT}};',
 
                 ],
 
@@ -1762,7 +1704,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'name'      => 'lcake_team_image_shadow',
 
-                'selector'  => '{{WRAPPER}} .profile-card .profile-header',
+                'selector'  => '{{WRAPPER}} .lcake-profile-card .lcake-profile-header',
 
                 'condition' => [
 
@@ -1827,7 +1769,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
 
-                'selector' => '{{WRAPPER}} .profile-card .profile-header',
+                'selector' => '{{WRAPPER}} .lcake-profile-card .lcake-profile-header',
 
                 'condition' => [
 
@@ -1863,19 +1805,19 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .lcake-team-img.profile-header > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-team-img.lcake-profile-header > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
                 ],
 
                 'default' => [
 
-                    'top' => '50',
+                    'top' => '0',
 
-                    'right' => '50',
+                    'right' => '0',
 
-                    'left' => '50',
+                    'left' => '0',
 
-                    'bottom' => '50',
+                    'bottom' => '0',
 
                     'unit' => '%',
 
@@ -1913,7 +1855,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'types' => ['classic', 'gradient'],
 
-                'selector' => '{{WRAPPER}} .profile-card .profile-header',
+                'selector' => '{{WRAPPER}} .lcake-profile-card .lcake-profile-header',
 
                 'condition' => [
 
@@ -1969,7 +1911,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'types' => ['classic', 'gradient'],
 
-                'selector' => '{{WRAPPER}} .profile-header:before',
+                'selector' => '{{WRAPPER}} .lcake-profile-header:before',
 
                 'condition' => [
 
@@ -2123,7 +2065,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-icon > i, {{WRAPPER}} .profile-icon > svg' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-icon > i, {{WRAPPER}} .lcake-profile-icon > svg' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
                 ],
 
@@ -2155,7 +2097,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'name' => 'lcake_team_top_icon_shadow',
 
-                'selector' => '{{WRAPPER}} .profile-icon > i, {{WRAPPER}} .profile-icon > svg',
+                'selector' => '{{WRAPPER}} .lcake-profile-icon > i, {{WRAPPER}} .lcake-profile-icon > svg',
 
             ]
 
@@ -2195,9 +2137,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-icon > i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-icon > i' => 'font-size: {{SIZE}}{{UNIT}};',
 
-                    '{{WRAPPER}} .profile-icon > svg'   => 'max-width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-icon > svg'   => 'max-width: {{SIZE}}{{UNIT}};',
 
                 ],
 
@@ -2267,7 +2209,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-icon > i' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-icon > i' => 'width: {{SIZE}}{{UNIT}};',
 
                 ],
 
@@ -2317,7 +2259,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-icon > i' => 'height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-icon > i' => 'height: {{SIZE}}{{UNIT}};',
 
                 ],
 
@@ -2367,7 +2309,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-icon > i' => 'line-height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-icon > i' => 'line-height: {{SIZE}}{{UNIT}};',
 
                 ],
 
@@ -2411,9 +2353,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-icon > i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-profile-icon > i' => 'color: {{VALUE}};',
 
-                    '{{WRAPPER}} .profile-icon > svg path'  => 'stroke: {{VALUE}}; fill: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-profile-icon > svg path'  => 'stroke: {{VALUE}}; fill: {{VALUE}};',
 
                 ],
 
@@ -2435,7 +2377,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-icon > i, {{WRAPPER}} .profile-icon > svg' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-profile-icon > i, {{WRAPPER}} .lcake-profile-icon > svg' => 'background-color: {{VALUE}};',
 
                 ],
 
@@ -2453,7 +2395,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
 
-                'selector' => '{{WRAPPER}} .profile-icon > i, {{WRAPPER}} .profile-icon > svg',
+                'selector' => '{{WRAPPER}} .lcake-profile-icon > i, {{WRAPPER}} .lcake-profile-icon > svg',
 
             ]
 
@@ -2489,9 +2431,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-icon > i:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-profile-icon > i:hover' => 'color: {{VALUE}};',
 
-                    '{{WRAPPER}} .profile-icon > svg:hover path'    => 'stroke: {{VALUE}}; fill: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-profile-icon > svg:hover path'    => 'stroke: {{VALUE}}; fill: {{VALUE}};',
 
                 ],
 
@@ -2513,7 +2455,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-icon > i:hover, {{WRAPPER}} .profile-icon > svg:hover' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-profile-icon > i:hover, {{WRAPPER}} .lcake-profile-icon > svg:hover' => 'background-color: {{VALUE}};',
 
                 ],
 
@@ -2531,7 +2473,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
 
-                'selector' => '{{WRAPPER}} .profile-icon > i:hover, {{WRAPPER}} .profile-icon > svg:hover',
+                'selector' => '{{WRAPPER}} .lcake-profile-icon > i:hover, {{WRAPPER}} .lcake-profile-icon > svg:hover',
 
             ]
 
@@ -2573,7 +2515,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'name'       => 'lcake_team_name_typography',
 
-                'selector'   => '{{WRAPPER}} .profile-body .profile-title',
+                'selector'   => '{{WRAPPER}} .lcake-profile-body .lcake-profile-title',
 
             ]
 
@@ -2615,7 +2557,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors'  => [
 
-                    '{{WRAPPER}} .profile-body .profile-title' => 'color: {{VALUE}};'
+                    '{{WRAPPER}} .lcake-profile-body .lcake-profile-title' => 'color: {{VALUE}};'
 
                 ],
 
@@ -2653,9 +2595,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors'  => [
 
-                    '{{WRAPPER}} .profile-body:hover .profile-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-profile-body:hover .profile-title' => 'color: {{VALUE}};',
 
-                    '{{WRAPPER}} .profile-card:hover .profile-title' => 'color: {{VALUE}} !important',
+                    '{{WRAPPER}} .lcake-profile-card:hover .profile-title' => 'color: {{VALUE}} !important',
 
                 ],
 
@@ -2689,7 +2631,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-body .profile-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-body .lcake-profile-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 
                 ],
 
@@ -2729,7 +2671,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'name'       => 'lcake_team_position_typography',
 
-                'selector'   => '{{WRAPPER}} .profile-body .profile-designation',
+                'selector'   => '{{WRAPPER}} .lcake-profile-body .lcake-profile-designation',
 
             ]
 
@@ -2771,7 +2713,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors'  => [
 
-                    '{{WRAPPER}} .profile-body .profile-designation' => 'color: {{VALUE}};'
+                    '{{WRAPPER}} .lcake-profile-body .lcake-profile-designation' => 'color: {{VALUE}};'
 
                 ],
 
@@ -2811,9 +2753,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors'  => [
 
-                    '{{WRAPPER}} .profile-card:hover .profile-body .profile-designation,
+                    '{{WRAPPER}} .lcake-profile-card:hover .lcake-profile-body .lcake-profile-designation,
 
-                    {{WRAPPER}} .profile-body .profile-designation:hover' => 'color: {{VALUE}};'
+                    {{WRAPPER}} .lcake-profile-body .lcake-profile-designation:hover' => 'color: {{VALUE}};'
 
                 ],
 
@@ -2830,9 +2772,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'name'       => 'lcake_team_position_hover_shadow',
 
-                'selector'   => '{{WRAPPER}} .profile-card:hover .profile-body .profile-designation,
+                'selector'   => '{{WRAPPER}} .lcake-profile-card:hover .lcake-profile-body .profile-designation,
 
-                    {{WRAPPER}} .profile-body .profile-designation:hover',
+                {{WRAPPER}} .lcake-profile-body .profile-designation:hover',
 
             ]
 
@@ -2886,7 +2828,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-body .profile-designation' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-body .lcake-profile-designation' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 
                 ],
 
@@ -2926,7 +2868,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'name'       => 'lcake_team_text_content_typography',
 
-                'selector'   => '{{WRAPPER}} .profile-body .profile-content',
+                'selector'   => '{{WRAPPER}} .lcake-profile-body .lcake-profile-content',
 
             ]
 
@@ -2968,7 +2910,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors'  => [
 
-                    '{{WRAPPER}} .profile-body .profile-content' => 'color: {{VALUE}};'
+                    '{{WRAPPER}} .lcake-profile-body .lcake-profile-content' => 'color: {{VALUE}};'
 
                 ],
 
@@ -3008,9 +2950,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors'  => [
 
-                    '{{WRAPPER}} .profile-card:hover .profile-body .profile-content' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-profile-card:hover .lcake-profile-body .lcake-profile-content' => 'color: {{VALUE}};',
 
-                    '{{WRAPPER}} .profile-image-card:hover .profile-body .profile-content' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-profile-image-card:hover .lcake-profile-body .lcake-profile-content' => 'color: {{VALUE}};',
 
                 ],
 
@@ -3042,7 +2984,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .profile-body .profile-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-profile-body .lcake-profile-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 
                 ],
 
@@ -3131,9 +3073,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .lcake-team-social-list > li > a' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-team-social-list' => 'text-align: {{VALUE}};',
 
-                    $popup_selector . ' .lcake-team-social-list > li > a' => 'text-align: {{VALUE}};',
+                    $popup_selector . ' .lcake-team-social-list' => 'text-align: {{VALUE}};',
 
                 ],
 
@@ -3646,7 +3588,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'types' => ['gradient'],
 
-                'selector' => '{{WRAPPER}} .profile-image-card:before',
+                'selector' => '{{WRAPPER}} .lcake-profile-image-card:before',
 
             ]
 
@@ -5117,7 +5059,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
 
                         <?php if ($lcake_team_chose_popup == 'yes'):
-
+                            $lcake_modal_close_align = isset($lcake_team_close_icon_alignment) ? $lcake_team_close_icon_alignment : 'right';
                             require_once LCAKE_EAK_PATH . 'includes/widgets/lc-kit/team/components/popup.php';
 
                         endif;
