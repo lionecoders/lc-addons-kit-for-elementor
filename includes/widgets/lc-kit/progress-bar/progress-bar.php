@@ -528,7 +528,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
                 <div class="lcake-single-skill-bar">
                     <?php if ('style-switch' != $lcake_progressbar_style): ?>
                         <div class="lcake-bar-content">
-                            <span class="lcake-lcake-skill-title"><?php echo esc_html($lcake_progressbar_title); ?></span>
+                            <span class="lcake-skill-title"><?php echo esc_html($lcake_progressbar_title); ?></span>
                         </div>
 
                         <div class="lcake-bar">
@@ -579,7 +579,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
                     <?php else: ?>
                         <div class="lcake-content-group">
                             <div class="lcake-bar-content">
-                                <span class="lcake-lcake-skill-title"><?php echo esc_html($lcake_progressbar_title); ?></span>
+                                <span class="lcake-skill-title"><?php echo esc_html($lcake_progressbar_title); ?></span>
                             </div>
 
                             <div class="lcake-bar">
