@@ -107,6 +107,12 @@
     overflow: hidden;
 }
 
+.lcake-profile-image-card .lcake-team-popup-image {
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+}
+
 .lcake-profile-image-card::before {
     position: absolute;
     content: "";
@@ -122,7 +128,8 @@
     visibility: hidden;
 }
 
-.lcake-profile-image-card .hover-area {
+.lcake-profile-image-card .hover-area,
+.lcake-profile-image-card .lcake-hover-area {
     position: absolute;
     top: 50%;
     transform: translateY(-20%);

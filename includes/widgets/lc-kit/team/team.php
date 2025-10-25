@@ -1163,7 +1163,8 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'types' => ['classic', 'gradient'],
 
-                'selector' => '{{WRAPPER}} .lcake-profile-card:hover, {{WRAPPER}} .lcake-profile-image-card:hover, {{WRAPPER}} .lcake-profile-card::before, {{WRAPPER}} .lcake-profile-image-card::before, {{WRAPPER}} div .lcake-profile-card .profile-body::before, {{WRAPPER}} .lcake-image-card-v3 .lcake-profile-image-card:after',
+                'selector' => '{{WRAPPER}} .lcake-profile-card:hover, {{WRAPPER}} .lcake-profile-image-card:hover, {{WRAPPER}} .lcake-profile-card::before, {{WRAPPER}} .lcake-profile-image-card::before, {{WRAPPER}} div .lcake-profile-card .profile-body::before, {{WRAPPER}} .lcake-image-card-v3 .lcake-profile-image-card:after,
+                {{WRAPPER}} .lcake-profile-square-v.square-v4 .lcake-profile-card .lcake-profile-body::before',
 
             ]
 
@@ -1456,7 +1457,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'types' => ['gradient'],
 
-                'selector' => '{{WRAPPER}} .lcake-image-card-v2 .profile-image-card::before',
+                'selector' => '{{WRAPPER}} .lcake-image-card-v2 .lcake-profile-image-card::before',
 
                 'condition' => [
 
