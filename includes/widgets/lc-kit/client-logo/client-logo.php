@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 // Align Elementor references like FAQ widget so settings apply correctly
 
 
-class LCAKE_Kit_Client_Logo extends Elementor\Widget_Base
+class LCAKE1_Kit_Client_Logo extends Elementor\Widget_Base
 {
 
     public function get_name()
