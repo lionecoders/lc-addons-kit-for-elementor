@@ -11,6 +11,29 @@ class LCAKE_Kit_Widget_Loader
         add_action('elementor/elements/categories_registered', [$this, 'register_categories']);
         add_action('elementor/frontend/after_register_scripts', [$this, 'register_widget_scripts']);
         add_action('elementor/frontend/after_register_styles', [$this, 'register_widget_styles']);
+        add_action('elementor/editor/after_enqueue_styles', [$this, 'editor_styles']);
+    }
+
+    public function editor_styles() {
+        wp_add_inline_style('elementor-editor', '
+        #elementor-panel-category-lcake-page-kit .elementor-panel-category-items .elementor-element-wrapper {
+            position: relative;
+        }
+        #elementor-panel-category-lcake-page-kit .elementor-panel-category-items .elementor-element-wrapper:after {
+            content: "LC";
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 1px 3px;
+            color: #000;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 3px;
+            text-transform: uppercase;
+            z-index: 1;
+        }
+    ');
     }
 
     public function register_categories($elements_manager)
