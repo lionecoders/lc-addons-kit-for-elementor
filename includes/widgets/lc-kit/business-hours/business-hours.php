@@ -31,6 +31,10 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
         return ['business', 'hours', 'time', 'schedule', 'opening', 'closing'];
     }
 
+    public function get_style_depends() {
+        return ['lcake-kit-business-hours'];
+    }
+
     protected function register_controls() {
         $this->add_content_controls();
         $this->add_style_controls();
@@ -167,7 +171,7 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'lcake_contect_highlight_today',
+            'lcake_content_highlight_today',
             [
                 'label' => esc_html__('Highlight Today', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
@@ -367,7 +371,7 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
                 'label' => esc_html__('Today Highlight', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
-                    'highlight_today' => 'yes',
+                    'lcake_content_highlight_today' => 'yes',
                 ],
             ]
         );
@@ -384,7 +388,7 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'lcake_style_today_color',
+            'lcake_style_today_text_color',
             [
                 'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
@@ -397,7 +401,7 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [
-                'name' => 'today_border',
+                'name' => 'lcake_style_today_border',
                 'selector' => '{{WRAPPER}} .lcake-business-hours-item.today',
             ]
         );
@@ -441,9 +445,7 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
             return;
         }
 
-        $this->add_render_attribute('wrapper', 'class', 'lcake-business-hours');
-
-        echo '<div ' . esc_attr($this->get_render_attribute_string('wrapper')) . '>';
+        echo '<div class="lcake-business-hours">';
 
         // Title
         if (!empty($settings['lcake_content_title'])) {
@@ -456,11 +458,11 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
             $item_class = 'lcake-business-hours-item';
 
             // Highlight today check with new setting name
-            if ($settings['lcake_contect_highlight_today'] === 'yes' && $this->is_today($hour['day'])) {
+            if ($settings['lcake_content_highlight_today'] === 'yes' && $this->is_today($hour['day'])) {
                 $item_class .= ' today';
             }
 
-            echo '<div class="' . esc_attr($item_class) . '">';
+            echo '<div class="' . esc_attr($item_class) . '" data-day="' . esc_attr($hour['day']) . '">';
             echo '<span class="lcake-business-hours-day">' . esc_html($this->get_day_name($hour['day'])) . '</span>';
 
             if (!empty($hour['closed']) && $hour['closed'] === 'yes') {

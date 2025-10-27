@@ -1,0 +1,62 @@
+/* Business Hours Widget Styles */
+ .lcake-business-hours {
+    display: block;
+    width: 100%;
+}
+
+ .lcake-business-hours-title {
+    margin: 0 0 20px 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+ .lcake-business-hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+ .lcake-business-hours-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+}
+
+ .lcake-business-hours-item.today {
+    background-color: #f0f8ff;
+    border: 1px solid #007cba;
+}
+
+ .lcake-business-hours-day {
+    font-weight: 500;
+    color: #333;
+}
+
+ .lcake-business-hours-time {
+    color: #666;
+    font-weight: 400;
+}
+
+ .lcake-business-hours-time.closed {
+    color: #e74c3c;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+     .lcake-business-hours-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+     .lcake-business-hours-time {
+        font-size: 14px;
+    }
+}

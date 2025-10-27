@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LCAKE Kit Button Widget
  * 
@@ -7,29 +8,36 @@
 
 if (!defined('ABSPATH')) exit;
 
-class LCAKE_Kit_Button extends \Elementor\Widget_Base {
+class LCAKE_Kit_Button extends \Elementor\Widget_Base
+{
 
-    public function get_name() {
+    public function get_name()
+    {
         return 'lcake-kit-button';
     }
 
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('Button', 'lc-addons-kit-for-elementor');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-button';
     }
 
-    public function get_categories() {
+    public function get_categories()
+    {
         return ['lcake-page-kit'];
     }
 
-    public function get_keywords() {
+    public function get_keywords()
+    {
         return ['button', 'link', 'cta'];
     }
 
-    public function register_controls() {
+    public function register_controls()
+    {
         // === Content Section ===
         $this->start_controls_section(
             'lcake_button_content_section',
@@ -187,35 +195,35 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'lcake_btn_width',
             [
-                'label'     => esc_html__( 'Width (%)', 'lc-addons-kit-for-elementor' ),
+                'label'     => esc_html__('Width (%)', 'lc-addons-kit-for-elementor'),
                 'type'      => \Elementor\Controls_Manager::SLIDER,
                 'selectors' => [
                     '{{WRAPPER}} .lcake-kit-button' => 'width: {{SIZE}}%;',
                 ],
             ]
         );
-        
+
         $this->add_responsive_control(
             'lcake_btn_padding',
             [
-                'label' => esc_html__( 'Padding', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type'  => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', 'em', '%' ],
+                'size_units' => ['px', 'em', '%'],
                 'selectors' => [
                     '{{WRAPPER}} .lcake-kit-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
-        
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name'     => 'lcake_btn_typography',
-                'label'    => esc_html__( 'Typography', 'lc-addons-kit-for-elementor' ),
+                'label'    => esc_html__('Typography', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-kit-button',
             ]
         );
-        
+
         $this->add_group_control(
             \Elementor\Group_Control_Text_Shadow::get_type(),
             [
@@ -223,29 +231,29 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
                 'selector' => '{{WRAPPER}} .lcake-kit-button',
             ]
         );
-        
+
         // Start Tabs for Normal & Hover States
-        $this->start_controls_tabs( 'lcake_btn_tabs_style' );
-        
+        $this->start_controls_tabs('lcake_btn_tabs_style');
+
         // Normal Tab
         $this->start_controls_tab(
             'lcake_btn_tab_normal',
             [
-                'label' => esc_html__( 'Normal', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
             ]
         );
-        
+
         $this->add_control(
             'lcake_btn_text_color',
             [
-                'label'     => esc_html__( 'Text Color', 'lc-addons-kit-for-elementor' ),
+                'label'     => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type'      => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lcake-kit-button' => 'color: {{VALUE}}; fill: {{VALUE}};',
                 ],
             ]
         );
-        
+
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -253,28 +261,28 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
                 'selector' => '{{WRAPPER}} .lcake-kit-button',
             ]
         );
-        
+
         $this->end_controls_tab();
-        
+
         // Hover Tab
         $this->start_controls_tab(
             'lcake_btn_tab_hover',
             [
-                'label' => esc_html__( 'Hover', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
             ]
         );
-        
+
         $this->add_control(
             'lcake_btn_hover_text_color',
             [
-                'label'     => esc_html__( 'Text Color', 'lc-addons-kit-for-elementor' ),
+                'label'     => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type'      =>  \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lcake-kit-button:hover' => 'color: {{VALUE}}; fill: {{VALUE}};',
                 ],
             ]
         );
-        
+
         $this->add_group_control(
             \Elementor\Group_Control_Background::get_type(),
             [
@@ -282,33 +290,33 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
                 'selector' => '{{WRAPPER}} .lcake-kit-button:hover',
             ]
         );
-        
+
         $this->end_controls_tab(); // End Hover Tab
         $this->end_controls_tabs(); // End Tabs
-        
+
         $this->end_controls_section();
 
         // Border Style Section
         $this->start_controls_section(
-			'lcake_btn_border_style_tabs',
-			[
-				'label' =>esc_html__( 'Border', 'lc-addons-kit-for-elementor' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-			]
-		);
+            'lcake_btn_border_style_tabs',
+            [
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
 
         $this->add_responsive_control(
             'lcake_btn_border_style',
             [
-                'label' => esc_html__( 'Border Type', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Border Type', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => [
-                    'none'   => esc_html__( 'None', 'lc-addons-kit-for-elementor' ),
-                    'solid'  => esc_html__( 'Solid', 'lc-addons-kit-for-elementor' ),
-                    'double' => esc_html__( 'Double', 'lc-addons-kit-for-elementor' ),
-                    'dotted' => esc_html__( 'Dotted', 'lc-addons-kit-for-elementor' ),
-                    'dashed' => esc_html__( 'Dashed', 'lc-addons-kit-for-elementor' ),
-                    'groove' => esc_html__( 'Groove', 'lc-addons-kit-for-elementor' ),
+                    'none'   => esc_html__('None', 'lc-addons-kit-for-elementor'),
+                    'solid'  => esc_html__('Solid', 'lc-addons-kit-for-elementor'),
+                    'double' => esc_html__('Double', 'lc-addons-kit-for-elementor'),
+                    'dotted' => esc_html__('Dotted', 'lc-addons-kit-for-elementor'),
+                    'dashed' => esc_html__('Dashed', 'lc-addons-kit-for-elementor'),
+                    'groove' => esc_html__('Groove', 'lc-addons-kit-for-elementor'),
                 ],
                 'default' => 'none',
                 'selectors' => [
@@ -316,11 +324,11 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
                 ],
             ]
         );
-        
+
         $this->add_responsive_control(
             'lcake_btn_border_width',
             [
-                'label' => esc_html__( 'Border Width', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Border Width', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'condition' => [
                     'lcake_btn_border_style!' => 'none'
@@ -330,69 +338,69 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
                 ],
             ]
         );
-        
-        $this->start_controls_tabs( 'lcake_btn_border_tabs' );
-        
+
+        $this->start_controls_tabs('lcake_btn_border_tabs');
+
         $this->start_controls_tab(
             'lcake_btn_border_normal',
             [
-                'label' => esc_html__( 'Normal', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
             ]
         );
-        
+
         $this->add_control(
             'lcake_btn_border_color',
             [
-                'label' => esc_html__( 'Border Color', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Border Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lcake-kit-button' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
-        
+
         $this->end_controls_tab();
-        
+
         $this->start_controls_tab(
             'lcake_btn_border_hover',
             [
-                'label' => esc_html__( 'Hover', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
             ]
         );
-        
+
         $this->add_control(
             'lcake_btn_hover_border_color',
             [
-                'label' => esc_html__( 'Hover Border Color', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Hover Border Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lcake-kit-button:hover' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
-        
+
         $this->add_control(
             'lcake_btn_border_hover_text_color',
             [
-                'label' => esc_html__( 'Hover Text Color', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Hover Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lcake-kit-button:hover' => 'color: {{VALUE}}; fill: {{VALUE}};',
                 ],
             ]
         );
-        
+
         $this->end_controls_tab();
-        
+
         $this->end_controls_tabs();
 
         // Border Radius Section
         $this->add_responsive_control(
             'lcake_btn_border_radius',
             [
-                'label' => esc_html__( 'Border Radius', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px', '%' ],
+                'size_units' => ['px', '%'],
                 'selectors' => [
                     '{{WRAPPER}} .lcake-kit-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -405,7 +413,7 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'lcake_btn_shadow_style_tabs',
             [
-                'label' => esc_html__( 'Shadow', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Shadow', 'lc-addons-kit-for-elementor'),
                 'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -422,7 +430,7 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name'     => 'lcake_btn_hover_box_shadow_group',
-                'label'    => esc_html__( 'Hover Box Shadow', 'lc-addons-kit-for-elementor' ),
+                'label'    => esc_html__('Hover Box Shadow', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-kit-button:hover',
             ]
         );
@@ -433,7 +441,7 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'lcake_btn_icon_style',
             [
-                'label' => esc_html__( 'Icon', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Icon', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'lcake_button_icon_switch' => 'yes',
@@ -444,13 +452,13 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'lcake_btn_icon_font_size',
             [
-                'label' => esc_html__( 'Font Size', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Font Size', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', 'em', 'rem' ],
+                'size_units' => ['px', 'em', 'rem'],
                 'range' => [
-                    'px' => [ 'min' => 1, 'max' => 100 ],
-                    'em' => [ 'min' => 0.1, 'max' => 10 ],
-                    'rem' => [ 'min' => 0.1, 'max' => 10 ],
+                    'px' => ['min' => 1, 'max' => 100],
+                    'em' => ['min' => 0.1, 'max' => 10],
+                    'rem' => ['min' => 0.1, 'max' => 10],
                 ],
                 'default' => [
                     'unit' => 'px',
@@ -466,9 +474,9 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'lcake_btn_icon_margin_right',
             [
-                'label' => esc_html__( 'Add space after icon', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Add space after icon', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
+                'size_units' => ['px'],
                 'range' => [
                     'px' => [
                         'min' => 0,
@@ -493,9 +501,9 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'lcake_btn_icon_margin_left',
             [
-                'label' => esc_html__( 'Add space before icon', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Add space before icon', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px' ],
+                'size_units' => ['px'],
                 'range' => [
                     'px' => [
                         'min' => 0,
@@ -520,13 +528,13 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'lcake_btn_icon_vertical_align',
             [
-                'label' => esc_html__( 'Move Icon Vertically', 'lc-addons-kit-for-elementor' ),
+                'label' => esc_html__('Move Icon Vertically', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'size_units' => [ 'px', 'em', 'rem' ],
+                'size_units' => ['px', 'em', 'rem'],
                 'range' => [
-                    'px' => [ 'min' => -20, 'max' => 20 ],
-                    'em' => [ 'min' => -5, 'max' => 5 ],
-                    'rem' => [ 'min' => -5, 'max' => 5 ],
+                    'px' => ['min' => -20, 'max' => 20],
+                    'em' => ['min' => -5, 'max' => 5],
+                    'rem' => ['min' => -5, 'max' => 5],
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .lcake-kit-button-icon' => 'transform: translateY({{SIZE}}{{UNIT}});',
@@ -535,20 +543,18 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
         );
 
         $this->end_controls_section();
-
-
     }
 
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
 
         $custom_class = !empty($settings['lcake_button_class']) ? sanitize_html_class($settings['lcake_button_class']) : '';
-        $custom_id    = !empty($settings['lcake_button_id']) ? sanitize_html_class($settings['lcake_button_id']) : '';
+        $custom_id    = !empty($settings['lcake_button_id']) ? sanitize_text_field($settings['lcake_button_id']) : '';
         $button_text  = !empty($settings['lcake_button_text']) ? esc_html($settings['lcake_button_text']) : '';
         $position     = $settings['lcake_button_icon_position'] ?? 'left';
         $has_url      = !empty($settings['lcake_button_link']['url']);
-
-        // Base button attributes
+        
         $this->add_render_attribute('button', [
             'class' => array_filter([
                 'lcake-kit-button',
@@ -561,25 +567,34 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
             $this->add_render_attribute('button', 'id', $custom_id);
         }
 
-        // Accessibility label
         if ($button_text) {
             $this->add_render_attribute('button', 'aria-label', $button_text);
         }
 
-        // Link attributes if URL exists
         if ($has_url) {
             $this->add_render_attribute('button', 'href', esc_url($settings['lcake_button_link']['url']));
 
             if (!empty($settings['lcake_button_link']['is_external'])) {
                 $this->add_render_attribute('button', 'target', '_blank');
+                // add noopener noreferrer by default for external
+                $existing_rel = $this->get_render_attribute_string('button'); // not used for printing, just to check
+                $rel_values = [];
+                // gather rel values manually (we'll set below)
+                $rel_values[] = 'noopener';
+                $rel_values[] = 'noreferrer';
             }
+
             if (!empty($settings['lcake_button_link']['nofollow'])) {
-                $this->add_render_attribute('button', 'rel', 'nofollow');
+                $rel_values[] = 'nofollow';
+            }
+
+            if (!empty($rel_values)) {
+                // ensure unique values
+                $rel_values = array_unique($rel_values);
+                $this->add_render_attribute('button', 'rel', implode(' ', $rel_values));
             }
         }
 
- 
-        // Icon HTML
         $icon_html = '';
         if (!empty($settings['lcake_button_icon_switch']) && $settings['lcake_button_icon_switch'] === 'yes' && !empty($settings['lcake_button_icon']['value'])) {
             \Elementor\Icons_Manager::enqueue_shim();
@@ -594,7 +609,6 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
             );
             $icon_html = ob_get_clean();
 
-            // Normalize SVG sizing for consistent styling via CSS
             if (stripos($icon_html, '<svg') !== false) {
                 $icon_html = preg_replace('/\s(?:width|height)=["\'][^"\']*["\']/', '', $icon_html);
                 if (preg_match('/<svg\b[^>]*\bstyle=["\']([^"\']*)["\']/i', $icon_html, $m)) {
@@ -607,14 +621,11 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
             }
         }
 
-  
-        // Badge HTML
         $badge_html = !empty($settings['lcake_button_badge'])
             ? sprintf('<span class="lcake-button-badge">%s</span>', esc_html($settings['lcake_button_badge']))
             : '';
- 
-        // Button inner content
 
+        // Button inner content
         $content_parts = [];
         if ($icon_html && $position === 'left') {
             $content_parts[] = $icon_html;
@@ -630,23 +641,20 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
         }
         $button_inner = implode('', $content_parts);
 
-        // Output HTML
-        ?>
+?>
         <div class="lcake-kit-wid-con">
             <div class="lcake-kit-button-wrapper">
                 <?php if ($has_url): ?>
-                    <a <?php echo esc_attr($this->get_render_attribute_string('button')); ?>>
+                    <a <?php echo $this->get_render_attribute_string('button'); ?>>
                         <?php echo wp_kses_post($button_inner); ?>
                     </a>
                 <?php else: ?>
-                    <button type="button" <?php echo esc_attr($this->get_render_attribute_string('button')); ?>>
+                    <button type="button" <?php echo $this->get_render_attribute_string('button'); ?>>
                         <?php echo wp_kses_post($button_inner); ?>
                     </button>
                 <?php endif; ?>
             </div>
         </div>
-        <?php
+<?php
     }
-
-
 }

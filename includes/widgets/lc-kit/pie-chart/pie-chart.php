@@ -20,7 +20,7 @@ class LCAKE_Kit_Pie_Chart extends \Elementor\Widget_Base {
     }
 
     public function get_icon() {
-        return 'eicon-pie-chart';
+        return 'eicon-circle-o';
     }
 
     public function get_categories() {

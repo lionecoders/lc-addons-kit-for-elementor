@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 class LCAKE_Kit_Admin_Settings
 {
     private $widgets = [];
-    private $menu_slug = 'lcake-kit-settings';
+    private $menu_slug = 'lcake_menu';
     private $page_hook = '';
 
     public function __construct()
@@ -52,9 +52,9 @@ class LCAKE_Kit_Admin_Settings
 
     public function add_settings_page()
     {
-        $parent_slug = 'lcake-kit-main-menu';
-        add_menu_page('LC Kit', 'LC Kit', 'manage_options', $parent_slug, [$this, 'render_settings_page'], 'dashicons-screenoptions');
-        $this->page_hook = add_submenu_page($parent_slug, 'LC Kit Widget Manager', 'Widget Manager', 'manage_options', $parent_slug, [$this, 'render_settings_page']);
+       
+        add_menu_page('LC Kit', 'LC Kit', 'manage_options', $this->menu_slug, [$this, 'render_settings_page'], 'dashicons-screenoptions');
+        $this->page_hook = add_submenu_page($this->menu_slug, 'LC Kit Widget Manager', 'Widget Manager', 'manage_options', $this->menu_slug, [$this, 'render_settings_page']);
     }
 
     public function register_settings()

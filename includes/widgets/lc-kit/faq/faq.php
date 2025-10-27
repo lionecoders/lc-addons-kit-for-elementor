@@ -225,7 +225,6 @@ class LCAKE_Kit_FAQ extends \Elementor\Widget_Base {
 
         $this->end_controls_section();
 
-        // Question Style
         $this->start_controls_section(
             'lc_question_style_section',
             [
@@ -354,7 +353,6 @@ class LCAKE_Kit_FAQ extends \Elementor\Widget_Base {
 
         $this->end_controls_section();
 
-        // Answer Style
         $this->start_controls_section(
             'lc_answer_style_section',
             [
@@ -418,7 +416,7 @@ class LCAKE_Kit_FAQ extends \Elementor\Widget_Base {
         $multiple = (!empty($settings['lc_faq_active_multiple']) && $settings['lc_faq_active_multiple'] === 'yes');
 
         $active_index = null;
-        if (!$multiple && !empty($settings['lc_faq_active_item'])) {
+        if (!empty($settings['lc_faq_active_item'])) {
             $i = intval($settings['lc_faq_active_item']) - 1;
             if ($i >= 0 && $i < count($settings['lc_faq_content_items'])) {
                 $active_index = $i;
@@ -442,16 +440,16 @@ class LCAKE_Kit_FAQ extends \Elementor\Widget_Base {
 
             echo '<span class="lc-faq-question-text">' . esc_html($item['title']) . '</span>';
 
-            echo '</div>'; // .lc-faq-question
+            echo '</div>';
 
             echo '<div class="lc-faq-answer" id="' . esc_attr($answer_id) . '" role="region" aria-labelledby="' . esc_attr($question_id) . '">';
             echo '<div class="lc-faq-answer-content">' . wp_kses_post($item['content']) . '</div>';
             echo '</div>';
 
-            echo '</div>'; // .lc-faq-item
+            echo '</div>';
         }
 
-        echo '</div>'; // .lc-faq
+        echo '</div>';
     }
 
 }

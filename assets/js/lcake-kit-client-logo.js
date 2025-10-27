@@ -1,146 +1,53 @@
-/**
- * Client Logo Widget JavaScript
- * Handles Swiper slider initialization for client logo carousel
- */
+(function(){
+  const INST=new WeakMap(),DF={slidesPerView:4,spaceBetween:15,loop:false,speed:1000,slidesPerGroup:1,breakpoints:{320:{slidesPerView:1,spaceBetween:10},768:{slidesPerView:2,spaceBetween:10},1024:{slidesPerView:4,spaceBetween:15}}};
 
-class LCClientLogoSlider {
-    constructor(widgetEl) {
-        this.widgetEl = widgetEl;
-        this.containerEl = widgetEl.querySelector(".lcake-main-swiper");
-
-        if (!this.containerEl) return console.warn("No swiper container in:", widgetEl);
-        if (typeof Swiper === "undefined") return console.error("Swiper not loaded");
-
-        // Prevent re-initialization
-        if (this.containerEl.swiper) this.containerEl.swiper.destroy(true, true);
-
-        // Parse config
-        let config = {};
-        const configEl = widgetEl.querySelector(".lcake-clients-slider") || widgetEl;
-        try {
-            config = JSON.parse(configEl.getAttribute("data-config") || "{}");
-        } catch (e) {
-            console.error("Invalid data-config:", e);
-        }
-
-        const paginationEl = widgetEl.querySelector(".swiper-pagination");
-        const nextEl = widgetEl.querySelector(".swiper-button-next");
-        const prevEl = widgetEl.querySelector(".swiper-button-prev");
-
-        // Default configuration
-        const defaultConfig = {
-            slidesPerView: 4,
-            spaceBetween: 15,
-            loop: false,
-            speed: 1000,
-            slidesPerGroup: 1,
-            breakpoints: {
-                320: {
-                    slidesPerView: 1,
-                    spaceBetween: 10,
-                },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                },
-                1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 15,
-                }
-            }
-        };
-
-        // Merge configurations
-        const swiperConfig = Object.assign({}, defaultConfig, config);
-
-        // Handle breakpoints properly
-        if (config && config.breakpoints) {
-            swiperConfig.breakpoints = config.breakpoints;
-        }
-
-        // Handle grid mode if configured
-        if (config && config.grid) {
-            swiperConfig.grid = config.grid;
-        }
-
-        // Handle autoplay configuration
-        if (swiperConfig.autoplay) {
-            swiperConfig.autoplay = {
-                delay: swiperConfig.speed || 1000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: swiperConfig.pauseOnHover || false,
-            };
-        }
-
-        // Initialize Swiper
-        this.swiper = new Swiper(this.containerEl, {
-            slidesPerView: swiperConfig.slidesPerView,
-            spaceBetween: swiperConfig.spaceBetween,
-            loop: swiperConfig.loop,
-            speed: swiperConfig.speed,
-            slidesPerGroup: swiperConfig.slidesPerGroup,
-            autoplay: swiperConfig.autoplay,
-            pagination: paginationEl ? { el: paginationEl, clickable: true } : false,
-            navigation: (nextEl && prevEl) ? { nextEl, prevEl } : false,
-            breakpoints: swiperConfig.breakpoints,
-            rtl: swiperConfig.rtl || false,
-            observer: true,
-            observeParents: true,
-        });
-
-        widgetEl.dataset.lcClientLogoInitialized = "true";
+  function toEl(s){return s&&s.jquery? s[0] : s&&s.nodeType===1? s: document}
+  function cfg(el){try{const r=(el.getAttribute&&el.getAttribute('data-config'))||'';return r?JSON.parse(r):{}}catch(e){return{}}}
+  function initWidget(root){
+    if(!root) return;
+    const w = root.matches&&root.matches('.lcake-clients-slider')? root : root.closest? root.closest('.lcake-clients-slider') : root;
+    if(!w) return;
+    const c = w.querySelector('.lcake-main-swiper'); if(!c) return;
+    if(typeof Swiper==='undefined') return setTimeout(()=>initWidget(root),120);
+    const user = cfg(w);
+    const opt = Object.assign({},DF,user);
+    if(opt.autoplay){
+      if(typeof opt.autoplay==='number') opt.autoplay={delay:opt.autoplay,disableOnInteraction:false,pauseOnMouseEnter:false};
+      else opt.autoplay = Object.assign({delay:opt.speed||DF.speed,disableOnInteraction:false,pauseOnMouseEnter:!!opt.pauseOnHover},opt.autoplay);
     }
-}
-
-function initLCClientLogoSliders(scope = document) {
-    if (typeof Swiper === "undefined") {
-        console.warn("Swiper not ready, retrying...");
-        return setTimeout(() => initLCClientLogoSliders(scope), 100);
+    const opts={slidesPerView:opt.slidesPerView,spaceBetween:opt.spaceBetween,loop:!!opt.loop,speed:opt.speed,slidesPerGroup:opt.slidesPerGroup,autoplay:opt.autoplay||false,breakpoints:opt.breakpoints,rtl:!!opt.rtl,observer:true,observeParents:true};
+    const pag=w.querySelector('.swiper-pagination'); if(pag) opts.pagination={el:pag,clickable:true};
+    const nx=w.querySelector('.swiper-button-next'),pv=w.querySelector('.swiper-button-prev'); if(nx&&pv) opts.navigation={nextEl:nx,prevEl:pv};
+    const ex=INST.get(c);
+    if(ex&&ex instanceof Swiper){
+      try{ ex.params=Object.assign(ex.params||{},opts); ex.update&&ex.update(); c.dataset.lcClientLogoInitialized='true'; return }catch(e){ try{ ex.destroy(true,true) }catch(_){ } }
     }
+    try{ INST.set(c,new Swiper(c,opts)); c.dataset.lcClientLogoInitialized='true' }catch(e){ setTimeout(()=>initWidget(root),200) }
+  }
+  function initAll(scope){
+    const el=toEl(scope);
+    if(el.matches&&el.matches('.lcake-clients-slider')) return initWidget(el);
+    const n=el.querySelectorAll('.lcake-clients-slider');
+    for(let i=0;i<n.length;i++) initWidget(n[i]);
+  }
+  function onReady(f){ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',f); else f() }
 
-    scope.querySelectorAll(".lcake-clients-slider").forEach((widgetEl) => {
-        if (!widgetEl.dataset.lcClientLogoInitialized) {
-            new LCClientLogoSlider(widgetEl);
-        }
-    });
-}
+  onReady(()=>{
+    initAll(document);
+    if(window===window.parent){
+      if(window.elementorFrontend&&window.elementorFrontend.hooks) try{ window.elementorFrontend.hooks.addAction('frontend/element_ready/lcake-kit-client-logo.default', ()=>{ initAll(document); Array.from(document.querySelectorAll('iframe')).forEach(ifr=>{ try{ ifr.contentWindow.postMessage({lcake:'init'},'*') }catch(e){} }) }) }catch(e){}
+      if(window.elementor&&window.elementor.hooks) try{ window.elementor.hooks.addAction('panel/open_editor/widget/lcake-kit-client-logo', ()=>setTimeout(()=>{ initAll(document); Array.from(document.querySelectorAll('iframe')).forEach(ifr=>{ try{ ifr.contentWindow.postMessage({lcake:'init'},'*') }catch(e){} }) },220)) }catch(e){}
+      if(window.elementor&&typeof window.elementor.on==='function') try{ window.elementor.on('preview:loaded', ()=>{ initAll(document); Array.from(document.querySelectorAll('iframe')).forEach(ifr=>{ try{ ifr.contentWindow.postMessage({lcake:'init'},'*') }catch(e){} }) }) }catch(e){}
+    } else {
+      window.addEventListener('message',e=>{ try{ if(e.data&&e.data.lcake==='init') initAll(document) }catch(err){} });
+      if(window.elementorFrontend&&window.elementorFrontend.hooks) try{ window.elementorFrontend.hooks.addAction('frontend/element_ready/lcake-kit-client-logo.default', initAll) }catch(e){}
+      if(window.elementor&&window.elementor.hooks) try{ window.elementor.hooks.addAction('panel/open_editor/widget/lcake-kit-client-logo', ()=>setTimeout(()=>initAll(),220)) }catch(e){}
+      if(window.elementor&&typeof window.elementor.on==='function') try{ window.elementor.on('preview:loaded', ()=>initAll()) }catch(e){}
+    }
+    if('MutationObserver' in window){
+      let t; new MutationObserver(m=>{ clearTimeout(t); t=setTimeout(()=>{ for(const mm of m) for(const n of mm.addedNodes) if(n.nodeType===1){ if(n.matches&&n.matches('.lcake-clients-slider')) initAll(n); else if(n.querySelector&&n.querySelector('.lcake-clients-slider')) initAll(n) } },120)}).observe(document.body,{childList:true,subtree:true});
+    }
+  });
 
-// ---------------------
-// Event Listeners
-// ---------------------
-
-// Frontend (non-Elementor)
-document.addEventListener("DOMContentLoaded", () => initLCClientLogoSliders());
-
-// Elementor frontend hook
-jQuery(window).on("elementor/frontend/init", () => {
-    elementorFrontend.hooks.addAction(
-        "frontend/element_ready/lcake-kit-client-logo.default",
-        ($scope) => initLCClientLogoSliders($scope[0])
-    );
-});
-
-// Elementor editor (panel + live edit support)
-jQuery(window).on("elementor/init", () => {
-    elementor.hooks.addAction("panel/open_editor/widget/lcake-kit-client-logo", () => {
-        setTimeout(initLCClientLogoSliders, 200);
-    });
-});
-
-// MutationObserver (catch dynamically inserted widgets)
-if ("MutationObserver" in window) {
-    new MutationObserver((mutations) => {
-        for (const m of mutations) {
-            for (const node of m.addedNodes) {
-                if (
-                    node.nodeType === 1 &&
-                    (node.matches?.(".lcake-clients-slider") ||
-                        node.querySelector?.(".lcake-clients-slider"))
-                ) {
-                    setTimeout(() => initLCClientLogoSliders(node), 100);
-                    return;
-                }
-            }
-        }
-    }).observe(document.body, { childList: true, subtree: true });
-}
+  window.lcakeClientLogo={init:initAll};
+})();

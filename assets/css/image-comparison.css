@@ -1,9 +1,13 @@
 .lcake-main-wrapper .lcake-image-comparison {
-    z-index: 3
+    z-index: 3;
+    position: relative;
+    overflow: hidden;
 }
 
-.lcake-main-wrapper .lcake-image-comparison>img {
-    width: 100%
+.lcake-main-wrapper .lcake-image-comparison img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .lcake-main-wrapper .lcake-image-comparison .twentytwenty-handle {
@@ -11,24 +15,65 @@
     box-shadow: none;
     background-color: #fff;
     border-color: transparent;
-    -webkit-transition: color .3s,background-color .3s;
-    transition: color .3s,background-color .3s
+    -webkit-transition: color .3s, background-color .3s;
+    transition: color .3s, background-color .3s;
 }
 
-.lcake-main-wrapper .lcake-image-comparison .twentytwenty-handle::before {
-    -webkit-box-shadow: none;
-    box-shadow: none
-}
-
+.lcake-main-wrapper .lcake-image-comparison .twentytwenty-handle::before,
 .lcake-main-wrapper .lcake-image-comparison .twentytwenty-handle::after {
     -webkit-box-shadow: none;
-    box-shadow: none
+    box-shadow: none;
 }
 
 .lcake-main-wrapper .lcake-image-comparison .twentytwenty-handle .twentytwenty-left-arrow {
-    border-right-color: #000
+    border-right-color: #000;
 }
 
 .lcake-main-wrapper .lcake-image-comparison .twentytwenty-handle .twentytwenty-right-arrow {
-    border-left-color: #000
+    border-left-color: #000;
+}
+
+.lcake-main-wrapper .lcake-image-comparison .twentytwenty-before-label,
+.lcake-main-wrapper .lcake-image-comparison .twentytwenty-after-label {
+    position: absolute;
+    z-index: 6;
+    pointer-events: none;
+    font-size: 13px;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    white-space: nowrap;
+}
+
+.lcake-main-wrapper .lcake-image-comparison .twentytwenty-before-label {
+    top: 12px;
+    left: 12px;
+}
+
+.lcake-main-wrapper .lcake-image-comparison .twentytwenty-after-label {
+    top: 12px;
+    right: 12px;
+}
+
+.lcake-main-wrapper .image-comparison-container-vertical .twentytwenty-before-label {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 8px;
+}
+
+.lcake-main-wrapper .image-comparison-container-vertical .twentytwenty-after-label {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 8px;
+}
+
+@media (max-width: 480px) {
+
+    .lcake-main-wrapper .lcake-image-comparison .twentytwenty-before-label,
+    .lcake-main-wrapper .lcake-image-comparison .twentytwenty-after-label {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
 }
