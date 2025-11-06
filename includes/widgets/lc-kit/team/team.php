@@ -29,15 +29,11 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
         return 'eicon-person';
     }
 
-
-
     public function get_categories()
     {
 
         return ['lcake-page-kit'];
     }
-
-
 
     public function get_keywords()
     {
@@ -45,15 +41,11 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
         return ['team', 'member', 'staff', 'person', 'profile'];
     }
 
-
-
     public function get_script_depends()
     {
 
         return ['lcake-team-js'];
     }
-
-
 
     public function get_style_depends()
     {
@@ -76,8 +68,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -121,8 +111,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_control(
 
             'lcake_team_image',
@@ -151,8 +139,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_group_control(
 
             \Elementor\Group_Control_Image_Size::get_type(),
@@ -166,8 +152,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -192,8 +176,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -220,8 +202,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         // Show Icon
 
@@ -286,8 +266,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         // Show Description
 
         $this->add_control(
@@ -337,25 +315,12 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
                     'lcake_team_show_short_description' => 'yes'
 
                 ],
-
-
-
             ]
-
         );
-
-
 
         $this->end_controls_section();
 
-
-
-
-
         // Team Social section
-
-
-
         $this->start_controls_section(
 
             'lcake_team_section_social',
@@ -366,8 +331,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -391,14 +354,8 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $popup_selector = '.team-popup-id-{{ID}}';
-
         $repeater = new \Elementor\Repeater();
-
-
-
         $repeater->add_control(
 
             'lcake_team_icons',
@@ -422,32 +379,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
-
-        $repeater->add_control(
-
-            'lcake_team_label',
-
-            [
-
-                'label' => esc_html__('Label', 'lc-addons-kit-for-elementor'),
-
-                'type' => \Elementor\Controls_Manager::TEXT,
-
-                'dynamic' => [
-
-                    'active' => true,
-
-                ],
-
-                'default' => 'Facebook',
-
-            ]
-
-        );
-
-
 
         $repeater->add_control(
 
@@ -482,8 +413,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             'lcake_team_socialmedia_tabs'
 
         );
-
-
 
         // start normal tab
 
@@ -564,22 +493,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
                 'name' => 'lcake_team_socialmedia_border',
 
                 'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
-
-                'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} > a,' . $popup_selector . ' {{CURRENT_ITEM}} > a',
-
-            ]
-
-        );
-
-        $repeater->add_group_control(
-
-            \Elementor\Group_Control_Text_Shadow::get_type(),
-
-            [
-
-                'name' => 'lcake_team_socialmedia_icon_normal_text_shadow',
-
-                'label' => esc_html__('Text Shadow', 'lc-addons-kit-for-elementor'),
 
                 'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} > a,' . $popup_selector . ' {{CURRENT_ITEM}} > a',
 
@@ -672,8 +585,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $repeater->add_group_control(
 
             \Elementor\Group_Control_Border::get_type(),
@@ -689,8 +600,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $repeater->add_group_control(
 
@@ -708,8 +617,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $repeater->add_group_control(
 
             \Elementor\Group_Control_Box_Shadow::get_type(),
@@ -723,18 +630,10 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $repeater->end_controls_tab();
 
         //end hover tab
-
-
-
         $repeater->end_controls_tabs();
-
-
-
         $this->add_control(
 
             'lcake_team_social_icons',
@@ -829,11 +728,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_section();
-
-
 
         $this->start_controls_section(
 
@@ -848,8 +743,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -866,8 +759,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -965,10 +856,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         // Close icon change option
-
         $this->add_control(
 
             'lcake_team_close_icon_changes',
@@ -1002,8 +890,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -1046,19 +932,10 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
-
         $this->end_controls_section();
 
-
-
         // start style section here
-
-
-
         // Team content section style start
-
         $this->start_controls_section(
 
             'lcake_team_content_style',
@@ -1071,12 +948,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
-
-
-
-
 
         $this->start_controls_tabs(
 
@@ -1097,8 +968,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_group_control(
 
@@ -1133,8 +1002,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         $this->end_controls_tab();
 
-
-
         $this->start_controls_tab(
 
             'lcake_team_content_hover',
@@ -1146,10 +1013,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
-
-
 
         $this->add_group_control(
 
@@ -1170,8 +1033,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_group_control(
 
             \Elementor\Group_Control_Box_Shadow::get_type(),
@@ -1184,8 +1045,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -1200,8 +1059,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_responsive_control(
 
@@ -1259,13 +1116,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
-
-
 
         $this->add_control(
 
@@ -1278,8 +1131,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         // contentmax height
 
@@ -1432,7 +1283,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
         );
 
-
         $this->add_control(
             'lcake_team_content_overly_color_heading',
             [
@@ -1469,8 +1319,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_control(
 
             'lcake_team_remove_gutters',
@@ -1493,12 +1341,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
-
-
-
-
         $this->end_controls_section();
 
         // team content section style end
@@ -1519,8 +1361,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_responsive_control(
 
@@ -1612,8 +1452,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_responsive_control(
 
             'lcake_team_image_height_margin_bottom',
@@ -1649,12 +1487,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
-
-
-
-
 
         $this->add_responsive_control(
 
@@ -1696,8 +1528,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_group_control(
 
             \Elementor\Group_Control_Box_Shadow::get_type(),
@@ -1724,8 +1554,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_group_control(
 
@@ -1758,8 +1586,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_group_control(
 
             \Elementor\Group_Control_Border::get_type(),
@@ -1789,8 +1615,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_responsive_control(
 
@@ -1842,8 +1666,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_group_control(
 
             \Elementor\Group_Control_Background::get_type(),
@@ -1875,8 +1697,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -1924,16 +1744,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_section();
 
-
-
-
-
         // Icon Styles
-
         $this->start_controls_section(
 
             'lcake_team_top_icon_style',
@@ -1955,8 +1768,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_responsive_control(
 
@@ -2002,8 +1813,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_responsive_control(
 
             'lcake_team_top_icon_margin',
@@ -2026,8 +1835,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_responsive_control(
 
             'lcake_team_top_icon_padding',
@@ -2049,8 +1856,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_responsive_control(
 
@@ -2088,8 +1893,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_group_control(
 
             \Elementor\Group_Control_Box_Shadow::get_type(),
@@ -2103,8 +1906,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_responsive_control(
 
@@ -2148,8 +1949,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_control(
 
             'lcake_team_top_icon_hw',
@@ -2173,8 +1972,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_responsive_control(
 
@@ -2224,8 +2021,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_responsive_control(
 
             'lcake_team_top_icon_height',
@@ -2274,8 +2069,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_responsive_control(
 
             'lcake_team_top_icon_lheight',
@@ -2323,8 +2116,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->start_controls_tabs('top_icon_colors');
 
@@ -2403,9 +2194,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
         );
 
         $this->end_controls_tab();
-
-
-
         $this->start_controls_tab(
 
             'lcake_team_top_icon_colors_hover',
@@ -2484,16 +2272,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         $this->end_controls_tabs();
 
-
-
         $this->end_controls_section();
 
-
-
-
-
         // Name Styles
-
         $this->start_controls_section(
 
             'lcake_team_name_style',
@@ -2506,8 +2287,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_group_control(
 
@@ -2522,15 +2301,11 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->start_controls_tabs(
 
             'lcake_team_name_tabs'
 
         );
-
-
 
         $this->start_controls_tab(
 
@@ -2543,8 +2318,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -2568,8 +2341,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         $this->end_controls_tab();
 
-
-
         $this->start_controls_tab(
 
             'lcake_team_name_hover',
@@ -2581,8 +2352,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -2606,16 +2375,8 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_tab();
-
-
-
         $this->end_controls_tabs();
-
-
-
         $this->add_responsive_control(
 
             'lcake_team_name_margin',
@@ -2640,30 +2401,21 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_section();
 
-
-
-
-
         // Position Styles
-
         $this->start_controls_section(
 
             'lcake_team_position_style',
             [
 
-                'label' => esc_html__('Position', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Member Position', 'lc-addons-kit-for-elementor'),
 
                 'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 
             ]
 
         );
-
-
 
         $this->add_group_control(
 
@@ -2678,15 +2430,11 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->start_controls_tabs(
 
             'lcake_team_position_tabs'
 
         );
-
-
 
         $this->start_controls_tab(
 
@@ -2699,8 +2447,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -2722,11 +2468,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_tab();
-
-
 
         $this->start_controls_tab(
 
@@ -2739,8 +2481,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -2764,8 +2504,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_group_control(
 
             \Elementor\Group_Control_Text_Shadow::get_type(),
@@ -2781,15 +2519,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_tab();
 
-
-
         $this->end_controls_tabs();
-
-
 
         $this->add_responsive_control(
 
@@ -2825,8 +2557,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 ],
 
-
-
                 'selectors' => [
 
                     '{{WRAPPER}} .lcake-profile-body .lcake-profile-designation' => 'margin-bottom: {{SIZE}}{{UNIT}};',
@@ -2839,14 +2569,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_section();
 
-
-
         // Position Styles
-
         $this->start_controls_section(
 
             'lcake_team_text_content_style_tab',
@@ -2859,8 +2584,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_group_control(
 
@@ -2875,15 +2598,11 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->start_controls_tabs(
 
             'lcake_team_text_content_tabs'
 
         );
-
-
 
         $this->start_controls_tab(
 
@@ -2896,8 +2615,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -2919,11 +2636,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_tab();
-
-
 
         $this->start_controls_tab(
 
@@ -2936,8 +2649,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -2961,16 +2672,8 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_tab();
-
-
-
         $this->end_controls_tabs();
-
-
-
         $this->add_responsive_control(
 
             'lcake_team_text_content_margin_bottom',
@@ -2995,18 +2698,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
-
-
         $this->end_controls_section();
 
-
-
-
-
         // Social Styles
-
         $this->start_controls_section(
 
             'lcake_team_social_style',
@@ -3026,10 +2720,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         // Alignment
-
         $this->add_responsive_control(
 
             'lcake_socialmedai_list_item_align',
@@ -3084,10 +2775,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         // Display design
-
         $this->add_responsive_control(
 
             'lcake_socialmedai_list_display',
@@ -3120,54 +2808,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
-        // text decoration
-
-        $this->add_responsive_control(
-
-            'lcake_socialmedai_list_decoration_box',
-
-            [
-
-                'label' => esc_html__('Decoration', 'lc-addons-kit-for-elementor'),
-
-                'type' => \Elementor\Controls_Manager::SELECT,
-
-                'default' => 'none',
-
-                'options' => [
-
-                    'none' => esc_html__('None', 'lc-addons-kit-for-elementor'),
-
-                    'underline' => esc_html__('Underline', 'lc-addons-kit-for-elementor'),
-
-                    'overline' => esc_html__('Overline', 'lc-addons-kit-for-elementor'),
-
-                    'line-through' => esc_html__('Line Through', 'lc-addons-kit-for-elementor'),
-
-
-
-                ],
-
-                'selectors' => [
-
-                    '{{WRAPPER}} .lcake-team-social-list > li > a' => 'text-decoration: {{VALUE}};',
-
-                    $popup_selector . ' .lcake-team-social-list > li > a' => 'text-decoration: {{VALUE}};'
-
-                ],
-
-            ]
-
-        );
-
-
-
-
-
         // border radius
-
         $this->add_responsive_control(
 
             'lcake_socialmedai_list_border_radius',
@@ -3206,12 +2847,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         // Padding style
-
-
-
         $this->add_responsive_control(
 
             'lcake_socialmedai_list_padding',
@@ -3236,12 +2872,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         // margin style
-
-
-
         $this->add_responsive_control(
 
             'lcake_socialmedai_list_margin',
@@ -3265,7 +2896,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
 
 
         $this->add_responsive_control(
@@ -3318,26 +2948,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
-        $this->add_group_control(
-
-            \Elementor\Group_Control_Typography::get_type(),
-
-            [
-
-                'name' => 'lcake_socialmedai_list_typography',
-
-                'label' => esc_html__('Typography', 'lc-addons-kit-for-elementor'),
-
-                'selector' => '{{WRAPPER}} .lcake-team-social-list > li > a,' . $popup_selector . ' .lcake-team-social-list > li > a',
-
-            ]
-
-        );
-
-
-
         $this->add_control(
 
             'lcake_socialmedai_list_style_use_height_and_width',
@@ -3359,8 +2969,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_responsive_control(
 
@@ -3422,8 +3030,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_responsive_control(
 
             'lcake_socialmedai_list_height',
@@ -3483,8 +3089,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_responsive_control(
 
@@ -3546,13 +3150,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_section();
-
-
-
-
 
         // Overlay Styles
 
@@ -3575,8 +3173,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_group_control(
 
             \Elementor\Group_Control_Background::get_type(),
@@ -3595,13 +3191,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->end_controls_section();
-
-
-
-
 
         // Modal Styles start here
 
@@ -3610,7 +3200,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             'lcake_team_modal_style',
             [
 
-                'label' => esc_html__('Modal Controls', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Popup Controls', 'lc-addons-kit-for-elementor'),
 
                 'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 
@@ -3623,10 +3213,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
-
-
 
         $this->add_control(
 
@@ -3643,8 +3229,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_group_control(
 
@@ -3664,8 +3248,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
         );
 
-
-
         $this->add_control(
 
             'lcake_team_modal_name_heading',
@@ -3681,8 +3263,6 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
             ]
 
         );
-
-
 
         $this->add_control(
 
@@ -3777,7 +3357,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
             [
 
-                'label' => esc_html__('Position', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Member Position', 'lc-addons-kit-for-elementor'),
 
                 'type' => \Elementor\Controls_Manager::HEADING,
 

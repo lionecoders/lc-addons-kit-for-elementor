@@ -305,10 +305,11 @@ class LCAKE_Kit_Social_Icons extends \Elementor\Widget_Base {
         $this->add_control(
             'lcake_style_icon_hover_color',
             [
-                'label' => esc_html__('Hover Color', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Icon Hover Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lcake-social-icon a:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-social-icon:hover a svg path' => 'fill: {{VALUE}} !important;',
+                    '{{WRAPPER}} .lcake-social-icon:hover a i' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -331,6 +332,19 @@ class LCAKE_Kit_Social_Icons extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .lcake-social-icon:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'lcake_title_style_title_hover_color',
+            [
+                'label' => esc_html__('Title Hover Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-social-icon-title:hover' => 'color: {{VALUE}};',
+                ],
+                'condition' => [
+                    'lcake_content_show_title' => 'yes',
                 ],
             ]
         );

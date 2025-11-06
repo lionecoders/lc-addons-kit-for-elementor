@@ -243,12 +243,12 @@
     opacity: .8;
 }
 
-.lcake-image-card-v3.tiny-gutters {
-    margin-left: -3px;
-    margin-right: -3px;
+.lcake-image-card-v3.small-gutters {
+    margin-left: -13px;
+    margin-right: -13px;
 }
 
-.lcake-image-card-v3.tiny-gutters > [class^=col-] {
+.lcake-image-card-v3.small-gutters > [class^=col-] {
     padding-left: 3px;
     padding-right: 3px;
     margin-bottom: 6px;
