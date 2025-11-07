@@ -8,7 +8,7 @@
 }
 
 .lcake-main-wrapper .lcake-commentor-content {
-    padding-right: 30px;
+    /* padding-right: 30px; */
     position: relative;
 }
 
@@ -51,6 +51,14 @@ ease;
     padding: 20px;
 }
 
+.lcake-testimonial-slider {
+    --lcake-testimonial-spacing: 15px;
+    margin: 0 calc(-1 * var(--lcake-testimonial-spacing));
+}
+
+.lcake-testimonial-slider .swiper-slide {
+    padding: 0 var(--lcake-testimonial-spacing);
+}
 .lcake_testimonial_style_3 .lcake-watermark-icon {
     position: absolute;
     top: 0;

@@ -13,6 +13,7 @@ class LCAKE_Kit_Admin_Settings
         $this->load_widget_info();
 
         add_action('admin_menu', [$this, 'add_settings_page']);
+        add_action('admin_init', [$this, 'remove_wordpress_notices']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_assets']);
         add_action('admin_init', [$this, 'register_settings']);
         add_action('rest_api_init', [$this, 'register_rest_routes']);
@@ -55,6 +56,14 @@ class LCAKE_Kit_Admin_Settings
        
         add_menu_page('LC Kit', 'LC Kit', 'manage_options', $this->menu_slug, [$this, 'render_settings_page'], 'dashicons-screenoptions');
         $this->page_hook = add_submenu_page($this->menu_slug, 'LC Kit Widget Manager', 'Widget Manager', 'manage_options', $this->menu_slug, [$this, 'render_settings_page']);
+    }
+
+    public function remove_wordpress_notices()
+    {
+        if (isset($_GET['page']) && $_GET['page'] === $this->menu_slug) {
+            remove_all_actions('admin_notices');
+            remove_all_actions('all_admin_notices');
+        }
     }
 
     public function register_settings()
