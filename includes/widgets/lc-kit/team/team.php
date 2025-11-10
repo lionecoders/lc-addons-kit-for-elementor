@@ -3242,7 +3242,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'types' => ['classic', 'gradient'],
 
-                'selector' => '{{WRAPPER}} .elementskit-team-popup .modal-content, ' . $popup_selector . '.elementskit-team-popup .modal-content',
+                'selector' => '{{WRAPPER}} .lcake-team-popup .modal-content, ' . $popup_selector . '.lcake-team-popup .modal-content',
 
             ]
 
@@ -4192,9 +4192,9 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'selectors' => [
 
-                    '{{WRAPPER}} .elementskit-infobox .elementskit-box-header .elementskit-info-box-icon' => ' -webkit-transform: translateY({{SIZE}}{{UNIT}}); -ms-transform: translateY({{SIZE}}{{UNIT}}); transform: translateY({{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}} .lcake-infobox .lcake-box-header .lcake-info-box-icon' => ' -webkit-transform: translateY({{SIZE}}{{UNIT}}); -ms-transform: translateY({{SIZE}}{{UNIT}}); transform: translateY({{SIZE}}{{UNIT}});',
 
-                    $popup_selector . ' .elementskit-infobox .elementskit-box-header .elementskit-info-box-icon' => ' -webkit-transform: translateY({{SIZE}}{{UNIT}}); -ms-transform: translateY({{SIZE}}{{UNIT}}); transform: translateY({{SIZE}}{{UNIT}});',
+                    $popup_selector . ' .lcake-infobox .lcake-box-header .lcake-info-box-icon' => ' -webkit-transform: translateY({{SIZE}}{{UNIT}}); -ms-transform: translateY({{SIZE}}{{UNIT}}); transform: translateY({{SIZE}}{{UNIT}});',
 
                 ],
 

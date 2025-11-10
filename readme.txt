@@ -65,7 +65,7 @@ A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC K
 * Post Grid
 * Post List
 * Post Tab
-* ElementsKit Nav Menu
+* LCKit Nav Menu
 * Header Info
 * Header Search
 * Header Offcanvas

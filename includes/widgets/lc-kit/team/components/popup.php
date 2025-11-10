@@ -4,7 +4,7 @@ if ( isset( $lcake_modal_close_align ) && 'left' === $lcake_modal_close_align ) 
     $close_btn_align_class = 'lcake-team-close-btn-align-left';
 }
 ?>
-<div class="modal fade elementskit-team-popup lcake-team-modal team-popup-id-<?php echo esc_attr($this->get_id()); ?>" id="lcake_team_modal_<?php echo esc_attr($this->get_id() . '_' . get_the_ID()); ?>" tabindex="-1" role="dialog" aria-hidden="true" aria-modal="true">
+<div class="modal fade lcake-team-popup lcake-team-modal team-popup-id-<?php echo esc_attr($this->get_id()); ?>" id="lcake_team_modal_<?php echo esc_attr($this->get_id() . '_' . get_the_ID()); ?>" tabindex="-1" role="dialog" aria-hidden="true" aria-modal="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <button type="button" class="lcake-team-modal-close <?php echo esc_attr($close_btn_align_class); ?>" aria-label="Close" data-bs-dismiss="modal">

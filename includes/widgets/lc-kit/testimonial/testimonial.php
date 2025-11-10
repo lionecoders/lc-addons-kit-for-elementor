@@ -737,7 +737,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 				'name' => 'lcake_testimonial_layout_background',
 				'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
 				'types' => ['classic', 'gradient'],
-				'selector' => '{{WRAPPER}} .lcake-commentor-content, {{WRAPPER}} .lcake-single-testimonial-slider, {{WRAPPER}} .lcake-testimonial-card',
+				'selector' => '{{WRAPPER}} .lcake-single-testimonial-slider, {{WRAPPER}} .lcake-testimonial-card',
 
 				'condition' => [
 					'lcake_testimonial_style!'								=> 'style3'
@@ -1305,7 +1305,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 		$this->add_responsive_control(
 			'lcake_testimonial_section_wathermark_margin_bottom',
 			[
-				'label' => esc_html__('Margin Bottommmmmm', 'lc-addons-kit-for-elementor'),
+				'label' => esc_html__('Margin Bottom', 'lc-addons-kit-for-elementor'),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [

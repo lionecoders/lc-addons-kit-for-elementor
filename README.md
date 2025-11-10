@@ -54,7 +54,7 @@ A powerful Elementor addon plugin by Lionecoders that offers a wide range of wid
 - Post Grid
 - Post List
 - Post Tab
-- ElementsKit Nav Menu
+- LCKit Nav Menu
 - Header Info
 - Header Search
 - Header Offcanvas
