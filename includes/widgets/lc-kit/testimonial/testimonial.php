@@ -57,16 +57,12 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 
 	protected function register_controls()
 	{
-
 		$this->start_controls_section(
-			'lcake_testimonial_layout_section_tab_style',
+			'lcake_testimonial_section_tab_style',
 			[
-				'label' => esc_html__('Layout', 'lc-addons-kit-for-elementor'),
+				'label' => esc_html__('Testimonial', 'lc-addons-kit-for-elementor'),
 			]
 		);
-
-
-		// Card style
 
 		$this->add_control(
 			'lcake_testimonial_style',
@@ -82,15 +78,6 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 					'style5' => 'Style 5',
 					'style6' => 'Style 6'
 				],
-			]
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'lcake_testimonial_section_tab_style',
-			[
-				'label' => esc_html__('Testimonial', 'lc-addons-kit-for-elementor'),
 			]
 		);
 
@@ -347,9 +334,6 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 					'2'     => esc_html__('2', 'lc-addons-kit-for-elementor'),
 					'1'     => esc_html__('1', 'lc-addons-kit-for-elementor'),
 				],
-				// 'condition' => [
-				// 	'lcake_testimonial_style' => ['style3', 'style4', 'style5', 'style6'],
-				// ],
 				'label_block' => true,
 			]
 		);
@@ -374,14 +358,11 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 				'dynamic' => [
 					'active' => true,
 				],
-				// 'condition' => [
-				// 	'lcake_testimonial_style' => ['style1', 'style3', 'style4','style5', 'style6'],
-				// ],
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
 					'id'    => -1
 				],
-				'separator'	=> 'before',
+				'separator'	=> 'before'
 			]
 		);
 
@@ -740,7 +721,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 				'selector' => '{{WRAPPER}} .lcake-single-testimonial-slider, {{WRAPPER}} .lcake-testimonial-card',
 
 				'condition' => [
-					'lcake_testimonial_style!'								=> 'style3'
+					'lcake_testimonial_style!'	=> 'style3'
 				],
 			]
 		);
@@ -777,7 +758,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 				'types' => ['classic', 'gradient'],
 				'selector' => '{{WRAPPER}} .lcake-single-testimonial-slider:hover, {{WRAPPER}} .lcake-testimonial-card:hover',
 				'condition' => [
-					'lcake_testimonial_style!'								=> 'style3',
+					'lcake_testimonial_style!'	=> 'style3',
 				],	
 			]
 		);
@@ -813,7 +794,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 				'default'	=> 'slide',
 				'prefix_class'	=> 'lcake-testimonial-',
 				'condition'	=> [
-					'lcake_testimonial_style!'								=> 'style3',
+					'lcake_testimonial_style!'	=> 'style3',
 					'lcake_testimonial_layout_active_background_background!' => '',
 				],
 			]
@@ -835,7 +816,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 				'types' => ['classic', 'gradient'],
 				'selector' => '{{WRAPPER}} .lcake-single-testimonial-slider.testimonial-active, {{WRAPPER}} .lcake-testimonial-card.testimonial-active',
 				'condition' => [
-					'lcake_testimonial_style!'								=> 'style3',
+					'lcake_testimonial_style!'	=> 'style3',
 				],
 			]
 		);
@@ -1148,7 +1129,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 				'tab'	 => \Elementor\Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'lcake_testimonial_wartermark_enable' => 'yes',
-					'lcake_testimonial_style!'			 => ['style1', 'style3'],
+					'lcake_testimonial_style!'	=> ['style1', 'style3'],
 				]
 			]
 		);
@@ -1215,8 +1196,6 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 					'{{WRAPPER}} .lcake-single-testimonial-slider:hover .lcake-watermark-icon svg path'	=> 'stroke: {{VALUE}}; fill: {{VALUE}};',
 					'{{WRAPPER}} .lcake-single-testimonial-slider.testimonial-active:hover .lcake-watermark-icon > i' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .lcake-single-testimonial-slider.testimonial-active:hover .lcake-watermark-icon svg path'	=> 'stroke: {{VALUE}}; fill: {{VALUE}};',
-
-
 				],
 			]
 		);
