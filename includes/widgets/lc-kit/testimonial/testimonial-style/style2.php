@@ -14,7 +14,7 @@
 					<div class="swiper-slide-inner">
 						<<?php echo esc_attr($wrapTag); ?> class="lcake-testimonial-item" <?php echo $this->get_render_attribute_string('link-' . esc_attr($testimonial['_id'])); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already escaped by elementor 
 																						?>>
-							<div class="lcake-single-testimonial-slider <?php echo esc_attr(!empty($testimonial['lcake_testimonial_active']) ? 'testimonial-active' : ''); ?>">
+							<div class="lcake-single-testimonial-slider">
 								<div class="lcake-commentor-content">
 									<?php
 									if (isset($testimonial['client_logo']) && !empty($testimonial['client_logo']['url']) && sizeof($testimonial['client_logo']) > 0) {	?>
