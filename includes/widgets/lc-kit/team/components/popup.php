@@ -16,11 +16,6 @@ if ( isset( $lcake_modal_close_align ) && 'left' === $lcake_modal_close_align ) 
             </button>
 
             <div class="modal-body">
-                <?php if (!empty($image_html)) { ?>
-                    <div class="lcake-team-modal-img">
-                        <?php echo wp_kses($image_html, \LCAKE_Kit_Utils::get_kses_array()); ?>
-                    </div>
-                <?php } ?>
 
                 <div class="lcake-team-modal-info<?php echo !empty($image_html) ? ' has-img' : ''; ?>">
                     <h2 class="lcake-team-modal-title"><?php echo esc_html($lcake_team_name); ?></h2>

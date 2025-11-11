@@ -655,6 +655,7 @@
 .lcake-modal-open {}
 
 .lcake-team-modal .modal-dialog {
+    justify-content: center;
     position: relative;
     width: auto;
     max-width: 90%;
@@ -665,19 +666,28 @@
 .lcake-team-modal .modal-content {
     position: relative;
     display: flex;
-    flex-direction: column;
-    width: 100%;
+    flex-direction: row; /* desktop: image + info side-by-side */
+    width: 50%;
+    max-width: 900px; /* limits full-size on large screens */
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0.3rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
     outline: 0;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .lcake-team-modal .modal-body {
     position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: flex-start;
     flex: 1 1 auto;
     padding: 1rem;
+    box-sizing: border-box;
 }
 
 .lcake-team-modal.lcake-team-modal-open .modal-dialog {}
@@ -734,8 +744,8 @@
 }
 
 .lcake-team-modal-img {
-    width: 100%;
-    margin-bottom: 30px;
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
 }
 
 .lcake-team-modal-img > img {
@@ -745,7 +755,7 @@
 }
 
 .lcake-team-modal-info {
-    width: 100%;
+    flex: 1 1 66.6667%;
 }
 
 .lcake-team-modal-info .lcake-team-social-list > li > a {
@@ -806,20 +816,7 @@
     .lcake-team-modal-img {
         flex: 0 0 33.333333%;
         max-width: 33.333333%;
-        margin-bottom: 10;
-        padding-left: 30px;
-    }
-    
-    .lcake-team-modal-info.has-img {
-        flex: 0 0 66.666667%;
-        max-width: 66.666667%;
-        padding-left: 30px;
-    }
-}
-
-@media screen and (min-width: 992px) {
-    .lcake-team-modal-info.has-img {
-        padding-left: 50px;
+        margin-bottom: 10px;
     }
 }
 
@@ -828,9 +825,38 @@
         max-width: 95%;
         margin: 0.5rem;
     }
-    
+
+    .lcake-team-modal .modal-content {
+        flex-direction: column;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 6px;
+    }
+
     .lcake-team-modal .modal-body {
+        flex-direction: column;
         padding: 0.75rem;
+    }
+
+    .lcake-team-modal-img,
+    .lcake-team-modal-info {
+        max-width: 100%;
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    .lcake-team-modal-img > img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .lcake-team-modal-close {
+        top: 8px;
+        right: 10px;
+        font-size: 22px;
+        padding: 6px;
     }
 }
 
