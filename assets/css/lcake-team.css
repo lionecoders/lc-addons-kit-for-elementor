@@ -690,8 +690,6 @@
     box-sizing: border-box;
 }
 
-.lcake-team-modal.lcake-team-modal-open .modal-dialog {}
-
 @keyframes lcake-modal-fade-in {
     from {
         opacity: 0;

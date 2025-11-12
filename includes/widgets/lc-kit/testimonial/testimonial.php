@@ -890,6 +890,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 						'icon' => 'eicon-text-align-right',
 					],
 				],
+				'default' => 'center',
 				'selectors' => [
 					'{{WRAPPER}} .lcake-commentor-content' => 'text-align: {{VALUE}};',
 					'{{WRAPPER}} .lcake-testimonial-card' => 'text-align: {{VALUE}};',
@@ -1786,10 +1787,6 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 						'max' => 200,
 						'step' => 1,
 					],
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => -98,
 				],
 				'render_type' => 'template',
 				'selectors' => [
