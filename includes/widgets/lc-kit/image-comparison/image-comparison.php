@@ -20,7 +20,7 @@ class LCAKE_Kit_Image_Comparison extends \Elementor\Widget_Base
 
 	public function get_title()
 	{
-		return esc_html__('Image Comparison', 'lc-addons-kit-for-elementor');
+		return esc_html__('LC Image Comparison', 'lc-addons-kit-for-elementor');
 	}
 
 	public function get_icon()

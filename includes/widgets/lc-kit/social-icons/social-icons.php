@@ -16,7 +16,7 @@ class LCAKE_Kit_Social_Icons extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('Social Icons', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC Social Icons', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {

@@ -16,7 +16,7 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('MailChimp', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC MailChimp', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {

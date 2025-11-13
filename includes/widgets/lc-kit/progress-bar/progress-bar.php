@@ -20,7 +20,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return esc_html__('Progress Bar', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC Progress Bar', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon()

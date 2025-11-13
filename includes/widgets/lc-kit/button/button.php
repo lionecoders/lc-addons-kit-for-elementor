@@ -18,7 +18,7 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return esc_html__('Button', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC Button', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon()

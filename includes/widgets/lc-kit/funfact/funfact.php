@@ -16,7 +16,7 @@ class LC_Kit_Funfact extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('Funfact', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC Funfact', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {

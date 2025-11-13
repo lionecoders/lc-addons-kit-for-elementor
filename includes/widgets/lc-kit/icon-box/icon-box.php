@@ -33,7 +33,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
      * Get widget title
      */
     public function get_title() {
-        return esc_html__('Icon Box', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC Icon Box', 'lc-addons-kit-for-elementor');
     }
 
     /**

@@ -16,7 +16,7 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('Business Hours', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC Business Hours', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {

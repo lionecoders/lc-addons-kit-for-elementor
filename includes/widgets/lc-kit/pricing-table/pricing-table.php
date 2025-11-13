@@ -16,7 +16,7 @@ class LCAKE_Kit_Pricing_Table extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('Pricing Table', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC Pricing Table', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {

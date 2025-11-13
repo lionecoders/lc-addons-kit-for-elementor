@@ -16,7 +16,7 @@ class LCAKE_Kit_FAQ extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('FAQ', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC FAQ', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {

@@ -23,7 +23,7 @@ class LCAKE1_Kit_Client_Logo extends Elementor\Widget_Base
 
     public function get_title()
     {
-        return esc_html__('Client Logo', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC Client Logo', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon()

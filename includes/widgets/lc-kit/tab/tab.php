@@ -21,7 +21,7 @@ class LCAKE_Kit_Tab extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return esc_html__('Tab', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC Tab', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon()

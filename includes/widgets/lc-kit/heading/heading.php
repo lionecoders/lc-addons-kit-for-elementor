@@ -33,7 +33,7 @@ class LC_Kit_Heading extends \Elementor\Widget_Base {
      * Get widget title
      */
     public function get_title() {
-        return esc_html__('Heading', 'lc-addons-kit-for-elementor');
+        return esc_html__('LC Heading', 'lc-addons-kit-for-elementor');
     }
 
     /**
