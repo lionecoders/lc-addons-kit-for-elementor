@@ -389,6 +389,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
 				'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
+				'return_value' => 'yes',
 				'default' => 'no',
 				'separator' => 'before',
 			]

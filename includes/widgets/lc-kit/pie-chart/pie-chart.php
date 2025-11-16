@@ -218,6 +218,25 @@ class LCAKE_Kit_Pie_Chart extends \Elementor\Widget_Base {
             ]
         );
 
+         $this->add_control(
+            'lcake_chart_legend_gap',
+            [
+                'label'      => esc_html__( 'Gap Between Chart & Legend', 'lc-addons-kit-for-elementor' ),
+                'type'       => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range'      => [
+                    'px' => [ 'min' => 0, 'max' => 100, 'step' => 5 ],
+                ],
+                'default'    => [ 'unit' => 'px', 'size' => 20 ],
+                'selectors'  => [
+                    '{{WRAPPER}} .lcake-pie-chart-legend' => 'margin-left: {{SIZE}}{{UNIT}};',
+                ],
+                'condition'  => [
+                    'lcake_content_show_legend' => 'yes',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(

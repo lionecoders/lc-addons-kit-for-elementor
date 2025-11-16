@@ -40,6 +40,70 @@ ease;
     top: 0;
 }
 
+.lcake-client-logo {
+    position: relative;
+    display: inline-block;
+}
+
+.lcake-client-logo img {
+    display: inline-block;
+    vertical-align: middle;
+    transition: opacity 0.3s ease;
+}
+
+.lcake-client-logo .lcake-client-logo-hover {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lcake-client-logo .lcake-client-logo-default {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Only apply hover effect if hover image exists */
+.lcake-client-logo:has(.lcake-client-logo-hover) {
+    cursor: pointer;
+}
+
+.lcake-client-logo:has(.lcake-client-logo-hover):hover .lcake-client-logo-hover {
+    display: inline-block;
+    opacity: 1;
+}
+
+.lcake-client-logo:has(.lcake-client-logo-hover):hover .lcake-client-logo-default {
+    opacity: 0;
+}
+
+.lcake_testimonial_style_1 .lcake-client-logo {
+    margin-bottom: 15px;
+}
+
+.lcake_testimonial_style_1 .lcake-client-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.lcake_testimonial_style_1 .lcake-commentor-content {
+    padding: 20px;
+}
+
+.lcake_testimonial_style_2 .lcake-client-logo {
+    margin-bottom: 15px;
+}
+
+.lcake_testimonial_style_2 .lcake-client-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.lcake_testimonial_style_2 .lcake-commentor-content {
+    padding: 20px;
+}
 
 .lcake-main-wrapper .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after,
 .lcake-main-wrapper .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {

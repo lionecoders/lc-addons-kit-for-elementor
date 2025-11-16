@@ -262,18 +262,6 @@ class LCAKE_Kit_Image_Comparison extends \Elementor\Widget_Base
 			)
 		);
 
-		$this->add_responsive_control(
-			'lcake_img_comparison_container_padding',
-			array(
-				'label'      => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
-				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
-				'size_units' => array('px', '%'),
-				'selectors'  => array(
-					'{{WRAPPER}} .lcake-image-comparison' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
 		$this->add_group_control(
 			\Elementor\Group_Control_Box_Shadow::get_type(),
 			array(

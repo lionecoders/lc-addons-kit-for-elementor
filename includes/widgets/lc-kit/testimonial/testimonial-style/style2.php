@@ -17,19 +17,19 @@
 							<div class="lcake-single-testimonial-slider">
 								<div class="lcake-commentor-content">
 									<?php
-									if (isset($testimonial['client_logo']) && !empty($testimonial['client_logo']['url']) && sizeof($testimonial['client_logo']) > 0) {	?>
-										<div class="lcake-client-logo">
-											<?php if (isset($testimonial['client_logo_active']) && sizeof($testimonial['client_logo_active']) > 0 && $testimonial['use_hover_logo'] == 'yes') : ?>
-												<?php echo wp_kses(\LCAKE_Kit_Utils::get_attachment_image_html($testimonial, 'client_logo_active', 'full', [
-													'class'	=> 'lcake-testimonial-client-active-logo'
-												]), \LCAKE_Kit_Utils::get_kses_array()); ?>
-											<?php endif; ?>
-											<?php echo wp_kses(\LCAKE_Kit_Utils::get_attachment_image_html($testimonial, 'client_logo', 'full', [
-												'class'	=> 'lcake-testimonial-client-logo'
-											]), \LCAKE_Kit_Utils::get_kses_array()); ?>
-										</div>
-									<?php
-									}
+                                    if (isset($testimonial['client_logo']) && !empty($testimonial['client_logo']['url']) && sizeof($testimonial['client_logo']) > 0) {	?>
+                                        <div class="lcake-client-logo">
+                                            <?php if (isset($testimonial['client_logo_active']) && !empty($testimonial['client_logo_active']['url']) && sizeof($testimonial['client_logo_active']) > 0 && !empty($testimonial['use_hover_logo']) && $testimonial['use_hover_logo'] === 'yes') : ?>
+                                                <?php echo wp_kses(\LCAKE_Kit_Utils::get_attachment_image_html($testimonial, 'client_logo_active', 'full', [
+                                                    'class'	=> 'lcake-testimonial-client-active-logo lcake-client-logo-hover'
+                                                ]), \LCAKE_Kit_Utils::get_kses_array()); ?>
+                                            <?php endif; ?>
+                                            <?php echo wp_kses(\LCAKE_Kit_Utils::get_attachment_image_html($testimonial, 'client_logo', 'full', [
+                                                'class'	=> 'lcake-testimonial-client-logo lcake-client-logo-default'
+                                            ]), \LCAKE_Kit_Utils::get_kses_array()); ?>
+                                        </div>
+                                    <?php
+                                    }
 									if (isset($testimonial['review']) && !empty($testimonial['review'])) : ?>
 										<p><?php echo isset($testimonial['review']) ? wp_kses($testimonial['review'], \LCAKE_Kit_Utils::get_kses_array()) : ''; ?></p>
 									<?php endif;  ?>

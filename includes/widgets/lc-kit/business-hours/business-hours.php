@@ -318,7 +318,7 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
                 'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lcake-business-hours-item' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-business-hours-item .lcake-business-hours-day, {{WRAPPER}} .lcake-business-hours-item .lcake-business-hours-time' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -393,7 +393,7 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
                 'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lcake-business-hours-item.today' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-business-hours-item.today .lcake-business-hours-day, {{WRAPPER}} .lcake-business-hours-item.today .lcake-business-hours-time' => 'color: {{VALUE}};',
                 ],
             ]
         );

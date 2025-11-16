@@ -2165,7 +2165,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base
 
                 'type' => \Elementor\Controls_Manager::COLOR,
 
-                'default' => '#fc0467',
+                'default' => '#757575ff',
 
                 'selectors' => [
 
