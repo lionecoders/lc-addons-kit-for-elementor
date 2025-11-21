@@ -40,33 +40,20 @@
     pointer-events: none;
     font-size: 13px;
     line-height: 1;
-    padding: 6px 10px;
     border-radius: 3px;
     background: rgba(0, 0, 0, 0.6);
     color: #fff;
     white-space: nowrap;
 }
 
-.lcake-main-wrapper .lcake-image-comparison .twentytwenty-before-label {
-    top: 12px;
-    left: 12px;
-}
-
-.lcake-main-wrapper .lcake-image-comparison .twentytwenty-after-label {
-    top: 12px;
-    right: 12px;
-}
-
 .lcake-main-wrapper .image-comparison-container-vertical .twentytwenty-before-label {
     left: 50%;
     transform: translateX(-50%);
-    top: 8px;
 }
 
 .lcake-main-wrapper .image-comparison-container-vertical .twentytwenty-after-label {
     left: 50%;
     transform: translateX(-50%);
-    bottom: 8px;
 }
 
 @media (max-width: 480px) {

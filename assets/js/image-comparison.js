@@ -28,10 +28,7 @@
 
         // Emulate unsupported options in this build
         if (overlay) {
-            $container.find('.twentytwenty-overlay').remove();
-        } else {
-            $container.find('.twentytwenty-before-label').text(labelBefore);
-            $container.find('.twentytwenty-after-label').text(labelAfter);
+            $container.find('.twentytwenty-overlay').css('display', 'none');
         }
 
         // Cache frequently used elements and dimensions

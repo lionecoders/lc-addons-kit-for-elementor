@@ -196,8 +196,8 @@ class LCAKE_Kit_Image_Comparison extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
 				'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
-				'return_value' => true,
-				'default' => false,
+				'return_value' => 'yes',
+				'default' => '',
 				'description' => esc_html__('Do not show the overlay with before and after', 'lc-addons-kit-for-elementor'),
 			]
 		);
@@ -208,8 +208,8 @@ class LCAKE_Kit_Image_Comparison extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
 				'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
-				'return_value' => true,
-				'default' => false,
+				'return_value' => 'yes',
+				'default' => '',
 				'description' => esc_html__('Move slider on mouse hover?', 'lc-addons-kit-for-elementor'),
 			]
 		);
@@ -220,8 +220,8 @@ class LCAKE_Kit_Image_Comparison extends \Elementor\Widget_Base
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
 				'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
-				'return_value' => true,
-				'default' => false,
+				'return_value' => 'yes',
+				'default' => '',
 				'description' => esc_html__('Allow a user to click (or tap) anywhere on the image to move the slider to that location.', 'lc-addons-kit-for-elementor'),
 			]
 		);
@@ -282,7 +282,7 @@ class LCAKE_Kit_Image_Comparison extends \Elementor\Widget_Base
 				'label'      => esc_html__('Label', 'lc-addons-kit-for-elementor'),
 				'tab'        => \Elementor\Controls_Manager::TAB_STYLE,
 				'show_label' => false,
-				'condition' => ['lcake_img_comparison_overlay!' => 'true'],
+				'condition' => ['lcake_img_comparison_overlay!' => 'yes'],
 			)
 		);
 
