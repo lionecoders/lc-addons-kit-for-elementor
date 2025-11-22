@@ -1,8 +1,8 @@
 === LC Addons Kit for Elementor ===
-Contributors: mandeepsingh
+Contributors: deep7197
 Tags: elementor, widgets, addons, page-builder, lc-kit
 Requires at least: 5.0
-Tested up to: 6.8
+Tested up to: 6.8.3
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPLv2 or later
@@ -96,10 +96,8 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 == Screenshots ==
 
-1. Admin Dashboard - Widget management interface
-2. Elementor Editor - Widgets in action
-3. Frontend Display - How widgets look on the website
-4. Settings Panel - Configuration options
+1. Admin Dashboard
+2. LC Widgets
 
 == Changelog ==
 
