@@ -302,21 +302,6 @@ class LCAKE_Kit_Image_Accordion extends Widget_Base {
                 ]
             );
 
-            $this->add_responsive_control(
-                'items_style',
-                [
-                    'label'         => esc_html__('Style', 'lc-addons-kit-for-elementor'),
-                    'type'          => \Elementor\Controls_Manager::SELECT,
-                    'options'       => [
-                        ''              => esc_html__('Default', 'lc-addons-kit-for-elementor'),
-                        'horizontal'    => esc_html__('Horizontal', 'lc-addons-kit-for-elementor'),
-                        'vertical'      => esc_html__('Vertical', 'lc-addons-kit-for-elementor'),
-                    ],
-                    'default'       => 'horizontal',
-                    'prefix_class'  => 'lcake-image-accordion%s-',
-                ]
-            );
-
             $this->add_control(
                 'active_behavior',
                 [
@@ -874,6 +859,7 @@ class LCAKE_Kit_Image_Accordion extends Widget_Base {
             [
                 'label' => esc_html__( 'Popup Icon Color', 'lc-addons-kit-for-elementor' ),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
                 'selectors' => [
                     '{{WRAPPER}} .lcake-icon-wraper a:first-child' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .lcake-icon-wraper a:first-child svg path' => 'fill: {{VALUE}};',
