@@ -41,7 +41,7 @@ const WidgetCard = ({ widget, onDragStart, onDragOver, isDragOver }) => (
         <div className="lcake-kit-widget-info">
             <strong>
                 {widget.label}
-                {widget.is_pro && <span className="lcake-kit-pro-badge">PRO</span>}
+                {/* {widget.is_pro && <span className="lcake-kit-pro-badge">PRO</span>} */}
             </strong>
             <span>{widget.description}</span>
         </div>
