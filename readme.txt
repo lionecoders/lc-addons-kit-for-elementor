@@ -16,59 +16,27 @@ A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC K
 
 = 🎯 **Core Features** =
 
-* **Two Widget Categories**: 'LC Kit' and 'LC Header & Footer kit'
+* **Widget Category**: 'LC Kit'
 * **Dashboard Control Panel**: Enable/disable individual widgets
 * **Conditional Widget Loading**: Only loads enabled widgets in Elementor
 * **Modern UI**: Beautiful and responsive admin interface
 * **Performance Optimized**: Lightweight and fast loading
 
-= 📦 **LC Kit Widgets (32 Widgets)** =
+= 📦 **LC Kit Widgets (12 Widgets)** =
 
 * Image Accordion
 * Accordion
 * Button
-* Heading
-* Blog Posts
-* Icon Box
-* Image Box
-* Countdown Timer
-* Client Logo
 * FAQ
-* Funfact
 * Image Comparison
-* Lottie
 * Testimonial
 * Pricing Table
 * Team
 * Social Icons
 * Progress Bar
-* MailChimp
 * Pie Chart
 * Tab
-* Contact Form 7
-* Video
 * Business Hours
-* Drop Caps
-* Social Share
-* Dual Button
-* Caldera Forms
-* We Forms
-* WP Forms
-* Ninja Forms
-* TablePress
-* Fluent Forms
-
-= 🏠 **LC Header & Footer Kit Widgets (9 Widgets)** =
-
-* Category List
-* Page List
-* Post Grid
-* Post List
-* Post Tab
-* LCKit Nav Menu
-* Header Info
-* Header Search
-* Header Offcanvas
 
 = 🚀 **Key Benefits** =
 
@@ -135,55 +103,8 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.0 (Beta) =
 * Initial release
-* 32 LC Kit widgets
-* 9 LC Header & Footer widgets
-* Dashboard control panel
-* Conditional widget loading
-* Modern admin interface
-* Performance optimization
-
-== Upgrade Notice ==
-
-= 1.0.0 =
-Initial release with 41+ professional widgets and dashboard control panel.
-
-== Development ==
-
-### Plugin Structure
-```
-lc-addons-kit-for-elementor/
-├── lc-addons-kit-for-elementor.php          # Main plugin file
-├── admin/
-│   └── settings-page.php                # Admin settings page
-├── includes/
-│   ├── class-base-widget.php            # Base widget class
-│   ├── class-base-header-footer-widget.php # Base header/footer widget class
-│   ├── class-widget-loader.php          # Widget loader
-│   └── widgets/
-│       ├── lc-kit/                      # LC Kit widgets
-│       └── lc-header-footer/            # Header/Footer widgets
-└── assets/
-    ├── css/                             # Stylesheets
-    └── js/                              # JavaScript files
-```
-
-### Hooks and Filters
-
-#### Available Actions
-* `lc_kit_widget_loaded` - Fired when a widget is loaded
-* `lc_kit_settings_saved` - Fired when settings are saved
-
-#### Available Filters
-* `lc_kit_widget_categories` - Modify widget categories
-* `lc_kit_widget_settings` - Modify widget settings
-
-== Support ==
-
-* **Documentation**: [Elementor Developers Documentation](https://developers.elementor.com/docs/)
-* **WordPress Plugin Development**: [WordPress Developer Resources](https://developer.wordpress.org/plugins/)
-* **Support**: Contact us through our website
 
 == Credits ==
 
