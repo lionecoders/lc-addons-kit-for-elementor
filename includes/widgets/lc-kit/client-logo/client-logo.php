@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 // Align Elementor references like FAQ widget so settings apply correctly
 
 
-class LCAKE1_Kit_Client_Logo extends Elementor\Widget_Base
+class LCAKE_Kit_Client_Logo extends Elementor\Widget_Base
 {
 
     public function get_name()
@@ -273,9 +273,8 @@ class LCAKE1_Kit_Client_Logo extends Elementor\Widget_Base
                     'size' => 4,
                     'unit' => 'px',
                 ],
-                'render_type' => 'template',
                 'selectors' => [
-                    '{{WRAPPER}} .lcake-price-card-slider' => '--lcake_client_logo_slidetosho:  {{SIZE}};',
+                    '{{WRAPPER}} .lcake-clients-slider' => '--lcake_client_logo_slidetosho:  {{SIZE}};',
                 ],
             ]
         );
@@ -1543,7 +1542,6 @@ class LCAKE1_Kit_Client_Logo extends Elementor\Widget_Base
         $settings = $this->get_settings_for_display();
         extract($settings);
         $logos = $settings['lcake_client_logo_repiter'];
-
         // Config
         $config = [
             'rtl'                => is_rtl(),
@@ -1556,25 +1554,50 @@ class LCAKE1_Kit_Client_Logo extends Elementor\Widget_Base
             'pauseOnHover'        => !empty($settings['lcake_client_logo_pause_on_hover']),
             'loop'                => (!empty($settings['lcake_client_logo_loop']) && $settings['lcake_client_logo_loop'] == 'yes' && !empty($settings['lcake_client_logo_rows']) && $settings['lcake_client_logo_rows'] == 1) ? true : false,
             'spaceBetween'        => !empty($settings['lcake_client_logo_left_right_spacing']['size']) ? $settings['lcake_client_logo_left_right_spacing']['size'] : 15,
-            'breakpoints'        => [
+            'breakpoints' => [
                 320 => [
-                    'slidesPerView'        => !empty($settings['lcake_client_logo_slidetosho']['mobile']['size']) ? $settings['lcake_client_logo_slidetosho']['mobile']['size'] : 1,
-                    'slidesPerGroup'    => !empty($settings['lcake_client_logo_slidesToScroll']['mobile']['size']) ? $settings['lcake_client_logo_slidesToScroll']['mobile']['size'] : 1,
-                    'spaceBetween'        => !empty($settings['lcake_client_logo_left_right_spacing']['mobile']['size']) ? $settings['lcake_client_logo_left_right_spacing']['mobile']['size'] : 10,
+                    'slidesPerView' => !empty($settings['lcake_client_logo_slidetosho']['mobile']['size'])
+                        ? $settings['lcake_client_logo_slidetosho']['mobile']['size']
+                        : 1,
+
+                    'slidesPerGroup' => !empty($settings['lcake_client_logo_slidesToScroll']['mobile']['size'])
+                        ? $settings['lcake_client_logo_slidesToScroll']['mobile']['size']
+                        : 1,
+
+                    'spaceBetween' => !empty($settings['lcake_client_logo_left_right_spacing']['mobile']['size'])
+                        ? $settings['lcake_client_logo_left_right_spacing']['mobile']['size']
+                        : 10,
                 ],
+
                 768 => [
-                    'slidesPerView'        => !empty($settings['lcake_client_logo_slidetosho']['tablet']['size']) ? $settings['lcake_client_logo_slidetosho']['tablet']['size'] : 2,
-                    'slidesPerGroup'    => !empty($settings['lcake_client_logo_slidesToScroll']['tablet']['size']) ? $settings['lcake_client_logo_slidesToScroll']['tablet']['size'] : 1,
-                    'spaceBetween'        => !empty($settings['lcake_client_logo_left_right_spacing']['tablet']['size']) ? $settings['lcake_client_logo_left_right_spacing']['tablet']['size'] : 10,
+                    'slidesPerView' => !empty($settings['lcake_client_logo_slidetosho']['tablet']['size'])
+                        ? $settings['lcake_client_logo_slidetosho']['tablet']['size']
+                        : 2,
+
+                    'slidesPerGroup' => !empty($settings['lcake_client_logo_slidesToScroll']['tablet']['size'])
+                        ? $settings['lcake_client_logo_slidesToScroll']['tablet']['size']
+                        : 1,
+
+                    'spaceBetween' => !empty($settings['lcake_client_logo_left_right_spacing']['tablet']['size'])
+                        ? $settings['lcake_client_logo_left_right_spacing']['tablet']['size']
+                        : 10,
                 ],
-                1024 => [
-                    'slidesPerView'        => !empty($settings['lcake_client_logo_slidetosho']['size']) ? $settings['lcake_client_logo_slidetosho']['size'] : 4,
-                    'slidesPerGroup'    => !empty($settings['lcake_client_logo_slidesToScroll']['size']) ? $settings['lcake_client_logo_slidesToScroll']['size'] : 1,
-                    'spaceBetween'        => !empty($settings['lcake_client_logo_left_right_spacing']['size']) ? $settings['lcake_client_logo_left_right_spacing']['size'] : 15,
+
+                1025 => [
+                    'slidesPerView' => !empty($settings['lcake_client_logo_slidetosho']['size'])
+                        ? $settings['lcake_client_logo_slidetosho']['size']
+                        : 4,
+
+                    'slidesPerGroup' => !empty($settings['lcake_client_logo_slidesToScroll']['size'])
+                        ? $settings['lcake_client_logo_slidesToScroll']['size']
+                        : 1,
+
+                    'spaceBetween' => !empty($settings['lcake_client_logo_left_right_spacing']['size'])
+                        ? $settings['lcake_client_logo_left_right_spacing']['size']
+                        : 15,
                 ]
             ],
         ];
-
         if (!empty($settings['lcake_client_logo_rows']) && $settings['lcake_client_logo_rows'] > 1) {
             $config['grid'] = [
                 'fill'    => 'row',

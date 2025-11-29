@@ -50,7 +50,6 @@
 }
 
 .lcake-main-wrapper .lcake-clients-slider .single-client {
-    min-height: 170px;
     z-index: 5;
     display: -webkit-box;
     display: -ms-flexbox;
