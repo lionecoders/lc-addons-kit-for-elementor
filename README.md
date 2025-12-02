@@ -122,6 +122,9 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 ## Changelog
 
+### 1.0.1 (Beta)
+* Tested Upto WordPress 6.9
+
 ### 1.0.0 (Beta)
 * Initial release
 
