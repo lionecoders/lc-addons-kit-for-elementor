@@ -10,43 +10,37 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-/**
- * Icon Box Widget Class
- */
-class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
+class LCAKE_Kit_Icon_Box extends \Elementor\Widget_Base {
 
-    /**
-     * Get widget name
-     */
     public function get_name() {
-        return 'lc-kit-icon-box';
+        return 'lcake-kit-icon-box';
     }
 
-    /**
-     * Get widget categories
-     */
     public function get_categories() {
-        return ['lc-page-kit'];
+        return ['lcake-page-kit'];
     }
 
-    /**
-     * Get widget title
-     */
     public function get_title() {
         return esc_html__('LC Icon Box', 'lc-addons-kit-for-elementor');
     }
 
-    /**
-     * Get widget icon
-     */
     public function get_icon() {
         return 'eicon-icon-box';
     }
 
-    /**
-     * Add content controls
-     */
-    protected function add_content_controls() {
+    public function get_style_depends() {
+        return ['lcake-kit-icon-box-css'];
+    }
+
+    protected function register_controls() {
+        $this->start_controls_section(
+            'content_section',
+            [
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
         $this->add_control(
             'icon',
             [
@@ -65,7 +59,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
                 'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Icon Box Title', 'lc-addons-kit-for-elementor'),
-                'placeholder' => esc_html__('Enter your title', 'lc-addons-kit-for-elementor'),
+                'label_block' => true,
             ]
         );
 
@@ -74,8 +68,7 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'lc-addons-kit-for-elementor'),
-                'placeholder' => esc_html__('Enter your description', 'lc-addons-kit-for-elementor'),
+                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'lc-addons-kit-for-elementor'),
             ]
         );
 
@@ -106,11 +99,42 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
                 ],
             ]
         );
-
+        
         $this->add_control(
+            'title_size',
+            [
+                'label' => esc_html__('Title HTML Tag', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    'h1' => 'H1',
+                    'h2' => 'H2',
+                    'h3' => 'H3',
+                    'h4' => 'H4',
+                    'h5' => 'H5',
+                    'h6' => 'H6',
+                    'div' => 'div',
+                    'span' => 'span',
+                    'p' => 'p',
+                ],
+                'default' => 'h3',
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // Style Tab
+        $this->start_controls_section(
+            'section_style_icon',
+            [
+                'label' => esc_html__('Icon', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
             'icon_size',
             [
-                'label' => esc_html__('Icon Size', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px', 'em', 'rem'],
                 'range' => [
@@ -118,40 +142,22 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
                         'min' => 10,
                         'max' => 200,
                     ],
-                    'em' => [
-                        'min' => 0.5,
-                        'max' => 20,
-                    ],
-                    'rem' => [
-                        'min' => 0.5,
-                        'max' => 20,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 60,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-icon-box-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .lc-kit-icon-box-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-icon-box-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-icon-box-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
-    }
 
-    /**
-     * Add style controls
-     */
-    protected function add_style_controls() {
-        // Icon styles
         $this->add_control(
             'icon_color',
             [
-                'label' => esc_html__('Icon Color', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-icon-box-icon i' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .lc-kit-icon-box-icon svg' => 'fill: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-icon-box-icon i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-icon-box-icon svg' => 'fill: {{VALUE}};',
                 ],
             ]
         );
@@ -159,10 +165,10 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_control(
             'icon_background_color',
             [
-                'label' => esc_html__('Icon Background Color', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-icon-box-icon' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-icon-box-icon_wrapper' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -171,30 +177,52 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'icon_border',
-                'selector' => '{{WRAPPER}} .lc-kit-icon-box-icon',
+                'selector' => '{{WRAPPER}} .lcake-icon-box-icon_wrapper',
             ]
         );
 
         $this->add_control(
             'icon_border_radius',
             [
-                'label' => esc_html__('Icon Border Radius', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-icon-box-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-icon-box-icon_wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
-        // Title styles
+        $this->add_responsive_control(
+            'icon_padding',
+            [
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-icon-box-icon_wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // Title Style
+        $this->start_controls_section(
+            'section_style_title',
+            [
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
         $this->add_control(
             'title_color',
             [
                 'label' => esc_html__('Title Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-icon-box-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-icon-box-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -203,18 +231,27 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .lc-kit-icon-box-title',
+                'selector' => '{{WRAPPER}} .lcake-icon-box-title',
+            ]
+        );
+        $this->end_controls_section();
+
+        // Description Style
+        $this->start_controls_section(
+            'section_style_description',
+            [
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
-        // Description styles
         $this->add_control(
             'description_color',
             [
-                'label' => esc_html__('Description Color', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-icon-box-description' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-icon-box-description' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -223,18 +260,53 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'description_typography',
-                'selector' => '{{WRAPPER}} .lc-kit-icon-box-description',
+                'selector' => '{{WRAPPER}} .lcake-icon-box-description',
             ]
         );
 
-        // Box styles
+        $this->end_controls_section();
+
+        // Box Style
+        $this->start_controls_section(
+            'section_style_box',
+            [
+                'label' => esc_html__('Box', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'box_text_align',
+            [
+                'label' => esc_html__('Alignment', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-icon-box-wrapper' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->add_control(
             'box_background_color',
             [
-                'label' => esc_html__('Box Background Color', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-icon-box' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-icon-box-wrapper' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -243,18 +315,18 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'box_border',
-                'selector' => '{{WRAPPER}} .lc-kit-icon-box',
+                'selector' => '{{WRAPPER}} .lcake-icon-box-wrapper',
             ]
         );
 
         $this->add_control(
             'box_border_radius',
             [
-                'label' => esc_html__('Box Border Radius', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-icon-box' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-icon-box-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -262,57 +334,67 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'box_padding',
             [
-                'label' => esc_html__('Box Padding', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-icon-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-icon-box-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
+
+        $this->end_controls_section();
     }
 
-    /**
-     * Render widget
-     */
-    protected function render_widget($settings) {
-        $icon = $settings['icon'];
-        $title = $settings['title'];
-        $description = $settings['description'];
-        $link = $settings['link'];
-        $icon_position = $settings['icon_position'];
+    protected function render() {
+        $settings = $this->get_settings_for_display();
+
+        $icon = $settings['icon'] ?? [];
+        $title = $settings['title'] ?? '';
+        $description = $settings['description'] ?? '';
+        $link = $settings['link'] ?? [];
+        $icon_position = $settings['icon_position'] ?? 'top';
 
         $this->add_render_attribute('icon_box', 'class', [
-            'lc-kit-icon-box',
-            'lc-kit-icon-box--' . $icon_position,
+            'lcake-icon-box-wrapper',
+            'lcake-icon-box--' . esc_attr($icon_position),
         ]);
 
-        $this->add_render_attribute('icon', 'class', 'lc-kit-icon-box-icon');
-        $this->add_render_attribute('title', 'class', 'lc-kit-icon-box-title');
-        $this->add_render_attribute('description', 'class', 'lc-kit-icon-box-description');
+        $this->add_render_attribute('icon', 'class', 'lcake-icon-box-icon');
+        $this->add_render_attribute('title', 'class', 'lcake-icon-box-title');
+        $this->add_render_attribute('description', 'class', 'lcake-icon-box-description');
 
         ?>
         <div <?php echo $this->get_render_attribute_string('icon_box'); ?>>
             <?php if (!empty($icon['value'])) : ?>
-                <div <?php echo $this->get_render_attribute_string('icon'); ?>>
-                    <?php \Elementor\Icons_Manager::render_icon($icon, ['aria-hidden' => 'true']); ?>
+                <div class="lcake-icon-box-icon_wrapper">
+                    <div <?php echo $this->get_render_attribute_string('icon'); ?>>
+                        <?php \Elementor\Icons_Manager::render_icon($icon, ['aria-hidden' => 'true']); ?>
+                    </div>
                 </div>
             <?php endif; ?>
 
-            <div class="lc-kit-icon-box-content">
+            <div class="lcake-icon-box-content">
                 <?php if (!empty($title)) : ?>
+                    <?php 
+                    $title_tag = isset($settings['title_size']) ? $settings['title_size'] : 'h3'; 
+                    // validate html tag for security
+                    $valid_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p'];
+                    $title_tag = in_array($title_tag, $valid_tags) ? $title_tag : 'h3';
+                    ?>
+                    
                     <?php if (!empty($link['url'])) : ?>
-                        <a href="<?php echo esc_url($link['url']); ?>" 
-                           <?php echo $link['is_external'] ? 'target="_blank"' : ''; ?>
-                           <?php echo $link['nofollow'] ? 'rel="nofollow"' : ''; ?>>
-                            <h3 <?php echo $this->get_render_attribute_string('title'); ?>>
-                                <?php echo esc_html($title); ?>
-                            </h3>
+                        <a href="<?php echo esc_url($link['url']); ?>" class="lcake-icon-box-link"
+                           <?php echo !empty($link['is_external']) ? 'target="_blank"' : ''; ?>
+                           <?php echo !empty($link['nofollow']) ? 'rel="nofollow"' : ''; ?>>
+                            <<?php echo $title_tag; ?> <?php echo $this->get_render_attribute_string('title'); ?>>
+                                <?php echo wp_kses_post($title); ?>
+                            </<?php echo $title_tag; ?>>
                         </a>
                     <?php else : ?>
-                        <h3 <?php echo $this->get_render_attribute_string('title'); ?>>
-                            <?php echo esc_html($title); ?>
-                        </h3>
+                        <<?php echo $title_tag; ?> <?php echo $this->get_render_attribute_string('title'); ?>>
+                            <?php echo wp_kses_post($title); ?>
+                        </<?php echo $title_tag; ?>>
                     <?php endif; ?>
                 <?php endif; ?>
 
@@ -325,39 +407,4 @@ class LC_Kit_Icon_Box extends \Elementor\Widget_Base {
         </div>
         <?php
     }
-
-    /**
-     * Content template
-     */
-    protected function content_template() {
-        ?>
-        <div class="lc-kit-icon-box lc-kit-icon-box--{{ settings.icon_position }}">
-            <# if (settings.icon.value) { #>
-                <div class="lc-kit-icon-box-icon">
-                    {{{ elementor.helpers.renderIcon( view, settings.icon, { 'aria-hidden': true }, 'i' , 'object' ) }}}
-                </div>
-            <# } #>
-
-            <div class="lc-kit-icon-box-content">
-                <# if (settings.title) { #>
-                    <# if (settings.link.url) { #>
-                        <a href="{{ settings.link.url }}" 
-                           <# if (settings.link.is_external) { #>target="_blank"<# } #>
-                           <# if (settings.link.nofollow) { #>rel="nofollow"<# } #>>
-                            <h3 class="lc-kit-icon-box-title">{{{ settings.title }}}</h3>
-                        </a>
-                    <# } else { #>
-                        <h3 class="lc-kit-icon-box-title">{{{ settings.title }}}</h3>
-                    <# } #>
-                <# } #>
-
-                <# if (settings.description) { #>
-                    <div class="lc-kit-icon-box-description">
-                        {{{ settings.description }}}
-                    </div>
-                <# } #>
-            </div>
-        </div>
-        <?php
-    }
-} 
+}
