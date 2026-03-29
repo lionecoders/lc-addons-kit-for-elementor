@@ -155,6 +155,7 @@ class LCAKE_Kit_Icon_Box extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6', // modern blue default
                 'selectors' => [
                     '{{WRAPPER}} .lcake-icon-box-icon i' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .lcake-icon-box-icon svg' => 'fill: {{VALUE}};',
@@ -167,6 +168,7 @@ class LCAKE_Kit_Icon_Box extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => 'rgba(59, 130, 246, 0.1)',
                 'selectors' => [
                     '{{WRAPPER}} .lcake-icon-box-icon_wrapper' => 'background-color: {{VALUE}};',
                 ],
@@ -187,6 +189,14 @@ class LCAKE_Kit_Icon_Box extends \Elementor\Widget_Base {
                 'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => '20',
+                    'right' => '20',
+                    'bottom' => '20',
+                    'left' => '20',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
                 'selectors' => [
                     '{{WRAPPER}} .lcake-icon-box-icon_wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -328,6 +338,24 @@ class LCAKE_Kit_Icon_Box extends \Elementor\Widget_Base {
                 'selectors' => [
                     '{{WRAPPER}} .lcake-icon-box-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
+            ]
+        );
+        
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_shadow',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-icon-box-wrapper',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_hover_shadow',
+                'label' => esc_html__('Hover Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-icon-box-wrapper:hover',
             ]
         );
 
