@@ -30,7 +30,7 @@ class LCAKE_Elementor_Addons_Kit
 
     private function define_constants()
     {
-        define('LCAKE_EAK_VERSION', '1.0.1');
+        define('LCAKE_EAK_VERSION', '1.0.2');
         define('LCAKE_EAK_PATH', plugin_dir_path(__FILE__));
         define('LCAKE_EAK_URL', plugin_dir_url(__FILE__));
     }

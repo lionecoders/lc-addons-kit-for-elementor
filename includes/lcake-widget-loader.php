@@ -105,6 +105,7 @@ class LCAKE_Kit_Widget_Loader
             'lcake-dialog-js' => ['file' => 'dialog.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
             'lcake-kit-image-accordion' => ['file' => 'lcake-kit-image-accordion.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lcake-swiper-js' => ['file' => 'swiper-bundle.min.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-funfact-js' => ['file' => 'lcake-kit-funfact.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => true, 'path' => ''],
             // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false, 'path' => '']
         ];
 
