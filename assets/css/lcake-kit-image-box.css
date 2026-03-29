@@ -1,0 +1,145 @@
+/* 
+* Premium Modern Styles for Image Box Widget 
+* Uses glassmorphism properties, subtle hover lifts, dynamic gradients, and perfect spacing
+*/
+
+.lcake-image-box-wrapper {
+    display: flex;
+    position: relative;
+    width: 100%;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    overflow: hidden;
+    gap: 24px; /* Default spacing metric fallback */
+}
+
+.lcake-image-box-wrapper:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.12), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+/* Image Positions */
+.lcake-image-box--image-top .lcake-image-box-wrapper {
+    flex-direction: column;
+}
+
+.lcake-image-box--image-left .lcake-image-box-wrapper {
+    flex-direction: row;
+}
+
+.lcake-image-box--image-right .lcake-image-box-wrapper {
+    flex-direction: row-reverse;
+}
+
+/* Image Container */
+.lcake-image-box-img {
+    flex-shrink: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* very soft depth for the image */
+}
+
+.lcake-image-box-img img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Dynamic Image Zoom on Wrapper Hover */
+.lcake-image-box-wrapper:hover .lcake-image-box-img img {
+    transform: scale(1.06);
+}
+
+/* Content Container */
+.lcake-image-box-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Typography & Titles */
+.lcake-image-box-title {
+    margin: 0 0 10px 0;
+    color: #111827;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+    letter-spacing: -0.02em;
+}
+
+.lcake-image-box-wrapper:hover .lcake-image-box-title {
+    color: #3b82f6; /* Modern Blue Accent */
+}
+
+/* Description Text */
+.lcake-image-box-description {
+    margin: 0 0 24px 0;
+    color: #6b7280;
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+.lcake-image-box-description:last-child {
+    margin-bottom: 0;
+}
+
+/* Premium Button-style Link */
+.lcake-image-box-link {
+    display: inline-block;
+    color: #ffffff;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+    border: none;
+    outline: none;
+}
+
+/* Respect Container Alignment */
+.lcake-image-box-content {
+    text-align: inherit;
+}
+
+.lcake-image-box-link:hover {
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Responsive Overrides */
+@media (max-width: 767px) {
+    .lcake-image-box-wrapper {
+        padding: 24px;
+        border-radius: 20px;
+        gap: 20px;
+    }
+
+    .lcake-image-box-title {
+        font-size: 20px;
+    }
+
+    /* Stack beautifully on mobile and force center orientation */
+    .lcake-image-box--image-left .lcake-image-box-wrapper,
+    .lcake-image-box--image-right .lcake-image-box-wrapper {
+        flex-direction: column;
+        align-items: center !important;
+        text-align: center;
+    }
+}
