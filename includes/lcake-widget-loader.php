@@ -136,6 +136,7 @@ class LCAKE_Kit_Widget_Loader
             'lcakeicons' => ['file' => 'lcakeicons.css', 'enqueue' => true, 'path' => 'assets/icons'],
             'lcake-kit-image-accordion' => ['file' => 'lcake-kit-image-accordion.css', 'enqueue' => false, 'path' => ''],
             'lcake-kit-countdown-timer-css' => ['file' => 'lcake-kit-countdown-timer.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-drop-caps-css' => ['file' => 'lcake-kit-drop-caps.css', 'enqueue' => true, 'path' => ''],
             // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.css', 'enqueue' => false, 'path' => '']
         ];
 
