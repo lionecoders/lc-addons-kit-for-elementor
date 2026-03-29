@@ -15,7 +15,7 @@
 			?>
 				<div class="swiper-slide">
 					<div class="swiper-slide-inner">
-						<<?php echo esc_attr($wrapTag); ?> class="lcake-single-testimonial-slider lcake-testimonial-slider-block-style lcake-testimonial-slider-block-style-two <?php echo esc_attr(!empty($testimonial['ekit_testimonial_active']) ? 'testimonial-active' : ''); ?>  elementor-repeater-item-<?php echo esc_attr($testimonial['_id']); ?>" <?php echo $this->get_render_attribute_string('link-' . esc_attr($testimonial['_id'])); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already escaped by elementor 
+						<<?php echo esc_attr($wrapTag); ?> class="lcake-single-testimonial-slider lcake-testimonial-slider-block-style lcake-testimonial-slider-block-style-two <?php echo esc_attr(!empty($testimonial['lcake_testimonial_active']) ? 'testimonial-active' : ''); ?>  elementor-repeater-item-<?php echo esc_attr($testimonial['_id']); ?>" <?php echo $this->get_render_attribute_string('link-' . esc_attr($testimonial['_id'])); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already escaped by elementor 
 																																																																																					?>>
 							<div class="lcake-commentor-header">
 								<?php if ($lcake_testimonial_rating_enable == 'yes') : ?>

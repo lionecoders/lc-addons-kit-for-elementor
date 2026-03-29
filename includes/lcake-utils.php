@@ -221,7 +221,7 @@ class LCAKE_Kit_Utils
         return str_replace(array('{', '}'), array('<span>', '</span>'), $text);
     }
 
-    public static function ekit_get__forms($post_type)
+    public static function lcake_get__forms($post_type)
     {
         $wpuf_form_list = get_posts(
             array(
@@ -244,7 +244,7 @@ class LCAKE_Kit_Utils
         return $options;
     }
 
-    public static function ekit_get_ninja_form()
+    public static function lcake_get_ninja_form()
     {
         $options = array();
 
@@ -291,7 +291,7 @@ class LCAKE_Kit_Utils
         return $table_options;
     }
 
-    public static function ekit_do_shortcode($tag, array $atts = array(), $content = null)
+    public static function lcake_do_shortcode($tag, array $atts = array(), $content = null)
     {
         global $shortcode_tags;
         if (! isset($shortcode_tags[$tag])) {

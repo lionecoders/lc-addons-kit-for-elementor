@@ -1,451 +1,1728 @@
 <?php
-/**
- * Countdown Timer Widget
- * 
- * @package LC_Elementor_Addons_Kit
- */
+use Elementor\Widget_Base;
+use Elementor\Controls_Manager;
+use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Background;
+use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Box_Shadow;
+use Elementor\Plugin;
 
-if (!defined('ABSPATH')) {
+
+if (!defined('ABSPATH'))
     exit;
-}
 
-class LC_Kit_Countdown_Timer extends \Elementor\Widget_Base {
 
-    public function get_name() {
-        return 'lc-kit-countdown-timer';
+class LCAKE_Kit_Countdown_Timer extends Widget_Base
+{
+
+    public $base;
+
+    public function __construct($data = [], $args = null)
+    {
+        parent::__construct($data, $args);
     }
 
-    public function get_title() {
+    public function get_script_depends()
+    {
+        return ['lcake-kit-countdown-js', 'lcake-kit-countdown-timer-js'];
+    }
+
+    public function get_name()
+    {
+        return 'lcake-kit-countdown-timer';
+    }
+
+    public function get_title()
+    {
         return esc_html__('LC Countdown Timer', 'lc-addons-kit-for-elementor');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-countdown';
     }
 
-    public function get_categories() {
-        return ['lc-page-kit'];
+    public function get_categories()
+    {
+        return ['lcake-page-kit'];
     }
 
-    public function get_keywords() {
+    public function get_keywords()
+    {
         return ['countdown', 'timer', 'clock', 'time', 'deadline'];
     }
 
-    public function get_script_depends() {
-        return ['lc-countdown-timer'];
+    public function get_help_url()
+    {
+        return 'https://wpmet.com/doc/countdown-timer/';
     }
 
-    protected function add_content_controls() {
+    protected function is_dynamic_content(): bool
+    {
+        return false;
+    }
+
+    public function has_widget_inner_wrapper(): bool
+    {
+        return !Plugin::$instance->experiments->is_feature_active('e_optimized_markup');
+    }
+
+    protected function register_controls()
+    {
         $this->start_controls_section(
-            'content_section',
+            'section_tab',
             [
-                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+                'label' => esc_html__('Presets', 'lc-addons-kit-for-elementor'),
             ]
         );
 
+
         $this->add_control(
-            'due_date',
+            'lcake_countdown_timer_style',
             [
-                'label' => esc_html__('Due Date', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DATE_TIME,
-                'picker_options' => [
-                    'enableTime' => true,
-                    'dateFormat' => 'Y-m-d H:i',
+                'label' => esc_html__('Choose Style', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'style1',
+                'options' => [
+                    'style1' => esc_html__('Style 1', 'lc-addons-kit-for-elementor'),
+                    'style2' => esc_html__('Style 2', 'lc-addons-kit-for-elementor'),
+                    'style3' => esc_html__('Style 3', 'lc-addons-kit-for-elementor'),
+                    'style4' => esc_html__('Style 4', 'lc-addons-kit-for-elementor'),
+                    'style5' => esc_html__('Style 5', 'lc-addons-kit-for-elementor'),
+                    'style6' => esc_html__('Style 6', 'lc-addons-kit-for-elementor'),
                 ],
-                'default' => date('Y-m-d H:i', strtotime('+1 month')),
+            ]
+        );
+        $this->end_controls_section();
+        // Timer setting
+
+
+        $this->start_controls_section(
+            'lcake_countdown_timer_timer_setting',
+            [
+                'label' => esc_html__('Timer Settings  ', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+
+        $this->add_control(
+            'lcake_countdown_timer_due_time',
+            [
+                'label' => esc_html__('Countdown Due Date', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DATE_TIME,
+                'default' => date("Y-m-d", strtotime("+ 1 day")), // PHPCS:Ignore WordPress.DateTime.RestrictedFunctions.date_date
+                'description' => esc_html__('Set the due date and time', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+        $this->add_control(
+            'lcake_countdown_timer_content_setting',
+            [
+                'label' => esc_html__('Custom Labels', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
             ]
         );
 
         $this->add_control(
-            'label_days',
+            'lcake_countdown_timer_weeks_label',
             [
-                'label' => esc_html__('Days Label', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
+                'label' => esc_html__('Weeks', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'default' => esc_html__('Weeks', 'lc-addons-kit-for-elementor'),
+                'condition' => ['lcake_countdown_timer_style' => 'style3'],
+            ]
+        );
+
+
+        $this->add_control(
+            'lcake_countdown_timer_days_label',
+            [
+                'label' => esc_html__('Days', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => esc_html__('Days', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
-            'label_hours',
+            'lcake_countdown_timer_hours_label',
             [
-                'label' => esc_html__('Hours Label', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
+                'label' => esc_html__('Hours', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => esc_html__('Hours', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
-            'label_minutes',
+            'lcake_countdown_timer_minutes_hours_label',
             [
-                'label' => esc_html__('Minutes Label', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
+                'label' => esc_html__('Minutes', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => esc_html__('Minutes', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
-            'label_seconds',
+            'lcake_countdown_timer_seconds_hours_label',
             [
-                'label' => esc_html__('Seconds Label', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
+                'label' => esc_html__('Seconds', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
                 'default' => esc_html__('Seconds', 'lc-addons-kit-for-elementor'),
             ]
         );
 
-        $this->add_control(
-            'show_days',
-            [
-                'label' => esc_html__('Show Days', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
-                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'show_hours',
-            [
-                'label' => esc_html__('Show Hours', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
-                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'show_minutes',
-            [
-                'label' => esc_html__('Show Minutes', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
-                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'show_seconds',
-            [
-                'label' => esc_html__('Show Seconds', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
-                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'expire_message',
-            [
-                'label' => esc_html__('Expire Message', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Time is up!', 'lc-addons-kit-for-elementor'),
-                'description' => esc_html__('Message to display when countdown expires', 'lc-addons-kit-for-elementor'),
-            ]
-        );
-
-        $this->add_control(
-            'redirect_url',
-            [
-                'label' => esc_html__('Redirect URL', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::URL,
-                'placeholder' => esc_html__('https://your-link.com', 'lc-addons-kit-for-elementor'),
-                'description' => esc_html__('URL to redirect to when countdown expires (optional)', 'lc-addons-kit-for-elementor'),
-            ]
-        );
-
         $this->end_controls_section();
-    }
 
-    protected function add_style_controls() {
         $this->start_controls_section(
-            'section_style_countdown',
+            'lcake_countdown_timer_on_expire_settings',
             [
-                'label' => esc_html__('Countdown', 'lc-addons-kit-for-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_responsive_control(
-            'countdown_alignment',
-            [
-                'label' => esc_html__('Alignment', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::CHOOSE,
-                'options' => [
-                    'left' => [
-                        'title' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
-                        'icon' => 'eicon-text-align-left',
-                    ],
-                    'center' => [
-                        'title' => esc_html__('Center', 'lc-addons-kit-for-elementor'),
-                        'icon' => 'eicon-text-align-center',
-                    ],
-                    'right' => [
-                        'title' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
-                        'icon' => 'eicon-text-align-right',
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-countdown-timer' => 'text-align: {{VALUE}};',
-                ],
+                'label' => esc_html__('Expire Action', 'lc-addons-kit-for-elementor')
             ]
         );
 
         $this->add_control(
-            'countdown_background_color',
+            'lcake_countdown_timer_title',
             [
-                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-countdown-item' => 'background-color: {{VALUE}};',
+                'label' => esc_html__('On Expiry Title', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::TEXTAREA,
+                'dynamic' => [
+                    'active' => true,
                 ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'countdown_border',
-                'selector' => '{{WRAPPER}} .lc-countdown-item',
+                'default' => esc_html__('Countdown is finished!', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
-            'countdown_border_radius',
+            'lcake_countdown_timer_expiry_content',
             [
-                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-countdown-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                'label' => esc_html__('On Expiry Content', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::TEXTAREA,
+                'dynamic' => [
+                    'active' => true,
                 ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'countdown_padding',
-            [
-                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-countdown-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
-            ]
-        );
-
-        $this->add_responsive_control(
-            'countdown_margin',
-            [
-                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::DIMENSIONS,
-                'size_units' => ['px', 'em', '%'],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-countdown-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ],
+                'default' => esc_html__('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->end_controls_section();
 
+        // start style here........
+
+        // content settings styles start
         $this->start_controls_section(
-            'section_style_numbers',
+            'lcake_countdown_timer_content_style',
             [
-                'label' => esc_html__('Numbers', 'lc-addons-kit-for-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
+                'tab' => Controls_Manager::TAB_STYLE,
+
             ]
         );
-
-        $this->add_control(
-            'numbers_color',
-            [
-                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .lc-countdown-number' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
-            [
-                'name' => 'numbers_typography',
-                'selector' => '{{WRAPPER}} .lc-countdown-number',
-            ]
-        );
-
+        // set width for Days
         $this->add_responsive_control(
-            'numbers_bottom_space',
+            'lcake_countdown_timer_days_width',
             [
-                'label' => esc_html__('Spacing', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
+                'label' => esc_html__('Width', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px'],
                 'range' => [
                     'px' => [
                         'min' => 0,
-                        'max' => 100,
+                        'max' => 500,
+                        'step' => 1,
                     ],
                 ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => '',
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-countdown-number' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-countdown-inner' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+
+            ]
+        );
+        // set Height for Days
+        $this->add_responsive_control(
+            'lcake_countdown_timer_days_height',
+            [
+                'label' => esc_html__('Height', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => '',
+                    'unit' => 'px',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 500,
+                        'step' => 1,
+                    ],
+                ],
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown-inner' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+
+            ]
+        );
+
+        // set Line Height for Days
+        $this->add_responsive_control(
+            'lcake_countdown_timer_days__line_height',
+            [
+                'label' => esc_html__('Line Height', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => '',
+                    'unit' => 'px',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 500,
+                        'step' => 1,
+                    ],
+                ],
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-content .lcake-timer-count,
+                    {{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-content .lcake-timer-count,
+					{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box  .lcake-timer-content,
+					{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container .lcake-inner-container,
+					{{WRAPPER}} .lcake-flip-clock .lcake-top,
+					{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container ' => 'line-height: {{SIZE}}{{UNIT}};',
+                ],
+
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_countdown_timer_content_margin_bottom',
+            [
+                'label' => esc_html__('Margin Bottom', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'step' => 1,
+                    ],
+                ],
+                'desktop_default' => [
+                    'size' => 0,
+                    'unit' => 'px',
+                ],
+                'tablet_default' => [
+                    'size' => 30,
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
+                    'size' => 15,
+                    'unit' => 'px',
+                ],
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown-inner' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->end_controls_section();
 
+        // end content settings
+
+        //weeks Style Section
         $this->start_controls_section(
-            'section_style_labels',
+            'lcake_countdown_timer_weeks_style',
             [
-                'label' => esc_html__('Labels', 'lc-addons-kit-for-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'label' => esc_html__('Weeks', 'lc-addons-kit-for-elementor'),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'lcake_countdown_timer_style' => 'style3'
+                ],
+            ]
+        );
+
+        // Start Digits for weeks
+        $this->add_control(
+            'lcake_countdown_timer_weeks_heading_digits',
+            [
+                'label' => esc_html__('Digits', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+        // Set Digits color for weeks
+        $this->add_control(
+            'lcake_countdown_timer_weeks_digits_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-flip-clock  > .lcake-wks  > .lcake-count' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+        // Set Digits typeography for weeks
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_weeks_digits_typography_group',
+                'selector' => '{{WRAPPER}} .lcake-flip-clock  > .lcake-wks  > .lcake-count',
+            ]
+        );
+
+        // Set Digits margin for weeks
+        $this->add_responsive_control(
+            'lcake_countdown_timer_weeks_digits_margin_bottom',
+            [
+                'label' => esc_html__('Margin Bottom', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => '',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -30,
+                        'step' => 1,
+                    ],
+                ],
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-flip-clock  > .lcake-wks  > .lcake-count' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
         $this->add_control(
-            'labels_color',
+            'lcake_countdown_timer_weeks_label_title',
+            [
+                'label' => esc_html__('Label', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'lcake_countdown_timer_weeks_label_color',
             [
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
+                'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-countdown-label' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-flip-clock  > .lcake-wks  > .lcake-label' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_weeks_label_typography_group',
+                'selector' => '{{WRAPPER}} .lcake-flip-clock  > .lcake-wks  > .lcake-label',
+                'fields_options' => [
+                    'font_weight' => [
+                        'default' => '400',
+                    ],
+                    'font_family' => [
+                        'default' => 'Lato',
+                    ],
+                    'font_size' => ['default' => ['unit' => 'px', 'size' => 14]]
+                ],
+                'seperator' => 'before'
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_weeks_label_background_group',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-flip-clock  > .lcake-wks  > .lcake-label',
+                'seperator' => 'before',
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_weeks_label_border_color',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-flip-clock  > .lcake-wks  > .lcake-label',
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_countdown_timer_weeks_label_border_radious_open',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-flip-clock  > .lcake-wks  > .lcake-label, ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
+            Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'labels_typography',
-                'selector' => '{{WRAPPER}} .lc-countdown-label',
+                'name' => 'lcake_countdown_timer_weeks_label_box_shadow_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-flip-clock  > .lcake-wks  > .lcake-label',
+            ]
+        );
+
+
+        $this->add_responsive_control(
+            'lcake_countdown_timer_weeks_lebel_margin',
+            [
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-flip-clock > .lcake-wks > .lcake-label
+					' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        // start genaral setting styles
+        $this->add_control(
+            'lcake_countdown_timer_weeks_heading_general',
+            [
+                'label' => esc_html__('General', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_weeks_background_group',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-flip-clock  > .lcake-wks .lcake-count',
+                'seperator' => 'before'
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_weeks_border_color_group',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock  > .lcake-wks ',
+
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_countdown_timer_weeks_border_radious_open',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-flip-clock > .lcake-wks ' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_weeks_box_shadow_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-flip-clock > .lcake-wks ',
+
             ]
         );
 
         $this->end_controls_section();
 
+        // end digit section styles for Weeks
+
+
+        //Days Style Section
         $this->start_controls_section(
-            'section_style_expire_message',
+            'lcake_countdown_timer_days_style',
             [
-                'label' => esc_html__('Expire Message', 'lc-addons-kit-for-elementor'),
-                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'label' => esc_html__('Days', 'lc-addons-kit-for-elementor'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        // Start Digits for Days
+        $this->add_control(
+            'lcake_countdown_timer_days_heading_digits',
+            [
+                'label' => esc_html__('Digits', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+        // Set Digits color for Days
+        $this->add_control(
+            'lcake_countdown_timer_days_digits_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-days .lcake-timer-count, {{WRAPPER}} .lcake-flip-clock .lcake-days .lcake-count' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+        // Set Digits typeography for Days
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_days_digits_typography_group',
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-days .lcake-timer-content > span.lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock .lcake-days .lcake-count',
+            ]
+        );
+
+        // Set Digits margin for Days
+        $this->add_responsive_control(
+            'lcake_countdown_timer_days_digits_margin_bottom',
+            [
+                'label' => esc_html__('Margin Bottom', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => -30,
+                        'step' => 1,
+                    ],
+                ],
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-days .lcake-timer-count, {{WRAPPER}} .lcake-flip-clock .lcake-days .lcake-count' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
         $this->add_control(
-            'expire_message_color',
+            'lcake_countdown_timer_days_label_title',
+            [
+                'label' => esc_html__('Label', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'lcake_countdown_timer_days_label_color',
             [
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
+                'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-countdown-expire' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-days .lcake-timer-title, {{WRAPPER}} .lcake-flip-clock .lcake-days .lcake-label' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_days_label_typography_group',
+                'selector' => '{{WRAPPER}} .lcake-flip-clock .lcake-days .lcake-label,
+								{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-timer-title',
+                'fields_options' => [
+                    // Inner control name
+                    'font_weight' => [
+                        // Inner control settings
+                        'default' => '400',
+                    ],
+                    'font_family' => [
+                        'default' => 'Lato',
+                    ],
+                    'font_size' => ['default' => ['unit' => 'px', 'size' => 14]]
+                ],
+                'seperator' => 'before'
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_days_label_background_group',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-flip-clock .lcake-days .lcake-label,
+								{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-timer-title
+								',
+                'seperator' => 'before',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_days_label_border_color',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => ' {{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-days .lcake-timer-content > span.lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-flip-clock .lcake-days .lcake-label
+								',
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_countdown_timer_days_label_border_radious_open',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-days .lcake-inner-container, {{WRAPPER}} .lcake-flip-clock .lcake-days' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
 
         $this->add_group_control(
-            \Elementor\Group_Control_Typography::get_type(),
+            Group_Control_Box_Shadow::get_type(),
             [
-                'name' => 'expire_message_typography',
-                'selector' => '{{WRAPPER}} .lc-countdown-expire',
+                'name' => 'lcake_countdown_timer_days_label_box_shadow_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-days .lcake-timer-content > span.lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-timer-title,
+								{{WRAPPER}} .lcake-flip-clock .lcake-days .lcake-label
+				',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_countdown_timer_days_lebel_margin',
+            [
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-days .lcake-timer-title, {{WRAPPER}} .lcake-flip-clock .lcake-days .lcake-label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        // start genaral settings
+        $this->add_control(
+            'lcake_countdown_timer_days_heading_general',
+            [
+                'label' => esc_html__('General', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_days_background_group',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-days .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-timer-count,
+								{{WRAPPER}} .lcake-flip-clock  > .lcake-days .lcake-count ',
+                'seperator' => 'before'
+            ]
+        );
+
+        // overlay color
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_days_border_color_group',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-days .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock .lcake-days ',
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_countdown_timer_days_border_radious_open',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-days .lcake-inner-container, {{WRAPPER}} .lcake-flip-clock .lcake-days' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_days_box_shadow_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-days .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock .lcake-days ',
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // end digit section styles for Days
+
+
+        //Hours Style Section start
+        $this->start_controls_section(
+            'lcake_countdown_timer_hours_style',
+            [
+                'label' => esc_html__('Hours', 'lc-addons-kit-for-elementor'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'lcake_countdown_timer_hours_heading_digits',
+            [
+                'label' => esc_html__('Digits', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'lcake_countdown_timer_hours_digits_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-hours .lcake-timer-count, {{WRAPPER}} .lcake-flip-clock .lcake-hrs .lcake-count' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_hours_digits_typography_group',
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-hours .lcake-timer-content > span.lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-timer-count,
+								{{WRAPPER}} .lcake-flip-clock .lcake-hrs .lcake-count',
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_countdown_timer_hours_digits_margin_bottom',
+            [
+                'label' => esc_html__('Margin Bottom', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => '',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -30,
+                        'step' => 1,
+                    ],
+                ],
+                'size_units' => ['px'],
+
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-hours .lcake-timer-count, {{WRAPPER}} .lcake-flip-clock .lcake-hrs .lcake-count' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'lcake_countdown_timer_hours_label_title',
+            [
+                'label' => esc_html__('Label', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'lcake_countdown_timer_hours_label_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::COLOR,
+
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-hours .lcake-timer-title, {{WRAPPER}} .lcake-flip-clock .lcake-hrs .lcake-label' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_hours_label_typography_group',
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-hours .lcake-timer-content > span.lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-flip-clock .lcake-hrs .lcake-label',
+                'fields_options' => [
+                    // Inner control name
+                    'font_weight' => [
+                        // Inner control settings
+                        'default' => '400',
+                    ],
+                    'font_family' => [
+                        'default' => 'Lato',
+                    ],
+                    'font_size' => ['default' => ['unit' => 'px', 'size' => 14]]
+                ],
+                'seperator' => 'before'
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_hours_label_background_group',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-flip-clock .lcake-hrs .lcake-label,
+                {{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-timer-title
+								',
+                'seperator' => 'before',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_hours_label_border_color',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => ' {{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-hours .lcake-timer-content > span.lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-timer-title,
+                {{WRAPPER}} .lcake-flip-clock .lcake-hrs .lcake-label
+                ',
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_countdown_timer_hours_label_border_radious_open',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-hours .lcake-inner-container, {{WRAPPER}} .lcake-flip-clock .lcake-hrs' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_hours_label_box_shadow_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-hours .lcake-timer-content > span.lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-timer-title,
+								{{WRAPPER}} .lcake-flip-clock .lcake-hrs .lcake-label
+				',
+            ]
+        );
+
+
+        $this->add_responsive_control(
+            'lcake_countdown_timer_hours_lebel_margin',
+            [
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-hours .lcake-timer-title, {{WRAPPER}} .lcake-flip-clock .lcake-hrs .lcake-label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        // start genaral styles
+        $this->add_control(
+            'lcake_countdown_timer_hours_heading_general',
+            [
+                'label' => esc_html__('General', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_hours_background',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-hours .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-timer-count,
+								{{WRAPPER}} .lcake-flip-clock  > .lcake-hrs .lcake-count ',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_hours_border_color_group',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-hours .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock .lcake-hrs ',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_countdown_timer_hours_border_radious_open',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-hours .lcake-inner-container, {{WRAPPER}} .lcake-flip-clock .lcake-hrs' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_hours_box_shadow_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-hours .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock .lcake-hrs ',
+            ]
+        );
+
+        $this->end_controls_section();
+
+
+        //Minutes Style Section
+
+        $this->start_controls_section(
+            'lcake_countdown_timer_minutes_style',
+            [
+                'label' => esc_html__('Minutes', 'lc-addons-kit-for-elementor'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        // Start Digits for Days
+        $this->add_control(
+            'lcake_countdown_timer_minutes_heading_digits',
+            [
+                'label' => esc_html__('Digits', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+        // Set Digits color for Days
+        $this->add_control(
+            'lcake_countdown_timer_minutes_digits_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-minutes .lcake-timer-count, {{WRAPPER}} .lcake-flip-clock .lcake-mins .lcake-count' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+        // Set Digits typeography for Days
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_minutes_digits_typography_group',
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-minutes .lcake-timer-content > span.lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock .eins .eount, {{WRAPPER}} .lcake-flip-clock .lcake-mins .lcake-count',
+            ]
+        );
+
+        // Set Digits margin for Days
+        $this->add_responsive_control(
+            'lcake_countdown_timer_minutes_digits_margin_bottom',
+            [
+                'label' => esc_html__('Margin Bottom', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => '',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -30,
+                        'step' => 1,
+                    ],
+                ],
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-minutes .lcake-timer-count, {{WRAPPER}} .lcake-flip-clock .lcake-mins .lcake-count' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lcake_countdown_timer_minutes_label_title',
+            [
+                'label' => esc_html__('Label', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'lcake_countdown_timer_minutes_label_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-minutes .lcake-timer-title, {{WRAPPER}} .lcake-flip-clock .lcake-mins .lcake-label' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_minutes_label_typography_group',
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-minutes .lcake-timer-content > span.lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-flip-clock .lcake-mins .lcake-label',
+                'fields_options' => [
+                    // Inner control name
+                    'font_weight' => [
+                        // Inner control settings
+                        'default' => '400',
+                    ],
+                    'font_family' => [
+                        'default' => 'Lato',
+                    ],
+                    'font_size' => ['default' => ['unit' => 'px', 'size' => 14]]
+                ],
+                'seperator' => 'before'
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_minutes_label_background_group',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-flip-clock .lcake-mins .lcake-label,
+								{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-timer-title
+								',
+                'seperator' => 'before',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_minutes_label_border_color',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => ' {{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-minutes .lcake-timer-content > span.lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-flip-clock .lcake-mins .lcake-label
+								',
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_countdown_timer_minutes_label_border_radious_open',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-minutes .lcake-inner-container, {{WRAPPER}} .lcake-flip-clock .lcake-mins' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_minutes_label_box_shadow_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-minutes .lcake-timer-content > span.lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-timer-title,
+								{{WRAPPER}} .lcake-flip-clock .lcake-mins .lcake-label
+				',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_countdown_timer_minutes_lebel_margin',
+            [
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-minutes .lcake-timer-title, {{WRAPPER}} .lcake-flip-clock .lcake-mins .lcake-label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
+        // start genaral styles
+        $this->add_control(
+            'lcake_countdown_timer_minutes_heading_general',
+            [
+                'label' => esc_html__('General', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_minutes_background',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-minutes .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+								{{WRAPPER}} .lcake-flip-clock  > .lcake-mins .lcake-count ',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_minutes_border_color_group',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-minutes .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock .lcake-mins ',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_countdown_timer_minutes_border_radious_open',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-minutes .lcake-inner-container, {{WRAPPER}} .lcake-flip-clock .lcake-mins' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_minutes_box_shadow_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-minutes .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock .lcake-mins ',
+            ]
+        );
+
+
+        $this->end_controls_section();
+
+        // end minutes style section
+
+
+        //Seconds Style Section
+
+        $this->start_controls_section(
+            'lcake_countdown_timer_seconds_style',
+            [
+                'label' => esc_html__('Seconds', 'lc-addons-kit-for-elementor'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        // Start Digits for Days
+        $this->add_control(
+            'lcake_countdown_timer_seconds_heading_digits',
+            [
+                'label' => esc_html__('Digits', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+        // Set Digits color for Days
+        $this->add_control(
+            'lcake_countdown_timer_seconds_digits_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-seconds .lcake-timer-count, {{WRAPPER}} .lcake-flip-clock .lcake-secs .lcake-count' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+        // Set Digits typeography for Days
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_seconds_digits_typography_group',
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-seconds .lcake-timer-content > span.lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock .lcake-secs .lcake-count',
+            ]
+        );
+
+        // Set Digits margin for Days
+        $this->add_responsive_control(
+            'lcake_countdown_timer_seconds_digits_margin_bottom',
+            [
+                'label' => esc_html__('Margin Bottom', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'default' => [
+                    'size' => '',
+                ],
+                'range' => [
+                    'px' => [
+                        'min' => -30,
+                        'step' => 1,
+                    ],
+                ],
+                'size_units' => ['px'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-seconds .lcake-timer-count, {{WRAPPER}} .lcake-flip-clock .lcake-secs .lcake-count' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lcake_countdown_timer_seconds_label_title',
+            [
+                'label' => esc_html__('Label', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'lcake_countdown_timer_seconds_label_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-seconds .lcake-timer-title, {{WRAPPER}} .lcake-flip-clock .lcake-secs .lcake-label' => 'color: {{VALUE}};'
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_seconds_label_typography_group',
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-seconds .lcake-timer-content > span.lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-flip-clock .lcake-secs .lcake-label',
+                'fields_options' => [
+                    // Inner control name
+                    'font_weight' => [
+                        // Inner control settings
+                        'default' => '400',
+                    ],
+                    'font_family' => [
+                        'default' => 'Lato',
+                    ],
+                    'font_size' => ['default' => ['unit' => 'px', 'size' => 14]]
+                ],
+                'seperator' => 'before'
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_seconds_label_background_group',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-flip-clock .lcake-secs .lcake-label,
+								{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-timer-title
+								',
+                'seperator' => 'before',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_seconds_label_border_color',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => ' {{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-seconds .lcake-timer-content > span.lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-flip-clock .lcake-secs .lcake-label
+								',
+            ]
+        );
+        $this->add_responsive_control(
+            'lcake_countdown_timer_seconds_label_border_radious_open',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-seconds .lcake-inner-container, {{WRAPPER}} .lcake-flip-clock .lcake-secs' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_seconds_label_box_shadow_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-seconds .lcake-timer-content > span.lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-timer-title,
+								{{WRAPPER}} .lcake-flip-clock .lcake-secs .lcake-label
+				',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_countdown_timer_seconds_lebel_margin',
+            [
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-seconds .lcake-timer-title, {{WRAPPER}} .lcake-flip-clock .lcake-secs .lcake-label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        // start genaral styles
+        $this->add_control(
+            'lcake_countdown_timer_seconds_heading_general',
+            [
+                'label' => esc_html__('General', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_seconds_background',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-seconds .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+								{{WRAPPER}} .lcake-flip-clock  > .lcake-secs .lcake-count ',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_seconds_border_color_group',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-seconds .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock .lcake-secs ',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_countdown_timer_seconds_border_radious_open',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-timer-container.lcake-seconds .lcake-inner-container, {{WRAPPER}} .lcake-flip-clock .lcake-secs' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_seconds_box_shadow_group',
+                'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-seconds .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-flip-clock .lcake-secs ',
+            ]
+        );
+        $this->end_controls_section();
+        // end seconds style section
+
+        //Section Background
+
+        $this->start_controls_section(
+            'lcake_countdown_timer_bg_style',
+            [
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'lcake_countdown_timer_style' => 'style6'
+                ]
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_countdown_timer_content_height',
+            [
+                'label' => esc_html__('Height', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'step' => 1,
+                    ],
+                ],
+                'desktop_default' => [
+                    'size' => 120,
+                    'unit' => 'px',
+                ],
+                'tablet_default' => [
+                    'size' => 100,
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
+                    'size' => 100,
+                    'unit' => '%',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-inner-container' => 'height: {{SIZE}}{{UNIT}}; line-height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'lcake_countdown_timer_content_line_height',
+            [
+                'label' => esc_html__('Line Height', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'step' => 1,
+                    ],
+                ],
+                'desktop_default' => [
+                    'size' => 120,
+                    'unit' => 'px',
+                ],
+                'tablet_default' => [
+                    'size' => 100,
+                    'unit' => 'px',
+                ],
+                'mobile_default' => [
+                    'size' => 100,
+                    'unit' => '%',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-countdown .lcake-inner-container' => 'line-height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lcake_countdown_timer_outer_section_bg_style',
+            [
+                'label' => esc_html__('Outer Part', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_outer_background_group',
+                'label' => esc_html__('Outer Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-countdown-container .lcake-countdown-timer-4',
+            ]
+        );
+        $this->add_control(
+            'lcake_countdown_timer_inner_section_bg_style',
+            [
+                'label' => esc_html__('Inner Part', 'lc-addons-kit-for-elementor'),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'lcake_countdown_timer_inner_background_group',
+                'label' => esc_html__('Inner Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-countdown-container',
             ]
         );
 
         $this->end_controls_section();
     }
 
-    protected function render() {
-        $settings = $this->get_settings_for_display();
-
-        if (empty($settings['due_date'])) {
-            return;
-        }
-
-        $due_date = strtotime($settings['due_date']);
-        if (!$due_date) {
-            return;
-        }
-
-        $this->add_render_attribute('wrapper', 'class', 'lc-countdown-timer');
-        $this->add_render_attribute('wrapper', 'data-due-date', $due_date);
-        $this->add_render_attribute('wrapper', 'data-expire-message', $settings['expire_message']);
-        
-        if (!empty($settings['redirect_url']['url'])) {
-            $this->add_render_attribute('wrapper', 'data-redirect-url', $settings['redirect_url']['url']);
-        }
-
-        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
-        
-        if ($settings['show_days'] === 'yes') {
-            echo '<div class="lc-countdown-item lc-countdown-days">';
-            echo '<div class="lc-countdown-number" data-days>00</div>';
-            echo '<div class="lc-countdown-label">' . esc_html($settings['label_days']) . '</div>';
-            echo '</div>';
-        }
-
-        if ($settings['show_hours'] === 'yes') {
-            echo '<div class="lc-countdown-item lc-countdown-hours">';
-            echo '<div class="lc-countdown-number" data-hours>00</div>';
-            echo '<div class="lc-countdown-label">' . esc_html($settings['label_hours']) . '</div>';
-            echo '</div>';
-        }
-
-        if ($settings['show_minutes'] === 'yes') {
-            echo '<div class="lc-countdown-item lc-countdown-minutes">';
-            echo '<div class="lc-countdown-number" data-minutes>00</div>';
-            echo '<div class="lc-countdown-label">' . esc_html($settings['label_minutes']) . '</div>';
-            echo '</div>';
-        }
-
-        if ($settings['show_seconds'] === 'yes') {
-            echo '<div class="lc-countdown-item lc-countdown-seconds">';
-            echo '<div class="lc-countdown-number" data-seconds>00</div>';
-            echo '<div class="lc-countdown-label">' . esc_html($settings['label_seconds']) . '</div>';
-            echo '</div>';
-        }
-
-        echo '<div class="lc-countdown-expire" style="display: none;">' . esc_html($settings['expire_message']) . '</div>';
-        
+    protected function render()
+    {
+        echo '<div class="lcake-wid-con" >';
+        $this->render_raw();
         echo '</div>';
     }
 
-    protected function content_template() {
-        ?>
-        <# if (settings.due_date) { #>
-            <div class="lc-countdown-timer" data-due-date="{{ settings.due_date }}" data-expire-message="{{ settings.expire_message }}"<# if (settings.redirect_url.url) { #> data-redirect-url="{{ settings.redirect_url.url }}"<# } #>>
-                <# if (settings.show_days === 'yes') { #>
-                    <div class="lc-countdown-item lc-countdown-days">
-                        <div class="lc-countdown-number" data-days>00</div>
-                        <div class="lc-countdown-label">{{{ settings.label_days }}}</div>
-                    </div>
-                <# } #>
-                <# if (settings.show_hours === 'yes') { #>
-                    <div class="lc-countdown-item lc-countdown-hours">
-                        <div class="lc-countdown-number" data-hours>00</div>
-                        <div class="lc-countdown-label">{{{ settings.label_hours }}}</div>
-                    </div>
-                <# } #>
-                <# if (settings.show_minutes === 'yes') { #>
-                    <div class="lc-countdown-item lc-countdown-minutes">
-                        <div class="lc-countdown-number" data-minutes>00</div>
-                        <div class="lc-countdown-label">{{{ settings.label_minutes }}}</div>
-                    </div>
-                <# } #>
-                <# if (settings.show_seconds === 'yes') { #>
-                    <div class="lc-countdown-item lc-countdown-seconds">
-                        <div class="lc-countdown-number" data-seconds>00</div>
-                        <div class="lc-countdown-label">{{{ settings.label_seconds }}}</div>
-                    </div>
-                <# } #>
-                <div class="lc-countdown-expire" style="display: none;">{{{ settings.expire_message }}}</div>
-            </div>
-        <# } #>
-        <?php
+    protected function render_raw()
+    {
+        $settings = $this->get_settings_for_display();
+        extract($settings);
+
+        if (isset($lcake_countdown_timer_weeks_label)) {
+            $this->add_render_attribute('lcake_countdown_timer', 'data-date-lcake-week', esc_attr(wp_strip_all_tags($lcake_countdown_timer_weeks_label)));
+        }
+
+        if (isset($lcake_countdown_timer_days_label)) {
+            $this->add_render_attribute('lcake_countdown_timer', 'data-date-lcake-day', esc_attr(wp_strip_all_tags($lcake_countdown_timer_days_label)));
+        }
+
+        if (isset($lcake_countdown_timer_hours_label)) {
+            $this->add_render_attribute('lcake_countdown_timer', 'data-date-lcake-hour', esc_attr(wp_strip_all_tags($lcake_countdown_timer_hours_label)));
+        }
+
+        if (isset($lcake_countdown_timer_minutes_hours_label)) {
+            $this->add_render_attribute('lcake_countdown_timer', 'data-date-lcake-minute', esc_attr(wp_strip_all_tags($lcake_countdown_timer_minutes_hours_label)));
+        }
+
+        if (isset($lcake_countdown_timer_seconds_hours_label)) {
+            $this->add_render_attribute('lcake_countdown_timer', 'data-date-lcake-second', esc_attr(wp_strip_all_tags($lcake_countdown_timer_seconds_hours_label)));
+        }
+
+        if (isset($lcake_countdown_timer_due_time)) {
+            $this->add_render_attribute('lcake_countdown_timer', 'data-lcake-countdown', esc_attr($lcake_countdown_timer_due_time));
+        }
+
+        $this->add_render_attribute('lcake_countdown_timer', [
+            'data-finish-title' => esc_attr(wp_strip_all_tags($lcake_countdown_timer_title)),
+            'data-finish-content' => esc_attr(wp_strip_all_tags($lcake_countdown_timer_expiry_content)),
+        ]);
+
+        switch ($lcake_countdown_timer_style) {
+            case 'style1':
+                $this->add_render_attribute('lcake_countdown_timer', 'class', 'lcake-countdown-timer lcake-countdown text-center');
+                break;
+            case 'style2':
+                $this->add_render_attribute('lcake_countdown_timer', 'class', 'lcake-countdown-timer-2 lcake-countdown text-center');
+                break;
+            case 'style3':
+                $this->add_render_attribute('lcake_countdown_timer', 'class', 'lcake-flip-clock text-center');
+                break;
+            case 'style4':
+                $this->add_render_attribute('lcake_countdown_timer', 'class', 'lcake-countdown-timer-3 lcake-countdown text-center');
+                break;
+            case 'style5':
+                $this->add_render_attribute('lcake_countdown_timer', 'class', 'lcake-countdown-timer-3 lcake-countdown lcake-version-box text-center align-items-end');
+                break;
+            case 'style6':
+                $this->add_render_attribute('lcake_countdown_timer', 'class', 'lcake-countdown-timer-4 lcake-countdown');
+                break;
+        }
+
+        if ($lcake_countdown_timer_style != 'style6') {
+            $markup = sprintf('<div %s></div>', $this->get_render_attribute_string('lcake_countdown_timer'));
+        } else {
+            $markup = sprintf('<div class="lcake-countdown-container text-center"><div %s></div></div>', $this->get_render_attribute_string('lcake_countdown_timer'));
+        }
+
+        // PHPCS - the variable $markup holds safe data.
+        echo $markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
-} 
+}

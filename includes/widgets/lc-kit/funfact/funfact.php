@@ -12,7 +12,6 @@ if (!defined('ABSPATH')) {
 class LCAKE_Kit_Funfact extends \Elementor\Widget_Base {
 
 	// The original snippet used a trait, we don't need it if not available
-	// use \ElementsKit_Lite\Widgets\Widget_Notice;
 
 	public $base;
 
