@@ -142,6 +142,7 @@ class LCAKE_Kit_Widget_Loader
             'lcake-kit-image-box-css' => ['file' => 'lcake-kit-image-box.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-icon-box-css' => ['file' => 'lcake-kit-icon-box.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-lottie-css' => ['file' => 'lcake-kit-lottie.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-video-css' => ['file' => 'lcake-kit-video.css', 'enqueue' => true, 'path' => ''],
             // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.css', 'enqueue' => false, 'path' => '']
         ];
 

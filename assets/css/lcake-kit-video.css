@@ -1,0 +1,83 @@
+/* 
+* Premium Modern Styles for Video Widget
+*/
+
+.lcake-video-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 auto;
+}
+
+/* 
+ * The new modern CSS way to handle responsive iframes!
+ * Uses aspect-ratio instead of the outdated absolute positioning padding hack.
+ */
+.lcake-video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Can be overridden by Elementor settings */
+    background: #0f172a; /* Dark sleek background before load */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1); /* Default soft shadow */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0); /* Force GPU acceleration for smooth borders */
+}
+
+/* Hover Lift Effect */
+.lcake-video-wrapper:hover .lcake-video-container {
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px) translateZ(0);
+}
+
+.lcake-video-container iframe,
+.lcake-video-container video {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    object-fit: cover;
+}
+
+.lcake-video-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.lcake-video-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #111827;
+    transition: color 0.3s ease;
+}
+
+.lcake-video-description {
+    margin: 0;
+    font-size: 16px;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* Error / Placeholder layout */
+.lcake-video-placeholder,
+.lcake-video-error {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f4f6;
+    color: #9ca3af;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    padding: 24px;
+    min-height: 200px;
+}
