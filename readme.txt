@@ -4,7 +4,7 @@ Tags: elementor, widgets, addons, page-builder, lc-kit
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,9 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 2. LC Widgets
 
 == Changelog ==
+= 1.1.0 =
+* Tested Upto Elementor 4.0
+
 = 1.0.1 (Beta) =
 * Tested Upto WordPress 6.9
 
