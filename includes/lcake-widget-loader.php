@@ -1,6 +1,7 @@
 <?php
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH'))
+    exit;
 
 class LCAKE_Kit_Widget_Loader
 {
@@ -19,7 +20,7 @@ class LCAKE_Kit_Widget_Loader
             'lcake-page-kit',
             [
                 'title' => __('LC Page Kit', 'lc-addons-kit-for-elementor'),
-                'icon'  => 'eicon-folder',
+                'icon' => 'eicon-folder',
             ]
         );
 
@@ -28,7 +29,7 @@ class LCAKE_Kit_Widget_Loader
             'lc-page-kit',
             [
                 'title' => __('LC Page Kit', 'lc-addons-kit-for-elementor'),
-                'icon'  => 'eicon-folder',
+                'icon' => 'eicon-folder',
             ]
         );
 
@@ -36,7 +37,7 @@ class LCAKE_Kit_Widget_Loader
             'lc-header-footer-kit1',
             [
                 'title' => __('LC Header Footer kit', 'lc-addons-kit-for-elementor'),
-                'icon'  => 'eicon-header',
+                'icon' => 'eicon-header',
             ]
         );
     }
@@ -105,6 +106,10 @@ class LCAKE_Kit_Widget_Loader
             'lcake-dialog-js' => ['file' => 'dialog.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
             'lcake-kit-image-accordion' => ['file' => 'lcake-kit-image-accordion.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lcake-swiper-js' => ['file' => 'swiper-bundle.min.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-funfact-js' => ['file' => 'lcake-kit-funfact.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => true, 'path' => ''],
+            'lcake-kit-countdown-timer-js' => ['file' => 'lcake-kit-countdown-timer.js', 'deps' => ['jquery', 'elementor-frontend', 'lcake-kit-countdown-js'], 'enqueue' => true, 'path' => ''],
+            'lcake-kit-countdown-js' => ['file' => 'jquery.countdown.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
+            'lcake-kit-lottie-js' => ['file' => 'lcake-kit-lottie.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => true, 'path' => ''],
             // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false, 'path' => '']
         ];
 
@@ -131,6 +136,13 @@ class LCAKE_Kit_Widget_Loader
             'lcake-swiper-css' => ['file' => 'swiper-bundle.min.css', 'enqueue' => true, 'path' => ''],
             'lcakeicons' => ['file' => 'lcakeicons.css', 'enqueue' => true, 'path' => 'assets/icons'],
             'lcake-kit-image-accordion' => ['file' => 'lcake-kit-image-accordion.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-countdown-timer-css' => ['file' => 'lcake-kit-countdown-timer.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-drop-caps-css' => ['file' => 'lcake-kit-drop-caps.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-heading-css' => ['file' => 'lcake-kit-heading.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-image-box-css' => ['file' => 'lcake-kit-image-box.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-icon-box-css' => ['file' => 'lcake-kit-icon-box.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-lottie-css' => ['file' => 'lcake-kit-lottie.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-video-css' => ['file' => 'lcake-kit-video.css', 'enqueue' => true, 'path' => ''],
             // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.css', 'enqueue' => false, 'path' => '']
         ];
 

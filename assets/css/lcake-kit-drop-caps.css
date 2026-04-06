@@ -1,0 +1,63 @@
+/* 
+* Default Modern Styles for Drop Caps 
+*/
+
+.lcake-drop-caps-wrapper {
+    position: relative;
+}
+
+.lcake-drop-caps-wrapper::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.lcake-drop-caps-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--e-global-color-primary, #6366f1);
+    color: #ffffff;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4), 0 8px 10px -6px rgba(99, 102, 241, 0.1);
+    transition: all 0.3s ease;
+}
+
+.lcake-drop-caps-letter:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -5px rgba(99, 102, 241, 0.5), 0 8px 10px -6px rgba(99, 102, 241, 0.2);
+}
+
+.lcake-drop-caps-position-left .lcake-drop-caps-letter {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.lcake-drop-caps-position-right .lcake-drop-caps-letter {
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.lcake-drop-caps-text {
+    line-height: 1.8;
+    color: var(--e-global-color-text, #374151);
+    font-size: 16px;
+}
+
+.lcake-drop-caps-text p {
+    margin-bottom: 1em;
+}
+
+.lcake-drop-caps-text p:last-child {
+    margin-bottom: 0;
+}
+

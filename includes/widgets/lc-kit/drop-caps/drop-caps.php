@@ -9,33 +9,46 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
+class LCAKE_Kit_Drop_Caps extends \Elementor\Widget_Base
+{
 
-    public function get_name() {
-        return 'lc-kit-drop-caps';
+    public function get_name()
+    {
+        return 'lcake-kit-drop-caps';
     }
 
-    public function get_title() {
+    public function get_style_depends()
+    {
+        return ['lcake-kit-drop-caps-css'];
+    }
+
+    public function get_title()
+    {
         return esc_html__('LC Drop Caps', 'lc-addons-kit-for-elementor');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-text';
     }
 
-    public function get_categories() {
-        return ['lc-page-kit'];
+    public function get_categories()
+    {
+        return ['lcake-page-kit'];
     }
 
-    public function get_keywords() {
+    public function get_keywords()
+    {
         return ['drop', 'caps', 'text', 'typography', 'letter', 'initial'];
     }
 
-    protected function register_controls() {
+    protected function register_controls()
+    {
         $this->add_content_controls();
         $this->add_style_controls();
     }
-    protected function add_content_controls() {
+    protected function add_content_controls()
+    {
         $this->start_controls_section(
             'lc_content_section',
             [
@@ -59,7 +72,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Drop Cap Letter', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => 'L',
+                'default' => '',
                 'placeholder' => esc_html__('Enter the letter for drop cap', 'lc-addons-kit-for-elementor'),
                 'description' => esc_html__('Enter the letter that should be displayed as a drop cap. If left empty, the first letter of the text will be used.', 'lc-addons-kit-for-elementor'),
             ]
@@ -78,23 +91,11 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
-            'lc_content_drop_cap_lines',
-            [
-                'label' => esc_html__('Drop Cap Lines', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 10,
-                'step' => 1,
-                'default' => 3,
-                'description' => esc_html__('Number of lines the drop cap should span', 'lc-addons-kit-for-elementor'),
-            ]
-        );
-
         $this->end_controls_section();
     }
 
-    protected function add_style_controls() {
+    protected function add_style_controls()
+    {
         $this->start_controls_section(
             'section_style_text',
             [
@@ -109,7 +110,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-drop-caps-text' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-drop-caps-text' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -118,7 +119,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'text_typography',
-                'selector' => '{{WRAPPER}} .lc-drop-caps-text',
+                'selector' => '{{WRAPPER}} .lcake-drop-caps-text',
             ]
         );
 
@@ -146,7 +147,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-drop-caps-text' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-drop-caps-text' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
@@ -158,7 +159,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-drop-caps-text' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-drop-caps-text' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -179,7 +180,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-drop-caps-letter' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-drop-caps-letter' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -190,10 +191,10 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
                 'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-drop-caps-letter' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-drop-caps-letter' => 'background-color: {{VALUE}};',
                 ],
             ]
-        );     
+        );
 
         $this->add_control(
             'lc_style_drop_cap_size',
@@ -223,7 +224,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
                     'size' => 60,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-drop-caps-letter' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-drop-caps-letter' => 'font-size: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -256,7 +257,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
                     'size' => 60,
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-drop-caps-letter' => 'line-height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-drop-caps-letter' => 'line-height: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -265,7 +266,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'drop_cap_border',
-                'selector' => '{{WRAPPER}} .lc-drop-caps-letter',
+                'selector' => '{{WRAPPER}} .lcake-drop-caps-letter',
             ]
         );
 
@@ -276,7 +277,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-drop-caps-letter' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-drop-caps-letter' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -288,7 +289,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-drop-caps-letter' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-drop-caps-letter' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -300,7 +301,7 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-drop-caps-letter' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-drop-caps-letter' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -309,35 +310,52 @@ class LC_Kit_Drop_Caps extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Box_Shadow::get_type(),
             [
                 'name' => 'drop_cap_box_shadow',
-                'selector' => '{{WRAPPER}} .lc-drop-caps-letter',
+                'selector' => '{{WRAPPER}} .lcake-drop-caps-letter',
             ]
         );
 
         $this->end_controls_section();
     }
 
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
 
-        // Check if text exists
         if (empty($settings['lc_content_text'])) {
             return;
         }
 
-        // Get text content
         $text = $settings['lc_content_text'];
 
-        // Determine drop cap letter
-        $drop_cap_letter = !empty($settings['lc_content_drop_cap_letter'])
-            ? $settings['lc_content_drop_cap_letter']
-            : mb_substr(strip_tags($text), 0, 1, 'UTF-8');
+        // Get drop cap letter
+        if (!empty($settings['lc_content_drop_cap_letter'])) {
+            $drop_cap_letter = $settings['lc_content_drop_cap_letter'];
+        } else {
+            $clean_text = trim(strip_tags($text));
+            $drop_cap_letter = mb_substr($clean_text, 0, 1, 'UTF-8');
+        }
 
-        // Wrapper attributes
-        $this->add_render_attribute('wrapper', 'class', 'lc-drop-caps-wrapper');
+        // Remove ONLY first letter from original text (keep HTML safe)
+        if (!empty($drop_cap_letter)) {
+            $escaped_letter = preg_quote($drop_cap_letter, '/');
+            $text = preg_replace('/(^|>)([^<]*?)' . $escaped_letter . '/u', '$1$2', $text, 1);
+        }
 
+        // Wrapper classes
+        $this->add_render_attribute('wrapper', 'class', 'lcake-drop-caps-wrapper');
+
+        if (!empty($settings['lc_content_drop_cap_position'])) {
+            $this->add_render_attribute(
+                'wrapper',
+                'class',
+                'lcake-drop-caps-position-' . esc_attr($settings['lc_content_drop_cap_position'])
+            );
+        }
+
+        // Output
         echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
-            echo '<span class="lc-drop-caps-letter">' . esc_html($drop_cap_letter) . '</span>';
-            echo '<div class="lc-drop-caps-text">' . wp_kses_post($text) . '</div>';
+        echo '<span class="lcake-drop-caps-letter">' . esc_html($drop_cap_letter) . '</span>';
+        echo '<div class="lcake-drop-caps-text">' . wp_kses_post($text) . '</div>';
         echo '</div>';
     }
 

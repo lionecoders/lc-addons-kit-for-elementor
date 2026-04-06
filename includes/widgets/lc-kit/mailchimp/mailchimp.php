@@ -9,29 +9,42 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
+class LCAKE_Kit_Mailchimp extends \Elementor\Widget_Base
+{
 
-    public function get_name() {
-        return 'lc-kit-mailchimp';
+    public function get_name()
+    {
+        return 'lcake-kit-mailchimp';
     }
 
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('LC MailChimp', 'lc-addons-kit-for-elementor');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-mail';
     }
 
-    public function get_categories() {
-        return ['lc-page-kit'];
+    public function get_categories()
+    {
+        return ['lcake-page-kit'];
     }
 
-    public function get_keywords() {
+    public function get_keywords()
+    {
         return ['mailchimp', 'email', 'newsletter', 'subscribe', 'form'];
     }
 
-    protected function add_content_controls() {
+    protected function register_controls()
+    {
+        $this->add_content_controls();
+        $this->add_style_controls();
+    }
+
+    protected function add_content_controls()
+    {
         $this->start_controls_section(
             'content_section',
             [
@@ -132,13 +145,46 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
                     'inline' => esc_html__('Inline', 'lc-addons-kit-for-elementor'),
                     'stacked' => esc_html__('Stacked', 'lc-addons-kit-for-elementor'),
                 ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-mailchimp--inline .lcake-mailchimp-form' => 'display: flex; flex-direction: row; align-items: center; flex-wrap: wrap;',
+                    '{{WRAPPER}} .lcake-mailchimp--inline .lcake-mailchimp-input' => 'flex: 1; min-width: 200px;',
+                    '{{WRAPPER}} .lcake-mailchimp--inline .lcake-mailchimp-name' => 'flex: 1; min-width: 200px;',
+                    '{{WRAPPER}} .lcake-mailchimp--inline .lcake-mailchimp-email' => 'flex: 1; min-width: 200px;',
+                    '{{WRAPPER}} .lcake-mailchimp--inline .lcake-mailchimp-button' => 'flex: 0 0 auto;',
+                    '{{WRAPPER}} .lcake-mailchimp--stacked .lcake-mailchimp-form' => 'display: flex; flex-direction: column;',
+                    '{{WRAPPER}} .lcake-mailchimp--stacked .lcake-mailchimp-input' => 'width: 100%;',
+                    '{{WRAPPER}} .lcake-mailchimp--stacked .lcake-mailchimp-button' => 'width: 100%;',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'items_gap',
+            [
+                'label' => esc_html__('Items Gap', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 10,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-mailchimp-form' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
         $this->end_controls_section();
     }
 
-    protected function add_style_controls() {
+    protected function add_style_controls()
+    {
         $this->start_controls_section(
             'section_style_form',
             [
@@ -152,8 +198,9 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#f9f9f9',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-form' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-mailchimp-form' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -162,7 +209,7 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'form_border',
-                'selector' => '{{WRAPPER}} .lc-mailchimp-form',
+                'selector' => '{{WRAPPER}} .lcake-mailchimp-form',
             ]
         );
 
@@ -172,8 +219,16 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
                 'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => '8',
+                    'right' => '8',
+                    'bottom' => '8',
+                    'left' => '8',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-form' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-mailchimp-form' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -184,8 +239,16 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
                 'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '30',
+                    'right' => '30',
+                    'bottom' => '30',
+                    'left' => '30',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-form' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-mailchimp-form' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -205,8 +268,9 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#333333',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-mailchimp-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -215,7 +279,7 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .lc-mailchimp-title',
+                'selector' => '{{WRAPPER}} .lcake-mailchimp-title',
             ]
         );
 
@@ -225,8 +289,16 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
                 'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '0',
+                    'right' => '0',
+                    'bottom' => '15',
+                    'left' => '0',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-mailchimp-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -246,8 +318,9 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#666666',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-description' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-mailchimp-description' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -256,7 +329,7 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'description_typography',
-                'selector' => '{{WRAPPER}} .lc-mailchimp-description',
+                'selector' => '{{WRAPPER}} .lcake-mailchimp-description',
             ]
         );
 
@@ -266,8 +339,16 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
                 'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '0',
+                    'right' => '0',
+                    'bottom' => '25',
+                    'left' => '0',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-mailchimp-description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -287,8 +368,9 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-input' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-mailchimp-input' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -298,8 +380,9 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#333333',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-input' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-mailchimp-input' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -308,7 +391,7 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'input_typography',
-                'selector' => '{{WRAPPER}} .lc-mailchimp-input',
+                'selector' => '{{WRAPPER}} .lcake-mailchimp-input',
             ]
         );
 
@@ -316,7 +399,7 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'input_border',
-                'selector' => '{{WRAPPER}} .lc-mailchimp-input',
+                'selector' => '{{WRAPPER}} .lcake-mailchimp-input',
             ]
         );
 
@@ -326,8 +409,16 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
                 'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => '4',
+                    'right' => '4',
+                    'bottom' => '4',
+                    'left' => '4',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-mailchimp-input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -338,8 +429,16 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
                 'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '12',
+                    'right' => '15',
+                    'bottom' => '12',
+                    'left' => '15',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-mailchimp-input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -350,8 +449,16 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
                 'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '0',
+                    'right' => '0',
+                    'bottom' => '15',
+                    'left' => '0',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-input' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-mailchimp-input' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -371,8 +478,9 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#007bff',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-button' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-mailchimp-button' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -382,8 +490,9 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-button' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-mailchimp-button' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -392,7 +501,7 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'button_typography',
-                'selector' => '{{WRAPPER}} .lc-mailchimp-button',
+                'selector' => '{{WRAPPER}} .lcake-mailchimp-button',
             ]
         );
 
@@ -400,7 +509,7 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'button_border',
-                'selector' => '{{WRAPPER}} .lc-mailchimp-button',
+                'selector' => '{{WRAPPER}} .lcake-mailchimp-button',
             ]
         );
 
@@ -410,8 +519,16 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
                 'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => '4',
+                    'right' => '4',
+                    'bottom' => '4',
+                    'left' => '4',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-mailchimp-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -422,8 +539,16 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
                 'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '12',
+                    'right' => '25',
+                    'bottom' => '12',
+                    'left' => '25',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-mailchimp-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-mailchimp-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -431,66 +556,40 @@ class LC_Kit_Mailchimp extends \Elementor\Widget_Base {
         $this->end_controls_section();
     }
 
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
 
-        $this->add_render_attribute('wrapper', 'class', 'lc-mailchimp-wrapper');
-        $this->add_render_attribute('wrapper', 'class', 'lc-mailchimp--' . $settings['layout']);
+        $this->add_render_attribute('wrapper', 'class', 'lcake-mailchimp-wrapper');
+        $this->add_render_attribute('wrapper', 'class', 'lcake-mailchimp--' . $settings['layout']);
 
         echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
 
         if (!empty($settings['title'])) {
-            echo '<h3 class="lc-mailchimp-title">' . esc_html($settings['title']) . '</h3>';
+            echo '<h3 class="lcake-mailchimp-title">' . esc_html($settings['title']) . '</h3>';
         }
 
         if (!empty($settings['description'])) {
-            echo '<div class="lc-mailchimp-description">' . esc_html($settings['description']) . '</div>';
+            echo '<div class="lcake-mailchimp-description">' . esc_html($settings['description']) . '</div>';
         }
 
-        echo '<form class="lc-mailchimp-form" method="post">';
-        echo '<input type="hidden" name="lc_mailchimp_api_key" value="' . esc_attr($settings['api_key']) . '">';
-        echo '<input type="hidden" name="lc_mailchimp_list_id" value="' . esc_attr($settings['list_id']) . '">';
-        echo '<input type="hidden" name="lc_mailchimp_nonce" value="' . wp_create_nonce('lc_mailchimp_nonce') . '">';
+        echo '<form class="lcake-mailchimp-form" method="post">';
+        echo '<input type="hidden" name="lcake_mailchimp_api_key" value="' . esc_attr($settings['api_key']) . '">';
+        echo '<input type="hidden" name="lcake_mailchimp_list_id" value="' . esc_attr($settings['list_id']) . '">';
+        echo '<input type="hidden" name="lcake_mailchimp_nonce" value="' . wp_create_nonce('lcake_mailchimp_nonce') . '">';
 
         if ($settings['show_name_field'] === 'yes') {
-            echo '<input type="text" name="lc_mailchimp_name" class="lc-mailchimp-input lc-mailchimp-name" placeholder="' . esc_attr($settings['name_placeholder']) . '" required>';
+            echo '<input type="text" name="lcake_mailchimp_name" class="lcake-mailchimp-input lcake-mailchimp-name" placeholder="' . esc_attr($settings['name_placeholder']) . '" required>';
         }
 
-        echo '<input type="email" name="lc_mailchimp_email" class="lc-mailchimp-input lc-mailchimp-email" placeholder="' . esc_attr($settings['email_placeholder']) . '" required>';
-        echo '<button type="submit" class="lc-mailchimp-button">' . esc_html($settings['button_text']) . '</button>';
+        echo '<input type="email" name="lcake_mailchimp_email" class="lcake-mailchimp-input lcake-mailchimp-email" placeholder="' . esc_attr($settings['email_placeholder']) . '" required>';
+        echo '<button type="submit" class="lcake-mailchimp-button">' . esc_html($settings['button_text']) . '</button>';
 
-        echo '<div class="lc-mailchimp-message"></div>';
+        echo '<div class="lcake-mailchimp-message"></div>';
         echo '</form>';
 
         echo '</div>';
     }
 
-    protected function content_template() {
-        ?>
-        <div class="lc-mailchimp-wrapper lc-mailchimp--{{ settings.layout }}">
-            <# if (settings.title) { #>
-                <h3 class="lc-mailchimp-title">{{{ settings.title }}}</h3>
-            <# } #>
-            
-            <# if (settings.description) { #>
-                <div class="lc-mailchimp-description">{{{ settings.description }}}</div>
-            <# } #>
-            
-            <form class="lc-mailchimp-form" method="post">
-                <input type="hidden" name="lc_mailchimp_api_key" value="{{ settings.api_key }}">
-                <input type="hidden" name="lc_mailchimp_list_id" value="{{ settings.list_id }}">
-                <input type="hidden" name="lc_mailchimp_nonce" value="">
-                
-                <# if (settings.show_name_field === 'yes') { #>
-                    <input type="text" name="lc_mailchimp_name" class="lc-mailchimp-input lc-mailchimp-name" placeholder="{{ settings.name_placeholder }}" required>
-                <# } #>
-                
-                <input type="email" name="lc_mailchimp_email" class="lc-mailchimp-input lc-mailchimp-email" placeholder="{{ settings.email_placeholder }}" required>
-                <button type="submit" class="lc-mailchimp-button">{{{ settings.button_text }}}</button>
-                
-                <div class="lc-mailchimp-message"></div>
-            </form>
-        </div>
-        <?php
-    }
-} 
+
+}

@@ -9,29 +9,47 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class LC_Kit_Image_Box extends \Elementor\Widget_Base {
+class LCAKE_Kit_Image_Box extends \Elementor\Widget_Base
+{
 
-    public function get_name() {
-        return 'lc-kit-image-box';
+    public function get_name()
+    {
+        return 'lcake-kit-image-box';
     }
 
-    public function get_title() {
+    public function get_style_depends()
+    {
+        return ['lcake-kit-image-box-css'];
+    }
+
+    public function get_title()
+    {
         return esc_html__('LC Image Box', 'lc-addons-kit-for-elementor');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-image-box';
     }
 
-    public function get_categories() {
-        return ['lc-page-kit'];
+    public function get_categories()
+    {
+        return ['lcake-page-kit'];
     }
 
-    public function get_keywords() {
+    public function get_keywords()
+    {
         return ['image', 'box', 'media', 'content', 'layout'];
     }
 
-    protected function add_content_controls() {
+    protected function register_controls()
+    {
+        $this->add_content_controls();
+        $this->add_style_controls();
+    }
+
+    protected function add_content_controls()
+    {
         $this->start_controls_section(
             'content_section',
             [
@@ -122,7 +140,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
                         'icon' => 'eicon-h-align-right',
                     ],
                 ],
-                'prefix_class' => 'lc-image-box--image-',
+                'prefix_class' => 'lcake-image-box--image-',
                 'render_type' => 'template',
             ]
         );
@@ -150,7 +168,8 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         $this->end_controls_section();
     }
 
-    protected function add_style_controls() {
+    protected function add_style_controls()
+    {
         $this->start_controls_section(
             'section_style_image',
             [
@@ -172,9 +191,9 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}}.lc-image-box--image-left .lc-image-box-wrapper' => 'grid-gap: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.lc-image-box--image-right .lc-image-box-wrapper' => 'grid-gap: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}}.lc-image-box--image-top .lc-image-box-img' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.lcake-image-box--image-left .lcake-image-box-wrapper' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.lcake-image-box--image-right .lcake-image-box-wrapper' => 'gap: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}}.lcake-image-box--image-top .lcake-image-box-img' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -186,7 +205,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-image-box-img img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-image-box-img img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -204,7 +223,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-image-box-img img' => 'opacity: {{SIZE}};',
+                    '{{WRAPPER}} .lcake-image-box-img img' => 'opacity: {{SIZE}};',
                 ],
             ]
         );
@@ -213,7 +232,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'image_border',
-                'selector' => '{{WRAPPER}} .lc-image-box-img img',
+                'selector' => '{{WRAPPER}} .lcake-image-box-img img',
             ]
         );
 
@@ -259,7 +278,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-image-box-content' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-image-box-content' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
@@ -281,8 +300,8 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
                     'bottom' => 'flex-end',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}}.lc-image-box--image-left .lc-image-box-wrapper' => 'align-items: {{VALUE}};',
-                    '{{WRAPPER}}.lc-image-box--image-right .lc-image-box-wrapper' => 'align-items: {{VALUE}};',
+                    '{{WRAPPER}}.lcake-image-box--image-left .lcake-image-box-wrapper' => 'align-items: {{VALUE}};',
+                    '{{WRAPPER}}.lcake-image-box--image-right .lcake-image-box-wrapper' => 'align-items: {{VALUE}};',
                 ],
                 'condition' => [
                     'position' => ['left', 'right'],
@@ -306,7 +325,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-image-box-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-image-box-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -315,7 +334,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .lc-image-box-title',
+                'selector' => '{{WRAPPER}} .lcake-image-box-title',
             ]
         );
 
@@ -331,7 +350,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-image-box-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-image-box-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -352,7 +371,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-image-box-description' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-image-box-description' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -361,7 +380,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'description_typography',
-                'selector' => '{{WRAPPER}} .lc-image-box-description',
+                'selector' => '{{WRAPPER}} .lcake-image-box-description',
             ]
         );
 
@@ -377,7 +396,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-image-box-description' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-image-box-description' => 'margin-bottom: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -398,7 +417,7 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-image-box-link' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-image-box-link' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -407,25 +426,30 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'link_typography',
-                'selector' => '{{WRAPPER}} .lc-image-box-link',
+                'selector' => '{{WRAPPER}} .lcake-image-box-link',
             ]
         );
 
         $this->end_controls_section();
     }
 
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
 
-        $has_content = !empty($settings['title']) || !empty($settings['description']);
+        $has_content = !empty($settings['title']) || !empty($settings['description']) || !empty($settings['link']['url']);
 
-        $html = '<div class="lc-image-box-wrapper">';
+        $html = '<div class="lcake-image-box-wrapper">';
 
         if (!empty($settings['image']['url'])) {
             $this->add_render_attribute('image', 'src', $settings['image']['url']);
             $this->add_render_attribute('image', 'alt', \Elementor\Control_Media::get_image_alt($settings['image']));
 
-            $image_html = '<div class="lc-image-box-img">';
+            if (!empty($settings['image_hover_animation'])) {
+                $this->add_render_attribute('image', 'class', 'elementor-animation-' . $settings['image_hover_animation']);
+            }
+
+            $image_html = '<div class="lcake-image-box-img">';
             $image_html .= '<img ' . $this->get_render_attribute_string('image') . '>';
             $image_html .= '</div>';
 
@@ -433,22 +457,22 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
         }
 
         if ($has_content) {
-            $html .= '<div class="lc-image-box-content">';
+            $html .= '<div class="lcake-image-box-content">';
 
             if (!empty($settings['title'])) {
-                $title_tag = $settings['title_size'];
-                $html .= '<' . $title_tag . ' class="lc-image-box-title">';
-                $html .= $settings['title'];
+                $title_tag = isset($settings['title_size']) ? tag_escape($settings['title_size']) : 'h3';
+                $html .= '<' . $title_tag . ' class="lcake-image-box-title">';
+                $html .= wp_kses_post($settings['title']);
                 $html .= '</' . $title_tag . '>';
             }
 
             if (!empty($settings['description'])) {
-                $html .= '<div class="lc-image-box-description">' . $settings['description'] . '</div>';
+                $html .= '<div class="lcake-image-box-description">' . $settings['description'] . '</div>';
             }
 
             if (!empty($settings['link']['url'])) {
                 $this->add_link_attributes('link', $settings['link']);
-                $html .= '<a ' . $this->get_render_attribute_string('link') . ' class="lc-image-box-link">';
+                $html .= '<a ' . $this->get_render_attribute_string('link') . ' class="lcake-image-box-link">';
                 $html .= $settings['link_text'];
                 $html .= '</a>';
             }
@@ -460,30 +484,5 @@ class LC_Kit_Image_Box extends \Elementor\Widget_Base {
 
         echo $html;
     }
+}
 
-    protected function content_template() {
-        ?>
-        <# var hasContent = !! (settings.title || settings.description); #>
-        <div class="lc-image-box-wrapper">
-            <# if (settings.image.url) { #>
-                <div class="lc-image-box-img">
-                    <img src="{{ settings.image.url }}" alt="{{ settings.image.alt }}">
-                </div>
-            <# } #>
-            <# if (hasContent) { #>
-                <div class="lc-image-box-content">
-                    <# if (settings.title) { #>
-                        <{{ settings.title_size }} class="lc-image-box-title">{{{ settings.title }}}</{{ settings.title_size }}>
-                    <# } #>
-                    <# if (settings.description) { #>
-                        <div class="lc-image-box-description">{{{ settings.description }}}</div>
-                    <# } #>
-                    <# if (settings.link.url) { #>
-                        <a href="{{ settings.link.url }}" class="lc-image-box-link">{{{ settings.link_text }}}</a>
-                    <# } #>
-                </div>
-            <# } #>
-        </div>
-        <?php
-    }
-} 

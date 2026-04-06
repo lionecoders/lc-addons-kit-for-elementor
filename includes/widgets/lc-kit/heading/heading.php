@@ -5,60 +5,58 @@
  * @package LC_Elementor_Addons_Kit
  */
 
-// Prevent direct access
 if (!defined('ABSPATH')) {
     exit;
 }
 
-/**
- * Heading Widget Class
- */
-class LC_Kit_Heading extends \Elementor\Widget_Base {
+class LCAKE_Kit_Heading extends \Elementor\Widget_Base {
 
-    /**
-     * Get widget name
-     */
     public function get_name() {
-        return 'lc-kit-heading';
+        return 'lcake-kit-heading';
     }
 
-    /**
-     * Get widget categories
-     */
-    public function get_categories() {
-        return ['lc-page-kit'];
+    public function get_style_depends() {
+        return ['lcake-kit-heading-css'];
     }
 
-    /**
-     * Get widget title
-     */
     public function get_title() {
         return esc_html__('LC Heading', 'lc-addons-kit-for-elementor');
     }
 
-    /**
-     * Get widget icon
-     */
     public function get_icon() {
-        return 'eicon-heading';
+        return 'eicon-t-letter';
     }
 
-    /**
-     * Add content controls
-     */
-    protected function add_content_controls() {
+    public function get_categories() {
+        return ['lcake-page-kit'];
+    }
+
+    public function get_keywords() {
+        return ['heading', 'text', 'title', 'modern'];
+    }
+
+    protected function register_controls() {
+        // CONTENT TAB
+        $this->start_controls_section(
+            'lcake_section_content',
+            [
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
         $this->add_control(
-            'heading_text',
+            'lcake_heading_text',
             [
                 'label' => esc_html__('Heading Text', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => esc_html__('Enter your heading', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'default' => esc_html__('Build Beautiful Experiences', 'lc-addons-kit-for-elementor'),
                 'placeholder' => esc_html__('Enter your heading', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->add_control(
-            'heading_tag',
+            'lcake_heading_tag',
             [
                 'label' => esc_html__('HTML Tag', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
@@ -77,8 +75,8 @@ class LC_Kit_Heading extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
-            'heading_alignment',
+        $this->add_responsive_control(
+            'lcake_heading_alignment',
             [
                 'label' => esc_html__('Alignment', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::CHOOSE,
@@ -96,25 +94,71 @@ class LC_Kit_Heading extends \Elementor\Widget_Base {
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
-                'default' => 'left',
+                'default' => 'center',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-heading' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-heading' => 'text-align: {{VALUE}};',
                 ],
             ]
         );
-    }
 
-    /**
-     * Add style controls
-     */
-    protected function add_style_controls() {
-        $this->add_control(
-            'heading_color',
+        $this->end_controls_section();
+
+        // STYLE TAB
+        $this->start_controls_section(
+            'lcake_section_style',
             [
-                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Heading Style', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'lcake_heading_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#111827',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-heading' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-heading .lcake-heading-title' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lcake_heading_gradient_effect',
+            [
+                'label' => esc_html__('Enable Gradient Text', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('No', 'lc-addons-kit-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'lcake_heading_gradient_color_left',
+            [
+                'label' => esc_html__('Gradient Left Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#4f46e5',
+                'condition' => [
+                    'lcake_heading_gradient_effect' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'lcake_heading_gradient_color_right',
+            [
+                'label' => esc_html__('Gradient Right Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ec4899',
+                'condition' => [
+                    'lcake_heading_gradient_effect' => 'yes',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-heading .lcake-heading-title.lcake-heading-gradient' => 'background: linear-gradient(to right, {{lcake_heading_gradient_color_left.VALUE}}, {{VALUE}}); -webkit-background-clip: text; -webkit-text-fill-color: transparent;',
                 ],
             ]
         );
@@ -122,61 +166,73 @@ class LC_Kit_Heading extends \Elementor\Widget_Base {
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [
-                'name' => 'heading_typography',
-                'selector' => '{{WRAPPER}} .lc-kit-heading',
+                'name' => 'lcake_heading_typography',
+                'selector' => '{{WRAPPER}} .lcake-heading .lcake-heading-title',
             ]
         );
 
         $this->add_group_control(
             \Elementor\Group_Control_Text_Shadow::get_type(),
             [
-                'name' => 'heading_text_shadow',
-                'selector' => '{{WRAPPER}} .lc-kit-heading',
+                'name' => 'lcake_heading_text_shadow',
+                'selector' => '{{WRAPPER}} .lcake-heading .lcake-heading-title',
             ]
         );
 
         $this->add_responsive_control(
-            'heading_margin',
+            'lcake_heading_margin',
             [
                 'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-kit-heading' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-heading' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
+
+        $this->end_controls_section();
     }
 
-    /**
-     * Render widget
-     */
-    protected function render_widget($settings) {
-        $heading_text = $settings['heading_text'];
-        $heading_tag = $settings['heading_tag'];
+    protected function render() {
+        $settings = $this->get_settings_for_display();
 
+        $heading_text = $settings['lcake_heading_text'];
+        $heading_tag  = !empty($settings['lcake_heading_tag']) ? $settings['lcake_heading_tag'] : 'h2';
+        
         if (empty($heading_text)) {
             return;
         }
 
-        $this->add_render_attribute('heading', 'class', 'lc-kit-heading');
+        $this->add_render_attribute('wrapper', 'class', 'lcake-heading');
+        
+        $title_classes = ['lcake-heading-title'];
+        if ($settings['lcake_heading_gradient_effect'] === 'yes') {
+            $title_classes[] = 'lcake-heading-gradient';
+        }
+        $this->add_render_attribute('title', 'class', $title_classes);
 
-        echo sprintf(
-            '<%1$s %2$s>%3$s</%1$s>',
-            tag_escape($heading_tag),
-            $this->get_render_attribute_string('heading'),
-            esc_html($heading_text)
-        );
+        echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
+            echo '<' . tag_escape($heading_tag) . ' ' . $this->get_render_attribute_string('title') . '>';
+                echo wp_kses_post($heading_text);
+            echo '</' . tag_escape($heading_tag) . '>';
+        echo '</div>';
     }
 
-    /**
-     * Content template
-     */
     protected function content_template() {
         ?>
-        <{{ settings.heading_tag }} class="lc-kit-heading">
-            {{{ settings.heading_text }}}
-        </{{ settings.heading_tag }}>
+        <#
+        var heading_tag = settings.lcake_heading_tag ? settings.lcake_heading_tag : 'h2';
+        var title_class = 'lcake-heading-title';
+        if (settings.lcake_heading_gradient_effect === 'yes') {
+            title_class += ' lcake-heading-gradient';
+        }
+        #>
+        <div class="lcake-heading">
+            <{{{ heading_tag }}} class="{{ title_class }}">
+                {{{ settings.lcake_heading_text }}}
+            </{{{ heading_tag }}}>
+        </div>
         <?php
     }
 } 

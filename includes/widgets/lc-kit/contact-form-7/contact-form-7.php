@@ -9,29 +9,42 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
+class LCAKE_Kit_Contact_Form_7 extends \Elementor\Widget_Base
+{
 
-    public function get_name() {
-        return 'lc-kit-contact-form-7';
+    public function get_name()
+    {
+        return 'lcake-kit-contact-form-7';
     }
 
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('LC Contact Form 7', 'lc-addons-kit-for-elementor');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-form-horizontal';
     }
 
-    public function get_categories() {
-        return ['lc-page-kit'];
+    public function get_categories()
+    {
+        return ['lcake-page-kit'];
     }
 
-    public function get_keywords() {
+    public function get_keywords()
+    {
         return ['contact', 'form', 'cf7', 'contact form 7', 'form'];
     }
 
-    protected function add_content_controls() {
+    protected function register_controls()
+    {
+        $this->add_content_controls();
+        $this->add_style_controls();
+    }
+
+    protected function add_content_controls()
+    {
         $this->start_controls_section(
             'content_section',
             [
@@ -52,25 +65,6 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'form_title',
-            [
-                'label' => esc_html__('Form Title', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Enter form title', 'lc-addons-kit-for-elementor'),
-            ]
-        );
-
-        $this->add_control(
-            'form_description',
-            [
-                'label' => esc_html__('Form Description', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'placeholder' => esc_html__('Enter form description', 'lc-addons-kit-for-elementor'),
-                'rows' => 3,
-            ]
-        );
-
-        $this->add_control(
             'show_form_title',
             [
                 'label' => esc_html__('Show Form Title', 'lc-addons-kit-for-elementor'),
@@ -78,7 +72,24 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
                 'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
-                'default' => '',
+                'default' => 'yes',
+                'condition' => [
+                    'form_id!' => '',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'form_title',
+            [
+                'label' => esc_html__('Form Title', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => esc_html__('Contact Us', 'lc-addons-kit-for-elementor'),
+                'placeholder' => esc_html__('Enter form title', 'lc-addons-kit-for-elementor'),
+                'condition' => [
+                    'form_id!' => '',
+                    'show_form_title' => 'yes',
+                ],
             ]
         );
 
@@ -90,14 +101,33 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
                 'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
                 'return_value' => 'yes',
-                'default' => '',
+                'default' => 'yes',
+                'condition' => [
+                    'form_id!' => '',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'form_description',
+            [
+                'label' => esc_html__('Form Description', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'default' => esc_html__('We would love to hear from you. Please fill out the form below.', 'lc-addons-kit-for-elementor'),
+                'placeholder' => esc_html__('Enter form description', 'lc-addons-kit-for-elementor'),
+                'rows' => 3,
+                'condition' => [
+                    'form_id!' => '',
+                    'show_form_description' => 'yes',
+                ],
             ]
         );
 
         $this->end_controls_section();
     }
 
-    protected function add_style_controls() {
+    protected function add_style_controls()
+    {
         $this->start_controls_section(
             'section_style_form',
             [
@@ -111,8 +141,9 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#f9f9f9',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-contact-form-7' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -121,7 +152,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'form_border',
-                'selector' => '{{WRAPPER}} .lc-contact-form-7',
+                'selector' => '{{WRAPPER}} .lcake-contact-form-7',
             ]
         );
 
@@ -131,8 +162,16 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => '8',
+                    'right' => '8',
+                    'bottom' => '8',
+                    'left' => '8',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-contact-form-7' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -143,8 +182,16 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '30',
+                    'right' => '30',
+                    'bottom' => '30',
+                    'left' => '30',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-contact-form-7' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -157,6 +204,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
+                    'form_id!' => '',
                     'show_form_title' => 'yes',
                 ],
             ]
@@ -167,8 +215,9 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#333333',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7-title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-contact-form-7-title' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -177,7 +226,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .lc-contact-form-7-title',
+                'selector' => '{{WRAPPER}} .lcake-contact-form-7-title',
             ]
         );
 
@@ -187,8 +236,16 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '0',
+                    'right' => '0',
+                    'bottom' => '15',
+                    'left' => '0',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-contact-form-7-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -201,6 +258,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
                 'condition' => [
+                    'form_id!' => '',
                     'show_form_description' => 'yes',
                 ],
             ]
@@ -211,8 +269,9 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#666666',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7-description' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-contact-form-7-description' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -221,7 +280,7 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'description_typography',
-                'selector' => '{{WRAPPER}} .lc-contact-form-7-description',
+                'selector' => '{{WRAPPER}} .lcake-contact-form-7-description',
             ]
         );
 
@@ -231,8 +290,16 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '0',
+                    'right' => '0',
+                    'bottom' => '25',
+                    'left' => '0',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7-description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-contact-form-7-description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -252,15 +319,16 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7 input[type="text"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="email"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="tel"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="url"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="number"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="date"],
-                     {{WRAPPER}} .lc-contact-form-7 textarea,
-                     {{WRAPPER}} .lc-contact-form-7 select' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-contact-form-7 input[type="text"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="email"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="tel"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="url"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="number"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="date"],
+                     {{WRAPPER}} .lcake-contact-form-7 textarea,
+                     {{WRAPPER}} .lcake-contact-form-7 select' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -270,15 +338,16 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#333333',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7 input[type="text"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="email"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="tel"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="url"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="number"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="date"],
-                     {{WRAPPER}} .lc-contact-form-7 textarea,
-                     {{WRAPPER}} .lc-contact-form-7 select' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-contact-form-7 input[type="text"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="email"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="tel"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="url"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="number"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="date"],
+                     {{WRAPPER}} .lcake-contact-form-7 textarea,
+                     {{WRAPPER}} .lcake-contact-form-7 select' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -287,14 +356,14 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'input_typography',
-                'selector' => '{{WRAPPER}} .lc-contact-form-7 input[type="text"],
-                               {{WRAPPER}} .lc-contact-form-7 input[type="email"],
-                               {{WRAPPER}} .lc-contact-form-7 input[type="tel"],
-                               {{WRAPPER}} .lc-contact-form-7 input[type="url"],
-                               {{WRAPPER}} .lc-contact-form-7 input[type="number"],
-                               {{WRAPPER}} .lc-contact-form-7 input[type="date"],
-                               {{WRAPPER}} .lc-contact-form-7 textarea,
-                               {{WRAPPER}} .lc-contact-form-7 select',
+                'selector' => '{{WRAPPER}} .lcake-contact-form-7 input[type="text"],
+                               {{WRAPPER}} .lcake-contact-form-7 input[type="email"],
+                               {{WRAPPER}} .lcake-contact-form-7 input[type="tel"],
+                               {{WRAPPER}} .lcake-contact-form-7 input[type="url"],
+                               {{WRAPPER}} .lcake-contact-form-7 input[type="number"],
+                               {{WRAPPER}} .lcake-contact-form-7 input[type="date"],
+                               {{WRAPPER}} .lcake-contact-form-7 textarea,
+                               {{WRAPPER}} .lcake-contact-form-7 select',
             ]
         );
 
@@ -302,14 +371,14 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'input_border',
-                'selector' => '{{WRAPPER}} .lc-contact-form-7 input[type="text"],
-                               {{WRAPPER}} .lc-contact-form-7 input[type="email"],
-                               {{WRAPPER}} .lc-contact-form-7 input[type="tel"],
-                               {{WRAPPER}} .lc-contact-form-7 input[type="url"],
-                               {{WRAPPER}} .lc-contact-form-7 input[type="number"],
-                               {{WRAPPER}} .lc-contact-form-7 input[type="date"],
-                               {{WRAPPER}} .lc-contact-form-7 textarea,
-                               {{WRAPPER}} .lc-contact-form-7 select',
+                'selector' => '{{WRAPPER}} .lcake-contact-form-7 input[type="text"],
+                               {{WRAPPER}} .lcake-contact-form-7 input[type="email"],
+                               {{WRAPPER}} .lcake-contact-form-7 input[type="tel"],
+                               {{WRAPPER}} .lcake-contact-form-7 input[type="url"],
+                               {{WRAPPER}} .lcake-contact-form-7 input[type="number"],
+                               {{WRAPPER}} .lcake-contact-form-7 input[type="date"],
+                               {{WRAPPER}} .lcake-contact-form-7 textarea,
+                               {{WRAPPER}} .lcake-contact-form-7 select',
             ]
         );
 
@@ -319,15 +388,23 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => '4',
+                    'right' => '4',
+                    'bottom' => '4',
+                    'left' => '4',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7 input[type="text"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="email"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="tel"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="url"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="number"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="date"],
-                     {{WRAPPER}} .lc-contact-form-7 textarea,
-                     {{WRAPPER}} .lc-contact-form-7 select' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-contact-form-7 input[type="text"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="email"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="tel"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="url"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="number"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="date"],
+                     {{WRAPPER}} .lcake-contact-form-7 textarea,
+                     {{WRAPPER}} .lcake-contact-form-7 select' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -338,15 +415,23 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '12',
+                    'right' => '15',
+                    'bottom' => '12',
+                    'left' => '15',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7 input[type="text"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="email"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="tel"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="url"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="number"],
-                     {{WRAPPER}} .lc-contact-form-7 input[type="date"],
-                     {{WRAPPER}} .lc-contact-form-7 textarea,
-                     {{WRAPPER}} .lc-contact-form-7 select' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-contact-form-7 input[type="text"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="email"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="tel"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="url"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="number"],
+                     {{WRAPPER}} .lcake-contact-form-7 input[type="date"],
+                     {{WRAPPER}} .lcake-contact-form-7 textarea,
+                     {{WRAPPER}} .lcake-contact-form-7 select' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -357,8 +442,16 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '0',
+                    'right' => '0',
+                    'bottom' => '15',
+                    'left' => '0',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7 .wpcf7-form-control-wrap' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-contact-form-7 .wpcf7-form-control-wrap' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -378,9 +471,10 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#007bff',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7 input[type="submit"],
-                     {{WRAPPER}} .lc-contact-form-7 button[type="submit"]' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-contact-form-7 input[type="submit"],
+                     {{WRAPPER}} .lcake-contact-form-7 button[type="submit"]' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -390,9 +484,10 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7 input[type="submit"],
-                     {{WRAPPER}} .lc-contact-form-7 button[type="submit"]' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-contact-form-7 input[type="submit"],
+                     {{WRAPPER}} .lcake-contact-form-7 button[type="submit"]' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -401,8 +496,8 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'button_typography',
-                'selector' => '{{WRAPPER}} .lc-contact-form-7 input[type="submit"],
-                               {{WRAPPER}} .lc-contact-form-7 button[type="submit"]',
+                'selector' => '{{WRAPPER}} .lcake-contact-form-7 input[type="submit"],
+                               {{WRAPPER}} .lcake-contact-form-7 button[type="submit"]',
             ]
         );
 
@@ -410,8 +505,8 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'button_border',
-                'selector' => '{{WRAPPER}} .lc-contact-form-7 input[type="submit"],
-                               {{WRAPPER}} .lc-contact-form-7 button[type="submit"]',
+                'selector' => '{{WRAPPER}} .lcake-contact-form-7 input[type="submit"],
+                               {{WRAPPER}} .lcake-contact-form-7 button[type="submit"]',
             ]
         );
 
@@ -421,9 +516,17 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => '4',
+                    'right' => '4',
+                    'bottom' => '4',
+                    'left' => '4',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7 input[type="submit"],
-                     {{WRAPPER}} .lc-contact-form-7 button[type="submit"]' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-contact-form-7 input[type="submit"],
+                     {{WRAPPER}} .lcake-contact-form-7 button[type="submit"]' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -434,9 +537,17 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
                 'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '12',
+                    'right' => '25',
+                    'bottom' => '12',
+                    'left' => '25',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
                 'selectors' => [
-                    '{{WRAPPER}} .lc-contact-form-7 input[type="submit"],
-                     {{WRAPPER}} .lc-contact-form-7 button[type="submit"]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-contact-form-7 input[type="submit"],
+                     {{WRAPPER}} .lcake-contact-form-7 button[type="submit"]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -444,77 +555,57 @@ class LC_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
         $this->end_controls_section();
     }
 
-    private function get_contact_form_7_forms() {
+    private function get_contact_form_7_forms()
+    {
         $forms = [];
-        
+
         if (class_exists('WPCF7_ContactForm')) {
             $cf7_forms = get_posts([
                 'post_type' => 'wpcf7_contact_form',
                 'numberposts' => -1,
             ]);
-            
+
             foreach ($cf7_forms as $form) {
                 $forms[$form->ID] = $form->post_title;
             }
         }
-        
+
         if (empty($forms)) {
             $forms[''] = esc_html__('No forms found', 'lc-addons-kit-for-elementor');
         }
-        
+
         return $forms;
     }
 
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
 
         if (empty($settings['form_id'])) {
-            echo '<div class="lc-contact-form-7-error">' . esc_html__('Please select a Contact Form 7 form.', 'lc-addons-kit-for-elementor') . '</div>';
+            echo '<div class="lcake-contact-form-7-error">' . esc_html__('Please select a Contact Form 7 form.', 'lc-addons-kit-for-elementor') . '</div>';
             return;
         }
 
-        $this->add_render_attribute('wrapper', 'class', 'lc-contact-form-7');
+        $this->add_render_attribute('wrapper', 'class', 'lcake-contact-form-7');
 
         echo '<div ' . $this->get_render_attribute_string('wrapper') . '>';
 
         if ($settings['show_form_title'] === 'yes' && !empty($settings['form_title'])) {
-            echo '<h3 class="lc-contact-form-7-title">' . esc_html($settings['form_title']) . '</h3>';
+            echo '<h3 class="lcake-contact-form-7-title">' . esc_html($settings['form_title']) . '</h3>';
         }
 
         if ($settings['show_form_description'] === 'yes' && !empty($settings['form_description'])) {
-            echo '<div class="lc-contact-form-7-description">' . esc_html($settings['form_description']) . '</div>';
+            echo '<div class="lcake-contact-form-7-description">' . esc_html($settings['form_description']) . '</div>';
         }
 
         if (function_exists('wpcf7_contact_form')) {
             echo do_shortcode('[contact-form-7 id="' . esc_attr($settings['form_id']) . '"]');
         } else {
-            echo '<div class="lc-contact-form-7-error">' . esc_html__('Contact Form 7 plugin is not installed or activated.', 'lc-addons-kit-for-elementor') . '</div>';
+            echo '<div class="lcake-contact-form-7-error">' . esc_html__('Contact Form 7 plugin is not installed or activated.', 'lc-addons-kit-for-elementor') . '</div>';
         }
 
         echo '</div>';
     }
 
-    protected function content_template() {
-        ?>
-        <div class="lc-contact-form-7">
-            <# if (settings.show_form_title === 'yes' && settings.form_title) { #>
-                <h3 class="lc-contact-form-7-title">{{{ settings.form_title }}}</h3>
-            <# } #>
-            
-            <# if (settings.show_form_description === 'yes' && settings.form_description) { #>
-                <div class="lc-contact-form-7-description">{{{ settings.form_description }}}</div>
-            <# } #>
-            
-            <# if (settings.form_id) { #>
-                <div class="lc-contact-form-7-form">
-                    [contact-form-7 id="{{ settings.form_id }}"]
-                </div>
-            <# } else { #>
-                <div class="lc-contact-form-7-error">
-                    <?php echo esc_html__('Please select a Contact Form 7 form.', 'lc-addons-kit-for-elementor'); ?>
-                </div>
-            <# } #>
-        </div>
-        <?php
-    }
-} 
+
+}
