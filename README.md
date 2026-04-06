@@ -122,10 +122,14 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 ## Changelog
 
-### 1.0.1 (Beta)
+### 1.1.0
+* Added LC Contact Form 7, LC MailChimp, LC Funfact, LC Countdown Timer, LC Drop Caps, LC Heading widgets, LC Image Box.
+* Tested Upto Elementor 4.0.
+
+### 1.0.1
 * Tested Upto WordPress 6.9
 
-### 1.0.0 (Beta)
+### 1.0.0
 * Initial release
 
 ## Credits
