@@ -2,9 +2,9 @@
 Contributors: deep7197
 Tags: elementor, widgets, addons, page-builder, lc-kit
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,10 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 2. LC Widgets
 
 == Changelog ==
+= 1.1.1 =
+* Fix minor issues.
+* Tested Upto WordPress 7.0
+
 = 1.1.0 =
 * Added LC Contact Form 7, LC MailChimp, LC Funfact, LC Countdown Timer, LC Drop Caps, LC Heading widgets, LC Image Box.
 * Tested Upto Elementor 4.0.
