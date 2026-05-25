@@ -175,6 +175,18 @@ class LCAKE_Kit_Icon_Box extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'icon_hover_background_color',
+            [
+                'label' => esc_html__('Hover Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-icon-box-wrapper:hover .lcake-icon-box-icon_wrapper' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
         $this->add_group_control(
             \Elementor\Group_Control_Border::get_type(),
             [

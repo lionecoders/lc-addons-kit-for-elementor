@@ -36,12 +36,22 @@
         });
     }
 
-    document.addEventListener("DOMContentLoaded", () => initAccordion(document));
+    let hasInitialized = false;
+
+    document.addEventListener("DOMContentLoaded", () => {
+        if (!hasInitialized) {
+            initAccordion(document);
+            hasInitialized = true;
+        }
+    });
 
     if (window.elementorFrontend) {
         window.addEventListener("elementor/frontend/init", () => {
             elementorFrontend.hooks.addAction("frontend/element_ready/lcake-kit-accordion.default", ($scope) => {
-                initAccordion($scope[0]);
+                if (!hasInitialized) {
+                    initAccordion($scope[0]);
+                    hasInitialized = true;
+                }
             });
         });
     }
