@@ -1,0 +1,80 @@
+.lcake-contact-form-7 {
+    display: block;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.lcake-contact-form-7-title {
+    margin: 0 0 8px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.lcake-contact-form-7-description {
+    margin: 0 0 20px;
+    color: #6b7280;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.lcake-contact-form-7-error {
+    color: #b91c1c;
+    background-color: #fee2e2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 14px;
+}
+
+.lcake-contact-form-7 .wpcf7-form-control-wrap {
+    display: block;
+    margin: 0 0 15px;
+}
+
+.lcake-contact-form-7 input[type="text"],
+.lcake-contact-form-7 input[type="email"],
+.lcake-contact-form-7 input[type="tel"],
+.lcake-contact-form-7 input[type="url"],
+.lcake-contact-form-7 input[type="number"],
+.lcake-contact-form-7 input[type="date"],
+.lcake-contact-form-7 textarea,
+.lcake-contact-form-7 select {
+    width: 100%;
+    background-color: #ffffff;
+    color: #111827;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 15px;
+    line-height: 1.4;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.lcake-contact-form-7 input:focus,
+.lcake-contact-form-7 textarea:focus,
+.lcake-contact-form-7 select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+}
+
+.lcake-contact-form-7 input[type="submit"],
+.lcake-contact-form-7 button[type="submit"] {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color .15s ease;
+}
+
+.lcake-contact-form-7 input[type="submit"]:hover,
+.lcake-contact-form-7 button[type="submit"]:hover {
+    background-color: #2563eb;
+}

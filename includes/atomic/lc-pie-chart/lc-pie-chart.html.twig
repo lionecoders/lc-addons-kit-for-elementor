@@ -1,0 +1,24 @@
+{% import 'elementor/macros' as m %}
+{%- set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><br>' -%}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-pie-chart-wrapper', 'lcake-kit-pie-chart__box' ] ) | join(' ') -%}
+{%- set size = settings.chart_size.size | default(180) -%}
+{%- set unit = settings.chart_size.unit | default('px') -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" {{- m.render_custom_attributes(settings) }}>
+    {%- if settings.chart_title is defined and settings.chart_title.content is not empty -%}
+        <h3 class="lcake-pie-chart-title">{{ settings.chart_title | striptags(allowed_tags) | raw }}</h3>
+    {%- endif -%}
+
+    <div class="lcake-pie-chart" style="width:{{ size }}{{ unit }};height:{{ size }}{{ unit }};background: conic-gradient({{ settings.gradient_css }});"></div>
+
+    {%- if settings.show_legend -%}
+        <div class="lcake-pie-chart-legend">
+            {%- for item in settings.legend_items -%}
+                <div class="lcake-pie-chart-legend-item">
+                    <span class="lcake-pie-chart-legend-marker" style="background-color:{{ item.color }};"></span>
+                    <span class="lcake-pie-chart-legend-label">{{ item.label }}{% if settings.show_percentage %} ({{ item.percentage }}%){% endif %}</span>
+                </div>
+            {%- endfor -%}
+        </div>
+    {%- endif -%}
+</div>

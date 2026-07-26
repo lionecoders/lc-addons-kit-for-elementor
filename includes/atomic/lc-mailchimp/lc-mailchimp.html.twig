@@ -1,0 +1,27 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-mailchimp-wrapper', 'lcake-mailchimp--' ~ settings.layout ] ) | join(' ') -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" {{- m.render_custom_attributes(settings) }}>
+    {%- if settings.title is not empty -%}
+        <h3 class="lcake-mailchimp-title">{{ settings.title }}</h3>
+    {%- endif -%}
+
+    {%- if settings.description is not empty -%}
+        <div class="lcake-mailchimp-description">{{ settings.description }}</div>
+    {%- endif -%}
+
+    <form class="lcake-mailchimp-form" method="post">
+        <input type="hidden" name="lcake_mailchimp_api_key" value="{{ settings.api_key | e('html_attr') }}">
+        <input type="hidden" name="lcake_mailchimp_list_id" value="{{ settings.list_id | e('html_attr') }}">
+        <input type="hidden" name="lcake_mailchimp_nonce" value="{{ settings.nonce | e('html_attr') }}">
+
+        {%- if settings.show_name_field -%}
+            <input type="text" name="lcake_mailchimp_name" class="lcake-mailchimp-input lcake-mailchimp-name" placeholder="{{ settings.name_placeholder | e('html_attr') }}" required>
+        {%- endif -%}
+
+        <input type="email" name="lcake_mailchimp_email" class="lcake-mailchimp-input lcake-mailchimp-email" placeholder="{{ settings.email_placeholder | e('html_attr') }}" required>
+        <button type="submit" class="lcake-mailchimp-button">{{ settings.button_text }}</button>
+
+        <div class="lcake-mailchimp-message"></div>
+    </form>
+</div>

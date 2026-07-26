@@ -1,0 +1,37 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-image-box-wrapper', 'lcake-image-box--image-' ~ settings.position ] ) | join(' ') -%}
+{%- set has_url = settings.link is defined and settings.link.href is defined and settings.link.href is not empty -%}
+{%- set has_content = (settings.title is defined and settings.title.content is not empty) or settings.description is not empty or has_url -%}
+{%- set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><br>' -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}"
+    {{- m.render_custom_attributes(settings) }}>
+    
+    {%- if settings.image is defined and settings.image.url is not empty -%}
+        <div class="lcake-image-box-img">
+            <img src="{{ settings.image.url | e }}" alt="{{ settings.image.alt | default('') | e }}">
+        </div>
+    {%- endif -%}
+
+    {%- if has_content -%}
+        <div class="lcake-image-box-content">
+            {%- if settings.title is defined and settings.title.content is not empty -%}
+                <{{ settings.title_size | e('html_tag') }} class="lcake-image-box-title">
+                    {{ settings.title | striptags(allowed_tags) | raw }}
+                </{{ settings.title_size | e('html_tag') }}>
+            {%- endif -%}
+
+            {%- if settings.description is not empty -%}
+                <div class="lcake-image-box-description">
+                    {{ settings.description | raw }}
+                </div>
+            {%- endif -%}
+
+            {%- if has_url -%}
+                <a class="lcake-image-box-link" {{- m.render_link_attributes(settings.link) }}>
+                    {{ settings.link_text | default('Read More') }}
+                </a>
+            {%- endif -%}
+        </div>
+    {%- endif -%}
+</div>

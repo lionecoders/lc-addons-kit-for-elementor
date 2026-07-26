@@ -1,0 +1,92 @@
+.lcake-mailchimp-wrapper {
+    display: block;
+}
+
+.lcake-mailchimp-title {
+    margin: 0 0 8px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.lcake-mailchimp-description {
+    margin: 0 0 20px;
+    color: #6b7280;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.lcake-mailchimp-form {
+    display: flex;
+    gap: 10px;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.lcake-mailchimp--inline .lcake-mailchimp-form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.lcake-mailchimp--inline .lcake-mailchimp-input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.lcake-mailchimp--inline .lcake-mailchimp-button {
+    flex: 0 0 auto;
+}
+
+.lcake-mailchimp--stacked .lcake-mailchimp-form {
+    flex-direction: column;
+}
+
+.lcake-mailchimp--stacked .lcake-mailchimp-input,
+.lcake-mailchimp--stacked .lcake-mailchimp-button {
+    width: 100%;
+}
+
+.lcake-mailchimp-input {
+    background-color: #ffffff;
+    color: #111827;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 15px;
+    line-height: 1.4;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.lcake-mailchimp-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, .15);
+}
+
+.lcake-mailchimp-button {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color .15s ease;
+}
+
+.lcake-mailchimp-button:hover {
+    background-color: #2563eb;
+}
+
+.lcake-mailchimp-message {
+    flex-basis: 100%;
+    font-size: 14px;
+}
+
+.lcake-mailchimp-message:empty {
+    display: none;
+}

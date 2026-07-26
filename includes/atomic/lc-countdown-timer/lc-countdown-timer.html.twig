@@ -1,0 +1,23 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-wid-con' ] ) | join(' ') -%}
+{%- set timer_attrs -%}
+    class="{{ settings.timer_class }}"
+    data-lcake-countdown="{{ settings.due_date | e }}"
+    data-date-lcake-week="{{ settings.label_weeks | e }}"
+    data-date-lcake-day="{{ settings.label_days | e }}"
+    data-date-lcake-hour="{{ settings.label_hours | e }}"
+    data-date-lcake-minute="{{ settings.label_minutes | e }}"
+    data-date-lcake-second="{{ settings.label_seconds | e }}"
+    data-finish-title="{{ settings.expiry_title | e }}"
+    data-finish-content="{{ settings.expiry_content | e }}"
+{%- endset -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" {{- m.render_custom_attributes(settings) }}>
+    {%- if settings.is_boxed_style -%}
+        <div class="lcake-countdown-container text-center">
+            <div {{ timer_attrs | raw }}></div>
+        </div>
+    {%- else -%}
+        <div {{ timer_attrs | raw }}></div>
+    {%- endif -%}
+</div>

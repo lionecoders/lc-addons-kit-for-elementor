@@ -1,0 +1,38 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-icon-box-wrapper', 'lcake-icon-box--' ~ settings.icon_position ] ) | join(' ') -%}
+{%- set has_url = settings.link is defined and settings.link.href is defined and settings.link.href is not empty -%}
+{%- set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><br>' -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}"
+    {{- m.render_custom_attributes(settings) }}>
+    
+    {%- if settings.svg is defined and settings.svg.html is not empty -%}
+        <div class="lcake-icon-box-icon_wrapper">
+            <div class="lcake-icon-box-icon">
+                {{ settings.svg.html | raw }}
+            </div>
+        </div>
+    {%- endif -%}
+
+    <div class="lcake-icon-box-content">
+        {%- if settings.title is defined and settings.title.content is not empty -%}
+            {%- if has_url -%}
+                <a class="lcake-icon-box-link" {{- m.render_link_attributes(settings.link) }}>
+                    <{{ settings.title_size | e('html_tag') }} class="lcake-icon-box-title">
+                        {{ settings.title | striptags(allowed_tags) | raw }}
+                    </{{ settings.title_size | e('html_tag') }}>
+                </a>
+            {%- else -%}
+                <{{ settings.title_size | e('html_tag') }} class="lcake-icon-box-title">
+                    {{ settings.title | striptags(allowed_tags) | raw }}
+                </{{ settings.title_size | e('html_tag') }}>
+            {%- endif -%}
+        {%- endif -%}
+
+        {%- if settings.description is not empty -%}
+            <div class="lcake-icon-box-description">
+                {{ settings.description | raw }}
+            </div>
+        {%- endif -%}
+    </div>
+</div>

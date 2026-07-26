@@ -1,0 +1,54 @@
+{% import 'elementor/macros' as m %}
+{%- set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><br>' -%}
+{%- set is_switch = settings.style == 'style-switch' -%}
+{%- set show_tooltip_svg = settings.style == 'tooltip-style' or settings.style == 'style-stripe skill-medium tooltip-style' -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ settings.classes | merge( [ base_styles.base ] ) | join(' ') }} lcake-main-wrapper" {{- m.render_custom_attributes(settings) }}>
+    <div class="lcake-bar-trigger">
+        <div class="lcake-bar-group {{ settings.style }}" data-progress-bar="">
+            <div class="lcake-single-skill-bar">
+                {%- if not is_switch -%}
+                    <div class="lcake-bar-content">
+                        <span class="lcake-skill-title">{{ settings.title | striptags(allowed_tags) | raw }}</span>
+                    </div>
+
+                    <div class="lcake-bar">
+                        <div class="lcake-bar-track">
+                            {%- if settings.style == 'inner-content skill-big' and settings.svg is defined and settings.svg.html is not empty -%}
+                                <span class="lcake-bar-icon">{{ settings.svg.html | raw }}</span>
+                            {%- endif -%}
+
+                            <div class="lcake-percentage-wrapper"{% if settings.hide_percentage %} style="display:none;"{% endif %}>
+                                <span class="lcake-number-percentage" data-value="{{ settings.percentage }}" data-animation-duration="{{ settings.animation_duration }}">0</span>%
+
+                                {%- if show_tooltip_svg -%}
+                                    <div class="lcake-svg-content">
+                                        <svg version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" preserveAspectRatio="none" viewBox="0 0 116 79.6">
+                                            <g>
+                                                <path d="M0,18.3v21.3C0,49.8,8.2,58,18.3,58h5.9c7.8,0,15.3,3.1,20.8,8.6l13,13l13-13c5.5-5.5,13-8.6,20.8-8.6h5.9 c10.1,0,18.3-8.2,18.3-18.3V18.3C116,8.2,107.8,0,97.7,0H18.3C8.2,0,0,8.2,0,18.3z" />
+                                            </g>
+                                        </svg>
+                                    </div>
+                                {%- endif -%}
+                            </div>
+                        </div>
+                    </div>
+                {%- else -%}
+                    <div class="lcake-content-group">
+                        <div class="lcake-bar-content">
+                            <span class="lcake-skill-title">{{ settings.title | striptags(allowed_tags) | raw }}</span>
+                        </div>
+
+                        <div class="lcake-bar">
+                            <div class="lcake-bar-track"></div>
+                        </div>
+                    </div>
+
+                    <span class="lcake-percentage-wrapper"{% if settings.hide_percentage %} style="display:none;"{% endif %}>
+                        <span class="lcake-number-percentage" data-value="{{ settings.percentage }}" data-animation-duration="{{ settings.animation_duration }}">0</span>%
+                    </span>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</div>

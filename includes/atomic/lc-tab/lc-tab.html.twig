@@ -1,0 +1,47 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-main-wrapper' ] ) | join(' ') -%}
+{%- set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><br>' -%}
+{%- set nav_classes = [ 'nav', 'nav-tabs', 'lcake-tab-nav' ] -%}
+{%- if settings.full_width -%}{%- set nav_classes = nav_classes | merge( [ 'lcake-fullwidth-tab' ] ) -%}{%- endif -%}
+{%- set tab_wrapper_classes = [ 'lcake-tab-wraper' ] -%}
+{%- if settings.style == 'vertical' -%}{%- set tab_wrapper_classes = tab_wrapper_classes | merge( [ 'vertical' ] ) -%}{%- else -%}{%- if not settings.full_width -%}{%- set tab_wrapper_classes = tab_wrapper_classes | merge( [ 'lcake-fitcontent-tab' ] ) -%}{%- endif -%}{%- endif -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" {{- m.render_custom_attributes(settings) }}>
+    <div class="{{ tab_wrapper_classes | join(' ') }}">
+        <ul class="{{ nav_classes | join(' ') }}">
+            {%- for item in settings.processed_items -%}
+                {%- set target_id = 'content-' ~ tab_id ~ '-' ~ item.slot -%}
+                <li class="lcake-nav-item">
+                    <a class="lcake-nav-link{% if item.is_active %} active show{% endif %} {{ settings.icon_position }}"
+                        id="{{ target_id }}-tab"
+                        data-lcake-handler-id="{{ item.handler_id }}"
+                        data-lcake-toggle="tab"
+                        data-target="#{{ target_id }}"
+                        href="#{{ target_id }}"
+                        data-lcake-toggle-trigger="{{ settings.trigger_type }}"
+                        aria-describedby="{{ target_id }}">
+                        {%- if item.icon_type == 'icon' and item.icon_html is not empty -%}
+                            <span class="lcake-tab-icon">{{ item.icon_html | raw }}</span>
+                        {%- elseif item.icon_type == 'image' and item.image_src is not empty -%}
+                            <div class="lcake-icon-image"><img src="{{ item.image_src | e('html_attr') }}" alt="{{ item.image_alt | e('html_attr') }}" draggable="false"></div>
+                        {%- endif -%}
+                        <span class="lcake-tab-title">{{ item.title | striptags(allowed_tags) | raw }}</span>
+                    </a>
+                </li>
+            {%- endfor -%}
+        </ul>
+
+        <div class="tab-content lcake-tab-content">
+            {%- for item in settings.processed_items -%}
+                {%- set target_id = 'content-' ~ tab_id ~ '-' ~ item.slot -%}
+                <div class="tab-pane lcake-tab-pane{% if item.is_active %} active show{% endif %}" id="{{ target_id }}" role="tabpanel" aria-labelledby="{{ target_id }}-tab">
+                    <div class="animated fadeIn">{{ item.content | raw }}</div>
+                </div>
+            {%- endfor -%}
+        </div>
+
+        {%- if settings.schema_json is not empty -%}
+            <script type="application/ld+json">{{ settings.schema_json | raw }}</script>
+        {%- endif -%}
+    </div>
+</div>

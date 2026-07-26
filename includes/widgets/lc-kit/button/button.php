@@ -596,7 +596,7 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base
         }
 
         $icon_html = '';
-        if (!empty($settings['lcake_button_icon_switch']) && $settings['lcake_button_icon_switch'] === 'yes' && !empty($settings['lcake_button_icon']['value'])) {
+        if (!empty($settings['lcake_button_icon_switch']) && ( 'yes' === $settings['lcake_button_icon_switch'] || true === $settings['lcake_button_icon_switch'] ) && !empty($settings['lcake_button_icon']['value'])) {
             \Elementor\Icons_Manager::enqueue_shim();
             ob_start();
             \Elementor\Icons_Manager::render_icon(
@@ -605,7 +605,7 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base
                     'aria-hidden' => 'true',
                     'class'       => 'lcake-kit-button-icon elementor-button-icon',
                 ],
-                'inline'
+                'i'
             );
             $icon_html = ob_get_clean();
 

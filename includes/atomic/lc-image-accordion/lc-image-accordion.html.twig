@@ -1,0 +1,36 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, settings.wrapper_class ] ) | join(' ') -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" {{- m.render_custom_attributes(settings) }}>
+    {%- for item in settings.processed_items -%}
+        {%- set input_id = 'lcake_ia_' ~ id ~ '_' ~ loop.index0 -%}
+        <input type="radio" name="lcake_ia_{{ id }}" id="{{ input_id }}" class="lcake-single-image-accordion--input"{% if item.is_active %} checked{% endif %} hidden>
+        <label for="{{ input_id }}" class="lcake-single-image-accordion lcake-image-accordion-item" style="background-image: url({{ item.bg_src | e('html_attr') }})"
+            {%- if item.has_wrap_link %} data-link="{{ item.wrap_link_data | e('html_attr') }}" data-behavior="{{ settings.active_behavior }}" data-active="{{ item.is_active ? 'yes' : 'no' }}"{% endif -%}>
+            <span class="lcake-accordion-content">
+                {%- if item.has_popup or item.has_project_link -%}
+                    <span class="lcake-icon-wraper lcake-image-accordion-actions">
+                        {%- if item.has_popup -%}
+                            <a href="{{ item.bg_src | e('html_attr') }}" aria-label="pupup-button" class="icon-outline circle" data-elementor-open-lightbox="yes">{{ item.popup_icon_html | raw }}</a>
+                        {%- endif -%}
+                        {%- if item.has_project_link -%}
+                            <a href="{{ item.project_link_href | e('html_attr') }}"{% if item.project_link_target is not empty %} target="{{ item.project_link_target | e('html_attr') }}"{% endif %} role="link" aria-label="button-link" class="icon-outline circle">{{ item.project_link_icon_html | raw }}</a>
+                        {%- endif -%}
+                    </span>
+                {%- endif -%}
+                <span class="lcake-accordion-title-wraper">
+                    <span class="lcake-accordion-title{% if item.has_title_icon %} icon-title{% endif %}">
+                        {%- if item.has_title_icon and item.title_icon_position == 'left' -%}{{ item.title_icon_html | raw }}{%- endif -%}
+                        {{ item.title }}
+                        {%- if item.has_title_icon and item.title_icon_position == 'right' -%}{{ item.title_icon_html | raw }}{%- endif -%}
+                    </span>
+                </span>
+                {%- if item.has_button -%}
+                    <span class="lcake-btn-wraper">
+                        <a class="lcake-image-accordion--btn lcake-btn whitespace--normal"{% if item.button_href is not empty %} href="{{ item.button_href | e('html_attr') }}"{% endif %}{% if item.button_target is not empty %} target="{{ item.button_target | e('html_attr') }}"{% endif %}>{{ item.button_label }}</a>
+                    </span>
+                {%- endif -%}
+            </span>
+        </label>
+    {%- endfor -%}
+</div>

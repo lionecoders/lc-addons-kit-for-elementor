@@ -8,6 +8,7 @@ class LCAKE_Kit_Widget_Loader
     public function __construct()
     {
         add_action('elementor/widgets/register', [$this, 'register_widgets']);
+        add_action('elementor/widgets/register', [$this, 'register_atomic_widgets']);
         add_action('elementor/elements/categories_registered', [$this, 'register_categories']);
         add_action('elementor/frontend/after_register_scripts', [$this, 'register_widget_scripts']);
         add_action('elementor/frontend/after_register_styles', [$this, 'register_widget_styles']);
@@ -87,6 +88,48 @@ class LCAKE_Kit_Widget_Loader
             }
         }
     }
+    public function register_atomic_widgets($widgets_manager)
+    {
+        if (!class_exists('\Elementor\Modules\AtomicWidgets\Elements\Base\Atomic_Widget_Base')) {
+            return; // Atomic API not present / experiment off — skip silently.
+        }
+
+        $atomic_widgets = [
+            'lc-heading' => '\LCAKE\Atomic\LC_Heading',
+            'lc-button' => '\LCAKE\Atomic\LC_Button',
+            'lc-icon-box' => '\LCAKE\Atomic\LC_Icon_Box',
+            'lc-drop-caps' => '\LCAKE\Atomic\LC_Drop_Caps',
+            'lc-image-box' => '\LCAKE\Atomic\LC_Image_Box',
+            'lc-social-icons' => '\LCAKE\Atomic\LC_Social_Icons',
+            'lc-business-hours' => '\LCAKE\Atomic\LC_Business_Hours',
+            'lc-progress-bar' => '\LCAKE\Atomic\LC_Progress_Bar',
+            'lc-pie-chart' => '\LCAKE\Atomic\LC_Pie_Chart',
+            'lc-countdown-timer' => '\LCAKE\Atomic\LC_Countdown_Timer',
+            'lc-lottie' => '\LCAKE\Atomic\LC_Lottie',
+            'lc-video' => '\LCAKE\Atomic\LC_Video',
+            'lc-mailchimp' => '\LCAKE\Atomic\LC_Mailchimp',
+            'lc-contact-form-7' => '\LCAKE\Atomic\LC_Contact_Form_7',
+            'lc-faq' => '\LCAKE\Atomic\LC_FAQ',
+            'lc-accordion' => '\LCAKE\Atomic\LC_Accordion',
+            'lc-tab' => '\LCAKE\Atomic\LC_Tab',
+            'lc-team' => '\LCAKE\Atomic\LC_Team',
+            'lc-testimonial' => '\LCAKE\Atomic\LC_Testimonial',
+            'lc-pricing-table' => '\LCAKE\Atomic\LC_Pricing_Table',
+            'lc-funfact' => '\LCAKE\Atomic\LC_Funfact',
+            'lc-client-logo' => '\LCAKE\Atomic\LC_Client_Logo',
+            'lc-image-accordion' => '\LCAKE\Atomic\LC_Image_Accordion',
+        ];
+
+        foreach ($atomic_widgets as $folder => $class) {
+            $file = LCAKE_EAK_PATH . 'includes/atomic/' . $folder . '/' . $folder . '.php';
+            if (file_exists($file)) {
+                require_once $file;
+                if (class_exists($class)) {
+                    $widgets_manager->register(new $class());
+                }
+            }
+        }
+    }
     public function register_widget_scripts()
     {
         $scripts = [
@@ -131,7 +174,20 @@ class LCAKE_Kit_Widget_Loader
             'lcake-swiper-css' => ['file' => 'swiper-bundle.min.css', 'enqueue' => true, 'path' => ''],
             'lcakeicons' => ['file' => 'lcakeicons.css', 'enqueue' => true, 'path' => 'assets/icons'],
             'lcake-kit-image-accordion' => ['file' => 'lcake-kit-image-accordion.css', 'enqueue' => false, 'path' => ''],
+<<<<<<< Updated upstream
             'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.css', 'enqueue' => false, 'path' => '']
+=======
+            'lcake-kit-countdown-timer-css' => ['file' => 'lcake-kit-countdown-timer.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-drop-caps-css' => ['file' => 'lcake-kit-drop-caps.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-heading-css' => ['file' => 'lcake-kit-heading.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-image-box-css' => ['file' => 'lcake-kit-image-box.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-icon-box-css' => ['file' => 'lcake-kit-icon-box.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-lottie-css' => ['file' => 'lcake-kit-lottie.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-video-css' => ['file' => 'lcake-kit-video.css', 'enqueue' => true, 'path' => ''],
+            'lcake-atomic-mailchimp-css' => ['file' => 'lcake-atomic-mailchimp.css', 'enqueue' => true, 'path' => ''],
+            'lcake-atomic-contact-form-7-css' => ['file' => 'lcake-atomic-contact-form-7.css', 'enqueue' => true, 'path' => ''],
+            // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.css', 'enqueue' => false, 'path' => '']
+>>>>>>> Stashed changes
         ];
 
         LCAKE_Kit_Utils::lcake_file_enqueue($styles, 'style');

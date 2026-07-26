@@ -1,0 +1,18 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lc-faq' ] ) | join(' ') -%}
+{%- set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><br>' -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" data-multiple="{{ settings.multiple_open ? 'true' : 'false' }}" {{- m.render_custom_attributes(settings) }}>
+    {%- for item in settings.processed_items -%}
+        {%- set question_id = 'lc-faq-q-' ~ id ~ '-' ~ loop.index0 -%}
+        {%- set answer_id = 'lc-faq-a-' ~ id ~ '-' ~ loop.index0 -%}
+        <div class="lc-faq-item{% if item.is_active %} active{% endif %}">
+            <div class="lc-faq-question" role="button" tabindex="0" aria-expanded="{{ item.is_active ? 'true' : 'false' }}" aria-controls="{{ answer_id }}" id="{{ question_id }}">
+                <span class="lc-faq-question-text">{{ item.title | striptags(allowed_tags) | raw }}</span>
+            </div>
+            <div class="lc-faq-answer" id="{{ answer_id }}" role="region" aria-labelledby="{{ question_id }}">
+                <div class="lc-faq-answer-content">{{ item.content | raw }}</div>
+            </div>
+        </div>
+    {%- endfor -%}
+</div>

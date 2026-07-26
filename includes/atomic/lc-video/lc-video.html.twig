@@ -1,0 +1,47 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-video-wrapper' ] ) | join(' ') -%}
+{%- set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><br>' -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" {{- m.render_custom_attributes(settings) }}>
+    {%- if settings.resolved_video_url is empty -%}
+        <div class="lcake-video-container">
+            <div class="lcake-video-placeholder">
+                <div class="lcake-video-error">{{ settings.text_no_url }}</div>
+            </div>
+        </div>
+    {%- else -%}
+        <div class="lcake-video-container">
+            {%- if settings.video_type == 'hosted' -%}
+                <video
+                    {%- if settings.autoplay %} autoplay playsinline{% endif -%}
+                    {%- if settings.mute %} muted{% endif -%}
+                    {%- if settings.loop %} loop{% endif -%}
+                    {%- if settings.controls %} controls{% endif -%}
+                    {%- if settings.poster is not empty and settings.poster.src is not empty %} poster="{{ settings.poster.src | e('html_attr') }}"{% endif -%}
+                >
+                    <source src="{{ settings.resolved_video_url | e('html_attr') }}" type="video/mp4">
+                    {{ settings.text_no_video_support }}
+                </video>
+            {%- else -%}
+                {%- if settings.embed_url is not empty -%}
+                    <iframe src="{{ settings.embed_url | e('html_attr') }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                {%- else -%}
+                    <div class="lcake-video-placeholder">
+                        <div class="lcake-video-error">{{ settings.text_invalid_format }}</div>
+                    </div>
+                {%- endif -%}
+            {%- endif -%}
+        </div>
+
+        {%- if settings.video_title is not empty or settings.video_description is not empty -%}
+            <div class="lcake-video-info">
+                {%- if settings.video_title is not empty -%}
+                    <h3 class="lcake-video-title">{{ settings.video_title | striptags(allowed_tags) | raw }}</h3>
+                {%- endif -%}
+                {%- if settings.video_description is not empty -%}
+                    <div class="lcake-video-description">{{ settings.video_description | striptags(allowed_tags) | raw }}</div>
+                {%- endif -%}
+            </div>
+        {%- endif -%}
+    {%- endif -%}
+</div>

@@ -1,0 +1,12 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-drop-caps-wrapper', 'lcake-drop-caps-position-' ~ settings.drop_cap_position ] ) | join(' ') -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}"
+    {{- m.render_custom_attributes(settings) }}>
+    {%- if settings.processed_drop_cap_letter is not empty -%}
+        <span class="lcake-drop-caps-letter">{{ settings.processed_drop_cap_letter }}</span>
+    {%- endif -%}
+    <div class="lcake-drop-caps-text">
+        {{ settings.processed_text | raw }}
+    </div>
+</div>

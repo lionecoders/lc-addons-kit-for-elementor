@@ -1,0 +1,42 @@
+{% import 'elementor/macros' as m %}
+{%- set btn_classes = settings.classes | merge( [ base_styles.base, 'lcake-kit-button', 'elementor-button' ] ) | join(' ') -%}
+{%- set has_url = settings.link is defined and settings.link.href is defined and settings.link.href is not empty -%}
+{%- set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><br>' -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="lcake-kit-wid-con">
+    <div class="lcake-kit-button-wrapper">
+        {%- if has_url -%}
+            <a class="{{ btn_classes }}" {{- m.render_link_attributes(settings.link) }}>
+                {%- if settings.icon_switch and settings.icon_position == 'left' and settings.svg is defined and settings.svg.html is not empty -%}
+                    <span class="lcake-kit-button-icon elementor-button-icon">{{ settings.svg.html | raw }}</span>
+                {%- endif -%}
+                
+                {{ settings.text | striptags(allowed_tags) | raw }}
+
+                {%- if settings.badge is not empty -%}
+                    <span class="lcake-button-badge">{{ settings.badge }}</span>
+                {%- endif -%}
+
+                {%- if settings.icon_switch and settings.icon_position == 'right' and settings.svg is defined and settings.svg.html is not empty -%}
+                    <span class="lcake-kit-button-icon elementor-button-icon">{{ settings.svg.html | raw }}</span>
+                {%- endif -%}
+            </a>
+        {%- else -%}
+            <button type="button" class="{{ btn_classes }}" {{- m.render_custom_attributes(settings) }}>
+                {%- if settings.icon_switch and settings.icon_position == 'left' and settings.svg is defined and settings.svg.html is not empty -%}
+                    <span class="lcake-kit-button-icon elementor-button-icon">{{ settings.svg.html | raw }}</span>
+                {%- endif -%}
+                
+                {{ settings.text | striptags(allowed_tags) | raw }}
+
+                {%- if settings.badge is not empty -%}
+                    <span class="lcake-button-badge">{{ settings.badge }}</span>
+                {%- endif -%}
+
+                {%- if settings.icon_switch and settings.icon_position == 'right' and settings.svg is defined and settings.svg.html is not empty -%}
+                    <span class="lcake-kit-button-icon elementor-button-icon">{{ settings.svg.html | raw }}</span>
+                {%- endif -%}
+            </button>
+        {%- endif -%}
+    </div>
+</div>

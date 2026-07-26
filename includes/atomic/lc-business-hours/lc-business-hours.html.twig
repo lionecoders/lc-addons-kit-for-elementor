@@ -1,0 +1,22 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-business-hours' ] ) | join(' ') -%}
+{%- set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><br>' -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" {{- m.render_custom_attributes(settings) }}>
+    {%- if settings.title is defined and settings.title.content is not empty -%}
+        <h3 class="lcake-business-hours-title">{{ settings.title | striptags(allowed_tags) | raw }}</h3>
+    {%- endif -%}
+
+    <div class="lcake-business-hours-list">
+        {%- for item in settings.processed_items -%}
+            <div class="lcake-business-hours-item{% if item.is_today %} today{% endif %}" data-day="{{ item.day }}">
+                <span class="lcake-business-hours-day">{{ item.day_name }}</span>
+                {%- if item.closed -%}
+                    <span class="lcake-business-hours-time closed">{{ item.closed_text }}</span>
+                {%- else -%}
+                    <span class="lcake-business-hours-time">{{ item.open_time }} - {{ item.close_time }}</span>
+                {%- endif -%}
+            </div>
+        {%- endfor -%}
+    </div>
+</div>

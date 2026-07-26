@@ -1,0 +1,18 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-contact-form-7' ] ) | join(' ') -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" {{- m.render_custom_attributes(settings) }}>
+    {%- if settings.error_text is not empty -%}
+        <div class="lcake-contact-form-7-error">{{ settings.error_text }}</div>
+    {%- else -%}
+        {%- if settings.show_form_title and settings.form_title is not empty -%}
+            <h3 class="lcake-contact-form-7-title">{{ settings.form_title }}</h3>
+        {%- endif -%}
+
+        {%- if settings.show_form_description and settings.form_description is not empty -%}
+            <div class="lcake-contact-form-7-description">{{ settings.form_description }}</div>
+        {%- endif -%}
+
+        {{ settings.rendered_form | raw }}
+    {%- endif -%}
+</div>

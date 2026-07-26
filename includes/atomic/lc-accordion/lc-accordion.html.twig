@@ -1,0 +1,29 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-elementor-addons-kit' ] ) | join(' ') -%}
+{%- set allowed_tags = '<b><strong><sup><sub><s><em><i><u><a><del><span><br>' -%}
+{%- set multiple_attr = settings.multiple ? 'yes' : 'no' -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" data-multiple="{{ multiple_attr }}" {{- m.render_custom_attributes(settings) }}>
+    <div class="lcake-accordion" data-multiple="{{ multiple_attr }}">
+        {%- for item in settings.processed_items -%}
+            <div class="lcake-accordion-item{% if item.is_active %} active{% endif %}">
+                <div class="lcake-accordion-header {{ settings.icon_position_class }}">
+                    <div class="lcake-accordion-title">{{ item.title | striptags(allowed_tags) | raw }}</div>
+                    {%- if item.icon_html is not empty or item.active_icon_html is not empty -%}
+                        <div class="lcake-accordion-icon">
+                            {%- if item.icon_html is not empty -%}
+                                {{ item.icon_html | raw }}
+                            {%- endif -%}
+                            {%- if item.active_icon_html is not empty -%}
+                                <span class="lcake-accordion-icon-active">{{ item.active_icon_html | raw }}</span>
+                            {%- endif -%}
+                        </div>
+                    {%- endif -%}
+                </div>
+                <div class="lcake-accordion-content">
+                    <div class="lcake-accordion-body">{{ item.content | raw }}</div>
+                </div>
+            </div>
+        {%- endfor -%}
+    </div>
+</div>

@@ -1,0 +1,41 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-main-wrapper' ] ) | join(' ') -%}
+
+<div data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" {{- m.render_custom_attributes(settings) }}>
+    <div class="{{ settings.slider_class }}" data-config="{{ settings.data_config | e('html_attr') }}" data-direction="{{ settings.hover_direction }}">
+        <div class="lcake-main-swiper swiper">
+            <div class="swiper-wrapper">
+                {%- for item in settings.processed_items -%}
+                    <div class="lcake-client-slider-item swiper-slide {{ settings.separator_class }}">
+                        <div class="swiper-slide-inner">
+                            <div class="single-client image-switcher" title="{{ item.name | e('html_attr') }}">
+                                {%- set logo_images %}
+                                    {%- if item.logo_src is not empty -%}
+                                        <img src="{{ item.logo_src | e('html_attr') }}" alt="{{ item.logo_alt | e('html_attr') }}" class="{{ item.has_hover ? 'main-image' : '' }}">
+                                    {%- endif -%}
+                                    {%- if item.has_hover -%}
+                                        <img src="{{ item.hover_src | e('html_attr') }}" alt="{{ item.logo_alt | e('html_attr') }}" class="hover-image">
+                                    {%- endif -%}
+                                {%- endset -%}
+                                {%- if item.has_link -%}
+                                    <a href="{{ item.href | e('html_attr') }}"{% if item.target is not empty %} target="{{ item.target | e('html_attr') }}"{% endif %}><span class="content-image">{{ logo_images | raw }}</span></a>
+                                {%- else -%}
+                                    <div class="content-image">{{ logo_images | raw }}</div>
+                                {%- endif -%}
+                            </div>
+                        </div>
+                    </div>
+                {%- endfor -%}
+            </div>
+
+            {%- if settings.show_dot -%}
+                <div class="swiper-pagination"></div>
+            {%- endif -%}
+
+            {%- if settings.show_arrow -%}
+                <div class="swiper-navigation-button swiper-button-prev">{{ settings.left_arrow.html | raw }}</div>
+                <div class="swiper-navigation-button swiper-button-next">{{ settings.right_arrow.html | raw }}</div>
+            {%- endif -%}
+        </div>
+    </div>
+</div>

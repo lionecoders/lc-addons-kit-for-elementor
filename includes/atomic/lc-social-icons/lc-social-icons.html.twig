@@ -1,0 +1,19 @@
+{% import 'elementor/macros' as m %}
+{%- set wrapper_classes = settings.classes | merge( [ base_styles.base, 'lcake-social-icons', 'lcake-social-icons--' ~ settings.layout ] ) | join(' ') -%}
+
+<ul data-interaction-id="{{ interaction_id }}" class="{{ wrapper_classes }}" role="list"
+    {%- if settings.layout == 'horizontal' %} style="justify-content: {{ settings.alignment }};"{% endif %}
+    {{- m.render_custom_attributes(settings) }}>
+    {%- for item in settings.processed_items -%}
+        <li class="lcake-social-icon">
+            <a{{ m.render_link_attributes(item.link) }}{% if item.title is not empty %} aria-label="{{ item.title | e }}"{% endif %}>
+                {%- if item.svg is defined and item.svg.html is not empty -%}
+                    {{ item.svg.html | raw }}
+                {%- endif -%}
+                {%- if settings.show_title and item.title is not empty -%}
+                    <span class="lcake-social-icon-title">{{ item.title }}</span>
+                {%- endif -%}
+            </a>
+        </li>
+    {%- endfor -%}
+</ul>
