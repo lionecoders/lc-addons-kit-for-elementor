@@ -1,0 +1,57 @@
+/*
+* Modern Styles for Feature List Widget
+*/
+
+.lcake-feature-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 24px;
+    row-gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lcake-feature-list-item {
+    display: flex;
+}
+
+.lcake-feature-list-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    width: 100%;
+}
+
+.lcake-feature-list-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.lcake-feature-list-icon i {
+    font-size: 14px;
+    color: #3b82f6;
+}
+
+.lcake-feature-list-icon svg {
+    width: 14px;
+    height: 14px;
+    fill: #3b82f6;
+}
+
+.lcake-feature-list-text {
+    font-size: 16px;
+    color: #111827;
+    line-height: 1.5;
+}
+
+a.lcake-feature-list-link:hover .lcake-feature-list-text {
+    color: #3b82f6;
+}

@@ -1,0 +1,9 @@
+.lcake-woo-short-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #6b7280;
+}
+
+.lcake-woo-short-description p:last-child {
+    margin-bottom: 0;
+}

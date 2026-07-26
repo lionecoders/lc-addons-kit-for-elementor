@@ -1,0 +1,84 @@
+.lcake-login-register {
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+.lcake-login-register-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.lcake-login-register-tab {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    margin-right: 16px;
+}
+
+.lcake-login-register-tab.is-active {
+    color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.lcake-login-register-panel {
+    display: none;
+}
+
+.lcake-login-register-panel.is-active {
+    display: block;
+}
+
+.lcake-login-register p {
+    margin: 0 0 16px 0;
+}
+
+.lcake-login-register label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.lcake-login-register input[type="text"],
+.lcake-login-register input[type="email"],
+.lcake-login-register input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.lcake-login-register button[type="submit"] {
+    width: 100%;
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.lcake-login-register button[type="submit"]:hover {
+    background: #2563eb;
+}
+
+.lcake-login-register-logout {
+    display: inline-block;
+    color: #3b82f6;
+    font-weight: 600;
+    text-decoration: none;
+}

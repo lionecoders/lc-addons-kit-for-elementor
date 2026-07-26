@@ -1,0 +1,9 @@
+.lcake-twitter-feed {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.lcake-twitter-feed .twitter-timeline {
+    width: 100% !important;
+}

@@ -1,5 +1,5 @@
 // Use WordPress's global `wp.element` object for React dependencies.
-const { render, useState, useEffect, useCallback } = wp.element;
+const { render, useState, useEffect, useCallback, useMemo } = wp.element;
 
 // --- Reusable Component: Header ---
 const Header = ({ saveStatus, isDirty, onSaveChanges }) => {
@@ -44,21 +44,70 @@ const WidgetCard = ({ widget, onDragStart, onDragOver, isDragOver }) => (
                 {/* {widget.is_pro && <span className="lcake-kit-pro-badge">PRO</span>} */}
             </strong>
             <span>{widget.description}</span>
+            <span className="lcake-kit-category-badge">{widget.category}</span>
         </div>
     </div>
 );
 
+// --- Reusable Component: CategoryFilter ---
+const CategoryFilter = ({ categories, activeCategory, onChange }) => (
+    <div className="lcake-kit-category-filter">
+        <button
+            className={`lcake-kit-category-pill ${activeCategory === '' ? 'is-active' : ''}`}
+            onClick={() => onChange('')}
+            type="button"
+        >
+            All
+        </button>
+        {categories.map((cat) => (
+            <button
+                key={cat}
+                className={`lcake-kit-category-pill ${activeCategory === cat ? 'is-active' : ''}`}
+                onClick={() => onChange(cat)}
+                type="button"
+            >
+                {cat}
+            </button>
+        ))}
+    </div>
+);
+
 // --- Reusable Component: Sidebar ---
-const Sidebar = ({ allWidgets, onDrop, onDragOver, onDragLeaveContainer, onDragStart, dragOverWidgetId }) => {
+const Sidebar = ({
+    allWidgets,
+    categories,
+    activeCategory,
+    onCategoryChange,
+    onDrop,
+    onDragOver,
+    onDragLeaveContainer,
+    onDragStart,
+    dragOverWidgetId,
+    onEnableAll,
+}) => {
     const [searchTerm, setSearchTerm] = useState('');
 
-    const filteredAvailable = allWidgets.filter(w =>
-        w.label.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredAvailable = allWidgets.filter((w) => {
+        const matchesSearch = w.label.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesCategory = !activeCategory || w.category === activeCategory;
+        return matchesSearch && matchesCategory;
+    });
 
     return (
         <aside className="lcake-kit-sidebar">
-            <h2>Available Widgets</h2>
+            <h2>
+                Available Widgets
+                {filteredAvailable.length > 0 && (
+                    <button
+                        type="button"
+                        className="lcake-kit-bulk-action"
+                        onClick={() => onEnableAll(filteredAvailable)}
+                    >
+                        Enable {activeCategory ? `all in "${activeCategory}"` : 'all'} ({filteredAvailable.length})
+                    </button>
+                )}
+            </h2>
+            <CategoryFilter categories={categories} activeCategory={activeCategory} onChange={onCategoryChange} />
             <div className="lcake-kit-search-wrapper">
                 <input
                     type="text"
@@ -82,13 +131,16 @@ const Sidebar = ({ allWidgets, onDrop, onDragOver, onDragLeaveContainer, onDragS
                         isDragOver={dragOverWidgetId === widget.id}
                     />
                 ))}
+                {filteredAvailable.length === 0 && (
+                    <p className="lcake-kit-empty-hint">No widgets match this filter.</p>
+                )}
             </div>
         </aside>
     );
 };
 
 // --- Reusable Component: DropArea ---
-const DropArea = ({ enabledWidgets, onDrop, onDragOver, onDragLeaveContainer, onDragStart, dragOverWidgetId }) => {
+const DropArea = ({ enabledWidgets, onDrop, onDragOver, onDragLeaveContainer, onDragStart, dragOverWidgetId, onDisableAll }) => {
     return (
         <section
             className="lcake-kit-drop-area"
@@ -96,7 +148,14 @@ const DropArea = ({ enabledWidgets, onDrop, onDragOver, onDragLeaveContainer, on
             onDragOver={onDragOver}
             onDragLeave={onDragLeaveContainer}
         >
-            <h2>Enabled Widgets</h2>
+            <h2>
+                Enabled Widgets ({enabledWidgets.length})
+                {enabledWidgets.length > 0 && (
+                    <button type="button" className="lcake-kit-bulk-action lcake-kit-bulk-action--danger" onClick={onDisableAll}>
+                        Disable all
+                    </button>
+                )}
+            </h2>
             <div className="lcake-kit-widget-list lcake-kit-widget-dropzone">
                 {enabledWidgets.map(widget => (
                     <WidgetCard
@@ -111,7 +170,7 @@ const DropArea = ({ enabledWidgets, onDrop, onDragOver, onDragLeaveContainer, on
             {enabledWidgets.length === 0 && (
                  <div className="lcake-kit-drop-placeholder visible">
                     <p>Drop widgets here</p>
-                    <span>Drag widgets from the sidebar to enable them</span>
+                    <span>Drag widgets from the sidebar to enable them, or use "Enable all" on the left</span>
                 </div>
             )}
         </section>
@@ -130,6 +189,12 @@ const App = () => {
     const [isDirty, setIsDirty] = useState(false);
     const [draggedWidget, setDraggedWidget] = useState(null);
     const [dragOverWidgetId, setDragOverWidgetId] = useState(null);
+    const [activeCategory, setActiveCategory] = useState('');
+
+    const categories = useMemo(() => {
+        const unique = Array.from(new Set(all_widgets.map((w) => w.category).filter(Boolean)));
+        return unique.sort();
+    }, [all_widgets]);
 
     // Initialize the widget lists on component mount
     useEffect(() => {
@@ -197,6 +262,21 @@ const App = () => {
         setDragOverWidgetId(null);
     }, []);
 
+    const handleEnableAll = useCallback((widgetsToEnable) => {
+        if (!widgetsToEnable.length) return;
+        setIsDirty(true);
+        const idsToEnable = new Set(widgetsToEnable.map((w) => w.id));
+        setEnabledWidgets((prev) => [...prev, ...widgetsToEnable]);
+        setAvailableWidgets((prev) => prev.filter((w) => !idsToEnable.has(w.id)));
+    }, []);
+
+    const handleDisableAll = useCallback(() => {
+        if (!enabledWidgets.length) return;
+        setIsDirty(true);
+        setAvailableWidgets((prev) => [...prev, ...enabledWidgets]);
+        setEnabledWidgets([]);
+    }, [enabledWidgets]);
+
     const handleSaveChanges = async () => {
         setSaveStatus('saving');
         const { api_url, nonce } = window.LCAKE_SETTINGS;
@@ -233,11 +313,15 @@ const App = () => {
             <main className="lcake-kit-main-content">
                 <Sidebar
                     allWidgets={availableWidgets}
+                    categories={categories}
+                    activeCategory={activeCategory}
+                    onCategoryChange={setActiveCategory}
                     onDrop={() => handleDrop('available')}
                     onDragOver={handleDragOver}
                     onDragLeaveContainer={handleDragLeaveContainer}
                     onDragStart={handleDragStart}
                     dragOverWidgetId={dragOverWidgetId}
+                    onEnableAll={handleEnableAll}
                 />
                 <DropArea
                     enabledWidgets={enabledWidgets}
@@ -246,6 +330,7 @@ const App = () => {
                     onDragLeaveContainer={handleDragLeaveContainer}
                     onDragStart={handleDragStart}
                     dragOverWidgetId={dragOverWidgetId}
+                    onDisableAll={handleDisableAll}
                 />
             </main>
         </>

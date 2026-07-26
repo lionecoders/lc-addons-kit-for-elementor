@@ -1,0 +1,76 @@
+/*
+* Modern Styles for CTA Box Widget
+*/
+
+.lcake-cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    background: #3b82f6;
+    border-radius: 24px;
+    padding: 50px;
+    overflow: hidden;
+    position: relative;
+}
+
+.lcake-cta-box--column {
+    flex-direction: column;
+    text-align: center;
+}
+
+.lcake-cta-box-content {
+    flex: 1;
+}
+
+.lcake-cta-box-title {
+    margin: 0 0 12px 0;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.lcake-cta-box-description {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.lcake-cta-box-button {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    color: #3b82f6;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.lcake-cta-box-button:hover {
+    background: #f3f4f6;
+    transform: translateY(-3px);
+    color: #2563eb;
+}
+
+.lcake-cta-box-button i,
+.lcake-cta-box-button svg {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+@media (max-width: 767px) {
+    .lcake-cta-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 36px;
+    }
+}

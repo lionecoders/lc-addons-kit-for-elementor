@@ -1,0 +1,51 @@
+.lcake-fancy-text {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #111827;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.lcake-fancy-text-rotator {
+    position: relative;
+    display: inline-block;
+    min-height: 1.3em;
+    vertical-align: bottom;
+}
+
+.lcake-fancy-text-word {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    color: #3b82f6;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.lcake-fancy-text-word.is-active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Fade animation */
+.lcake-fancy-text--anim-fade .lcake-fancy-text-word {
+    transition: opacity 0.5s ease;
+}
+
+/* Slide up animation */
+.lcake-fancy-text--anim-slide-up .lcake-fancy-text-word {
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.lcake-fancy-text--anim-slide-up .lcake-fancy-text-word.is-active {
+    transform: translateY(0);
+}

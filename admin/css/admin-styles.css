@@ -68,6 +68,78 @@
     padding: 15px;
     border-bottom: 1px solid #ddd;
     color: #2c3338;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Bulk Actions */
+.lcake-kit-bulk-action {
+    font-size: 12px;
+    font-weight: 500;
+    color: #2271b1;
+    background: none;
+    border: 1px solid #2271b1;
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.lcake-kit-bulk-action:hover {
+    background-color: #2271b1;
+    color: #fff;
+}
+
+.lcake-kit-bulk-action--danger {
+    color: #dc2626;
+    border-color: #dc2626;
+}
+
+.lcake-kit-bulk-action--danger:hover {
+    background-color: #dc2626;
+    color: #fff;
+}
+
+/* Category Filter Pills */
+.lcake-kit-category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 12px 15px 0;
+}
+
+.lcake-kit-category-pill {
+    font-size: 12px;
+    font-weight: 500;
+    color: #50575e;
+    background-color: #fff;
+    border: 1px solid #dcdcde;
+    border-radius: 999px;
+    padding: 4px 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.lcake-kit-category-pill:hover {
+    border-color: #2271b1;
+    color: #2271b1;
+}
+
+.lcake-kit-category-pill.is-active {
+    background-color: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+}
+
+.lcake-kit-empty-hint {
+    color: #787c82;
+    font-size: 13px;
+    text-align: center;
+    padding: 20px 0;
 }
 
 .lcake-kit-drop-area {
@@ -174,6 +246,20 @@
 .lcake-kit-widget-info span {
     font-size: 13px;
     color: #50575e;
+}
+
+.lcake-kit-category-badge {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 4px;
+    font-size: 10px !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #2271b1 !important;
+    background-color: #f0f6fc;
+    border-radius: 4px;
+    padding: 2px 6px;
 }
 
 /* PRO Badge */

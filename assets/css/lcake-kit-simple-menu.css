@@ -1,0 +1,26 @@
+.lcake-simple-menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lcake-simple-menu--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.lcake-simple-menu-item a {
+    color: #111827;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.lcake-simple-menu-item a:hover {
+    color: #3b82f6;
+}

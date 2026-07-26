@@ -37,7 +37,33 @@ class LC_Header_Footer_Category_List extends \Elementor\Widget_Base {
     }
 
     public function get_categories() {
-        return ['lc-header-footer-kit'];
+        return ['lc-header-footer-kit1'];
+    }
+
+    protected function register_controls() {
+        $this->start_controls_section(
+            'content_section',
+            [
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+        $this->add_content_controls();
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'style_section',
+            [
+                'label' => esc_html__('Style', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->add_style_controls();
+        $this->end_controls_section();
+    }
+
+    protected function render() {
+        $this->render_widget($this->get_settings_for_display());
     }
 
     /**

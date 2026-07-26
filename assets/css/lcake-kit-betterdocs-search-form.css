@@ -1,0 +1,30 @@
+.lcake-docs-search-form {
+    display: flex;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.lcake-docs-search-input {
+    flex: 1;
+    border: none;
+    padding: 16px 20px;
+    font-size: 15px;
+    outline: none;
+}
+
+.lcake-docs-search-button {
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    padding: 0 28px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.lcake-docs-search-button:hover {
+    background: #2563eb;
+}

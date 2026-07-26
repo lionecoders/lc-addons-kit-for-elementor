@@ -1,0 +1,87 @@
+.lcake-adv-table-toolbar {
+    margin-bottom: 16px;
+}
+
+.lcake-adv-table-search {
+    width: 100%;
+    max-width: 280px;
+    padding: 10px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.lcake-adv-table-search:focus {
+    border-color: #3b82f6;
+}
+
+.lcake-adv-table-scroller {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+.lcake-adv-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.lcake-adv-table thead th {
+    background: #3b82f6;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+    padding: 16px 20px;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.lcake-adv-table thead th span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.lcake-adv-table thead th span::after {
+    content: '\2195';
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+.lcake-adv-table thead th.is-sorted-asc span::after {
+    content: '\2191';
+    opacity: 1;
+}
+
+.lcake-adv-table thead th.is-sorted-desc span::after {
+    content: '\2193';
+    opacity: 1;
+}
+
+.lcake-adv-table tbody td {
+    padding: 14px 20px;
+    font-size: 15px;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.lcake-adv-table tbody tr:hover {
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+.lcake-adv-table tbody tr.is-filtered-out {
+    display: none;
+}
+
+.lcake-adv-table-empty {
+    text-align: center;
+    color: #9ca3af;
+    padding: 20px;
+}

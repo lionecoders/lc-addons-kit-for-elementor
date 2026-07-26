@@ -70,6 +70,10 @@ class LCAKE_Kit_Widget_Loader
                 // Widget name = filename without extension (e.g., accordion.php → accordion)
                 $widget_name = basename($file, '.php');
 
+                // Composite ID disambiguates same-named files across folders (e.g. "post-grid"
+                // exists in both lc-kit and lc-header-footer). This is what the Widget Manager saves.
+                $widget_id = $folder . ':' . $widget_name;
+
                 // Convert to PascalCase for class name (e.g., accordion → LCAKE_Kit_Accordion)
                 $class = $prefix . str_replace(' ', '_', ucwords(str_replace('-', ' ', $widget_name)));
 
@@ -80,8 +84,12 @@ class LCAKE_Kit_Widget_Loader
                         continue;
                     }
 
-                    // Otherwise, only register if enabled in settings
-                    if (in_array($widget_name, $enabled_widgets, true)) {
+                    // Otherwise, only register if enabled in settings. Accept the legacy bare
+                    // filename too (pre-composite-ID saves only ever covered the lc-kit folder).
+                    $is_enabled = in_array($widget_id, $enabled_widgets, true)
+                        || ('lc-kit' === $folder && in_array($widget_name, $enabled_widgets, true));
+
+                    if ($is_enabled) {
                         $widgets_manager->register(new $class());
                     }
                 }
@@ -110,6 +118,22 @@ class LCAKE_Kit_Widget_Loader
             'lcake-kit-countdown-timer-js' => ['file' => 'lcake-kit-countdown-timer.js', 'deps' => ['jquery', 'elementor-frontend', 'lcake-kit-countdown-js'], 'enqueue' => true, 'path' => ''],
             'lcake-kit-countdown-js' => ['file' => 'jquery.countdown.min.js', 'deps' => ['jquery'], 'enqueue' => true, 'path' => ''],
             'lcake-kit-lottie-js' => ['file' => 'lcake-kit-lottie.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => true, 'path' => ''],
+            'lcake-kit-fancy-text-js' => ['file' => 'lcake-kit-fancy-text.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-svg-draw-js' => ['file' => 'lcake-kit-svg-draw.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-code-snippet-js' => ['file' => 'lcake-kit-code-snippet.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-filterable-gallery-js' => ['file' => 'lcake-kit-filterable-gallery.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-sticky-video-js' => ['file' => 'lcake-kit-sticky-video.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-advanced-data-table-js' => ['file' => 'lcake-kit-advanced-data-table.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-carousel-js' => ['file' => 'lcake-kit-woo-product-carousel.js', 'deps' => ['jquery', 'elementor-frontend', 'lcake-swiper-js'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-images-js' => ['file' => 'lcake-kit-woo-product-images.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-type-form-js' => ['file' => 'lcake-kit-type-form.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-twitter-feed-js' => ['file' => 'lcake-kit-twitter-feed.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-login-register-js' => ['file' => 'lcake-kit-login-register.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lcake-kit-event-calendar-js' => ['file' => 'lcake-kit-event-calendar.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-nav-menu-js' => ['file' => 'lc-header-footer-nav-menu.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-mobile-menu-toggle-js' => ['file' => 'lc-header-footer-mobile-menu-toggle.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-search-toggle-js' => ['file' => 'lc-header-footer-search-toggle.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-cart-icon-js' => ['file' => 'lc-header-footer-cart-icon.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false, 'path' => '']
         ];
 
@@ -143,6 +167,66 @@ class LCAKE_Kit_Widget_Loader
             'lcake-kit-icon-box-css' => ['file' => 'lcake-kit-icon-box.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-lottie-css' => ['file' => 'lcake-kit-lottie.css', 'enqueue' => true, 'path' => ''],
             'lcake-kit-video-css' => ['file' => 'lcake-kit-video.css', 'enqueue' => true, 'path' => ''],
+            'lcake-kit-breadcrumbs-css' => ['file' => 'lcake-kit-breadcrumbs.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-cta-box-css' => ['file' => 'lcake-kit-cta-box.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-flip-box-css' => ['file' => 'lcake-kit-flip-box.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-feature-list-css' => ['file' => 'lcake-kit-feature-list.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-tooltip-css' => ['file' => 'lcake-kit-tooltip.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-dual-color-header-css' => ['file' => 'lcake-kit-dual-color-header.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-fancy-text-css' => ['file' => 'lcake-kit-fancy-text.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-content-ticker-css' => ['file' => 'lcake-kit-content-ticker.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-simple-menu-css' => ['file' => 'lcake-kit-simple-menu.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-svg-draw-css' => ['file' => 'lcake-kit-svg-draw.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-code-snippet-css' => ['file' => 'lcake-kit-code-snippet.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-interactive-circle-css' => ['file' => 'lcake-kit-interactive-circle.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-filterable-gallery-css' => ['file' => 'lcake-kit-filterable-gallery.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-nft-gallery-css' => ['file' => 'lcake-kit-nft-gallery.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-sticky-video-css' => ['file' => 'lcake-kit-sticky-video.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-post-grid-css' => ['file' => 'lcake-kit-post-grid.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-post-timeline-css' => ['file' => 'lcake-kit-post-timeline.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-data-table-css' => ['file' => 'lcake-kit-data-table.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-advanced-data-table-css' => ['file' => 'lcake-kit-advanced-data-table.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-business-reviews-css' => ['file' => 'lcake-kit-business-reviews.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-product-grid-css' => ['file' => 'lcake-kit-product-grid.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-list-css' => ['file' => 'lcake-kit-woo-product-list.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-carousel-css' => ['file' => 'lcake-kit-woo-product-carousel.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-title-css' => ['file' => 'lcake-kit-woo-product-title.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-price-css' => ['file' => 'lcake-kit-woo-product-price.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-rating-css' => ['file' => 'lcake-kit-woo-product-rating.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-short-description-css' => ['file' => 'lcake-kit-woo-product-short-description.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-description-css' => ['file' => 'lcake-kit-woo-product-description.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-tabs-css' => ['file' => 'lcake-kit-woo-product-tabs.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-gallery-css' => ['file' => 'lcake-kit-woo-product-gallery.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-images-css' => ['file' => 'lcake-kit-woo-product-images.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-add-to-cart-css' => ['file' => 'lcake-kit-woo-add-to-cart.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-cart-css' => ['file' => 'lcake-kit-woo-cart.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-checkout-css' => ['file' => 'lcake-kit-woo-checkout.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-woo-product-compare-css' => ['file' => 'lcake-kit-woo-product-compare.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-gravity-forms-css' => ['file' => 'lcake-kit-gravity-forms.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-ninja-forms-css' => ['file' => 'lcake-kit-ninja-forms.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-wp-forms-css' => ['file' => 'lcake-kit-wp-forms.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-fluent-form-css' => ['file' => 'lcake-kit-fluent-form.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-we-forms-css' => ['file' => 'lcake-kit-we-forms.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-caldera-forms-css' => ['file' => 'lcake-kit-caldera-forms.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-formstack-css' => ['file' => 'lcake-kit-formstack.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-type-form-css' => ['file' => 'lcake-kit-type-form.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-facebook-feed-css' => ['file' => 'lcake-kit-facebook-feed.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-twitter-feed-css' => ['file' => 'lcake-kit-twitter-feed.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-login-register-css' => ['file' => 'lcake-kit-login-register.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-event-calendar-css' => ['file' => 'lcake-kit-event-calendar.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-embed-press-css' => ['file' => 'lcake-kit-embed-press.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-betterdocs-category-box-css' => ['file' => 'lcake-kit-betterdocs-category-box.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-betterdocs-category-grid-css' => ['file' => 'lcake-kit-betterdocs-category-grid.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-betterdocs-search-form-css' => ['file' => 'lcake-kit-betterdocs-search-form.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-better-payment-css' => ['file' => 'lcake-kit-better-payment.css', 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-site-logo-css' => ['file' => 'lc-header-footer-site-logo.css', 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-site-title-css' => ['file' => 'lc-header-footer-site-title.css', 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-nav-menu-css' => ['file' => 'lc-header-footer-nav-menu.css', 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-mobile-menu-toggle-css' => ['file' => 'lc-header-footer-mobile-menu-toggle.css', 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-search-toggle-css' => ['file' => 'lc-header-footer-search-toggle.css', 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-cart-icon-css' => ['file' => 'lc-header-footer-cart-icon.css', 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-contact-info-css' => ['file' => 'lc-header-footer-contact-info.css', 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-copyright-text-css' => ['file' => 'lc-header-footer-copyright-text.css', 'enqueue' => false, 'path' => ''],
             // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.css', 'enqueue' => false, 'path' => '']
         ];
 

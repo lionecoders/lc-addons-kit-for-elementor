@@ -1,0 +1,22 @@
+.lcake-fluent-form .ff-el-input--label label {
+    font-weight: 600;
+    color: #111827;
+}
+
+.lcake-fluent-form input.ff-el-form-control,
+.lcake-fluent-form select.ff-el-form-control,
+.lcake-fluent-form textarea.ff-el-form-control {
+    border-radius: 10px;
+    border-color: #e5e7eb;
+}
+
+.lcake-fluent-form .ff-btn-submit {
+    background: #3b82f6;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+}
+
+.lcake-fluent-form .ff-btn-submit:hover {
+    background: #2563eb;
+}

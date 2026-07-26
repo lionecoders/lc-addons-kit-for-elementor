@@ -1,0 +1,58 @@
+.lcake-docs-category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.lcake-docs-category-grid-column {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+.lcake-docs-category-grid-title {
+    margin: 0 0 14px 0;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.lcake-docs-category-grid-title a {
+    color: #111827;
+    text-decoration: none;
+}
+
+.lcake-docs-category-grid-title a:hover {
+    color: #3b82f6;
+}
+
+.lcake-docs-category-grid-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.lcake-docs-category-grid-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.lcake-docs-category-grid-list li:last-child {
+    border-bottom: none;
+}
+
+.lcake-docs-category-grid-list a {
+    color: #374151;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.lcake-docs-category-grid-list a:hover {
+    color: #3b82f6;
+}
+
+@media (max-width: 767px) {
+    .lcake-docs-category-grid {
+        grid-template-columns: 1fr;
+    }
+}

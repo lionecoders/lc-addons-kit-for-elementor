@@ -19,10 +19,73 @@ class LCAKE_Kit_Admin_Settings
         add_action('rest_api_init', [$this, 'register_rest_routes']);
     }
 
+    /**
+     * Maps a widget's filename (basename, no extension) to a display category.
+     * Anything from the lc-header-footer folder is always grouped separately
+     * regardless of this map (see load_widget_info()).
+     */
+    private function get_category_map()
+    {
+        return [
+            // Content & Layout
+            'accordion' => 'Content & Layout', 'breadcrumbs' => 'Content & Layout', 'button' => 'Content & Layout',
+            'code-snippet' => 'Content & Layout', 'content-ticker' => 'Content & Layout', 'cta-box' => 'Content & Layout',
+            'drop-caps' => 'Content & Layout', 'dual-color-header' => 'Content & Layout', 'fancy-text' => 'Content & Layout',
+            'faq' => 'Content & Layout', 'feature-list' => 'Content & Layout', 'flip-box' => 'Content & Layout',
+            'heading' => 'Content & Layout', 'icon-box' => 'Content & Layout', 'image-box' => 'Content & Layout',
+            'interactive-circle' => 'Content & Layout', 'simple-menu' => 'Content & Layout', 'tab' => 'Content & Layout',
+            'tooltip' => 'Content & Layout', 'svg-draw' => 'Content & Layout',
+            // Media & Gallery
+            'image-accordion' => 'Media & Gallery', 'image-comparison' => 'Media & Gallery', 'filterable-gallery' => 'Media & Gallery',
+            'nft-gallery' => 'Media & Gallery', 'sticky-video' => 'Media & Gallery', 'video' => 'Media & Gallery',
+            'lottie' => 'Media & Gallery', 'client-logo' => 'Media & Gallery',
+            // Data & Stats
+            'pie-chart' => 'Data & Stats', 'progress-bar' => 'Data & Stats', 'data-table' => 'Data & Stats',
+            'advanced-data-table' => 'Data & Stats', 'business-reviews' => 'Data & Stats', 'post-grid' => 'Data & Stats',
+            'post-timeline' => 'Data & Stats', 'funfact' => 'Data & Stats', 'countdown-timer' => 'Data & Stats',
+            'event-calendar' => 'Data & Stats',
+            // Team & Social Proof
+            'team' => 'Team & Social Proof', 'testimonial' => 'Team & Social Proof', 'pricing-table' => 'Team & Social Proof',
+            'business-hours' => 'Team & Social Proof', 'social-icons' => 'Team & Social Proof',
+            // WooCommerce
+            'product-grid' => 'WooCommerce', 'woo-add-to-cart' => 'WooCommerce', 'woo-cart' => 'WooCommerce',
+            'woo-checkout' => 'WooCommerce', 'woo-product-carousel' => 'WooCommerce', 'woo-product-compare' => 'WooCommerce',
+            'woo-product-description' => 'WooCommerce', 'woo-product-gallery' => 'WooCommerce', 'woo-product-images' => 'WooCommerce',
+            'woo-product-list' => 'WooCommerce', 'woo-product-price' => 'WooCommerce', 'woo-product-rating' => 'WooCommerce',
+            'woo-product-short-description' => 'WooCommerce', 'woo-product-tabs' => 'WooCommerce', 'woo-product-title' => 'WooCommerce',
+            // Forms
+            'contact-form-7' => 'Forms', 'mailchimp' => 'Forms', 'gravity-forms' => 'Forms', 'ninja-forms' => 'Forms',
+            'wp-forms' => 'Forms', 'fluent-form' => 'Forms', 'we-forms' => 'Forms', 'caldera-forms' => 'Forms',
+            'formstack' => 'Forms', 'type-form' => 'Forms',
+            // Social & Integrations
+            'facebook-feed' => 'Social & Integrations', 'twitter-feed' => 'Social & Integrations', 'login-register' => 'Social & Integrations',
+            'embed-press' => 'Social & Integrations', 'betterdocs-category-box' => 'Social & Integrations',
+            'betterdocs-category-grid' => 'Social & Integrations', 'betterdocs-search-form' => 'Social & Integrations',
+            'better-payment' => 'Social & Integrations',
+        ];
+    }
+
+    private function get_category_meta()
+    {
+        return [
+            'Content & Layout' => ['icon' => 'dashicons-layout', 'description' => 'General-purpose content and layout building block.'],
+            'Media & Gallery' => ['icon' => 'dashicons-format-gallery', 'description' => 'Image, video, or gallery display widget.'],
+            'Data & Stats' => ['icon' => 'dashicons-chart-bar', 'description' => 'Displays dynamic data, stats, or lists.'],
+            'Team & Social Proof' => ['icon' => 'dashicons-groups', 'description' => 'Showcases people, pricing, or reviews.'],
+            'WooCommerce' => ['icon' => 'dashicons-cart', 'description' => 'WooCommerce store widget (requires WooCommerce).'],
+            'Forms' => ['icon' => 'dashicons-email-alt', 'description' => 'Form-plugin integration (requires the matching plugin).'],
+            'Social & Integrations' => ['icon' => 'dashicons-share', 'description' => 'Third-party service or social integration.'],
+            'Header & Footer' => ['icon' => 'dashicons-menu-alt', 'description' => 'Building block for the Header/Footer Builder.'],
+            'Other' => ['icon' => 'dashicons-admin-generic', 'description' => 'Control the visibility of this widget.'],
+        ];
+    }
+
     private function load_widget_info()
     {
         $this->widgets = [];
-        $folders = ['lc-kit']; // add more folders if needed
+        $folders = ['lc-kit', 'lc-header-footer'];
+        $category_map = $this->get_category_map();
+        $category_meta = $this->get_category_meta();
 
         foreach ($folders as $folder) {
             $path = LCAKE_EAK_PATH . 'includes/widgets/' . $folder . '/';
@@ -37,18 +100,30 @@ class LCAKE_Kit_Admin_Settings
                 $base  = basename($file, '.php'); // file name without .php
                 $label = ucwords(str_replace(['-', '_'], ' ', $base)); // convert to "Accordion" style
 
-                $this->widgets[$base] = [
-                    'id'          => $base,
+                // Composite ID: matches the enable-check in LCAKE_Kit_Widget_Loader::register_widgets(),
+                // and disambiguates same-named files that exist in more than one folder (e.g. "post-grid").
+                $id = $folder . ':' . $base;
+
+                $category = 'lc-header-footer' === $folder
+                    ? 'Header & Footer'
+                    : ($category_map[$base] ?? 'Other');
+                $meta = $category_meta[$category] ?? $category_meta['Other'];
+
+                $this->widgets[$id] = [
+                    'id'          => $id,
                     'label'       => $label,
-                    'description' => 'Control the visibility of this widget.',
-                    'icon'        => 'dashicons-admin-generic',
+                    'description' => $meta['description'],
+                    'icon'        => $meta['icon'],
+                    'category'    => $category,
                     'is_pro'      => (strpos($base, 'pro') !== false),
                 ];
             }
         }
 
-        // Sort widgets alphabetically by label
-        uasort($this->widgets, fn($a, $b) => strcmp($a['label'], $b['label']));
+        // Sort widgets by category, then alphabetically by label within each category
+        uasort($this->widgets, function ($a, $b) {
+            return 0 !== ($cat_cmp = strcmp($a['category'], $b['category'])) ? $cat_cmp : strcmp($a['label'], $b['label']);
+        });
     }
 
     public function add_settings_page()

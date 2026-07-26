@@ -3,7 +3,8 @@
 /* Base Profile Card Styles */
 .lcake-profile-card {
     background-color: #fff;
-    box-shadow: 0 28px 40px 0 rgba(0,0,0,.1);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px -5px rgba(0,0,0,.08);
     padding: 40px 20px;
     transition: all .4s ease;
     position: relative;
@@ -15,11 +16,12 @@
 }
 
 .lcake-profile-card:hover {
-    box-shadow: 0 42px 60px 0 rgba(0,0,0,.3);
+    box-shadow: 0 15px 30px -5px rgba(0,0,0,.12);
+    transform: translateY(-4px);
 }
 
 .lcake-profile-card:hover .lcake-profile-body .lcake-profile-title {
-    color: #2575fc;
+    color: #3b82f6;
 }
 
 /* Profile Icon Styles */
@@ -98,6 +100,7 @@
 .lcake-profile-header > img {
     width: 160px;
     height: 160px;
+    border-radius: 16px;
     transition: all .4s ease;
 }
 
@@ -308,7 +311,7 @@
 }
 
 .lcake-profile-square-v.square-v2 .lcake-profile-card:hover .lcake-profile-body .lcake-profile-title {
-    color: #2575fc;
+    color: #3b82f6;
 }
 
 .lcake-profile-square-v.square-v2 .lcake-profile-card:hover .lcake-profile-body .lcake-profile-designation {
@@ -414,7 +417,7 @@
     width: 100%;
     bottom: 0;
     left: 0;
-    background-color: #2965f1;
+    background-color: #3b82f6;
     opacity: .2;
     transition: all .4s ease;
 }
@@ -802,7 +805,7 @@
 }
 
 .lcake-team-modal-list a:hover {
-    color: #2575fc;
+    color: #3b82f6;
 }
 
 .lcake-team-popup {

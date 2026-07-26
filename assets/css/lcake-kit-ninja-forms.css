@@ -1,0 +1,18 @@
+.lcake-ninja-forms .nf-form-fields-required {
+    color: #6b7280;
+}
+
+.lcake-ninja-forms .ninja-forms-field {
+    border-radius: 10px;
+    border-color: #e5e7eb;
+}
+
+.lcake-ninja-forms .nf-form-content input[type="submit"] {
+    background: #3b82f6;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.lcake-ninja-forms .nf-form-content input[type="submit"]:hover {
+    background: #2563eb;
+}

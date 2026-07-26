@@ -45,10 +45,12 @@ class LCAKE_Elementor_Addons_Kit
         require_once LCAKE_EAK_PATH . 'includes/lcake-utils.php';
         require_once LCAKE_EAK_PATH . 'includes/lcake-lib.php';
         require_once LCAKE_EAK_PATH . 'includes/lcake-widget-loader.php';
+        require_once LCAKE_EAK_PATH . 'includes/lcake-header-footer-builder.php';
         require_once LCAKE_EAK_PATH . 'admin/lcake-admin-page.php';
         new LCAKE_Kit_Widget_Loader();
         new LCAKE_Kit_Admin_Settings();
         new LCAKE_Lib();
+        new LCAKE_Header_Footer_Builder();
     }
 
 

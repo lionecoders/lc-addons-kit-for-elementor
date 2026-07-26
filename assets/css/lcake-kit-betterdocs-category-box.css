@@ -1,0 +1,45 @@
+.lcake-docs-category-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.lcake-docs-category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lcake-docs-category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.12);
+}
+
+.lcake-docs-category-icon {
+    font-size: 26px;
+    color: #3b82f6;
+}
+
+.lcake-docs-category-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.lcake-docs-category-count {
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+@media (max-width: 767px) {
+    .lcake-docs-category-box {
+        grid-template-columns: 1fr;
+    }
+}

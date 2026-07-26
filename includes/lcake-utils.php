@@ -429,6 +429,130 @@ class LCAKE_Kit_Utils
         return preg_replace('/[^A-Za-z0-9 ]/', '', $string);
     }
 
+    public static function is_woo_active()
+    {
+        return class_exists('WooCommerce');
+    }
+
+    public static function get_woo_product($product_id = 0)
+    {
+        if (!self::is_woo_active()) {
+            return false;
+        }
+
+        if (!empty($product_id)) {
+            return wc_get_product($product_id);
+        }
+
+        global $product;
+        if ($product instanceof \WC_Product) {
+            return $product;
+        }
+
+        $queried_id = get_the_ID();
+        if ($queried_id && 'product' === get_post_type($queried_id)) {
+            return wc_get_product($queried_id);
+        }
+
+        return false;
+    }
+
+    public static function get_woo_product_options()
+    {
+        $options = [0 => esc_html__('Current Product (auto)', 'lc-addons-kit-for-elementor')];
+
+        if (!self::is_woo_active()) {
+            return $options;
+        }
+
+        $products = get_posts([
+            'post_type' => 'product',
+            'posts_per_page' => 200,
+            'post_status' => 'publish',
+            'orderby' => 'title',
+            'order' => 'ASC',
+        ]);
+
+        foreach ($products as $product) {
+            $options[$product->ID] = $product->post_title;
+        }
+
+        return $options;
+    }
+
+    public static function woo_inactive_notice()
+    {
+        self::plugin_inactive_notice('WooCommerce');
+    }
+
+    public static function plugin_inactive_notice($plugin_name)
+    {
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+        echo '<p class="lcake-plugin-notice">' . sprintf(
+            /* translators: %s: plugin name */
+            esc_html__('%s needs to be installed & activated to use this widget.', 'lc-addons-kit-for-elementor'),
+            esc_html($plugin_name)
+        ) . '</p>';
+    }
+
+    public static function lcake_get_gravity_forms()
+    {
+        $options = [0 => esc_html__('Select Form', 'lc-addons-kit-for-elementor')];
+
+        if (class_exists('GFAPI')) {
+            $forms = \GFAPI::get_forms();
+            foreach ($forms as $form) {
+                $options[$form['id']] = $form['title'];
+            }
+        }
+
+        return $options;
+    }
+
+    public static function lcake_get_wpforms()
+    {
+        $options = [0 => esc_html__('Select Form', 'lc-addons-kit-for-elementor')];
+
+        if (function_exists('wpforms')) {
+            $forms = get_posts(['post_type' => 'wpforms', 'posts_per_page' => 200]);
+            foreach ($forms as $form) {
+                $options[$form->ID] = $form->post_title;
+            }
+        }
+
+        return $options;
+    }
+
+    public static function lcake_get_fluent_forms()
+    {
+        $options = [0 => esc_html__('Select Form', 'lc-addons-kit-for-elementor')];
+
+        if (defined('FLUENTFORM')) {
+            $forms = get_posts(['post_type' => 'fluent_form', 'posts_per_page' => 200]);
+            foreach ($forms as $form) {
+                $options[$form->ID] = $form->post_title;
+            }
+        }
+
+        return $options;
+    }
+
+    public static function lcake_get_weforms()
+    {
+        $options = [0 => esc_html__('Select Form', 'lc-addons-kit-for-elementor')];
+
+        if (class_exists('WeForms')) {
+            $forms = get_posts(['post_type' => 'wpuf_contact_form', 'posts_per_page' => 200]);
+            foreach ($forms as $form) {
+                $options[$form->ID] = $form->post_title;
+            }
+        }
+
+        return $options;
+    }
+
     public static function lcake_file_enqueue($scripts, $file)
     {
         $register_func = 'wp_register_' . $file;

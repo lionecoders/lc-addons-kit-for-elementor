@@ -1,0 +1,15 @@
+.lcake-caldera-forms .form-control {
+    border-radius: 10px;
+    border-color: #e5e7eb;
+}
+
+.lcake-caldera-forms button[type="submit"] {
+    background: #3b82f6;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+}
+
+.lcake-caldera-forms button[type="submit"]:hover {
+    background: #2563eb;
+}

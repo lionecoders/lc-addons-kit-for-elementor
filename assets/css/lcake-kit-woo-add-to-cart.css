@@ -1,0 +1,33 @@
+.lcake-woo-add-to-cart .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #3b82f6;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.lcake-woo-add-to-cart .button:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+}
+
+.lcake-woo-add-to-cart .quantity {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.lcake-woo-add-to-cart .quantity input {
+    width: 60px;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    text-align: center;
+}

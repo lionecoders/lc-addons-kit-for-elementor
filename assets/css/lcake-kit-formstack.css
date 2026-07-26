@@ -1,0 +1,12 @@
+.lcake-formstack {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.lcake-formstack-iframe {
+    width: 100%;
+    min-height: 500px;
+    border: 0;
+    display: block;
+}

@@ -1,0 +1,12 @@
+.lcake-embed-press {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+.lcake-embed-press iframe {
+    width: 100%;
+    height: 480px;
+    border: 0;
+    display: block;
+}

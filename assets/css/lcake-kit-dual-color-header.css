@@ -1,0 +1,15 @@
+.lcake-dual-color-header {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.lcake-dual-color-header-part-one,
+.lcake-dual-color-header-part-two {
+    display: inline;
+}
+
+.lcake-dual-color-header-part-one::after {
+    content: ' ';
+}

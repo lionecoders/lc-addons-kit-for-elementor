@@ -1,0 +1,15 @@
+.lcake-woo-product-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.lcake-woo-product-rating .star-rating {
+    font-size: 15px;
+    color: #facc15;
+}
+
+.lcake-woo-product-rating-count {
+    color: #6b7280;
+}
