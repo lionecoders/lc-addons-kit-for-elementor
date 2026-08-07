@@ -62,3 +62,12 @@
     padding: 22px 36px;
     font-size: 18px;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-betterdocs-search-form a,
+.lcake-betterdocs-search-form a,
+.lcake-kit-betterdocs-search-form a,
+.lc-header-footer-betterdocs-search-form a {
+    text-decoration: none !important;
+}

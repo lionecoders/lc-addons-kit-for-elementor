@@ -55,3 +55,12 @@
 .lc-hf-search-input:focus {
     border-color: #3b82f6;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lc-header-footer-search-toggle a,
+.lcake-search-toggle a,
+.lcake-kit-search-toggle a,
+.lc-header-footer-search-toggle a {
+    text-decoration: none !important;
+}

@@ -22,3 +22,12 @@
 .lcake-woo-gallery-item:hover .lcake-woo-gallery-image {
     transform: scale(1.06);
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-gallery a,
+.lcake-woo-product-gallery a,
+.lcake-kit-woo-product-gallery a,
+.lc-header-footer-woo-product-gallery a {
+    text-decoration: none !important;
+}

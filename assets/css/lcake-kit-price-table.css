@@ -258,3 +258,12 @@
     display: none;
     position: fixed
 }
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-price-table a,
+.elementor-widget-lcake-kit-pricing-table a,
+.lcake-price-table a,
+.lcake-kit-price-table a,
+.lc-header-footer-price-table a {
+    text-decoration: none !important;
+}

@@ -43,3 +43,12 @@
     color: #9ca3af;
     display: inline-flex;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-breadcrumbs a,
+.lcake-breadcrumbs a,
+.lcake-kit-breadcrumbs a,
+.lc-header-footer-breadcrumbs a {
+    text-decoration: none !important;
+}

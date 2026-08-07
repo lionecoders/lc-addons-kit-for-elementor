@@ -16,3 +16,12 @@
     font-size: 13px;
     color: #6b7280;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lc-header-footer-site-title a,
+.lcake-site-title a,
+.lcake-kit-site-title a,
+.lc-header-footer-site-title a {
+    text-decoration: none !important;
+}

@@ -13,3 +13,12 @@
 .lcake-dual-color-header-part-one::after {
     content: ' ';
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-dual-color-header a,
+.lcake-dual-color-header a,
+.lcake-kit-dual-color-header a,
+.lc-header-footer-dual-color-header a {
+    text-decoration: none !important;
+}

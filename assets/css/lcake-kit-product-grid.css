@@ -89,3 +89,12 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-product-grid a,
+.lcake-product-grid a,
+.lcake-kit-product-grid a,
+.lc-header-footer-product-grid a {
+    text-decoration: none !important;
+}

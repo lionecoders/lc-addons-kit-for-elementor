@@ -74,3 +74,12 @@
 .lcake-woo-carousel .swiper-pagination-bullet-active {
     background: #3b82f6;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-carousel a,
+.lcake-woo-product-carousel a,
+.lcake-kit-woo-product-carousel a,
+.lc-header-footer-woo-product-carousel a {
+    text-decoration: none !important;
+}

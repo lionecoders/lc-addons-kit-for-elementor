@@ -22,3 +22,12 @@
 .lcake-svg-draw.is-drawn svg line {
     stroke-dashoffset: 0;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-svg-draw a,
+.lcake-svg-draw a,
+.lcake-kit-svg-draw a,
+.lc-header-footer-svg-draw a {
+    text-decoration: none !important;
+}

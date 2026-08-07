@@ -364,3 +364,11 @@
     animation: lcakeFadeIn .9s ease-in-out;
   }
   @keyframes lcakeFadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-tab a,
+.lcake-tab a,
+.lcake-kit-tab a,
+.lc-header-footer-tab a {
+    text-decoration: none !important;
+}

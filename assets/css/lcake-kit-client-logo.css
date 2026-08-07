@@ -349,3 +349,11 @@
 .lcake-main-wrapper .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
     content: none;
 }   
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-client-logo a,
+.lcake-client-logo a,
+.lcake-kit-client-logo a,
+.lc-header-footer-client-logo a {
+    text-decoration: none !important;
+}

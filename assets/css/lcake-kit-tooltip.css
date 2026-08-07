@@ -140,3 +140,12 @@
 .lcake-tooltip--pos-right .lcake-tooltip-trigger:hover + .lcake-tooltip-content {
     transform: translate(0, -50%);
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-tooltip a,
+.lcake-tooltip a,
+.lcake-kit-tooltip a,
+.lc-header-footer-tooltip a {
+    text-decoration: none !important;
+}

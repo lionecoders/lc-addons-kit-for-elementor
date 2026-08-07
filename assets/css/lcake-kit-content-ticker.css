@@ -55,3 +55,12 @@
         transform: translateX(-50%);
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-content-ticker a,
+.lcake-content-ticker a,
+.lcake-kit-content-ticker a,
+.lc-header-footer-content-ticker a {
+    text-decoration: none !important;
+}

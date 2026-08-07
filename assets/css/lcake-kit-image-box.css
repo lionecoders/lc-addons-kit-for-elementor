@@ -143,3 +143,12 @@
         text-align: center;
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-image-box a,
+.lcake-image-box a,
+.lcake-kit-image-box a,
+.lc-header-footer-image-box a {
+    text-decoration: none !important;
+}

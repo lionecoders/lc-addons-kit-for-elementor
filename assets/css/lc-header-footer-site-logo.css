@@ -18,3 +18,12 @@
     font-size: 13px;
     font-style: italic;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lc-header-footer-site-logo a,
+.lcake-site-logo a,
+.lcake-kit-site-logo a,
+.lc-header-footer-site-logo a {
+    text-decoration: none !important;
+}

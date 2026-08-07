@@ -870,3 +870,12 @@
         transform: translateY(-2px);
     }
 }
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-team a,
+.elementor-widget-lcake-kit-team a,
+.lcake-team a,
+.lcake-kit-team a,
+.lc-header-footer-team a {
+    text-decoration: none !important;
+}

@@ -84,3 +84,12 @@
     font-weight: 600;
     text-decoration: none;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-login-register a,
+.lcake-login-register a,
+.lcake-kit-login-register a,
+.lc-header-footer-login-register a {
+    text-decoration: none !important;
+}

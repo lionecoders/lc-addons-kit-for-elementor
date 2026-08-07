@@ -44,3 +44,13 @@
     margin-right: 6px;
     display: inline-block;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lceak-kit-pie-chart a,
+.elementor-widget-lcake-kit-pie-chart a,
+.lcake-pie-chart a,
+.lcake-kit-pie-chart a,
+.lc-header-footer-pie-chart a {
+    text-decoration: none !important;
+}

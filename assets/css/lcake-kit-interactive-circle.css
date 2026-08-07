@@ -50,3 +50,12 @@
 .lcake-interactive-circle:hover .lcake-interactive-circle-title {
     color: #ffffff;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-interactive-circle a,
+.lcake-interactive-circle a,
+.lcake-kit-interactive-circle a,
+.lc-header-footer-interactive-circle a {
+    text-decoration: none !important;
+}

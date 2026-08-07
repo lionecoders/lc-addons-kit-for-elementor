@@ -64,3 +64,12 @@
         grid-template-columns: 1fr;
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-business-reviews a,
+.lcake-business-reviews a,
+.lcake-kit-business-reviews a,
+.lc-header-footer-business-reviews a {
+    text-decoration: none !important;
+}

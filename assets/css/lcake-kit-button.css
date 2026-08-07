@@ -73,3 +73,12 @@
         font-size: 10px;
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-button a,
+.lcake-button a,
+.lcake-kit-button a,
+.lc-header-footer-button a {
+    text-decoration: none !important;
+}

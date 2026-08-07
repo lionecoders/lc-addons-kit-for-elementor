@@ -71,3 +71,12 @@
 .lcake-mailchimp--stacked .lcake-mailchimp-button {
     width: 100%;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-mailchimp a,
+.lcake-mailchimp a,
+.lcake-kit-mailchimp a,
+.lc-header-footer-mailchimp a {
+    text-decoration: none !important;
+}

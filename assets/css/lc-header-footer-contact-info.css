@@ -40,3 +40,12 @@
 a.lc-hf-contact-link:hover .lc-hf-contact-text {
     color: #3b82f6;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lc-header-footer-contact-info a,
+.lcake-contact-info a,
+.lcake-kit-contact-info a,
+.lc-header-footer-contact-info a {
+    text-decoration: none !important;
+}

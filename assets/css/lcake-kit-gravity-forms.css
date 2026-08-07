@@ -20,3 +20,12 @@
 .lcake-gravity-forms .gform_wrapper .gform_button:hover {
     background: #2563eb;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-gravity-forms a,
+.lcake-gravity-forms a,
+.lcake-kit-gravity-forms a,
+.lc-header-footer-gravity-forms a {
+    text-decoration: none !important;
+}

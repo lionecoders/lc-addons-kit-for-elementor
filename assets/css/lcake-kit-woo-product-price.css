@@ -14,3 +14,12 @@
 .lcake-woo-product-price ins {
     text-decoration: none;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-price a,
+.lcake-woo-product-price a,
+.lcake-kit-woo-product-price a,
+.lc-header-footer-woo-product-price a {
+    text-decoration: none !important;
+}

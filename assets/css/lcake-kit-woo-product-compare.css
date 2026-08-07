@@ -34,3 +34,12 @@
     white-space: nowrap;
     background: #f9fafb;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-compare a,
+.lcake-woo-product-compare a,
+.lcake-kit-woo-product-compare a,
+.lc-header-footer-woo-product-compare a {
+    text-decoration: none !important;
+}

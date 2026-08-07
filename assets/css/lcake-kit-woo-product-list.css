@@ -99,3 +99,12 @@
     outline: none !important;
     box-shadow: none !important;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-list a,
+.lcake-woo-product-list a,
+.lcake-kit-woo-product-list a,
+.lc-header-footer-woo-product-list a {
+    text-decoration: none !important;
+}

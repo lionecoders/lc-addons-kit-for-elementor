@@ -129,3 +129,12 @@
         display: block;
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lc-header-footer-nav-menu a,
+.lcake-nav-menu a,
+.lcake-kit-nav-menu a,
+.lc-header-footer-nav-menu a {
+    text-decoration: none !important;
+}

@@ -38,3 +38,12 @@ body.lcake-mobile-menu-open .lc-hf-menu-toggle .lc-hf-menu-toggle-bar:nth-child(
         display: flex;
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lc-header-footer-mobile-menu-toggle a,
+.lcake-mobile-menu-toggle a,
+.lcake-kit-mobile-menu-toggle a,
+.lc-header-footer-mobile-menu-toggle a {
+    text-decoration: none !important;
+}

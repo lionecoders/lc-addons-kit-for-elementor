@@ -81,3 +81,12 @@
     padding: 24px;
     min-height: 200px;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-video a,
+.lcake-video a,
+.lcake-kit-video a,
+.lc-header-footer-video a {
+    text-decoration: none !important;
+}

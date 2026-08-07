@@ -19,3 +19,12 @@
 .lcake-we-forms input[type="submit"]:hover {
     background: #2563eb;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-we-forms a,
+.lcake-we-forms a,
+.lcake-kit-we-forms a,
+.lc-header-footer-we-forms a {
+    text-decoration: none !important;
+}

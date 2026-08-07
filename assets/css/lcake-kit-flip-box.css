@@ -121,3 +121,12 @@
     transform: translateY(-3px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-flip-box a,
+.lcake-flip-box a,
+.lcake-kit-flip-box a,
+.lc-header-footer-flip-box a {
+    text-decoration: none !important;
+}

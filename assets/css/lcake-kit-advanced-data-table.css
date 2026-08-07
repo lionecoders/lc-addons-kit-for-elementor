@@ -320,3 +320,12 @@
     margin-top: 15px;
     background: #f8fafc;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-advanced-data-table a,
+.lcake-advanced-data-table a,
+.lcake-kit-advanced-data-table a,
+.lc-header-footer-advanced-data-table a {
+    text-decoration: none !important;
+}

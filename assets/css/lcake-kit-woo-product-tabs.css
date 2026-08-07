@@ -63,3 +63,12 @@
     color: #111827;
     margin: 0 0 15px 0;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-tabs a,
+.lcake-woo-product-tabs a,
+.lcake-kit-woo-product-tabs a,
+.lc-header-footer-woo-product-tabs a {
+    text-decoration: none !important;
+}

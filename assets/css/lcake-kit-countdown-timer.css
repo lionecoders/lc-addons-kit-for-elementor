@@ -285,3 +285,12 @@
     color: #ef233c !important;
     padding: 20px !important;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-countdown-timer a,
+.lcake-countdown-timer a,
+.lcake-kit-countdown-timer a,
+.lc-header-footer-countdown-timer a {
+    text-decoration: none !important;
+}

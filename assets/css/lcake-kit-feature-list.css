@@ -55,3 +55,12 @@
 a.lcake-feature-list-link:hover .lcake-feature-list-text {
     color: #3b82f6;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-feature-list a,
+.lcake-feature-list a,
+.lcake-kit-feature-list a,
+.lc-header-footer-feature-list a {
+    text-decoration: none !important;
+}

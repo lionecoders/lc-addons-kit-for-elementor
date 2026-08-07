@@ -74,3 +74,12 @@
         padding: 36px;
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-cta-box a,
+.lcake-cta-box a,
+.lcake-kit-cta-box a,
+.lc-header-footer-cta-box a {
+    text-decoration: none !important;
+}

@@ -277,3 +277,11 @@ ease;
     top: 0;
     left: 0;
 }
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-testimonial a,
+.lcake-testimonial a,
+.lcake-kit-testimonial a,
+.lc-header-footer-testimonial a {
+    text-decoration: none !important;
+}

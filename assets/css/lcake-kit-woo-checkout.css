@@ -20,3 +20,12 @@
 .lcake-woo-checkout #place_order:hover {
     background: #2563eb;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-checkout a,
+.lcake-woo-checkout a,
+.lcake-kit-woo-checkout a,
+.lc-header-footer-woo-checkout a {
+    text-decoration: none !important;
+}

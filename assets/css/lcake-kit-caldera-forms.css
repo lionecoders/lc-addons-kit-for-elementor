@@ -13,3 +13,12 @@
 .lcake-caldera-forms button[type="submit"]:hover {
     background: #2563eb;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-caldera-forms a,
+.lcake-caldera-forms a,
+.lcake-kit-caldera-forms a,
+.lc-header-footer-caldera-forms a {
+    text-decoration: none !important;
+}

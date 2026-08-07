@@ -63,3 +63,12 @@
 .lcake-docs-category-grid-list a {
     text-decoration: none !important;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-betterdocs-category-grid a,
+.lcake-betterdocs-category-grid a,
+.lcake-kit-betterdocs-category-grid a,
+.lc-header-footer-betterdocs-category-grid a {
+    text-decoration: none !important;
+}

@@ -33,3 +33,12 @@
     background: #3b82f6;
     color: #ffffff;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-cart a,
+.lcake-woo-cart a,
+.lcake-kit-woo-cart a,
+.lc-header-footer-woo-cart a {
+    text-decoration: none !important;
+}

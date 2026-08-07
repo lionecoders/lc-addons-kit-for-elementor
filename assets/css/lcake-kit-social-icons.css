@@ -25,3 +25,12 @@ ul.lcake-social-icons {
 .lcake-social-icons--horizontal.align-right {
     justify-content: flex-end;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-social-icons a,
+.lcake-social-icons a,
+.lcake-kit-social-icons a,
+.lc-header-footer-social-icons a {
+    text-decoration: none !important;
+}

@@ -14,3 +14,12 @@
 .lcake-wp-forms .wpforms-submit:hover {
     background: #2563eb !important;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-wp-forms a,
+.lcake-wp-forms a,
+.lcake-kit-wp-forms a,
+.lc-header-footer-wp-forms a {
+    text-decoration: none !important;
+}

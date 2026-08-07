@@ -13,3 +13,12 @@
 .lcake-woo-product-rating-count {
     color: #6b7280;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-rating a,
+.lcake-woo-product-rating a,
+.lcake-kit-woo-product-rating a,
+.lc-header-footer-woo-product-rating a {
+    text-decoration: none !important;
+}

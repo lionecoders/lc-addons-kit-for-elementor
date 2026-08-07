@@ -87,3 +87,12 @@
     color: #6b7280;
     transition: color 0.3s ease;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-post-timeline a,
+.lcake-post-timeline a,
+.lcake-kit-post-timeline a,
+.lc-header-footer-post-timeline a {
+    text-decoration: none !important;
+}

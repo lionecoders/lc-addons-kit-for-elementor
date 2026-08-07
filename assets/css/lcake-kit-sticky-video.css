@@ -85,3 +85,12 @@
         transform: translateY(0);
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-sticky-video a,
+.lcake-sticky-video a,
+.lcake-kit-sticky-video a,
+.lc-header-footer-sticky-video a {
+    text-decoration: none !important;
+}

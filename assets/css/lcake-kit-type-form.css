@@ -22,3 +22,12 @@
 .lcake-typeform-button:hover {
     background: #2563eb;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-type-form a,
+.lcake-type-form a,
+.lcake-kit-type-form a,
+.lc-header-footer-type-form a {
+    text-decoration: none !important;
+}

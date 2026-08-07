@@ -10,3 +10,12 @@
 .lcake-better-payment button[type="submit"]:hover {
     background: #2563eb;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-better-payment a,
+.lcake-better-payment a,
+.lcake-kit-better-payment a,
+.lc-header-footer-better-payment a {
+    text-decoration: none !important;
+}

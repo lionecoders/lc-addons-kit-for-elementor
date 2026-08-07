@@ -192,3 +192,12 @@
 .lcake-simple-menu--dropdown .lcake-simple-menu-item a:hover {
     background: rgba(59, 130, 246, 0.08);
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-simple-menu a,
+.lcake-simple-menu a,
+.lcake-kit-simple-menu a,
+.lc-header-footer-simple-menu a {
+    text-decoration: none !important;
+}

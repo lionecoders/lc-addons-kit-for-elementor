@@ -138,3 +138,12 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-filterable-gallery a,
+.lcake-filterable-gallery a,
+.lcake-kit-filterable-gallery a,
+.lc-header-footer-filterable-gallery a {
+    text-decoration: none !important;
+}

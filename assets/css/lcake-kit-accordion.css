@@ -149,3 +149,12 @@
         padding: 12px 18px 22px 18px;
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-accordion a,
+.lcake-accordion a,
+.lcake-kit-accordion a,
+.lc-header-footer-accordion a {
+    text-decoration: none !important;
+}

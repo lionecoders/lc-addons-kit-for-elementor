@@ -49,3 +49,12 @@
 .lcake-fancy-text--anim-slide-up .lcake-fancy-text-word.is-active {
     transform: translateY(0);
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-fancy-text a,
+.lcake-fancy-text a,
+.lcake-kit-fancy-text a,
+.lc-header-footer-fancy-text a {
+    text-decoration: none !important;
+}

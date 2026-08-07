@@ -70,3 +70,12 @@
 .lcake-docs-category-card:hover {
     text-decoration: none !important;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-betterdocs-category-box a,
+.lcake-betterdocs-category-box a,
+.lcake-kit-betterdocs-category-box a,
+.lc-header-footer-betterdocs-category-box a {
+    text-decoration: none !important;
+}

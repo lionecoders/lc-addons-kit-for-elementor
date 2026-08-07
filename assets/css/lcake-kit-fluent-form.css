@@ -20,3 +20,12 @@
 .lcake-fluent-form .ff-btn-submit:hover {
     background: #2563eb;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-fluent-form a,
+.lcake-fluent-form a,
+.lcake-kit-fluent-form a,
+.lc-header-footer-fluent-form a {
+    text-decoration: none !important;
+}

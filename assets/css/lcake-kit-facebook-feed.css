@@ -9,3 +9,12 @@
     width: 100%;
     display: block;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-facebook-feed a,
+.lcake-facebook-feed a,
+.lcake-kit-facebook-feed a,
+.lc-header-footer-facebook-feed a {
+    text-decoration: none !important;
+}

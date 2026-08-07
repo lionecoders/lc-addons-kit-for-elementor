@@ -88,3 +88,12 @@
     background: #2563eb;
     color: #ffffff;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lc-header-footer-cart-icon a,
+.lcake-cart-icon a,
+.lcake-kit-cart-icon a,
+.lc-header-footer-cart-icon a {
+    text-decoration: none !important;
+}

@@ -52,3 +52,12 @@
 .lcake-woo-images-thumb.is-active {
     border-color: #3b82f6;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-images a,
+.lcake-woo-product-images a,
+.lcake-kit-woo-product-images a,
+.lc-header-footer-woo-product-images a {
+    text-decoration: none !important;
+}

@@ -31,3 +31,12 @@
     border-radius: 10px;
     text-align: center;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-add-to-cart a,
+.lcake-woo-add-to-cart a,
+.lcake-kit-woo-add-to-cart a,
+.lc-header-footer-woo-add-to-cart a {
+    text-decoration: none !important;
+}

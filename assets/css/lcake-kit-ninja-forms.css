@@ -16,3 +16,12 @@
 .lcake-ninja-forms .nf-form-content input[type="submit"]:hover {
     background: #2563eb;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-ninja-forms a,
+.lcake-ninja-forms a,
+.lcake-kit-ninja-forms a,
+.lc-header-footer-ninja-forms a {
+    text-decoration: none !important;
+}

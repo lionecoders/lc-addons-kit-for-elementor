@@ -7,3 +7,12 @@
 .lcake-woo-description p:last-child {
     margin-bottom: 0;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-description a,
+.lcake-woo-product-description a,
+.lcake-kit-woo-product-description a,
+.lc-header-footer-woo-product-description a {
+    text-decoration: none !important;
+}

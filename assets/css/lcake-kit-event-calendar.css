@@ -137,3 +137,12 @@
     color: #9ca3af;
     white-space: nowrap;
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-event-calendar a,
+.lcake-event-calendar a,
+.lcake-kit-event-calendar a,
+.lc-header-footer-event-calendar a {
+    text-decoration: none !important;
+}
