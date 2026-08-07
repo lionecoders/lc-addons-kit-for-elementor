@@ -1,30 +1,64 @@
 .lcake-docs-search-form {
     display: flex;
-    max-width: 480px;
     background: #ffffff;
     border-radius: 14px;
     box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
     overflow: hidden;
+    width: 100%;
 }
 
 .lcake-docs-search-input {
     flex: 1;
     border: none;
-    padding: 16px 20px;
-    font-size: 15px;
     outline: none;
+    box-sizing: border-box;
 }
 
 .lcake-docs-search-button {
-    background: #3b82f6;
-    color: #ffffff;
     border: none;
-    padding: 0 28px;
     font-weight: 700;
     cursor: pointer;
-    transition: background 0.3s ease;
+    box-sizing: border-box;
 }
 
-.lcake-docs-search-button:hover {
-    background: #2563eb;
+/* Size: Small */
+.lcake-docs-search-form.size-small {
+    max-width: 400px;
+    margin: 0 auto;
+}
+.lcake-docs-search-form.size-small .lcake-docs-search-input {
+    padding: 10px 14px;
+    font-size: 13px;
+}
+.lcake-docs-search-form.size-small .lcake-docs-search-button {
+    padding: 10px 20px;
+    font-size: 13px;
+}
+
+/* Size: Medium */
+.lcake-docs-search-form.size-medium {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.lcake-docs-search-form.size-medium .lcake-docs-search-input {
+    padding: 16px 20px;
+    font-size: 15px;
+}
+.lcake-docs-search-form.size-medium .lcake-docs-search-button {
+    padding: 16px 28px;
+    font-size: 15px;
+}
+
+/* Size: Large */
+.lcake-docs-search-form.size-large {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.lcake-docs-search-form.size-large .lcake-docs-search-input {
+    padding: 22px 28px;
+    font-size: 18px;
+}
+.lcake-docs-search-form.size-large .lcake-docs-search-button {
+    padding: 22px 36px;
+    font-size: 18px;
 }

@@ -46,9 +46,6 @@
     text-decoration: underline;
 }
 
-.lcake-content-ticker:hover .lcake-content-ticker-track {
-    animation-play-state: paused;
-}
 
 @keyframes lcake-ticker-scroll {
     from {

@@ -20,7 +20,7 @@ class LCAKE_Kit_Simple_Menu extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Simple Menu', 'lc-addons-kit-for-elementor');
+        return esc_html__('Simple Menu', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -85,8 +85,33 @@ class LCAKE_Kit_Simple_Menu extends \Elementor\Widget_Base {
                 'options' => [
                     'horizontal' => esc_html__('Horizontal', 'lc-addons-kit-for-elementor'),
                     'vertical' => esc_html__('Vertical', 'lc-addons-kit-for-elementor'),
+                    'dropdown' => esc_html__('Dropdown Toggle', 'lc-addons-kit-for-elementor'),
                 ],
                 'prefix_class' => 'lcake-simple-menu--',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'alignment',
+            [
+                'label' => esc_html__('Alignment', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'left',
+                'prefix_class' => 'lcake-simple-menu-align%s--',
             ]
         );
 
@@ -120,6 +145,22 @@ class LCAKE_Kit_Simple_Menu extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'item_hover_underline',
+            [
+                'label' => esc_html__('Hover Underline', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'none',
+                'options' => [
+                    'none' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
+                    'underline' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-simple-menu-item a:hover' => 'text-decoration: {{VALUE}} !important;',
+                ],
+            ]
+        );
+
         $this->add_responsive_control(
             'item_spacing',
             [
@@ -149,8 +190,21 @@ class LCAKE_Kit_Simple_Menu extends \Elementor\Widget_Base {
         if (empty($items)) {
             return;
         }
+        $layout = $settings['layout'] ?? 'horizontal';
+        $widget_id = $this->get_id();
         ?>
         <nav class="lcake-simple-menu-wrapper">
+            <?php if ('dropdown' === $layout) : ?>
+                <input type="checkbox" id="lcake-menu-toggle-<?php echo esc_attr($widget_id); ?>" class="lcake-simple-menu-toggle-checkbox" style="display: none;">
+                <label for="lcake-menu-toggle-<?php echo esc_attr($widget_id); ?>" class="lcake-simple-menu-toggle-btn">
+                    <span class="lcake-simple-menu-toggle-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <span class="lcake-simple-menu-toggle-text"><?php echo esc_html__('Menu', 'lc-addons-kit-for-elementor'); ?></span>
+                </label>
+            <?php endif; ?>
             <ul class="lcake-simple-menu">
                 <?php foreach ($items as $item) :
                     $link = $item['menu_link'] ?? [];

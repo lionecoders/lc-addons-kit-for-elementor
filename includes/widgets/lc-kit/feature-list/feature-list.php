@@ -20,7 +20,7 @@ class LCAKE_Kit_Feature_List extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Feature List', 'lc-addons-kit-for-elementor');
+        return esc_html__('Feature List', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -148,6 +148,50 @@ class LCAKE_Kit_Feature_List extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'icon_padding',
+            [
+                'label' => esc_html__('Icon Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                ],
+                'default' => [
+                    'size' => 7,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-feature-list-icon' => 'padding: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'icon_spacing',
+            [
+                'label' => esc_html__('Icon Spacing', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                ],
+                'default' => [
+                    'size' => 12,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-feature-list-link' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
+
         $this->add_control(
             'text_color',
             [
@@ -178,6 +222,28 @@ class LCAKE_Kit_Feature_List extends \Elementor\Widget_Base {
                 ],
             ]
         );
+
+        $this->add_responsive_control(
+            'horizontal_spacing',
+            [
+                'label' => esc_html__('Horizontal Spacing', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'size' => 24,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-feature-list' => 'column-gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
 
         $this->end_controls_section();
     }

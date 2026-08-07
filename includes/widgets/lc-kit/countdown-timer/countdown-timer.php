@@ -34,7 +34,7 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
 
     public function get_title()
     {
-        return esc_html__('LC Countdown Timer', 'lc-addons-kit-for-elementor');
+        return esc_html__('Countdown Timer', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon()
@@ -214,7 +214,7 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'dynamic' => [
                     'active' => true,
                 ],
-                'default' => esc_html__('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s', 'lc-addons-kit-for-elementor'),
+                'default' => esc_html__('This event/offer has ended. Thank you for your interest!', 'lc-addons-kit-for-elementor'),
             ]
         );
 
@@ -520,7 +520,7 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
             [
                 'name' => 'lcake_countdown_timer_weeks_border_color_group',
                 'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
-                'selector' => '{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-count,
+                'selector' => '{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-wks .lcake-inner-container,
 				{{WRAPPER}} .lcake-flip-clock  > .lcake-wks ',
 
             ]
@@ -748,10 +748,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
                 'types' => ['classic', 'gradient'],
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-days .lcake-inner-container,
-								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-inner-container,
 								{{WRAPPER}} .lcake-flip-clock  > .lcake-days .lcake-count ',
                 'seperator' => 'before'
             ]
@@ -765,10 +765,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'name' => 'lcake_countdown_timer_days_border_color_group',
                 'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-days .lcake-inner-container,
-				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-inner-container,
 				{{WRAPPER}} .lcake-flip-clock .lcake-days ',
             ]
         );
@@ -790,10 +790,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'name' => 'lcake_countdown_timer_days_box_shadow_group',
                 'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-days .lcake-inner-container,
-				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-days .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-days .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-days .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-days .lcake-inner-container,
 				{{WRAPPER}} .lcake-flip-clock .lcake-days ',
             ]
         );
@@ -998,10 +998,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'types' => ['classic', 'gradient'],
 
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-hours .lcake-inner-container,
-								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-inner-container,
 								{{WRAPPER}} .lcake-flip-clock  > .lcake-hrs .lcake-count ',
             ]
         );
@@ -1012,10 +1012,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'name' => 'lcake_countdown_timer_hours_border_color_group',
                 'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-hours .lcake-inner-container,
-				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-inner-container,
 				{{WRAPPER}} .lcake-flip-clock .lcake-hrs ',
             ]
         );
@@ -1037,10 +1037,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'name' => 'lcake_countdown_timer_hours_box_shadow_group',
                 'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-hours .lcake-inner-container,
-				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-hours .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-hours .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-hours .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-hours .lcake-inner-container,
 				{{WRAPPER}} .lcake-flip-clock .lcake-hrs ',
             ]
         );
@@ -1245,10 +1245,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'types' => ['classic', 'gradient'],
 
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-minutes .lcake-inner-container,
-								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-inner-container,
 								{{WRAPPER}} .lcake-flip-clock  > .lcake-mins .lcake-count ',
             ]
         );
@@ -1259,10 +1259,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'name' => 'lcake_countdown_timer_minutes_border_color_group',
                 'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-minutes .lcake-inner-container,
-				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-inner-container,
 				{{WRAPPER}} .lcake-flip-clock .lcake-mins ',
             ]
         );
@@ -1284,10 +1284,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'name' => 'lcake_countdown_timer_minutes_box_shadow_group',
                 'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-minutes .lcake-inner-container,
-				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-minutes .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-minutes .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-minutes .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-minutes .lcake-inner-container,
 				{{WRAPPER}} .lcake-flip-clock .lcake-mins ',
             ]
         );
@@ -1494,10 +1494,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'types' => ['classic', 'gradient'],
 
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-seconds .lcake-inner-container,
-								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-timer-count,
-								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+								{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-inner-container,
+								{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-inner-container,
 								{{WRAPPER}} .lcake-flip-clock  > .lcake-secs .lcake-count ',
             ]
         );
@@ -1508,10 +1508,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'name' => 'lcake_countdown_timer_seconds_border_color_group',
                 'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-seconds .lcake-inner-container,
-				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-inner-container,
 				{{WRAPPER}} .lcake-flip-clock .lcake-secs ',
             ]
         );
@@ -1533,10 +1533,10 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base
                 'name' => 'lcake_countdown_timer_seconds_box_shadow_group',
                 'label' => esc_html__('Box Shadow', 'lc-addons-kit-for-elementor'),
                 'selector' => '{{WRAPPER}} .lcake-countdown-timer .lcake-timer-container.lcake-seconds .lcake-inner-container,
-				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-timer-count,
-				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-timer-count,
+				{{WRAPPER}} .lcake-countdown-timer-2 .lcake-timer-container.lcake-seconds .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3 .lcake-timer-container.lcake-seconds .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-3.lcake-version-box .lcake-timer-container.lcake-seconds .lcake-inner-container,
+				{{WRAPPER}} .lcake-countdown-timer-4 .lcake-timer-container.lcake-seconds .lcake-inner-container,
 				{{WRAPPER}} .lcake-flip-clock .lcake-secs ',
             ]
         );

@@ -85,6 +85,15 @@ class LC_Header_Footer_Copyright_Text extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => ['{{WRAPPER}} .lc-hf-copyright' => 'background-color: {{VALUE}};'],
+            ]
+        );
+
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),
             [

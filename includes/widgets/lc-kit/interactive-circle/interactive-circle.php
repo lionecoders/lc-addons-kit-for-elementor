@@ -20,7 +20,7 @@ class LCAKE_Kit_Interactive_Circle extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Interactive Circle', 'lc-addons-kit-for-elementor');
+        return esc_html__('Interactive Circle', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {

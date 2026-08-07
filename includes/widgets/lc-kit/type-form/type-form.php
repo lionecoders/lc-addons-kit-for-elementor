@@ -20,7 +20,7 @@ class LCAKE_Kit_Type_Form extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Typeform', 'lc-addons-kit-for-elementor');
+        return esc_html__('Typeform', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -33,6 +33,16 @@ class LCAKE_Kit_Type_Form extends \Elementor\Widget_Base {
 
     public function get_script_depends() {
         return ['lcake-kit-type-form-js'];
+    }
+
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'path' => 'typeform/typeform.php',
+                'name' => 'Typeform',
+            ],
+        ];
     }
 
     protected function register_controls() {

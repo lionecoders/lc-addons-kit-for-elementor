@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Woo_Product_Price extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'WooCommerce',
+                'name' => 'WooCommerce',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-woo-product-price';
     }
@@ -20,11 +30,11 @@ class LCAKE_Kit_Woo_Product_Price extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Woo Product Price', 'lc-addons-kit-for-elementor');
+        return esc_html__('Woo Product Price', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
-        return 'eicon-woocommerce';
+        return 'eicon-product-price';
     }
 
     public function get_style_depends() {

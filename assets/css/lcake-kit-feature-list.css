@@ -29,10 +29,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    aspect-ratio: 1;
     border-radius: 50%;
     background: rgba(59, 130, 246, 0.1);
+    padding: 7px;
 }
 
 .lcake-feature-list-icon i {

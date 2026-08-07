@@ -10,25 +10,20 @@
         $button.on('click', function () {
             var $code = $scope.find('.lcake-code-snippet-code');
             var text = $code.text();
+            var copyText = $button.attr('data-copy-text') || 'Copy';
+            var copiedText = $button.attr('data-copied-text') || 'Copied!';
 
-            var originalText = $button.text();
+            var temp = $('<textarea>');
+            $('body').append(temp);
+            temp.val(text).select();
+            document.execCommand('copy');
+            temp.remove();
 
-            var done = function () {
-                $button.addClass('is-copied').text('Copied!');
-                setTimeout(function () {
-                    $button.removeClass('is-copied').text(originalText);
-                }, 1500);
-            };
+            $button.addClass('is-copied').text(copiedText);
 
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(done);
-            } else {
-                var $temp = $('<textarea>').val(text).css({ position: 'fixed', left: '-9999px' }).appendTo('body');
-                $temp.select();
-                document.execCommand('copy');
-                $temp.remove();
-                done();
-            }
+            setTimeout(function () {
+                $button.removeClass('is-copied').text(copyText);
+            }, 2000);
         });
     };
 

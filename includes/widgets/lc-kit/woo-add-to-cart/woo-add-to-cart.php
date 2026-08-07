@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Woo_Add_To_Cart extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'WooCommerce',
+                'name' => 'WooCommerce',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-woo-add-to-cart';
     }
@@ -20,11 +30,11 @@ class LCAKE_Kit_Woo_Add_To_Cart extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Woo Add To Cart', 'lc-addons-kit-for-elementor');
+        return esc_html__('Woo Add To Cart', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
-        return 'eicon-cart';
+        return 'eicon-product-add-to-cart';
     }
 
     public function get_style_depends() {

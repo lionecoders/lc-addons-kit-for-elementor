@@ -53,12 +53,56 @@
     display: block;
     aspect-ratio: 4 / 3;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, filter 0.5s ease;
 }
 
-.lcake-filterable-gallery-item:hover .lcake-filterable-gallery-image {
+/* --- Image Hover Animations --- */
+
+/* Zoom In */
+.lcake-filterable-gallery-item.anim-zoom-in .lcake-filterable-gallery-image {
+    transition: transform 0.5s ease;
+}
+.lcake-filterable-gallery-item.anim-zoom-in:hover .lcake-filterable-gallery-image {
     transform: scale(1.08);
 }
+
+/* Zoom Out */
+.lcake-filterable-gallery-item.anim-zoom-out .lcake-filterable-gallery-image {
+    transform: scale(1.08);
+    transition: transform 0.5s ease;
+}
+.lcake-filterable-gallery-item.anim-zoom-out:hover .lcake-filterable-gallery-image {
+    transform: scale(1);
+}
+
+/* Grayscale */
+.lcake-filterable-gallery-item.anim-grayscale .lcake-filterable-gallery-image {
+    filter: grayscale(0%);
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+.lcake-filterable-gallery-item.anim-grayscale:hover .lcake-filterable-gallery-image {
+    filter: grayscale(100%);
+}
+
+/* Blur */
+.lcake-filterable-gallery-item.anim-blur .lcake-filterable-gallery-image {
+    filter: blur(0px);
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+.lcake-filterable-gallery-item.anim-blur:hover .lcake-filterable-gallery-image {
+    filter: blur(4px);
+}
+
+/* None */
+.lcake-filterable-gallery-item.anim-none .lcake-filterable-gallery-image {
+    transition: none;
+}
+.lcake-filterable-gallery-item.anim-none:hover .lcake-filterable-gallery-image {
+    transform: none;
+    filter: none;
+}
+
+/* --- Overlay Display Configurations --- */
 
 .lcake-filterable-gallery-overlay {
     position: absolute;
@@ -67,11 +111,19 @@
     align-items: flex-end;
     padding: 20px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 60%);
-    opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.lcake-filterable-gallery-item:hover .lcake-filterable-gallery-overlay {
+/* Always show overlay */
+.lcake-filterable-gallery-item.overlay-always .lcake-filterable-gallery-overlay {
+    opacity: 1;
+}
+
+/* Hover show overlay */
+.lcake-filterable-gallery-item.overlay-hover .lcake-filterable-gallery-overlay {
+    opacity: 0;
+}
+.lcake-filterable-gallery-item.overlay-hover:hover .lcake-filterable-gallery-overlay {
     opacity: 1;
 }
 

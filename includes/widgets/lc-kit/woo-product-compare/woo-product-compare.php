@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Woo_Product_Compare extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'WooCommerce',
+                'name' => 'WooCommerce',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-woo-product-compare';
     }
@@ -20,11 +30,11 @@ class LCAKE_Kit_Woo_Product_Compare extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Woo Product Compare', 'lc-addons-kit-for-elementor');
+        return esc_html__('Woo Product Compare', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
-        return 'eicon-woocommerce';
+        return 'eicon-exchange';
     }
 
     public function get_style_depends() {
@@ -50,12 +60,133 @@ class LCAKE_Kit_Woo_Product_Compare extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'max_products',
+            [
+                'label' => esc_html__('Max Products Limit', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => 4,
+                'min' => 1,
+                'max' => 10,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'heading_row_visibility',
+            [
+                'label' => esc_html__('Row Visibility', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'show_image',
+            [
+                'label' => esc_html__('Show Image', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'show_price',
+            [
+                'label' => esc_html__('Show Price', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'show_rating',
+            [
+                'label' => esc_html__('Show Rating', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'show_description',
+            [
+                'label' => esc_html__('Show Description', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'return_value' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'show_add_to_cart',
+            [
+                'label' => esc_html__('Show Add to Cart', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'return_value' => 'yes',
+            ]
+        );
+
         $this->end_controls_section();
 
+        // --- Style Tab ---
         $this->start_controls_section(
-            'section_style',
+            'section_style_table',
             [
-                'label' => esc_html__('Style', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Table & Cells', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'text_align',
+            [
+                'label' => esc_html__('Text Alignment', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'center',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-woo-compare th, {{WRAPPER}} .lcake-woo-compare td' => 'text-align: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'table_border_color',
+            [
+                'label' => esc_html__('Border Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#e5e7eb',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-woo-compare th, {{WRAPPER}} .lcake-woo-compare td' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // --- Header Style Section ---
+        $this->start_controls_section(
+            'section_style_header',
+            [
+                'label' => esc_html__('Header Row', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -63,10 +194,142 @@ class LCAKE_Kit_Woo_Product_Compare extends \Elementor\Widget_Base {
         $this->add_control(
             'header_bg',
             [
-                'label' => esc_html__('Header Background', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#3b82f6',
                 'selectors' => ['{{WRAPPER}} .lcake-woo-compare thead th' => 'background-color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_control(
+            'header_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => ['{{WRAPPER}} .lcake-woo-compare thead th' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'header_typography',
+                'selector' => '{{WRAPPER}} .lcake-woo-compare thead th',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'header_padding',
+            [
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-woo-compare thead th' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // --- Row Labels Section ---
+        $this->start_controls_section(
+            'section_style_labels',
+            [
+                'label' => esc_html__('Row Labels', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'label_bg',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#f9fafb',
+                'selectors' => ['{{WRAPPER}} .lcake-woo-compare td.lcake-woo-compare-label' => 'background-color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_control(
+            'label_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#374151',
+                'selectors' => ['{{WRAPPER}} .lcake-woo-compare td.lcake-woo-compare-label' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'label_typography',
+                'selector' => '{{WRAPPER}} .lcake-woo-compare td.lcake-woo-compare-label',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'label_padding',
+            [
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-woo-compare td.lcake-woo-compare-label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // --- Value Cells Section ---
+        $this->start_controls_section(
+            'section_style_content',
+            [
+                'label' => esc_html__('Content Cells', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'content_bg',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => ['{{WRAPPER}} .lcake-woo-compare td:not(.lcake-woo-compare-label)' => 'background-color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_control(
+            'content_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#4b5563',
+                'selectors' => ['{{WRAPPER}} .lcake-woo-compare td:not(.lcake-woo-compare-label)' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'content_typography',
+                'selector' => '{{WRAPPER}} .lcake-woo-compare td:not(.lcake-woo-compare-label)',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'content_padding',
+            [
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-woo-compare td:not(.lcake-woo-compare-label)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -86,19 +349,31 @@ class LCAKE_Kit_Woo_Product_Compare extends \Elementor\Widget_Base {
             return;
         }
 
+        $max_limit = !empty($settings['max_products']) ? (int) $settings['max_products'] : 4;
+        $product_ids = array_slice($product_ids, 0, $max_limit);
+
         $products = array_filter(array_map('wc_get_product', $product_ids));
 
         if (empty($products)) {
             return;
         }
 
-        $rows = [
-            'image' => esc_html__('Image', 'lc-addons-kit-for-elementor'),
-            'price' => esc_html__('Price', 'lc-addons-kit-for-elementor'),
-            'rating' => esc_html__('Rating', 'lc-addons-kit-for-elementor'),
-            'description' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
-            'add_to_cart' => esc_html__('Add To Cart', 'lc-addons-kit-for-elementor'),
-        ];
+        $rows = [];
+        if ('yes' === ($settings['show_image'] ?? 'yes')) {
+            $rows['image'] = esc_html__('Image', 'lc-addons-kit-for-elementor');
+        }
+        if ('yes' === ($settings['show_price'] ?? 'yes')) {
+            $rows['price'] = esc_html__('Price', 'lc-addons-kit-for-elementor');
+        }
+        if ('yes' === ($settings['show_rating'] ?? 'yes')) {
+            $rows['rating'] = esc_html__('Rating', 'lc-addons-kit-for-elementor');
+        }
+        if ('yes' === ($settings['show_description'] ?? 'yes')) {
+            $rows['description'] = esc_html__('Description', 'lc-addons-kit-for-elementor');
+        }
+        if ('yes' === ($settings['show_add_to_cart'] ?? 'yes')) {
+            $rows['add_to_cart'] = esc_html__('Add To Cart', 'lc-addons-kit-for-elementor');
+        }
         ?>
         <div class="lcake-woo-compare-wrapper">
             <table class="lcake-woo-compare">

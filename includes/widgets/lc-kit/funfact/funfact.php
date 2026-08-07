@@ -16,17 +16,11 @@ class LCAKE_Kit_Funfact extends \Elementor\Widget_Base {
 	public $base;
 
 	public function get_style_depends() {
-		$deps = [];
-
-		if ( \Elementor\Plugin::$instance->editor->is_edit_mode() || \Elementor\Plugin::$instance->preview->is_preview_mode() ) {
-			$deps[] = 'odometer';
-		}
-
-		return $deps;
+		return [ 'odometer' ];
 	}
 
 	public function get_script_depends() {
-		return [ 'lcake-kit-funfact-js' ];
+		return [ 'odometer', 'lcake-kit-funfact-js' ];
 	}
 
 	public function get_name() {
@@ -34,7 +28,7 @@ class LCAKE_Kit_Funfact extends \Elementor\Widget_Base {
 	}
 
 	public function get_title() {
-		return esc_html__('LC Funfact', 'lc-addons-kit-for-elementor');
+		return esc_html__('Funfact', 'lc-addons-kit-for-elementor');
 	}
 
 	public function get_icon() {
@@ -339,6 +333,16 @@ class LCAKE_Kit_Funfact extends \Elementor\Widget_Base {
 				],
 				'condition' => [
 					'lcake_funfact_icon_type' => [ 'icon', 'image_icon' ],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .lcake-funfact-inner' => 'display: flex; flex-direction: {{VALUE}}; align-items: center; justify-content: center;',
+					'{{WRAPPER}} .lcake-funfact-inner.position_left .funfact-icon' => 'margin-bottom: 0; margin-right: 15px;',
+					'{{WRAPPER}} .lcake-funfact-inner.position_right .funfact-icon' => 'margin-bottom: 0; margin-left: 15px;',
+				],
+				'selectors_dictionary' => [
+					'position_top' => 'column',
+					'position_left' => 'row',
+					'position_right' => 'row-reverse',
 				],
 			]
 		);
@@ -977,8 +981,12 @@ class LCAKE_Kit_Funfact extends \Elementor\Widget_Base {
 					'{{WRAPPER}} .lcake-funfact ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'default'    => [
-					'size' => 15,
+					'top' => '15',
+					'right' => '15',
+					'bottom' => '15',
+					'left' => '15',
 					'unit' => 'px',
+					'isLinked' => true,
 				],
 			]
 		);
@@ -1114,7 +1122,7 @@ class LCAKE_Kit_Funfact extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'lcake_funfact_section_background_style',
 			[
-				'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+				'label' => esc_html__('Container', 'lc-addons-kit-for-elementor'),
 				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -1343,7 +1351,7 @@ class LCAKE_Kit_Funfact extends \Elementor\Widget_Base {
 
 		?>
 
-		<div <?php echo wp_kses_post($this->get_render_attribute_string('funfact_wrapper')); ?>>
+		<div <?php echo $this->get_render_attribute_string('funfact_wrapper'); ?>>
 			<?php if(isset($settings['lcake_funfact_enable_vertical_border']) && $settings['lcake_funfact_enable_vertical_border'] == 'yes') : ?>
 				<div class="vertical-bar <?php echo esc_attr(isset($settings['lcake_funfact_enable_vertical_border_position']) ? $settings['lcake_funfact_enable_vertical_border_position'] : ''); ?>"></div>
 			<?php endif; ?>

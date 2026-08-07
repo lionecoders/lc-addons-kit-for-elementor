@@ -27,8 +27,14 @@
         $scope.data('lcakeFancyTextTimer', timer);
     };
 
-    $(window).on('elementor/frontend/init', function () {
+    var init = function () {
         elementorFrontend.hooks.addAction('frontend/element_ready/lcake-kit-fancy-text.default', WidgetLcakeFancyTextHandler);
-    });
+    };
+
+    if (window.elementorFrontend) {
+        init();
+    } else {
+        $(window).on('elementor/frontend/init', init);
+    }
 
 })(jQuery, window);

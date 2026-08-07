@@ -19,7 +19,7 @@ class LCAKE_Kit_Mailchimp extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return esc_html__('LC MailChimp', 'lc-addons-kit-for-elementor');
+        return esc_html__('Mailchimp Newsletter', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon()
@@ -35,6 +35,11 @@ class LCAKE_Kit_Mailchimp extends \Elementor\Widget_Base
     public function get_keywords()
     {
         return ['mailchimp', 'email', 'newsletter', 'subscribe', 'form'];
+    }
+
+    public function get_style_depends()
+    {
+        return ['lcake-kit-mailchimp-css'];
     }
 
     protected function register_controls()
@@ -88,8 +93,8 @@ class LCAKE_Kit_Mailchimp extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Audience ID', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'placeholder' => esc_html__('Enter your MailChimp Audience ID', 'lc-addons-kit-for-elementor'),
-                'description' => esc_html__('You can find your Audience ID in your MailChimp account under Audience > Settings > Audience name and defaults.', 'lc-addons-kit-for-elementor'),
+                'placeholder' => esc_html__('Enter your Mailchimp Audience ID', 'lc-addons-kit-for-elementor'),
+                'description' => esc_html__('You can find your Audience ID in your Mailchimp account under Audience dashboard > Manage Audience > Settings > Audience name and defaults.', 'lc-addons-kit-for-elementor'),
             ]
         );
 

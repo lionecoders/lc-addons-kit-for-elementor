@@ -160,7 +160,7 @@ class LC_Header_Footer_Category_List extends \Elementor\Widget_Base {
                 'label' => esc_html__('Category Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-category-item a' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lc-category-item' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -171,7 +171,7 @@ class LC_Header_Footer_Category_List extends \Elementor\Widget_Base {
                 'label' => esc_html__('Category Hover Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .lc-category-item a:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lc-category-item:hover' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -180,7 +180,7 @@ class LC_Header_Footer_Category_List extends \Elementor\Widget_Base {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'category_typography',
-                'selector' => '{{WRAPPER}} .lc-category-item a',
+                'selector' => '{{WRAPPER}} .lc-category-item',
             ]
         );
 
@@ -230,12 +230,10 @@ class LC_Header_Footer_Category_List extends \Elementor\Widget_Base {
                 <ul class="lc-category-list">
                     <?php foreach ($categories as $category) : ?>
                         <li class="lc-category-item">
-                            <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>">
-                                <?php echo esc_html($category->name); ?>
-                                <?php if ($show_count === 'yes') : ?>
-                                    <span class="lc-category-count">(<?php echo esc_html($category->count); ?>)</span>
-                                <?php endif; ?>
-                            </a>
+                            <?php echo esc_html($category->name); ?>
+                            <?php if ($show_count === 'yes') : ?>
+                                <span class="lc-category-count">(<?php echo esc_html($category->count); ?>)</span>
+                            <?php endif; ?>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -245,30 +243,4 @@ class LC_Header_Footer_Category_List extends \Elementor\Widget_Base {
         </div>
         <?php
     }
-
-    /**
-     * Content template
-     */
-    protected function content_template() {
-        ?>
-        <div class="lc-category-list-widget">
-            <# if (settings.title) { #>
-                <h3 class="lc-category-list-title">{{{ settings.title }}}</h3>
-            <# } #>
-            
-            <ul class="lc-category-list">
-                <# for (var i = 0; i < 5; i++) { #>
-                    <li class="lc-category-item">
-                        <a href="#">
-                            <?php echo esc_html__('Category Name', 'lc-addons-kit-for-elementor'); ?>
-                            <# if (settings.show_count === 'yes') { #>
-                                <span class="lc-category-count">(5)</span>
-                            <# } #>
-                        </a>
-                    </li>
-                <# } #>
-            </ul>
-        </div>
-        <?php
-    }
-} 
+}

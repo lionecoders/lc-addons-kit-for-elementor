@@ -9,33 +9,41 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class LCAKE_Kit_Code_Snippet extends \Elementor\Widget_Base {
+class LCAKE_Kit_Code_Snippet extends \Elementor\Widget_Base
+{
 
-    public function get_name() {
+    public function get_name()
+    {
         return 'lcake-kit-code-snippet';
     }
 
-    public function get_categories() {
+    public function get_categories()
+    {
         return ['lcake-page-kit'];
     }
 
-    public function get_title() {
-        return esc_html__('LC Code Snippet', 'lc-addons-kit-for-elementor');
+    public function get_title()
+    {
+        return esc_html__('Code Snippet', 'lc-addons-kit-for-elementor');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-code';
     }
 
-    public function get_style_depends() {
+    public function get_style_depends()
+    {
         return ['lcake-kit-code-snippet-css'];
     }
 
-    public function get_script_depends() {
+    public function get_script_depends()
+    {
         return ['lcake-kit-code-snippet-js'];
     }
 
-    protected function register_controls() {
+    protected function register_controls()
+    {
         $this->start_controls_section(
             'content_section',
             [
@@ -116,7 +124,8 @@ class LCAKE_Kit_Code_Snippet extends \Elementor\Widget_Base {
         $this->end_controls_section();
     }
 
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
         $code = $settings['code'] ?? '';
 
@@ -126,16 +135,17 @@ class LCAKE_Kit_Code_Snippet extends \Elementor\Widget_Base {
         ?>
         <div class="lcake-code-snippet">
             <div class="lcake-code-snippet-header">
-                <?php if (!empty($settings['language_label'])) : ?>
+                <?php if (!empty($settings['language_label'])): ?>
                     <span class="lcake-code-snippet-lang"><?php echo esc_html($settings['language_label']); ?></span>
                 <?php endif; ?>
-                <?php if ('yes' === $settings['show_copy_button']) : ?>
+                <?php if ('yes' === $settings['show_copy_button']): ?>
                     <button type="button" class="lcake-code-snippet-copy">
                         <?php esc_html_e('Copy', 'lc-addons-kit-for-elementor'); ?>
                     </button>
                 <?php endif; ?>
             </div>
-            <pre class="lcake-code-snippet-pre"><code class="lcake-code-snippet-code"><?php echo esc_html($code); ?></code></pre>
+            <pre
+                class="lcake-code-snippet-pre"><code class="lcake-code-snippet-code"><?php echo esc_html($code); ?></code></pre>
         </div>
         <?php
     }

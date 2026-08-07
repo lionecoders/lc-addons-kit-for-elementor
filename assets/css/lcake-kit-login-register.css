@@ -60,7 +60,8 @@
     box-sizing: border-box;
 }
 
-.lcake-login-register button[type="submit"] {
+.lcake-login-register button[type="submit"],
+.lcake-login-register input[type="submit"] {
     width: 100%;
     background: #3b82f6;
     color: #ffffff;
@@ -69,10 +70,11 @@
     padding: 12px;
     font-weight: 700;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-.lcake-login-register button[type="submit"]:hover {
+.lcake-login-register button[type="submit"]:hover,
+.lcake-login-register input[type="submit"]:hover {
     background: #2563eb;
 }
 

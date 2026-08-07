@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Woo_Product_Images extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'WooCommerce',
+                'name' => 'WooCommerce',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-woo-product-images';
     }
@@ -20,11 +30,11 @@ class LCAKE_Kit_Woo_Product_Images extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Woo Product Images', 'lc-addons-kit-for-elementor');
+        return esc_html__('Woo Product Images', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
-        return 'eicon-woocommerce';
+        return 'eicon-product-images';
     }
 
     public function get_style_depends() {
@@ -51,6 +61,131 @@ class LCAKE_Kit_Woo_Product_Images extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::SELECT2,
                 'options' => LCAKE_Kit_Utils::get_woo_product_options(),
                 'default' => 0,
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // --- Style Tab ---
+        $this->start_controls_section(
+            'section_style_main_image',
+            [
+                'label' => esc_html__('Main Image', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'main_image_spacing',
+            [
+                'label' => esc_html__('Thumbnail Spacing', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                ],
+                'default' => [
+                    'size' => 15,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-woo-images-main' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'main_image_border',
+                'selector' => '{{WRAPPER}} .lcake-woo-images-main',
+            ]
+        );
+
+        $this->add_control(
+            'main_image_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-woo-images-main' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+                    '{{WRAPPER}} .lcake-woo-images-main-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'main_image_shadow',
+                'selector' => '{{WRAPPER}} .lcake-woo-images-main',
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_style_thumbnails',
+            [
+                'label' => esc_html__('Thumbnails', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'thumb_spacing',
+            [
+                'label' => esc_html__('Gap Between Thumbnails', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 30,
+                    ],
+                ],
+                'default' => [
+                    'size' => 10,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-woo-images-thumbs' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'thumb_border',
+                'selector' => '{{WRAPPER}} .lcake-woo-images-thumb',
+            ]
+        );
+
+        $this->add_control(
+            'thumb_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-woo-images-thumb' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; overflow: hidden;',
+                    '{{WRAPPER}} .lcake-woo-images-thumb img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'thumb_active_border_color',
+            [
+                'label' => esc_html__('Active Border Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-woo-images-thumb.is-active' => 'border-color: {{VALUE}} !important;',
+                ],
             ]
         );
 

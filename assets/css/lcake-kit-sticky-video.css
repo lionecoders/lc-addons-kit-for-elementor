@@ -3,6 +3,18 @@
     width: 100%;
 }
 
+.lcake-sticky-video.is-docked {
+    position: fixed;
+    bottom: 24px;
+    width: 320px;
+    z-index: 9999;
+    animation: lcake-sticky-video-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                right 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .lcake-sticky-video-inner {
     position: relative;
     width: 100%;
@@ -10,6 +22,7 @@
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.1);
+    transition: border-radius 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .lcake-sticky-video-inner iframe {
@@ -20,19 +33,11 @@
     border: 0;
 }
 
-.lcake-sticky-video.is-docked {
-    position: fixed;
-    bottom: 24px;
-    width: 320px;
-    z-index: 9999;
-    animation: lcake-sticky-video-in 0.4s ease;
-}
-
-.lcake-sticky-video--bottom-right.is-docked {
+.lcake-sticky-video--bottom-right .lcake-sticky-video.is-docked {
     right: 24px;
 }
 
-.lcake-sticky-video--bottom-left.is-docked {
+.lcake-sticky-video--bottom-left .lcake-sticky-video.is-docked {
     left: 24px;
 }
 
@@ -53,6 +58,17 @@
     line-height: 1;
     cursor: pointer;
     z-index: 2;
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                width 0.3s ease,
+                height 0.3s ease,
+                font-size 0.3s ease,
+                border-radius 0.3s ease,
+                transform 0.2s ease;
+}
+
+.lcake-sticky-video-close:active {
+    transform: scale(0.9);
 }
 
 .lcake-sticky-video.is-docked .lcake-sticky-video-close {

@@ -92,3 +92,10 @@
         flex-wrap: wrap;
     }
 }
+
+.lcake-woo-list a,
+.lcake-woo-list a:hover {
+    text-decoration: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}

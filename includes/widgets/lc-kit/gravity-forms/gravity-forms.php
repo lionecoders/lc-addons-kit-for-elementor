@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Gravity_Forms extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'GFForms',
+                'name' => 'Gravity Forms',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-gravity-forms';
     }
@@ -20,7 +30,7 @@ class LCAKE_Kit_Gravity_Forms extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Gravity Forms', 'lc-addons-kit-for-elementor');
+        return esc_html__('Gravity Forms', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -69,6 +79,94 @@ class LCAKE_Kit_Gravity_Forms extends \Elementor\Widget_Base {
         );
 
         $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_style_title',
+            [
+                'label' => esc_html__('Title', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'show_title' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'title_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .gform_wrapper .gform_heading .gform_title, {{WRAPPER}} .gform_title' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_typography',
+                'selector' => '{{WRAPPER}} .gform_wrapper .gform_heading .gform_title, {{WRAPPER}} .gform_title',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'title_margin',
+            [
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .gform_wrapper .gform_heading .gform_title, {{WRAPPER}} .gform_title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_style_description',
+            [
+                'label' => esc_html__('Description', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'show_description' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'description_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .gform_wrapper .gform_heading .gform_description, {{WRAPPER}} .gform_description' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'description_typography',
+                'selector' => '{{WRAPPER}} .gform_wrapper .gform_heading .gform_description, {{WRAPPER}} .gform_description',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'description_margin',
+            [
+                'label' => esc_html__('Margin', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .gform_wrapper .gform_heading .gform_description, {{WRAPPER}} .gform_description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
     }
 
     protected function render() {
@@ -81,6 +179,10 @@ class LCAKE_Kit_Gravity_Forms extends \Elementor\Widget_Base {
 
         if (empty($settings['form_id'])) {
             return;
+        }
+
+        if (function_exists('gravity_form_enqueue_scripts')) {
+            gravity_form_enqueue_scripts((int) $settings['form_id'], true);
         }
         ?>
         <div class="lcake-gravity-forms">

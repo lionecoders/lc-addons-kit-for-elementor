@@ -20,7 +20,7 @@ class LCAKE_Kit_Breadcrumbs extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Breadcrumbs', 'lc-addons-kit-for-elementor');
+        return esc_html__('Breadcrumbs', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -169,9 +169,29 @@ class LCAKE_Kit_Breadcrumbs extends \Elementor\Widget_Base {
                 $trail[] = ['text' => $post_type_obj->labels->name, 'url' => get_post_type_archive_link($post->post_type)];
             }
 
-            $categories = get_the_category($post->ID);
-            if (!empty($categories)) {
-                $trail[] = ['text' => $categories[0]->name, 'url' => get_category_link($categories[0]->term_id)];
+            if (is_post_type_hierarchical($post->post_type)) {
+                $parents = [];
+                $parent_id = $post->post_parent;
+                while ($parent_id) {
+                    $parent = get_post($parent_id);
+                    if ($parent) {
+                        $parents[] = [
+                            'text' => get_the_title($parent),
+                            'url' => get_permalink($parent->ID),
+                        ];
+                        $parent_id = $parent->post_parent;
+                    } else {
+                        break;
+                    }
+                }
+                if (!empty($parents)) {
+                    $trail = array_merge($trail, array_reverse($parents));
+                }
+            } else {
+                $categories = get_the_category($post->ID);
+                if (!empty($categories)) {
+                    $trail[] = ['text' => $categories[0]->name, 'url' => get_category_link($categories[0]->term_id)];
+                }
             }
 
             $trail[] = ['text' => get_the_title($post), 'url' => '', 'current' => true];

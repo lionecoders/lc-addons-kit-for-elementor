@@ -27,7 +27,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base
 
 	public function get_title()
 	{
-		return __('LC Testimonial', 'lc-addons-kit-for-elementor');
+		return __('Testimonial', 'lc-addons-kit-for-elementor');
 	}
 
 	public function get_icon()

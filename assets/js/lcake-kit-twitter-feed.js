@@ -1,25 +1,23 @@
 (function ($, window, document) {
     'use strict';
 
-    var scriptLoaded = false;
+    // Initialize the Twitter / X widget loader queue
+    window.twttr = (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js, fjs);
 
-    var loadTwitterWidgets = function (callback) {
-        if (window.twttr && window.twttr.widgets) {
-            callback();
-            return;
-        }
+        t._e = [];
+        t.ready = function (f) {
+            t._e.push(f);
+        };
 
-        if (scriptLoaded) {
-            return;
-        }
-        scriptLoaded = true;
-
-        var script = document.createElement('script');
-        script.src = 'https://platform.twitter.com/widgets.js';
-        script.async = true;
-        script.onload = callback;
-        document.body.appendChild(script);
-    };
+        return t;
+    }(document, 'script', 'twitter-wjs'));
 
     var WidgetLcakeTwitterFeedHandler = function ($scope) {
         var $feed = $scope.find('.lcake-twitter-feed');
@@ -27,9 +25,9 @@
             return;
         }
 
-        loadTwitterWidgets(function () {
-            if (window.twttr && window.twttr.widgets) {
-                window.twttr.widgets.load($feed[0]);
+        window.twttr.ready(function (twttr) {
+            if (twttr && twttr.widgets) {
+                twttr.widgets.load($feed[0]);
             }
         });
     };

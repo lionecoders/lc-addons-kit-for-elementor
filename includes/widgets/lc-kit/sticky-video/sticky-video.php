@@ -20,7 +20,7 @@ class LCAKE_Kit_Sticky_Video extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Sticky Video', 'lc-addons-kit-for-elementor');
+        return esc_html__('Sticky Video', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -80,10 +80,59 @@ class LCAKE_Kit_Sticky_Video extends \Elementor\Widget_Base {
 
         $this->end_controls_section();
 
+        // --- Video Container ---
         $this->start_controls_section(
-            'section_style',
+            'section_style_container',
             [
-                'label' => esc_html__('Style', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Video Container', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'video_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => '16',
+                    'bottom' => '16',
+                    'left' => '16',
+                    'right' => '16',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-sticky-video-inner' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'video_border',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-sticky-video-inner',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'video_shadow',
+                'selector' => '{{WRAPPER}} .lcake-sticky-video-inner',
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // --- Docked Mode ---
+        $this->start_controls_section(
+            'section_style_docked',
+            [
+                'label' => esc_html__('Docked Mode', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
@@ -93,9 +142,206 @@ class LCAKE_Kit_Sticky_Video extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Docked Width', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => ['px' => ['min' => 200, 'max' => 500]],
-                'default' => ['size' => 320, 'unit' => 'px'],
-                'selectors' => ['{{WRAPPER}} .lcake-sticky-video.is-docked' => 'width: {{SIZE}}{{UNIT}};'],
+                'range' => [
+                    'px' => [
+                        'min' => 200,
+                        'max' => 600,
+                    ],
+                ],
+                'default' => [
+                    'size' => 320,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-sticky-video.is-docked' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'docked_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-sticky-video.is-docked .lcake-sticky-video-inner' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'docked_shadow',
+                'selector' => '{{WRAPPER}} .lcake-sticky-video.is-docked .lcake-sticky-video-inner',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'docked_offset_y',
+            [
+                'label' => esc_html__('Bottom Spacing (px)', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 150,
+                    ],
+                ],
+                'default' => [
+                    'size' => 24,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-sticky-video.is-docked' => 'bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'docked_offset_x',
+            [
+                'label' => esc_html__('Side Spacing (px)', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 150,
+                    ],
+                ],
+                'default' => [
+                    'size' => 24,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}}.lcake-sticky-video--bottom-right .lcake-sticky-video.is-docked' => 'right: {{SIZE}}{{UNIT}}; left: auto;',
+                    '{{WRAPPER}}.lcake-sticky-video--bottom-left .lcake-sticky-video.is-docked' => 'left: {{SIZE}}{{UNIT}}; right: auto;',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // --- Close Button ---
+        $this->start_controls_section(
+            'section_style_close',
+            [
+                'label' => esc_html__('Close Button', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'show_close' => 'yes',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs('close_button_states');
+
+        $this->start_controls_tab(
+            'close_normal',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'close_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => 'rgba(0, 0, 0, 0.6)',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-sticky-video-close' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'close_text_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-sticky-video-close' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'close_hover',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'close_hover_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-sticky-video-close:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'close_hover_text_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-sticky-video-close:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+            'close_size',
+            [
+                'label' => esc_html__('Button Size', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 20,
+                        'max' => 60,
+                    ],
+                ],
+                'default' => [
+                    'size' => 26,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-sticky-video-close' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}; font-size: calc({{SIZE}}{{UNIT}} * 0.7);',
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'close_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => '50',
+                    'bottom' => '50',
+                    'left' => '50',
+                    'right' => '50',
+                    'unit' => '%',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-sticky-video-close' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 

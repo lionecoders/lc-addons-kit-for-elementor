@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LC_Header_Footer_Cart_Icon extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'WooCommerce',
+                'name' => 'WooCommerce',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lc-header-footer-cart-icon';
     }

@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Fluent_Form extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'constant' => 'FLUENTFORM',
+                'name' => 'Fluent Forms',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-fluent-form';
     }
@@ -20,7 +30,7 @@ class LCAKE_Kit_Fluent_Form extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Fluent Forms', 'lc-addons-kit-for-elementor');
+        return esc_html__('Fluent Forms', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {

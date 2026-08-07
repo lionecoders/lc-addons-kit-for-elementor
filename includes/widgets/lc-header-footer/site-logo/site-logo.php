@@ -49,7 +49,12 @@ class LC_Header_Footer_Site_Logo extends \Elementor\Widget_Base {
                 'label' => esc_html__('Logo', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => ['url' => $default_logo],
-                'description' => esc_html__('Defaults to your Customizer site logo if left empty.', 'lc-addons-kit-for-elementor'),
+                'description' => sprintf(
+                    /* translators: %s: Link to WordPress Customizer */
+                    esc_html__('Defaults to your Customizer site logo if left empty. Set it %shere%s.', 'lc-addons-kit-for-elementor'),
+                    '<a href="' . esc_url(admin_url('customize.php?autofocus[control]=custom_logo')) . '" target="_blank">',
+                    '</a>'
+                ),
             ]
         );
 
@@ -93,7 +98,12 @@ class LC_Header_Footer_Site_Logo extends \Elementor\Widget_Base {
 
         if (empty($logo_url)) {
             if (current_user_can('customize')) {
-                echo '<p class="lc-hf-notice">' . esc_html__('No logo set. Choose one above or set a Site Logo in the WordPress Customizer.', 'lc-addons-kit-for-elementor') . '</p>';
+                echo '<p class="lc-hf-notice">' . sprintf(
+                    /* translators: %s: Link to WordPress Customizer */
+                    esc_html__('No logo set. Choose one above or set a Site Logo in the %sWordPress Customizer%s.', 'lc-addons-kit-for-elementor'),
+                    '<a href="' . esc_url(admin_url('customize.php?autofocus[control]=custom_logo')) . '" target="_blank">',
+                    '</a>'
+                ) . '</p>';
             }
             return;
         }

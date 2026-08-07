@@ -99,6 +99,9 @@ class LCAKE_Kit_Admin_Settings
             foreach ($all_files as $file) {
                 $base  = basename($file, '.php'); // file name without .php
                 $label = ucwords(str_replace(['-', '_'], ' ', $base)); // convert to "Accordion" style
+                if ($base === 'twitter-feed') {
+                    $label = 'X (Twitter) Feed';
+                }
 
                 // Composite ID: matches the enable-check in LCAKE_Kit_Widget_Loader::register_widgets(),
                 // and disambiguates same-named files that exist in more than one folder (e.g. "post-grid").
@@ -109,13 +112,91 @@ class LCAKE_Kit_Admin_Settings
                     : ($category_map[$base] ?? 'Other');
                 $meta = $category_meta[$category] ?? $category_meta['Other'];
 
+                $setup_url = '';
+                $setup_label = '';
+                $notice = '';
+
+                if ('lc-header-footer' === $folder) {
+                    if ($base === 'site-logo' || $base === 'site-title') {
+                        $setup_url = admin_url('customize.php');
+                        $setup_label = esc_html__('Go to Customizer', 'lc-addons-kit-for-elementor');
+                    } else {
+                        $setup_url = admin_url('edit.php?post_type=lcake_hf_template');
+                        $setup_label = esc_html__('Manage Templates', 'lc-addons-kit-for-elementor');
+                    }
+                } else {
+                    $setup_url = admin_url('edit.php?post_type=page');
+                    $setup_label = esc_html__('Manage Pages', 'lc-addons-kit-for-elementor');
+                }
+
+                $plugin_name = '';
+                $plugin_link = '';
+
+                if ($category === 'WooCommerce') {
+                    $plugin_name = 'WooCommerce';
+                    $plugin_link = 'https://wordpress.org/plugins/woocommerce/';
+                    $notice = esc_html__('Requires WooCommerce plugin', 'lc-addons-kit-for-elementor');
+                } elseif ($category === 'Forms') {
+                    if ($base === 'contact-form-7') {
+                        $plugin_name = 'Contact Form 7';
+                        $plugin_link = 'https://wordpress.org/plugins/contact-form-7/';
+                    } elseif ($base === 'mailchimp') {
+                        $plugin_name = 'Mailchimp for WP';
+                        $plugin_link = 'https://wordpress.org/plugins/mailchimp-for-wp/';
+                    } elseif ($base === 'gravity-forms') {
+                        $plugin_name = 'Gravity Forms';
+                        $plugin_link = 'https://www.gravityforms.com/';
+                    } elseif ($base === 'ninja-forms') {
+                        $plugin_name = 'Ninja Forms';
+                        $plugin_link = 'https://wordpress.org/plugins/ninja-forms/';
+                    } elseif ($base === 'wp-forms') {
+                        $plugin_name = 'WPForms';
+                        $plugin_link = 'https://wordpress.org/plugins/wpforms-lite/';
+                    } elseif ($base === 'fluent-form') {
+                        $plugin_name = 'Fluent Forms';
+                        $plugin_link = 'https://wordpress.org/plugins/fluentform/';
+                    } elseif ($base === 'we-forms') {
+                        $plugin_name = 'weForms';
+                        $plugin_link = 'https://wordpress.org/plugins/weforms/';
+                    } elseif ($base === 'caldera-forms') {
+                        $plugin_name = 'Caldera Forms';
+                        $plugin_link = 'https://wordpress.org/plugins/caldera-forms/';
+                    } elseif ($base === 'formstack') {
+                        $plugin_name = 'Formstack';
+                        $plugin_link = 'https://www.formstack.com/';
+                    } elseif ($base === 'type-form') {
+                        $plugin_name = 'Typeform';
+                        $plugin_link = 'https://www.typeform.com/';
+                    }
+                    $notice = esc_html__('Requires respective Form plugin', 'lc-addons-kit-for-elementor');
+                } elseif (strpos($base, 'betterdocs-') === 0) {
+                    $plugin_name = 'BetterDocs';
+                    $plugin_link = 'https://wordpress.org/plugins/betterdocs/';
+                    $notice = esc_html__('Requires BetterDocs plugin', 'lc-addons-kit-for-elementor');
+                }
+
+
+
+                $icon = 'eicon-editor-list-bullet'; // default fallback icon
+                $file_content = file_get_contents($file);
+                if ($file_content !== false) {
+                    if (preg_match('/function\s+get_icon\s*\(\s*\)\s*\{?\s*return\s+[\'"]([^\'"]+)[\'"]/i', $file_content, $matches)) {
+                        $icon = $matches[1];
+                    }
+                }
+
                 $this->widgets[$id] = [
                     'id'          => $id,
                     'label'       => $label,
                     'description' => $meta['description'],
-                    'icon'        => $meta['icon'],
+                    'icon'        => $icon,
                     'category'    => $category,
                     'is_pro'      => (strpos($base, 'pro') !== false),
+                    'setup_url'   => $setup_url,
+                    'setup_label' => $setup_label,
+                    'notice'      => $notice,
+                    'plugin_name' => $plugin_name,
+                    'plugin_link' => $plugin_link,
                 ];
             }
         }
@@ -196,9 +277,16 @@ class LCAKE_Kit_Admin_Settings
             '3.0.0'
         );
 
+        wp_enqueue_style('elementor-icons');
+
+        $enabled_widgets = get_option('lcake_kit_enabled_widgets', null);
+        if ($enabled_widgets === null) {
+            $enabled_widgets = array_keys($this->widgets);
+        }
+
         wp_localize_script('lcake-kit-react-app', 'LCAKE_SETTINGS', [
             'all_widgets' => array_values($this->widgets),
-            'enabled_widgets' => get_option('lcake_kit_enabled_widgets', []),
+            'enabled_widgets' => $enabled_widgets,
             'api_url' => rest_url('lcake-kit/v1/save-settings'),
             'nonce' => wp_create_nonce('wp_rest'),
         ]);

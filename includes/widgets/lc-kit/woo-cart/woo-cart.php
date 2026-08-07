@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Woo_Cart extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'WooCommerce',
+                'name' => 'WooCommerce',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-woo-cart';
     }
@@ -20,11 +30,11 @@ class LCAKE_Kit_Woo_Cart extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Woo Cart', 'lc-addons-kit-for-elementor');
+        return esc_html__('Woo Cart Page', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
-        return 'eicon-cart';
+        return 'eicon-woo-cart';
     }
 
     public function get_style_depends() {
@@ -44,7 +54,10 @@ class LCAKE_Kit_Woo_Cart extends \Elementor\Widget_Base {
             'notice',
             [
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
-                'raw' => esc_html__('This widget displays the native WooCommerce cart page content ([woocommerce_cart] shortcode).', 'lc-addons-kit-for-elementor'),
+                'raw' => '<div style="background-color: #e0f2fe; border-left: 4px solid #0284c7; padding: 12px 15px; border-radius: 4px; font-size: 13px; color: #0369a1; line-height: 1.5; margin: 10px 0;">
+                    <strong style="display: block; margin-bottom: 4px;"><span class="dashicons dashicons-info" style="font-size: 16px; vertical-align: text-bottom; margin-right: 4px;"></span>Woo Cart Page</strong>
+                    This widget displays the native WooCommerce cart page content dynamically using the <code>[woocommerce_cart]</code> shortcode.
+                </div>',
                 'content_classes' => 'elementor-descriptor',
             ]
         );

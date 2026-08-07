@@ -62,6 +62,7 @@
     color: #374151;
     border-radius: 10px;
     cursor: default;
+    transition: all 0.3s ease;
 }
 
 .lcake-event-calendar-day.is-empty {
@@ -74,9 +75,18 @@
 }
 
 .lcake-event-calendar-day.has-event {
-    background: #3b82f6;
+    background-color: #3b82f6;
     color: #ffffff;
     font-weight: 700;
+    cursor: pointer;
+}
+
+.lcake-event-calendar-day.has-event:hover {
+    background-color: #2563eb;
+}
+
+.lcake-event-calendar-day:not(.is-empty):not(.has-event):hover {
+    background-color: #f3f4f6;
     cursor: pointer;
 }
 
@@ -93,10 +103,24 @@
 
 .lcake-event-calendar-list li {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 6px 0;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 0;
     font-size: 14px;
+}
+
+.lcake-event-calendar-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.lcake-event-calendar-desc {
+    margin: 4px 0 0 0;
+    font-size: 12px;
+    color: #4b5563;
+    line-height: 1.4;
 }
 
 .lcake-event-calendar-list a {

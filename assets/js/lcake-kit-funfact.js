@@ -14,18 +14,30 @@
 
         var target = parseInt($counter.data('value'), 10) || 0;
         var duration = parseInt($counter.data('animation-duration'), 10) || 2000;
+        var style = $counter.data('style') || 'static';
 
         var startAnimation = function() {
             $counter.addClass('animated');
-            $counter.prop('Counter', 0).animate({
-                Counter: target
-            }, {
-                duration: duration,
-                easing: 'swing',
-                step: function (now) {
-                    $counter.text(Math.ceil(now));
-                }
-            });
+
+            if (style === 'sliding' && typeof window.Odometer !== 'undefined') {
+                $counter.addClass('odometer');
+                var odometer = new Odometer({
+                    el: $counter[0],
+                    value: 0,
+                    duration: duration
+                });
+                odometer.update(target);
+            } else {
+                $counter.prop('Counter', 0).animate({
+                    Counter: target
+                }, {
+                    duration: duration,
+                    easing: 'swing',
+                    step: function (now) {
+                        $counter.text(Math.ceil(now));
+                    }
+                });
+            }
         };
 
         // Use Elementor's native waypoint (fires when element is in view)

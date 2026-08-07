@@ -20,7 +20,7 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Flip Box', 'lc-addons-kit-for-elementor');
+        return esc_html__('Flip Box', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -68,6 +68,25 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'front_button_text',
+            [
+                'label' => esc_html__('Button Text', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => '',
+            ]
+        );
+
+        $this->add_control(
+            'front_button_link',
+            [
+                'label' => esc_html__('Button Link', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::URL,
+                'placeholder' => esc_html__('https://your-link.com', 'lc-addons-kit-for-elementor'),
+                'default' => ['url' => '', 'is_external' => false, 'nofollow' => false],
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -75,6 +94,15 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Back Side', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+            'back_icon',
+            [
+                'label' => esc_html__('Icon', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::ICONS,
+                'default' => ['value' => '', 'library' => ''],
             ]
         );
 
@@ -262,6 +290,26 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'front_button_color',
+            [
+                'label' => esc_html__('Button Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => ['{{WRAPPER}} .lcake-flip-box-front .lcake-flip-box-button' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_control(
+            'front_button_background',
+            [
+                'label' => esc_html__('Button Background', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6',
+                'selectors' => ['{{WRAPPER}} .lcake-flip-box-front .lcake-flip-box-button' => 'background-color: {{VALUE}};'],
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -269,6 +317,33 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Back Content', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'back_icon_color',
+            [
+                'label' => esc_html__('Icon Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-flip-box-back i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-flip-box-back svg' => 'fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'back_icon_size',
+            [
+                'label' => esc_html__('Icon Size', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => ['px' => ['min' => 10, 'max' => 150]],
+                'default' => ['size' => 50, 'unit' => 'px'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-flip-box-back i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-flip-box-back svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -298,7 +373,7 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
                 'label' => esc_html__('Button Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#3b82f6',
-                'selectors' => ['{{WRAPPER}} .lcake-flip-box-button' => 'color: {{VALUE}};'],
+                'selectors' => ['{{WRAPPER}} .lcake-flip-box-back .lcake-flip-box-button' => 'color: {{VALUE}};'],
             ]
         );
 
@@ -308,7 +383,7 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
                 'label' => esc_html__('Button Background', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#ffffff',
-                'selectors' => ['{{WRAPPER}} .lcake-flip-box-button' => 'background-color: {{VALUE}};'],
+                'selectors' => ['{{WRAPPER}} .lcake-flip-box-back .lcake-flip-box-button' => 'background-color: {{VALUE}};'],
             ]
         );
 
@@ -317,7 +392,13 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
 
     protected function render() {
         $settings = $this->get_settings_for_display();
+        $front_link = $settings['front_button_link'] ?? [];
         $back_link = $settings['back_button_link'] ?? [];
+
+        if (!empty($front_link['url'])) {
+            $this->add_link_attributes('front_button_link', $front_link);
+        }
+        $this->add_render_attribute('front_button_link', 'class', 'lcake-flip-box-button');
 
         if (!empty($back_link['url'])) {
             $this->add_link_attributes('back_button_link', $back_link);
@@ -338,8 +419,18 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
                     <?php if (!empty($settings['front_description'])) : ?>
                         <div class="lcake-flip-box-description"><?php echo wp_kses_post($settings['front_description']); ?></div>
                     <?php endif; ?>
+                    <?php if (!empty($settings['front_button_text'])) : ?>
+                        <a <?php echo $this->get_render_attribute_string('front_button_link'); ?>>
+                            <?php echo esc_html($settings['front_button_text']); ?>
+                        </a>
+                    <?php endif; ?>
                 </div>
                 <div class="lcake-flip-box-back">
+                    <?php if (!empty($settings['back_icon']['value'])) : ?>
+                        <div class="lcake-flip-box-icon">
+                            <?php \Elementor\Icons_Manager::render_icon($settings['back_icon'], ['aria-hidden' => 'true']); ?>
+                        </div>
+                    <?php endif; ?>
                     <?php if (!empty($settings['back_title'])) : ?>
                         <h3 class="lcake-flip-box-title"><?php echo wp_kses_post($settings['back_title']); ?></h3>
                     <?php endif; ?>

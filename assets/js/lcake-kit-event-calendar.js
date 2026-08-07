@@ -71,12 +71,20 @@
                 dayEvents.forEach(function (event) {
                     var $li = $('<li>');
                     var dateLabel = new Date(event.date).toLocaleDateString();
+                    var $meta = $('<div>').addClass('lcake-event-calendar-meta');
+                    
                     if (event.link) {
-                        $li.append($('<a>').attr('href', event.link).text(event.title));
+                        $meta.append($('<a>').attr('href', event.link).text(event.title));
                     } else {
-                        $li.append($('<strong>').text(event.title));
+                        $meta.append($('<strong>').text(event.title));
                     }
-                    $li.append($('<span>').text(dateLabel));
+                    $meta.append($('<span>').text(dateLabel));
+                    $li.append($meta);
+
+                    if (event.description) {
+                        $li.append($('<p>').addClass('lcake-event-calendar-desc').text(event.description));
+                    }
+
                     $list.append($li);
                 });
             }
@@ -95,8 +103,14 @@
         render();
     };
 
-    $(window).on('elementor/frontend/init', function () {
+    var init = function () {
         elementorFrontend.hooks.addAction('frontend/element_ready/lcake-kit-event-calendar.default', WidgetLcakeEventCalendarHandler);
-    });
+    };
+
+    if (window.elementorFrontend) {
+        init();
+    } else {
+        $(window).on('elementor/frontend/init', init);
+    }
 
 })(jQuery, window);

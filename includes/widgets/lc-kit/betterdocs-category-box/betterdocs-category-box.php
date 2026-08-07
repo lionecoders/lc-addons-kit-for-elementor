@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Betterdocs_Category_Box extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'post_type',
+                'post_type' => 'docs',
+                'name' => 'BetterDocs',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-betterdocs-category-box';
     }
@@ -20,7 +30,7 @@ class LCAKE_Kit_Betterdocs_Category_Box extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Docs Category Box', 'lc-addons-kit-for-elementor');
+        return esc_html__('Docs Category Box', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -60,6 +70,33 @@ class LCAKE_Kit_Betterdocs_Category_Box extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'show_icon',
+            [
+                'label' => esc_html__('Show Category Icon', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                'label_off' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
+        $this->add_control(
+            'category_icon',
+            [
+                'label' => esc_html__('Category Icon', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'fas fa-folder',
+                    'library' => 'solid',
+                ],
+                'condition' => [
+                    'show_icon' => 'yes',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -71,12 +108,387 @@ class LCAKE_Kit_Betterdocs_Category_Box extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
+            'heading_card_style',
+            [
+                'label' => esc_html__('Card', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'grid_gap',
+            [
+                'label' => esc_html__('Gap Between Boxes', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 20,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-box' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_card_style');
+
+        $this->start_controls_tab(
+            'tab_card_normal',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'card_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-card' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'card_border',
+                'selector' => '{{WRAPPER}} .lcake-docs-category-card',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'card_box_shadow',
+                'selector' => '{{WRAPPER}} .lcake-docs-category-card',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'tab_card_hover',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'card_bg_hover_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-card:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'card_border_hover_color',
+            [
+                'label' => esc_html__('Border Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-card:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'card_box_shadow_hover',
+                'selector' => '{{WRAPPER}} .lcake-docs-category-card:hover',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+            'card_padding',
+            [
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'card_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'hover_animation_style',
+            [
+                'label' => esc_html__('Hover Animation Style', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'translate',
+                'options' => [
+                    'none' => esc_html__('None', 'lc-addons-kit-for-elementor'),
+                    'translate' => esc_html__('Slide Up', 'lc-addons-kit-for-elementor'),
+                    'scale' => esc_html__('Scale Up', 'lc-addons-kit-for-elementor'),
+                    'shadow' => esc_html__('Shadow Shift', 'lc-addons-kit-for-elementor'),
+                    'border' => esc_html__('Border Shift', 'lc-addons-kit-for-elementor'),
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'heading_name_style',
+            [
+                'label' => esc_html__('Category Name', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_name_style');
+
+        $this->start_controls_tab(
+            'tab_name_normal',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'name_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#111827',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-card .lcake-docs-category-name, {{WRAPPER}} .lcake-docs-category-name' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'tab_name_hover',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'name_hover_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-card:hover .lcake-docs-category-name, {{WRAPPER}} .lcake-docs-category-card:hover a .lcake-docs-category-name' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'name_typography',
+                'selector' => '{{WRAPPER}} .lcake-docs-category-card .lcake-docs-category-name, {{WRAPPER}} .lcake-docs-category-name',
+            ]
+        );
+
+        $this->add_control(
+            'name_hover_underline',
+            [
+                'label' => esc_html__('Hover Underline', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'none',
+                'options' => [
+                    'none' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
+                    'underline' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-card:hover, {{WRAPPER}} .lcake-docs-category-card:hover .lcake-docs-category-name, {{WRAPPER}} .lcake-docs-category-card:hover a .lcake-docs-category-name' => 'text-decoration: {{VALUE}} !important;',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'heading_count_style',
+            [
+                'label' => esc_html__('Article Count', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_count_style');
+
+        $this->start_controls_tab(
+            'tab_count_normal',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'count_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#9ca3af',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-count' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'tab_count_hover',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'count_hover_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-card:hover .lcake-docs-category-count' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'count_typography',
+                'selector' => '{{WRAPPER}} .lcake-docs-category-count',
+            ]
+        );
+
+        $this->add_control(
+            'heading_icon_style',
+            [
+                'label' => esc_html__('Icon', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'show_icon' => 'yes',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_icon_style', [
+            'condition' => [
+                'show_icon' => 'yes',
+            ],
+        ]);
+
+        $this->start_controls_tab(
+            'tab_icon_normal',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
             'icon_color',
             [
-                'label' => esc_html__('Icon Color', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#3b82f6',
-                'selectors' => ['{{WRAPPER}} .lcake-docs-category-icon' => 'color: {{VALUE}};'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-icon' => 'color: {{VALUE}}; fill: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-docs-category-icon svg' => 'color: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'tab_icon_hover',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'icon_hover_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-card:hover .lcake-docs-category-icon' => 'color: {{VALUE}}; fill: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-docs-category-card:hover .lcake-docs-category-icon svg' => 'color: {{VALUE}}; fill: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+            'icon_size',
+            [
+                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-icon' => 'font-size: {{SIZE}}px;',
+                    '{{WRAPPER}} .lcake-docs-category-icon svg' => 'width: {{SIZE}}px; height: {{SIZE}}px;',
+                ],
+                'separator' => 'before',
+                'condition' => [
+                    'show_icon' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'icon_margin',
+            [
+                'label' => esc_html__('Spacing', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-docs-category-icon' => 'margin-bottom: {{SIZE}}px;',
+                ],
+                'condition' => [
+                    'show_icon' => 'yes',
+                ],
             ]
         );
 
@@ -102,8 +514,12 @@ class LCAKE_Kit_Betterdocs_Category_Box extends \Elementor\Widget_Base {
         ?>
         <div class="lcake-docs-category-box">
             <?php foreach ($terms as $term) : ?>
-                <a href="<?php echo esc_url(get_term_link($term)); ?>" class="lcake-docs-category-card">
-                    <span class="lcake-docs-category-icon" aria-hidden="true">&#128196;</span>
+                <a href="<?php echo esc_url(get_term_link($term)); ?>" class="lcake-docs-category-card lcake-hover-ani-<?php echo esc_attr($settings['hover_animation_style'] ?? 'translate'); ?>">
+                    <?php if ('yes' === $settings['show_icon'] && !empty($settings['category_icon']['value'])) : ?>
+                        <span class="lcake-docs-category-icon" aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; line-height: 1;">
+                            <?php \Elementor\Icons_Manager::render_icon($settings['category_icon'], ['aria-hidden' => 'true']); ?>
+                        </span>
+                    <?php endif; ?>
                     <span class="lcake-docs-category-name"><?php echo esc_html($term->name); ?></span>
                     <span class="lcake-docs-category-count">
                         <?php

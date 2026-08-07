@@ -20,7 +20,7 @@ class LCAKE_Kit_Facebook_Feed extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Facebook Feed', 'lc-addons-kit-for-elementor');
+        return esc_html__('Facebook Feed', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -128,15 +128,19 @@ class LCAKE_Kit_Facebook_Feed extends \Elementor\Widget_Base {
         $height = !empty($settings['height']['size']) ? (int) $settings['height']['size'] : 500;
         $tabs = !empty($settings['tabs']) ? implode(',', $settings['tabs']) : 'timeline';
 
+        $small_header = $settings['small_header'] ?? '';
+        $show_cover   = $settings['show_cover'] ?? '';
+        $show_facepile = $settings['show_facepile'] ?? '';
+
         $args = [
             'href' => $page_url,
             'tabs' => $tabs,
             'width' => $width,
             'height' => $height,
-            'small_header' => 'yes' === $settings['small_header'] ? 'true' : 'false',
+            'small_header' => ( 'yes' === $small_header || true === $small_header || 'true' === $small_header ) ? 'true' : 'false',
             'adapt_container_width' => 'true',
-            'hide_cover' => 'yes' === $settings['show_cover'] ? 'false' : 'true',
-            'show_facepile' => 'yes' === $settings['show_facepile'] ? 'true' : 'false',
+            'hide_cover' => ( 'yes' === $show_cover || true === $show_cover || 'true' === $show_cover ) ? 'false' : 'true',
+            'show_facepile' => ( 'yes' === $show_facepile || true === $show_facepile || 'true' === $show_facepile ) ? 'true' : 'false',
         ];
 
         $embed_src = add_query_arg($args, 'https://www.facebook.com/plugins/page.php');

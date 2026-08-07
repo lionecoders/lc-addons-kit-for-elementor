@@ -4,7 +4,7 @@
  * Plugin Name: LC Addons Kit for Elementor
  * Plugin URI: https://lionecoders.com
  * Description: A powerful Elementor addon plugin that offers a wide range of widgets categorized into 'LC Kit'.
- * Version: 1.1.1
+ * Version: 1.1.4
  * Author: Lionecoders
  * Author URI: https://lionecoders.com
  * Text Domain: lc-addons-kit-for-elementor
@@ -30,7 +30,7 @@ class LCAKE_Elementor_Addons_Kit
 
     private function define_constants()
     {
-        define('LCAKE_EAK_VERSION', '1.1.1');
+        define('LCAKE_EAK_VERSION', '1.1.4');
         define('LCAKE_EAK_PATH', plugin_dir_path(__FILE__));
         define('LCAKE_EAK_URL', plugin_dir_url(__FILE__));
     }
@@ -43,6 +43,7 @@ class LCAKE_Elementor_Addons_Kit
         }
 
         require_once LCAKE_EAK_PATH . 'includes/lcake-utils.php';
+        require_once LCAKE_EAK_PATH . 'includes/lcake-dependency-checker.php';
         require_once LCAKE_EAK_PATH . 'includes/lcake-lib.php';
         require_once LCAKE_EAK_PATH . 'includes/lcake-widget-loader.php';
         require_once LCAKE_EAK_PATH . 'includes/lcake-header-footer-builder.php';

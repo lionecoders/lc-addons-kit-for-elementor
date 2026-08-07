@@ -8,7 +8,7 @@
     list-style: none;
 }
 
-.lcake-simple-menu--vertical {
+.lcake-simple-menu--vertical .lcake-simple-menu {
     flex-direction: column;
     align-items: flex-start;
 }
@@ -23,4 +23,172 @@
 
 .lcake-simple-menu-item a:hover {
     color: #3b82f6;
+}
+
+/* --- Alignment Rules --- */
+/* Left Alignment */
+.lcake-simple-menu-align--left .lcake-simple-menu {
+    justify-content: flex-start;
+}
+.lcake-simple-menu-align--left.lcake-simple-menu--vertical .lcake-simple-menu {
+    align-items: flex-start;
+}
+.lcake-simple-menu-align--left .lcake-simple-menu-toggle-btn {
+    justify-content: flex-start;
+    margin-right: auto;
+    margin-left: 0;
+}
+.lcake-simple-menu-align--left.lcake-simple-menu--dropdown .lcake-simple-menu {
+    left: 0;
+    right: auto;
+}
+
+/* Center Alignment */
+.lcake-simple-menu-align--center .lcake-simple-menu {
+    justify-content: center;
+}
+.lcake-simple-menu-align--center.lcake-simple-menu--vertical .lcake-simple-menu {
+    align-items: center;
+}
+.lcake-simple-menu-align--center .lcake-simple-menu-toggle-btn {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.lcake-simple-menu-align--center.lcake-simple-menu--dropdown .lcake-simple-menu {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) translateY(10px);
+}
+.lcake-simple-menu-align--center.lcake-simple-menu--dropdown .lcake-simple-menu-toggle-checkbox:checked ~ .lcake-simple-menu {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Right Alignment */
+.lcake-simple-menu-align--right .lcake-simple-menu {
+    justify-content: flex-end;
+}
+.lcake-simple-menu-align--right.lcake-simple-menu--vertical .lcake-simple-menu {
+    align-items: flex-end;
+}
+.lcake-simple-menu-align--right .lcake-simple-menu-toggle-btn {
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 0;
+}
+.lcake-simple-menu-align--right.lcake-simple-menu--dropdown .lcake-simple-menu {
+    right: 0;
+    left: auto;
+}
+
+/* --- Dropdown Toggle Layout --- */
+.lcake-simple-menu-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Toggle Button Styling */
+.lcake-simple-menu-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #3b82f6;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    user-select: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.lcake-simple-menu-toggle-btn:hover {
+    background: #2563eb;
+}
+
+.lcake-simple-menu-toggle-btn:active {
+    transform: scale(0.97);
+}
+
+/* Hamburger Icon Styling */
+.lcake-simple-menu-toggle-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 18px;
+}
+
+.lcake-simple-menu-toggle-icon span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Rotate lines on toggle */
+.lcake-simple-menu-toggle-checkbox:checked ~ .lcake-simple-menu-toggle-btn .lcake-simple-menu-toggle-icon span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.lcake-simple-menu-toggle-checkbox:checked ~ .lcake-simple-menu-toggle-btn .lcake-simple-menu-toggle-icon span:nth-child(2) {
+    opacity: 0;
+}
+
+.lcake-simple-menu-toggle-checkbox:checked ~ .lcake-simple-menu-toggle-btn .lcake-simple-menu-toggle-icon span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Dropdown Menu List Styling */
+.lcake-simple-menu--dropdown .lcake-simple-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    z-index: 999;
+    min-width: 200px;
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dropdown visibility trigger */
+.lcake-simple-menu-toggle-checkbox:checked ~ .lcake-simple-menu {
+    opacity: 1;
+    visibility: visible;
+}
+/* Ensure center alignment translate transform is handled correctly on active state */
+.lcake-simple-menu-align--center.lcake-simple-menu--dropdown .lcake-simple-menu-toggle-checkbox:checked ~ .lcake-simple-menu {
+    transform: translateX(-50%) translateY(0);
+}
+.lcake-simple-menu-align--left.lcake-simple-menu--dropdown .lcake-simple-menu-toggle-checkbox:checked ~ .lcake-simple-menu,
+.lcake-simple-menu-align--right.lcake-simple-menu--dropdown .lcake-simple-menu-toggle-checkbox:checked ~ .lcake-simple-menu {
+    transform: translateY(0);
+}
+
+.lcake-simple-menu--dropdown .lcake-simple-menu-item {
+    width: 100%;
+}
+
+.lcake-simple-menu--dropdown .lcake-simple-menu-item a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.lcake-simple-menu--dropdown .lcake-simple-menu-item a:hover {
+    background: rgba(59, 130, 246, 0.08);
 }

@@ -1,0 +1,45 @@
+/* Branded Widget Badge inside Elementor editor sidebar drawer panel only */
+#elementor-panel-elements .elementor-element[class*="lcake-kit-"]::after,
+#elementor-panel-elements .elementor-element[class*="lc-header-footer-"]::after,
+#elementor-panel-elements .elementor-element[data-element_type^="lcake-kit-"]::after,
+#elementor-panel-elements .elementor-element[data-element_type^="lc-header-footer-"]::after,
+#elementor-panel-elements [data-element_type^="lcake-kit-"] .elementor-element::after,
+#elementor-panel-elements [data-element_type^="lc-header-footer-"] .elementor-element::after,
+#elementor-panel-elements-wrapper .elementor-element[class*="lcake-kit-"]::after,
+#elementor-panel-elements-wrapper .elementor-element[class*="lc-header-footer-"]::after,
+#elementor-panel-elements-wrapper .elementor-element[data-element_type^="lcake-kit-"]::after,
+#elementor-panel-elements-wrapper .elementor-element[data-element_type^="lc-header-footer-"]::after,
+.elementor-panel-menu-items .elementor-element[class*="lcake-kit-"]::after,
+.elementor-panel-menu-items .elementor-element[class*="lc-header-footer-"]::after,
+.elementor-panel-menu-items .elementor-element[data-element_type^="lcake-kit-"]::after,
+.elementor-panel-menu-items .elementor-element[data-element_type^="lc-header-footer-"]::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 5px !important;
+    right: 5px !important;
+    width: 20px !important;
+    height: 10px !important;
+    background-image: url('../icons/brand-icon.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    z-index: 99999 !important;
+    display: block !important;
+}
+
+#elementor-panel-elements .elementor-element[class*="lcake-kit-"],
+#elementor-panel-elements .elementor-element[class*="lc-header-footer-"],
+#elementor-panel-elements .elementor-element[data-element_type^="lcake-kit-"],
+#elementor-panel-elements .elementor-element[data-element_type^="lc-header-footer-"],
+#elementor-panel-elements [data-element_type^="lcake-kit-"] .elementor-element,
+#elementor-panel-elements [data-element_type^="lc-header-footer-"] .elementor-element,
+#elementor-panel-elements-wrapper .elementor-element[class*="lcake-kit-"],
+#elementor-panel-elements-wrapper .elementor-element[class*="lc-header-footer-"],
+#elementor-panel-elements-wrapper .elementor-element[data-element_type^="lcake-kit-"],
+#elementor-panel-elements-wrapper .elementor-element[data-element_type^="lc-header-footer-"],
+.elementor-panel-menu-items .elementor-element[class*="lcake-kit-"],
+.elementor-panel-menu-items .elementor-element[class*="lc-header-footer-"],
+.elementor-panel-menu-items .elementor-element[data-element_type^="lcake-kit-"],
+.elementor-panel-menu-items .elementor-element[data-element_type^="lc-header-footer-"] {
+    position: relative !important;
+}

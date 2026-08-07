@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'WooCommerce',
+                'name' => 'WooCommerce',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-product-grid';
     }
@@ -20,11 +30,11 @@ class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Product Grid', 'lc-addons-kit-for-elementor');
+        return esc_html__('Product Grid', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
-        return 'eicon-woocommerce';
+        return 'eicon-products';
     }
 
     public function get_style_depends() {
@@ -125,6 +135,22 @@ class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#3b82f6',
                 'selectors' => ['{{WRAPPER}} .lcake-product-grid-price' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_control(
+            'title_hover_underline',
+            [
+                'label' => esc_html__('Title Hover Underline', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'none',
+                'options' => [
+                    'none' => esc_html__('Hide', 'lc-addons-kit-for-elementor'),
+                    'underline' => esc_html__('Show', 'lc-addons-kit-for-elementor'),
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-product-grid-title a:hover' => 'text-decoration: {{VALUE}} !important;',
+                ],
             ]
         );
 

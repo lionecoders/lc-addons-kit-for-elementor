@@ -20,7 +20,7 @@ class LCAKE_Kit_Business_Reviews extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Business Reviews', 'lc-addons-kit-for-elementor');
+        return esc_html__('Business Reviews', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -116,7 +116,7 @@ class LCAKE_Kit_Business_Reviews extends \Elementor\Widget_Base {
                 'label' => esc_html__('Columns', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => '3',
-                'options' => ['1' => '1', '2' => '2', '3' => '3'],
+                'options' => ['1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6'],
                 'selectors' => ['{{WRAPPER}} .lcake-business-reviews' => 'grid-template-columns: repeat({{VALUE}}, 1fr);'],
             ]
         );
@@ -132,12 +132,98 @@ class LCAKE_Kit_Business_Reviews extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
-            'star_color',
+            'card_heading',
             [
-                'label' => esc_html__('Star Color', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Card Layout', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+            ]
+        );
+
+        $this->add_control(
+            'card_bg_color',
+            [
+                'label' => esc_html__('Card Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#facc15',
-                'selectors' => ['{{WRAPPER}} .lcake-business-review-star.is-filled' => 'color: {{VALUE}};'],
+                'default' => '#ffffff',
+                'selectors' => ['{{WRAPPER}} .lcake-business-review-card' => 'background-color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'card_padding',
+            [
+                'label' => esc_html__('Card Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => ['{{WRAPPER}} .lcake-business-review-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'card_border_radius',
+            [
+                'label' => esc_html__('Card Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => ['{{WRAPPER}} .lcake-business-review-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'card_border',
+                'selector' => '{{WRAPPER}} .lcake-business-review-card',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'card_box_shadow',
+                'selector' => '{{WRAPPER}} .lcake-business-review-card',
+            ]
+        );
+
+        // Header (Avatar / Name / Source) Section
+        $this->add_control(
+            'header_heading',
+            [
+                'label' => esc_html__('Header Details', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'avatar_size',
+            [
+                'label' => esc_html__('Avatar Size (px)', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 20,
+                        'max' => 150,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 44,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-business-review-avatar' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'avatar_border_radius',
+            [
+                'label' => esc_html__('Avatar Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => ['{{WRAPPER}} .lcake-business-review-avatar' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'],
             ]
         );
 
@@ -148,6 +234,70 @@ class LCAKE_Kit_Business_Reviews extends \Elementor\Widget_Base {
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#111827',
                 'selectors' => ['{{WRAPPER}} .lcake-business-review-name' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'name_typography',
+                'selector' => '{{WRAPPER}} .lcake-business-review-name',
+            ]
+        );
+
+        $this->add_control(
+            'source_color',
+            [
+                'label' => esc_html__('Source Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#6b7280',
+                'selectors' => ['{{WRAPPER}} .lcake-business-review-source' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'source_typography',
+                'selector' => '{{WRAPPER}} .lcake-business-review-source',
+            ]
+        );
+
+        // Rating & Review Text Section
+        $this->add_control(
+            'content_style_heading',
+            [
+                'label' => esc_html__('Rating & Text Content', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'star_color',
+            [
+                'label' => esc_html__('Star Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#facc15',
+                'selectors' => ['{{WRAPPER}} .lcake-business-review-star.is-filled' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_control(
+            'review_text_color',
+            [
+                'label' => esc_html__('Review Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#374151',
+                'selectors' => ['{{WRAPPER}} .lcake-business-review-text' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'review_text_typography',
+                'selector' => '{{WRAPPER}} .lcake-business-review-text',
             ]
         );
 

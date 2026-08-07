@@ -24,7 +24,7 @@ class LCAKE_Kit_Drop_Caps extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return esc_html__('LC Drop Caps', 'lc-addons-kit-for-elementor');
+        return esc_html__('Drop Caps', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon()
@@ -62,7 +62,7 @@ class LCAKE_Kit_Drop_Caps extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Text', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::WYSIWYG,
-                'default' => esc_html__('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'lc-addons-kit-for-elementor'),
+                'default' => esc_html__('This is an example of a drop cap paragraph. You can customize the look and feel of the initial letter using the styling controls above, or type your own custom text in this editor. Drop caps are a great way to style the beginning of articles, posts, and sections on your web pages.', 'lc-addons-kit-for-elementor'),
                 'placeholder' => esc_html__('Enter your text here...', 'lc-addons-kit-for-elementor'),
             ]
         );

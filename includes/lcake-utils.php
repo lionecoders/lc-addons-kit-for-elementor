@@ -529,10 +529,16 @@ class LCAKE_Kit_Utils
     {
         $options = [0 => esc_html__('Select Form', 'lc-addons-kit-for-elementor')];
 
-        if (defined('FLUENTFORM')) {
-            $forms = get_posts(['post_type' => 'fluent_form', 'posts_per_page' => 200]);
-            foreach ($forms as $form) {
-                $options[$form->ID] = $form->post_title;
+        if (defined('FLUENTFORM') || function_exists('wpFluentForm')) {
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'fluentform_forms';
+            if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") === $table_name) {
+                $forms = $wpdb->get_results("SELECT id, title FROM $table_name ORDER BY id DESC", ARRAY_A);
+                if (!empty($forms)) {
+                    foreach ($forms as $form) {
+                        $options[$form['id']] = $form['title'];
+                    }
+                }
             }
         }
 

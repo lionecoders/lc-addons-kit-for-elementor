@@ -6,47 +6,27 @@ if (!defined('ABSPATH'))
 class LCAKE_Kit_Widget_Loader
 {
 
+    private $widget_classes = [];
+    private $active_widgets = [];
+    private $excluded_styles = [];
+    private $excluded_scripts = [];
+
+    private $dependencies_checked = false;
+
     public function __construct()
     {
         add_action('elementor/widgets/register', [$this, 'register_widgets']);
         add_action('elementor/elements/categories_registered', [$this, 'register_categories']);
         add_action('elementor/frontend/after_register_scripts', [$this, 'register_widget_scripts']);
         add_action('elementor/frontend/after_register_styles', [$this, 'register_widget_styles']);
+        add_action('elementor/editor/after_enqueue_styles', [$this, 'enqueue_editor_styles']);
     }
 
-    public function register_categories($elements_manager)
+    public function load_widget_classes()
     {
-        $elements_manager->add_category(
-            'lcake-page-kit',
-            [
-                'title' => __('LC Page Kit', 'lc-addons-kit-for-elementor'),
-                'icon' => 'eicon-folder',
-            ]
-        );
-
-        // Backward compatibility: some widgets still reference 'lc-page-kit'
-        $elements_manager->add_category(
-            'lc-page-kit',
-            [
-                'title' => __('LC Page Kit', 'lc-addons-kit-for-elementor'),
-                'icon' => 'eicon-folder',
-            ]
-        );
-
-        $elements_manager->add_category(
-            'lc-header-footer-kit1',
-            [
-                'title' => __('LC Header Footer kit', 'lc-addons-kit-for-elementor'),
-                'icon' => 'eicon-header',
-            ]
-        );
-    }
-
-    public function register_widgets($widgets_manager)
-    {
-        // Get the saved list of enabled widget names (IDs) from the database.
-        // Example: [ 'accordion', 'button', 'icon-box' ]
-        $enabled_widgets = get_option('lcake_kit_enabled_widgets', []);
+        if (!empty($this->widget_classes)) {
+            return $this->widget_classes;
+        }
 
         $folders = [
             'lc-kit' => 'LCAKE_Kit_',
@@ -78,26 +58,147 @@ class LCAKE_Kit_Widget_Loader
                 $class = $prefix . str_replace(' ', '_', ucwords(str_replace('-', ' ', $widget_name)));
 
                 if (class_exists($class)) {
-                    // If no specific selection saved, register all by default
-                    if (empty($enabled_widgets) || !is_array($enabled_widgets)) {
-                        $widgets_manager->register(new $class());
-                        continue;
+                    $this->widget_classes[$widget_id] = [
+                        'class' => $class,
+                        'name' => $widget_name,
+                        'folder' => $folder,
+                        'file' => $file,
+                    ];
+                }
+            }
+        }
+
+        return $this->widget_classes;
+    }
+
+    private function check_all_widget_dependencies()
+    {
+        if ($this->dependencies_checked) {
+            return;
+        }
+
+        if (!class_exists('\Elementor\Widget_Base')) {
+            return;
+        }
+
+        $this->dependencies_checked = true;
+        $widget_data = $this->load_widget_classes();
+
+        foreach ($widget_data as $widget_id => $data) {
+            $class = $data['class'];
+            $dependencies = [];
+
+            if (class_exists($class)) {
+                $widget_instance = new $class();
+                if (method_exists($widget_instance, 'get_required_dependencies')) {
+                    $dependencies = (array) $widget_instance->get_required_dependencies();
+                }
+
+                if (LCAKE_Kit_Dependency_Checker::check($dependencies)) {
+                    $this->active_widgets[$widget_id] = $class;
+                } else {
+                    if (method_exists($widget_instance, 'get_style_depends')) {
+                        $this->excluded_styles = array_merge($this->excluded_styles, (array) $widget_instance->get_style_depends());
                     }
-
-                    // Otherwise, only register if enabled in settings. Accept the legacy bare
-                    // filename too (pre-composite-ID saves only ever covered the lc-kit folder).
-                    $is_enabled = in_array($widget_id, $enabled_widgets, true)
-                        || ('lc-kit' === $folder && in_array($widget_name, $enabled_widgets, true));
-
-                    if ($is_enabled) {
-                        $widgets_manager->register(new $class());
+                    if (method_exists($widget_instance, 'get_script_depends')) {
+                        $this->excluded_scripts = array_merge($this->excluded_scripts, (array) $widget_instance->get_script_depends());
                     }
                 }
             }
         }
     }
+
+    public function register_categories($elements_manager)
+    {
+        $elements_manager->add_category(
+            'lcake-page-kit',
+            [
+                'title' => __('LC Page Kit', 'lc-addons-kit-for-elementor'),
+                'icon' => 'eicon-folder',
+            ]
+        );
+
+        $elements_manager->add_category(
+            'lc-header-footer-kit',
+            [
+                'title' => __('LC Header Footer kit', 'lc-addons-kit-for-elementor'),
+                'icon' => 'eicon-header',
+            ]
+        );
+
+        // Prepend our custom categories to move them to the top of the Elementor panel.
+        // We use Closure Binding to safely access and modify the private $categories property of Elements_Manager.
+        $reorder = function () {
+            if (isset($this->categories)) {
+                $my_categories = [
+                    'lcake-page-kit' => [
+                        'title' => __('LC Page Kit', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-folder',
+                    ],
+                    'lc-header-footer-kit1' => [
+                        'title' => __('LC Header Footer kit', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-header',
+                    ],
+                ];
+
+                $existing = array_diff_key($this->categories, $my_categories);
+
+                if (isset($existing['favorites'])) {
+                    $top = ['favorites' => $existing['favorites']];
+                    $rest = array_diff_key($existing, ['favorites' => true]);
+                    $this->categories = array_merge($top, $my_categories, $rest);
+                } else {
+                    $this->categories = array_merge($my_categories, $existing);
+                }
+            }
+        };
+
+        $bound_reorder = \Closure::bind($reorder, $elements_manager, $elements_manager);
+        if ($bound_reorder) {
+            $bound_reorder();
+        }
+    }
+
+    public function register_widgets($widgets_manager)
+    {
+        $this->check_all_widget_dependencies();
+
+        // Get the saved list of enabled widget names (IDs) from the database.
+        // Returns null if the option has never been saved yet.
+        $enabled_widgets = get_option('lcake_kit_enabled_widgets', null);
+        $widget_data = $this->load_widget_classes();
+
+        foreach ($this->active_widgets as $widget_id => $class) {
+            if (!isset($widget_data[$widget_id])) {
+                continue;
+            }
+
+            $data = $widget_data[$widget_id];
+            $widget_name = $data['name'];
+            $folder = $data['folder'];
+
+            // If no specific selection saved (first run / never saved), register all by default
+            if ($enabled_widgets === null) {
+                $widgets_manager->register(new $class());
+                continue;
+            }
+
+            // Otherwise, only register if enabled in settings. Accept the legacy bare
+            // filename too (pre-composite-ID saves only ever covered the lc-kit folder).
+            $is_enabled = is_array($enabled_widgets) && (
+                in_array($widget_id, $enabled_widgets, true)
+                || ('lc-kit' === $folder && in_array($widget_name, $enabled_widgets, true))
+            );
+
+            if ($is_enabled) {
+                $widgets_manager->register(new $class());
+            }
+        }
+    }
     public function register_widget_scripts()
     {
+        $this->check_all_widget_dependencies();
+
         $scripts = [
             'lcake-kit-jquery-event-move' => ['file' => 'jquery.event.move.min.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-twentytwenty' => ['file' => 'jquery.twentytwenty.min.js', 'deps' => ['jquery', 'lcake-kit-jquery-event-move'], 'enqueue' => false, 'path' => ''],
@@ -137,11 +238,27 @@ class LCAKE_Kit_Widget_Loader
             // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false, 'path' => '']
         ];
 
+        if (!empty($this->excluded_scripts)) {
+            $scripts = array_diff_key($scripts, array_flip($this->excluded_scripts));
+        }
+
         LCAKE_Kit_Utils::lcake_file_enqueue($scripts, 'script');
+    }
+
+    public function enqueue_editor_styles()
+    {
+        wp_enqueue_style(
+            'lcake-kit-editor-css',
+            LCAKE_EAK_URL . 'assets/css/lcake-editor.css',
+            [],
+            LCAKE_EAK_VERSION
+        );
     }
 
     public function register_widget_styles()
     {
+        $this->check_all_widget_dependencies();
+
         $styles = [
             'lcake-kit-twentytwenty' => ['file' => 'twentytwenty.min.css', 'enqueue' => false, 'path' => ''],
             'lcake-kit-accordion' => ['file' => 'lcake-kit-accordion.css', 'enqueue' => false, 'path' => ''],
@@ -210,6 +327,7 @@ class LCAKE_Kit_Widget_Loader
             'lcake-kit-caldera-forms-css' => ['file' => 'lcake-kit-caldera-forms.css', 'enqueue' => false, 'path' => ''],
             'lcake-kit-formstack-css' => ['file' => 'lcake-kit-formstack.css', 'enqueue' => false, 'path' => ''],
             'lcake-kit-type-form-css' => ['file' => 'lcake-kit-type-form.css', 'enqueue' => false, 'path' => ''],
+            'lcake-kit-mailchimp-css' => ['file' => 'lcake-kit-mailchimp.css', 'enqueue' => false, 'path' => ''],
             'lcake-kit-facebook-feed-css' => ['file' => 'lcake-kit-facebook-feed.css', 'enqueue' => false, 'path' => ''],
             'lcake-kit-twitter-feed-css' => ['file' => 'lcake-kit-twitter-feed.css', 'enqueue' => false, 'path' => ''],
             'lcake-kit-login-register-css' => ['file' => 'lcake-kit-login-register.css', 'enqueue' => false, 'path' => ''],
@@ -227,8 +345,12 @@ class LCAKE_Kit_Widget_Loader
             'lc-header-footer-cart-icon-css' => ['file' => 'lc-header-footer-cart-icon.css', 'enqueue' => false, 'path' => ''],
             'lc-header-footer-contact-info-css' => ['file' => 'lc-header-footer-contact-info.css', 'enqueue' => false, 'path' => ''],
             'lc-header-footer-copyright-text-css' => ['file' => 'lc-header-footer-copyright-text.css', 'enqueue' => false, 'path' => ''],
-            // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.css', 'enqueue' => false, 'path' => '']
+            // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.css', 'enqueue' => false, 'path' => ''],
         ];
+
+        if (!empty($this->excluded_styles)) {
+            $styles = array_diff_key($styles, array_flip($this->excluded_styles));
+        }
 
         LCAKE_Kit_Utils::lcake_file_enqueue($styles, 'style');
     }

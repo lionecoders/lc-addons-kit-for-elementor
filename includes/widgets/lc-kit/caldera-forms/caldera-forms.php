@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Caldera_Forms extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'Caldera_Forms',
+                'name' => 'Caldera Forms',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-caldera-forms';
     }
@@ -20,7 +30,7 @@ class LCAKE_Kit_Caldera_Forms extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Caldera Forms', 'lc-addons-kit-for-elementor');
+        return esc_html__('Caldera Forms', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {

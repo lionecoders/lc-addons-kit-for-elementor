@@ -107,6 +107,15 @@ class LC_Header_Footer_Site_Title extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'tagline_typography',
+                'condition' => ['show_tagline' => 'yes'],
+                'selector' => '{{WRAPPER}} .lc-hf-site-tagline',
+            ]
+        );
+
         $this->end_controls_section();
     }
 

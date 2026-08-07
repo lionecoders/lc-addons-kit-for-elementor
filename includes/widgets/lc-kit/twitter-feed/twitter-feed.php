@@ -20,11 +20,11 @@ class LCAKE_Kit_Twitter_Feed extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Twitter Feed', 'lc-addons-kit-for-elementor');
+        return esc_html__('X (Twitter) Feed', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
-        return 'eicon-twitter';
+        return 'eicon-x-twitter';
     }
 
     public function get_style_depends() {
@@ -47,7 +47,7 @@ class LCAKE_Kit_Twitter_Feed extends \Elementor\Widget_Base {
         $this->add_control(
             'username',
             [
-                'label' => esc_html__('Twitter / X Username', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('X (Twitter) Username', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => 'WordPress',
                 'placeholder' => 'username (without @)',
@@ -102,9 +102,9 @@ class LCAKE_Kit_Twitter_Feed extends \Elementor\Widget_Base {
                data-height="<?php echo esc_attr($settings['height']['size'] ?? 500); ?>"
                data-tweet-limit="<?php echo esc_attr($settings['tweet_limit']); ?>"
                data-theme="<?php echo esc_attr($settings['theme']); ?>"
-               href="<?php echo esc_url('https://twitter.com/' . $username); ?>">
+               href="<?php echo esc_url('https://x.com/' . $username); ?>">
                 <?php
-                /* translators: %s: twitter username */
+                /* translators: %s: x username */
                 echo esc_html(sprintf(__('Tweets by %s', 'lc-addons-kit-for-elementor'), '@' . $username));
                 ?>
             </a>

@@ -20,7 +20,7 @@ class LCAKE_Kit_Cta_Box extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC CTA Box', 'lc-addons-kit-for-elementor');
+        return esc_html__('CTA Box', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {

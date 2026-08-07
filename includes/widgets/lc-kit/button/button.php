@@ -18,7 +18,7 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return esc_html__('LC Button', 'lc-addons-kit-for-elementor');
+        return esc_html__('Button', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon()
@@ -232,6 +232,29 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'lcake_btn_transition_duration',
+            [
+                'label' => esc_html__('Transition Duration (s)', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['s'],
+                'range' => [
+                    's' => [
+                        'min' => 0,
+                        'max' => 3,
+                        'step' => 0.1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 's',
+                    'size' => 0.3,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-kit-button' => 'transition: all {{SIZE}}{{UNIT}} ease;',
+                ],
+            ]
+        );
+
         // Start Tabs for Normal & Hover States
         $this->start_controls_tabs('lcake_btn_tabs_style');
 
@@ -288,6 +311,14 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base
             [
                 'name'     => 'lcake_btn_bg_hover_color',
                 'selector' => '{{WRAPPER}} .lcake-kit-button:hover',
+            ]
+        );
+
+        $this->add_control(
+            'lcake_btn_hover_animation',
+            [
+                'label' => esc_html__('Hover Animation', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HOVER_ANIMATION,
             ]
         );
 
@@ -555,10 +586,13 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base
         $position     = $settings['lcake_button_icon_position'] ?? 'left';
         $has_url      = !empty($settings['lcake_button_link']['url']);
         
+        $hover_animation = !empty($settings['lcake_btn_hover_animation']) ? 'elementor-animation-' . $settings['lcake_btn_hover_animation'] : '';
+
         $this->add_render_attribute('button', [
             'class' => array_filter([
                 'lcake-kit-button',
                 'elementor-button',
+                $hover_animation,
                 $custom_class,
             ]),
         ]);

@@ -20,11 +20,11 @@ class LCAKE_Kit_Content_Ticker extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Content Ticker', 'lc-addons-kit-for-elementor');
+        return esc_html__('Content Ticker', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
-        return 'eicon-post-list';
+        return 'eicon-post-slider';
     }
 
     public function get_style_depends() {
@@ -94,6 +94,18 @@ class LCAKE_Kit_Content_Ticker extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'pause_on_hover',
+            [
+                'label' => esc_html__('Pause on Hover', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-content-ticker:hover .lcake-content-ticker-track' => 'animation-play-state: paused;',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -101,6 +113,15 @@ class LCAKE_Kit_Content_Ticker extends \Elementor\Widget_Base {
             [
                 'label' => esc_html__('Style', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        // Container Style Group
+        $this->add_control(
+            'container_style_heading',
+            [
+                'label' => esc_html__('Ticker Container', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
             ]
         );
 
@@ -114,13 +135,116 @@ class LCAKE_Kit_Content_Ticker extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
-            'label_color',
+        $this->add_responsive_control(
+            'container_padding',
             [
-                'label' => esc_html__('Label Background', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => ['{{WRAPPER}} .lcake-content-ticker' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'container_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => ['{{WRAPPER}} .lcake-content-ticker' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'container_border',
+                'selector' => '{{WRAPPER}} .lcake-content-ticker',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'container_box_shadow',
+                'selector' => '{{WRAPPER}} .lcake-content-ticker',
+            ]
+        );
+
+        // Label Style Group
+        $this->add_control(
+            'label_style_heading',
+            [
+                'label' => esc_html__('Label Badge Style', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'label_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#3b82f6',
                 'selectors' => ['{{WRAPPER}} .lcake-content-ticker-label' => 'background-color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_control(
+            'label_text_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => ['{{WRAPPER}} .lcake-content-ticker-label' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'label_typography',
+                'selector' => '{{WRAPPER}} .lcake-content-ticker-label',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'label_padding',
+            [
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => ['{{WRAPPER}} .lcake-content-ticker-label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'label_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => ['{{WRAPPER}} .lcake-content-ticker-label' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'],
+            ]
+        );
+
+        // Content Text Style Group
+        $this->add_control(
+            'text_style_heading',
+            [
+                'label' => esc_html__('Ticker Text Style', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_ticker_text_style');
+
+        $this->start_controls_tab(
+            'tab_ticker_text_normal',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
             ]
         );
 
@@ -130,7 +254,65 @@ class LCAKE_Kit_Content_Ticker extends \Elementor\Widget_Base {
                 'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#ffffff',
-                'selectors' => ['{{WRAPPER}} .lcake-content-ticker-track a' => 'color: {{VALUE}};'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-content-ticker-item' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-content-ticker-item a' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'tab_ticker_text_hover',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'text_color_hover',
+            [
+                'label' => esc_html__('Text Color (Hover)', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-content-ticker-item a:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .lcake-content-ticker-item:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'text_typography',
+                'selector' => '{{WRAPPER}} .lcake-content-ticker-item',
+            ]
+        );
+
+        $this->add_control(
+            'item_spacing',
+            [
+                'label' => esc_html__('Gap Between Items', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 10,
+                        'max' => 150,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 40,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-content-ticker-item' => 'padding-right: {{SIZE}}{{UNIT}};',
+                ],
             ]
         );
 

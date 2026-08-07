@@ -20,7 +20,7 @@ class LCAKE_Kit_Nft_Gallery extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC NFT Gallery', 'lc-addons-kit-for-elementor');
+        return esc_html__('NFT Gallery', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -107,20 +107,258 @@ class LCAKE_Kit_Nft_Gallery extends \Elementor\Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'section_style',
+            'section_style_grid',
             [
-                'label' => esc_html__('Style', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Grid & Media', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'grid_gap',
+            [
+                'label' => esc_html__('Gap', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'size' => 24,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-nft-gallery' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'media_aspect_ratio',
+            [
+                'label' => esc_html__('Aspect Ratio', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => '1/1',
+                'options' => [
+                    '1/1' => esc_html__('1:1 Square', 'lc-addons-kit-for-elementor'),
+                    '4/3' => esc_html__('4:3 Standard', 'lc-addons-kit-for-elementor'),
+                    '16/9' => esc_html__('16:9 Widescreen', 'lc-addons-kit-for-elementor'),
+                    'auto' => esc_html__('Auto (Original)', 'lc-addons-kit-for-elementor'),
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-nft-card-media' => 'aspect-ratio: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_style_card',
+            [
+                'label' => esc_html__('Card', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->start_controls_tabs('card_states');
+
+        $this->start_controls_tab(
+            'card_normal',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'card_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-nft-card' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'card_shadow',
+                'selector' => '{{WRAPPER}} .lcake-nft-card',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'card_hover',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'card_hover_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-nft-card:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'card_hover_shadow',
+                'selector' => '{{WRAPPER}} .lcake-nft-card:hover',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+            'card_padding',
+            [
+                'label' => esc_html__('Info Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '16',
+                    'bottom' => '16',
+                    'left' => '20',
+                    'right' => '20',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-nft-card-info' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'card_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'default' => [
+                    'top' => '20',
+                    'bottom' => '20',
+                    'left' => '20',
+                    'right' => '20',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-nft-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'card_border',
+                'label' => esc_html__('Border', 'lc-addons-kit-for-elementor'),
+                'selector' => '{{WRAPPER}} .lcake-nft-card',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'card_hover_translate',
+            [
+                'label' => esc_html__('Hover Translate Y (px)', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                ],
+                'default' => [
+                    'size' => 6,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-nft-card:hover' => 'transform: translateY(-{{SIZE}}px);',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_style_content',
+            [
+                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'heading_name',
+            [
+                'label' => esc_html__('Name', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+            ]
+        );
+
+        $this->add_control(
+            'name_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#111827',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-nft-card-name' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'name_typography',
+                'selector' => '{{WRAPPER}} .lcake-nft-card-name',
+            ]
+        );
+
+        $this->add_control(
+            'heading_price',
+            [
+                'label' => esc_html__('Price', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
             ]
         );
 
         $this->add_control(
             'price_color',
             [
-                'label' => esc_html__('Price Color', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#3b82f6',
-                'selectors' => ['{{WRAPPER}} .lcake-nft-card-price' => 'color: {{VALUE}};'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-nft-card-price' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'price_typography',
+                'selector' => '{{WRAPPER}} .lcake-nft-card-price',
             ]
         );
 

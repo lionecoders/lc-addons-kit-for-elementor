@@ -56,3 +56,10 @@
         grid-template-columns: 1fr;
     }
 }
+
+.lcake-docs-category-grid a,
+.lcake-docs-category-grid a:hover,
+.lcake-docs-category-grid-title a,
+.lcake-docs-category-grid-list a {
+    text-decoration: none !important;
+}

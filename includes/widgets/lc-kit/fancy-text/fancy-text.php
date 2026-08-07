@@ -20,7 +20,7 @@ class LCAKE_Kit_Fancy_Text extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Fancy Text', 'lc-addons-kit-for-elementor');
+        return esc_html__('Fancy Text', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {

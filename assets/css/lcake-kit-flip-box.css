@@ -70,6 +70,14 @@
     fill: #3b82f6;
 }
 
+.lcake-flip-box-back .lcake-flip-box-icon i {
+    color: #ffffff;
+}
+
+.lcake-flip-box-back .lcake-flip-box-icon svg {
+    fill: #ffffff;
+}
+
 .lcake-flip-box-title {
     margin: 0 0 10px 0;
     font-size: 22px;
@@ -102,6 +110,11 @@
     padding: 12px 26px;
     border-radius: 12px;
     transition: all 0.3s ease;
+}
+
+.lcake-flip-box-front .lcake-flip-box-button {
+    background: #3b82f6;
+    color: #ffffff;
 }
 
 .lcake-flip-box-button:hover {

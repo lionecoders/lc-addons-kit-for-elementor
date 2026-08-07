@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Better_Payment extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'Better_Payment',
+                'name' => 'Better Payment',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-better-payment';
     }
@@ -20,7 +30,7 @@ class LCAKE_Kit_Better_Payment extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Better Payment', 'lc-addons-kit-for-elementor');
+        return esc_html__('Better Payment', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -41,7 +51,7 @@ class LCAKE_Kit_Better_Payment extends \Elementor\Widget_Base {
         );
 
         $options = [0 => esc_html__('Select Payment Form', 'lc-addons-kit-for-elementor')];
-        if (post_type_exists('better-payment')) {
+        if (class_exists('Better_Payment') || post_type_exists('better-payment')) {
             $forms = get_posts(['post_type' => 'better-payment', 'posts_per_page' => 200]);
             foreach ($forms as $form) {
                 $options[$form->ID] = $form->post_title;
@@ -62,7 +72,7 @@ class LCAKE_Kit_Better_Payment extends \Elementor\Widget_Base {
     }
 
     protected function render() {
-        if (!post_type_exists('better-payment')) {
+        if (!class_exists('Better_Payment') && !post_type_exists('better-payment')) {
             LCAKE_Kit_Utils::plugin_inactive_notice('Better Payment');
             return;
         }

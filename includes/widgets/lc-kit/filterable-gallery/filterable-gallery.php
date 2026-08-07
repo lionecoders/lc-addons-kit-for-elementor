@@ -20,7 +20,7 @@ class LCAKE_Kit_Filterable_Gallery extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Filterable Gallery', 'lc-addons-kit-for-elementor');
+        return esc_html__('Filterable Gallery', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -112,20 +112,260 @@ class LCAKE_Kit_Filterable_Gallery extends \Elementor\Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'section_style',
+            'section_style_filters',
             [
-                'label' => esc_html__('Style', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Filters', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
-        $this->add_control(
-            'filter_active_color',
+        $this->add_responsive_control(
+            'filter_alignment',
             [
-                'label' => esc_html__('Active Filter Color', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Alignment', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'default' => 'left',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filters' => 'justify-content: {{VALUE}};',
+                ],
+                'selectors_dictionary' => [
+                    'left' => 'flex-start',
+                    'center' => 'center',
+                    'right' => 'flex-end',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'filter_typography',
+                'selector' => '{{WRAPPER}} .lcake-filterable-gallery-filter',
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_filter_style');
+
+        $this->start_controls_tab(
+            'tab_filter_normal',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'filter_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#374151',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filter' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'filter_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filter' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'filter_border_color',
+            [
+                'label' => esc_html__('Border Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#e5e7eb',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filter' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'tab_filter_hover',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'filter_hover_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#3b82f6',
-                'selectors' => ['{{WRAPPER}} .lcake-filterable-gallery-filter.is-active' => 'background-color: {{VALUE}}; border-color: {{VALUE}};'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filter:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'filter_hover_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filter:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'filter_hover_border_color',
+            [
+                'label' => esc_html__('Border Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filter:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'tab_filter_active',
+            [
+                'label' => esc_html__('Active', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'filter_active_color_tab',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filter.is-active' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'filter_active_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filter.is-active' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'filter_active_border_color_tab',
+            [
+                'label' => esc_html__('Border Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filter.is-active' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+            'filter_padding',
+            [
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '8',
+                    'bottom' => '8',
+                    'left' => '20',
+                    'right' => '20',
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filter' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'filter_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                ],
+                'default' => [
+                    'size' => 20,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filter' => 'border-radius: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'filter_spacing',
+            [
+                'label' => esc_html__('Spacing Below Filter', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'default' => [
+                    'size' => 24,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-filters' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_style_grid',
+            [
+                'label' => esc_html__('Grid & Items', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             ]
         );
 
@@ -137,6 +377,117 @@ class LCAKE_Kit_Filterable_Gallery extends \Elementor\Widget_Base {
                 'range' => ['px' => ['min' => 0, 'max' => 60]],
                 'default' => ['size' => 24, 'unit' => 'px'],
                 'selectors' => ['{{WRAPPER}} .lcake-filterable-gallery-grid' => 'gap: {{SIZE}}{{UNIT}};'],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'item_border_radius',
+            [
+                'label' => esc_html__('Item Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                ],
+                'default' => [
+                    'size' => 16,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-item' => 'border-radius: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'image_hover_animation',
+            [
+                'label' => esc_html__('Image Hover Animation', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'zoom-in',
+                'options' => [
+                    'zoom-in' => esc_html__('Zoom In', 'lc-addons-kit-for-elementor'),
+                    'zoom-out' => esc_html__('Zoom Out', 'lc-addons-kit-for-elementor'),
+                    'grayscale' => esc_html__('Grayscale', 'lc-addons-kit-for-elementor'),
+                    'blur' => esc_html__('Blur', 'lc-addons-kit-for-elementor'),
+                    'none' => esc_html__('None', 'lc-addons-kit-for-elementor'),
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_style_overlay',
+            [
+                'label' => esc_html__('Overlay', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'overlay_display',
+            [
+                'label' => esc_html__('Overlay Display', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'hover',
+                'options' => [
+                    'hover' => esc_html__('On Hover', 'lc-addons-kit-for-elementor'),
+                    'always' => esc_html__('Always Show', 'lc-addons-kit-for-elementor'),
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'overlay_bg',
+                'label' => esc_html__('Background', 'lc-addons-kit-for-elementor'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .lcake-filterable-gallery-overlay',
+            ]
+        );
+
+        $this->add_control(
+            'title_color',
+            [
+                'label' => esc_html__('Title Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#ffffff',
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-title' => 'color: {{VALUE}};',
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_typography',
+                'selector' => '{{WRAPPER}} .lcake-filterable-gallery-title',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'overlay_padding',
+            [
+                'label' => esc_html__('Padding', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'default' => [
+                    'top' => '20',
+                    'bottom' => '20',
+                    'left' => '20',
+                    'right' => '20',
+                    'unit' => 'px',
+                    'isLinked' => true,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-filterable-gallery-overlay' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -174,7 +525,7 @@ class LCAKE_Kit_Filterable_Gallery extends \Elementor\Widget_Base {
                     $link = $item['link'] ?? [];
                     $tag = !empty($link['url']) ? 'a' : 'div';
                     ?>
-                    <<?php echo $tag; ?> class="lcake-filterable-gallery-item" data-category="<?php echo esc_attr($cat_slugs); ?>"
+                    <<?php echo $tag; ?> class="lcake-filterable-gallery-item anim-<?php echo esc_attr($settings['image_hover_animation'] ?? 'zoom-in'); ?> overlay-<?php echo esc_attr($settings['overlay_display'] ?? 'hover'); ?>" data-category="<?php echo esc_attr($cat_slugs); ?>"
                         <?php if ('a' === $tag) : ?>href="<?php echo esc_url($link['url']); ?>"<?php endif; ?>>
                         <?php echo LCAKE_Kit_Utils::get_attachment_image_html($item, 'image', 'medium', ['class' => 'lcake-filterable-gallery-image']); ?>
                         <?php if (!empty($item['title'])) : ?>

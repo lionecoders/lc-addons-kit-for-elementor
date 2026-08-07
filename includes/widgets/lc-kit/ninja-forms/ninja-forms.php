@@ -11,6 +11,16 @@ if (!defined('ABSPATH')) {
 
 class LCAKE_Kit_Ninja_Forms extends \Elementor\Widget_Base {
 
+    public function get_required_dependencies() {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'Ninja_Forms',
+                'name' => 'Ninja Forms',
+            ],
+        ];
+    }
+
     public function get_name() {
         return 'lcake-kit-ninja-forms';
     }
@@ -20,7 +30,7 @@ class LCAKE_Kit_Ninja_Forms extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Ninja Forms', 'lc-addons-kit-for-elementor');
+        return esc_html__('Ninja Forms', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -62,6 +72,24 @@ class LCAKE_Kit_Ninja_Forms extends \Elementor\Widget_Base {
         $settings = $this->get_settings_for_display();
 
         if (empty($settings['form_id'])) {
+            return;
+        }
+
+        if (\Elementor\Plugin::$instance->editor->is_edit_mode()) {
+            $form_title = 'Ninja Form';
+            if (function_exists('Ninja_Forms')) {
+                $form = Ninja_Forms()->form($settings['form_id'])->get();
+                if ($form) {
+                    $form_title = $form->get_setting('title');
+                }
+            }
+            ?>
+            <div class="lcake-ninja-forms-placeholder" style="border: 2px dashed #3b82f6; padding: 30px; text-align: center; background: #f8fafc; border-radius: 8px;">
+                <span class="dashicons dashicons-feedback" style="font-size: 36px; width: 36px; height: 36px; color: #3b82f6; margin-bottom: 12px; display: inline-block;"></span>
+                <h4 style="margin: 0 0 6px; font-weight: 700; color: #1e293b; font-size: 16px;"><?php echo esc_html($form_title); ?></h4>
+                <p style="margin: 0; font-size: 13px; color: #64748b;"><?php esc_html_e('Ninja Forms uses custom dynamic scripts and will display properly on your live site.', 'lc-addons-kit-for-elementor'); ?></p>
+            </div>
+            <?php
             return;
         }
         ?>

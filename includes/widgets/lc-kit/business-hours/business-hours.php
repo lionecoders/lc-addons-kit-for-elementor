@@ -16,7 +16,7 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
     }
 
     public function get_title() {
-        return esc_html__('LC Business Hours', 'lc-addons-kit-for-elementor');
+        return esc_html__('Business Hours', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon() {
@@ -339,6 +339,18 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'lcake_style_hours_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-business-hours-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
         $this->add_responsive_control(
             'lcake_style_hours_padding',
             [
@@ -403,6 +415,18 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
             [
                 'name' => 'lcake_style_today_border',
                 'selector' => '{{WRAPPER}} .lcake-business-hours-item.today',
+            ]
+        );
+
+        $this->add_control(
+            'lcake_style_today_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-business-hours-item.today' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 

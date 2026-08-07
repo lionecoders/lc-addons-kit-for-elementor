@@ -19,7 +19,7 @@ class LCAKE_Kit_Contact_Form_7 extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return esc_html__('LC Contact Form 7', 'lc-addons-kit-for-elementor');
+        return esc_html__('Contact Form 7', 'lc-addons-kit-for-elementor');
     }
 
     public function get_icon()
@@ -35,6 +35,17 @@ class LCAKE_Kit_Contact_Form_7 extends \Elementor\Widget_Base
     public function get_keywords()
     {
         return ['contact', 'form', 'cf7', 'contact form 7', 'form'];
+    }
+
+    public function get_required_dependencies()
+    {
+        return [
+            [
+                'type' => 'plugin',
+                'class' => 'WPCF7_ContactForm',
+                'name' => 'Contact Form 7',
+            ],
+        ];
     }
 
     protected function register_controls()
@@ -466,6 +477,15 @@ class LCAKE_Kit_Contact_Form_7 extends \Elementor\Widget_Base
             ]
         );
 
+        $this->start_controls_tabs('tabs_button_style');
+
+        $this->start_controls_tab(
+            'tab_button_normal',
+            [
+                'label' => esc_html__('Normal', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
         $this->add_control(
             'button_background_color',
             [
@@ -474,7 +494,7 @@ class LCAKE_Kit_Contact_Form_7 extends \Elementor\Widget_Base
                 'default' => '#007bff',
                 'selectors' => [
                     '{{WRAPPER}} .lcake-contact-form-7 input[type="submit"],
-                     {{WRAPPER}} .lcake-contact-form-7 button[type="submit"]' => 'background-color: {{VALUE}};',
+                     {{WRAPPER}} .lcake-contact-form-7 button[type="submit"]' => 'background-color: {{VALUE}}; transition: all 0.3s ease-in-out;',
                 ],
             ]
         );
@@ -491,6 +511,55 @@ class LCAKE_Kit_Contact_Form_7 extends \Elementor\Widget_Base
                 ],
             ]
         );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'tab_button_hover',
+            [
+                'label' => esc_html__('Hover', 'lc-addons-kit-for-elementor'),
+            ]
+        );
+
+        $this->add_control(
+            'button_background_hover_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-contact-form-7 input[type="submit"]:hover,
+                     {{WRAPPER}} .lcake-contact-form-7 button[type="submit"]:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_hover_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-contact-form-7 input[type="submit"]:hover,
+                     {{WRAPPER}} .lcake-contact-form-7 button[type="submit"]:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'button_border_hover_color',
+            [
+                'label' => esc_html__('Border Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lcake-contact-form-7 input[type="submit"]:hover,
+                     {{WRAPPER}} .lcake-contact-form-7 button[type="submit"]:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
 
         $this->add_group_control(
             \Elementor\Group_Control_Typography::get_type(),

@@ -27,6 +27,10 @@ class LC_Header_Footer_Search_Toggle extends \Elementor\Widget_Base {
         return ['lc-header-footer-kit1'];
     }
 
+    public function get_keywords() {
+        return ['lc', 'lcake', 'search', 'toggle'];
+    }
+
     public function get_style_depends() {
         return ['lc-header-footer-search-toggle-css'];
     }

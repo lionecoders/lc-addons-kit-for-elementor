@@ -29,8 +29,10 @@
 .lcake-kit-button.elementor-button:hover {
     background-color: var(--lcake-btn-bg-hover, #2563eb);
     color: var(--lcake-btn-color-hover, #fff);
-    transform: translateY(-3px);
     box-shadow: 0 10px 20px -4px rgba(59, 130, 246, 0.4);
+}
+.lcake-kit-button.elementor-button:not([class*="elementor-animation-"]):hover {
+    transform: translateY(-3px);
 }
 
 /* Icon */
