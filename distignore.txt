@@ -2,12 +2,14 @@
 .babelrc
 .deployignore
 .distignore
+distignore.txt
 .editorconfig
 .eslintignore
 .eslintrc
 .git
 .github
 .gitattributes
+gitattributes.txt
 .gitignore
 .gitlab-ci.yml
 .travis.yml
@@ -26,6 +28,7 @@ phpcs.xml
 .phpcs.xml.dist
 phpcs.xml.dist
 README.md
+LICENSE
 wp-cli.local.yml
 yarn.lock
 tests
@@ -36,4 +39,6 @@ node_modules
 /src
 postcss.config.js
 .wordpress-org
+.wp-org
 .vscode
+
