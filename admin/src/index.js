@@ -52,26 +52,16 @@ const WidgetCard = ({ widget, onDragStart, onDragOver, isDragOver, listType, onT
             <span>{widget.description}</span>
             <div className="lcake-kit-card-meta">
                 <span className="lcake-kit-category-badge">{widget.category}</span>
-                {widget.setup_url && (
-                    <a
-                        href={widget.setup_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="lcake-kit-widget-setup-link"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <span className="dashicons dashicons-admin-generic" style={{ fontSize: '12px', margin: '0 4px 0 0', width: 'auto', height: 'auto' }}></span>
-                        {widget.setup_label || 'Setup'}
-                    </a>
-                )}
             </div>
             {widget.plugin_name && widget.plugin_link && (
                 <div className="lcake-kit-widget-notice">
                     <span className="dashicons dashicons-warning" style={{ fontSize: '12px', margin: '0 4px 0 0', width: 'auto', height: 'auto' }}></span>
-                    Requires {widget.plugin_name}. Get it{' '}
-                    <a href={widget.plugin_link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                        here
-                    </a>.
+                    <span>
+                        Requires {widget.plugin_name}. Get it{' '}
+                        <a href={widget.plugin_link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                            here
+                        </a>.
+                    </span>
                 </div>
             )}
         </div>

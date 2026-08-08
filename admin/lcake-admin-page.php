@@ -112,30 +112,12 @@ class LCAKE_Kit_Admin_Settings
                     : ($category_map[$base] ?? 'Other');
                 $meta = $category_meta[$category] ?? $category_meta['Other'];
 
-                $setup_url = '';
-                $setup_label = '';
-                $notice = '';
-
-                if ('lc-header-footer' === $folder) {
-                    if ($base === 'site-logo' || $base === 'site-title') {
-                        $setup_url = admin_url('customize.php');
-                        $setup_label = esc_html__('Go to Customizer', 'lc-addons-kit-for-elementor');
-                    } else {
-                        $setup_url = admin_url('edit.php?post_type=lcake_hf_template');
-                        $setup_label = esc_html__('Manage Templates', 'lc-addons-kit-for-elementor');
-                    }
-                } else {
-                    $setup_url = admin_url('edit.php?post_type=page');
-                    $setup_label = esc_html__('Manage Pages', 'lc-addons-kit-for-elementor');
-                }
-
                 $plugin_name = '';
                 $plugin_link = '';
 
                 if ($category === 'WooCommerce') {
                     $plugin_name = 'WooCommerce';
                     $plugin_link = 'https://wordpress.org/plugins/woocommerce/';
-                    $notice = esc_html__('Requires WooCommerce plugin', 'lc-addons-kit-for-elementor');
                 } elseif ($category === 'Forms') {
                     if ($base === 'contact-form-7') {
                         $plugin_name = 'Contact Form 7';
@@ -168,14 +150,10 @@ class LCAKE_Kit_Admin_Settings
                         $plugin_name = 'Typeform';
                         $plugin_link = 'https://www.typeform.com/';
                     }
-                    $notice = esc_html__('Requires respective Form plugin', 'lc-addons-kit-for-elementor');
                 } elseif (strpos($base, 'betterdocs-') === 0) {
                     $plugin_name = 'BetterDocs';
                     $plugin_link = 'https://wordpress.org/plugins/betterdocs/';
-                    $notice = esc_html__('Requires BetterDocs plugin', 'lc-addons-kit-for-elementor');
                 }
-
-
 
                 $icon = 'eicon-editor-list-bullet'; // default fallback icon
                 $file_content = file_get_contents($file);
@@ -191,10 +169,6 @@ class LCAKE_Kit_Admin_Settings
                     'description' => $meta['description'],
                     'icon'        => $icon,
                     'category'    => $category,
-                    'is_pro'      => (strpos($base, 'pro') !== false),
-                    'setup_url'   => $setup_url,
-                    'setup_label' => $setup_label,
-                    'notice'      => $notice,
                     'plugin_name' => $plugin_name,
                     'plugin_link' => $plugin_link,
                 ];
@@ -274,7 +248,7 @@ class LCAKE_Kit_Admin_Settings
             'lcake-kit-admin-styles',
             LCAKE_EAK_URL . 'admin/css/admin-styles.css',
             [],
-            '3.0.0'
+            filemtime(LCAKE_EAK_PATH . 'admin/css/admin-styles.css')
         );
 
         wp_enqueue_style('elementor-icons');
