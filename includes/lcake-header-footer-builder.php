@@ -15,6 +15,8 @@ class LCAKE_Header_Footer_Builder
 {
     const POST_TYPE = 'lcake_hf_template';
     const PARENT_MENU_SLUG = 'lcake_menu';
+    private $matching_header = null;
+    private $matching_footer = null;
 
     public function __construct()
     {
@@ -28,8 +30,7 @@ class LCAKE_Header_Footer_Builder
         add_filter('manage_' . self::POST_TYPE . '_posts_columns', [$this, 'admin_columns']);
         add_action('manage_' . self::POST_TYPE . '_posts_custom_column', [$this, 'render_admin_column'], 10, 2);
 
-        add_action('wp_body_open', [$this, 'render_header'], 5);
-        add_action('wp_footer', [$this, 'render_footer'], 5);
+        add_action('wp', [$this, 'init_frontend_hooks']);
     }
 
     public function register_post_type()
@@ -108,6 +109,7 @@ class LCAKE_Header_Footer_Builder
     private function get_condition_options()
     {
         return [
+            'none' => esc_html__('None', 'lc-addons-kit-for-elementor'),
             'entire_site' => esc_html__('Entire Site', 'lc-addons-kit-for-elementor'),
             'front_page' => esc_html__('Front Page', 'lc-addons-kit-for-elementor'),
             'blog_page' => esc_html__('Blog / Posts Page', 'lc-addons-kit-for-elementor'),
@@ -287,6 +289,8 @@ class LCAKE_Header_Footer_Builder
     private function condition_matches($condition, $condition_pages, $condition_post_type)
     {
         switch ($condition) {
+            case 'none':
+                return false;
             case 'entire_site':
                 return true;
             case 'front_page':
@@ -349,6 +353,24 @@ class LCAKE_Header_Footer_Builder
         return null;
     }
 
+    public function init_frontend_hooks()
+    {
+        if ($this->should_skip_render()) {
+            return;
+        }
+
+        $this->matching_header = $this->get_matching_template('header');
+        $this->matching_footer = $this->get_matching_template('footer');
+
+        if ($this->matching_header) {
+            add_action('get_header', [$this, 'get_header'], 1);
+        }
+
+        if ($this->matching_footer) {
+            add_action('get_footer', [$this, 'get_footer'], 1);
+        }
+    }
+
     private function should_skip_render()
     {
         if (is_admin()) {
@@ -357,8 +379,10 @@ class LCAKE_Header_Footer_Builder
         if (is_singular(self::POST_TYPE)) {
             return true;
         }
-        if (\Elementor\Plugin::$instance->preview->is_preview_mode()) {
-            return true;
+        if (class_exists('\Elementor\Plugin') && isset(\Elementor\Plugin::$instance->preview) && \Elementor\Plugin::$instance->preview->is_preview_mode()) {
+            if (isset($_GET['elementor-preview']) && (int) $_GET['elementor-preview'] === get_the_ID() && get_post_type() === self::POST_TYPE) {
+                return true;
+            }
         }
         return false;
     }
@@ -369,25 +393,83 @@ class LCAKE_Header_Footer_Builder
             return;
         }
 
-        LCAKE_Kit_Utils::render_elementor_content_css($template->ID);
         echo '<div class="lcake-hf-template lcake-hf-template--' . esc_attr(get_post_meta($template->ID, '_lcake_hf_type', true)) . '">';
         echo LCAKE_Kit_Utils::render_elementor_content($template->ID);
         echo '</div>';
     }
 
-    public function render_header()
+    public function get_header($name = null)
     {
-        if ($this->should_skip_render()) {
+        $template = $this->matching_header ?: $this->get_matching_template('header');
+        if (!$template) {
             return;
         }
-        $this->render_template($this->get_matching_template('header'));
+
+        // Enqueue Header & Footer Elementor CSS in <head>
+        LCAKE_Kit_Utils::render_elementor_content_css($template->ID);
+        $footer_template = $this->matching_footer ?: $this->get_matching_template('footer');
+        if ($footer_template) {
+            LCAKE_Kit_Utils::render_elementor_content_css($footer_template->ID);
+        }
+
+        ?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php if (!current_theme_supports('title-tag')) : ?>
+        <title><?php echo wp_get_document_title(); ?></title>
+    <?php endif; ?>
+    <?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
+<?php
+        wp_body_open();
+        $this->render_template($template);
+
+        // Suppress the theme's header.php
+        $templates = [];
+        $name = (string) $name;
+        if ('' !== $name) {
+            $templates[] = "header-{$name}.php";
+        }
+        $templates[] = 'header.php';
+
+        // Avoid running wp_head hooks again inside the theme header
+        remove_all_actions('wp_head');
+
+        ob_start();
+        locate_template($templates, true);
+        ob_get_clean();
     }
 
-    public function render_footer()
+    public function get_footer($name = null)
     {
-        if ($this->should_skip_render()) {
+        $template = $this->matching_footer ?: $this->get_matching_template('footer');
+        if (!$template) {
             return;
         }
-        $this->render_template($this->get_matching_template('footer'));
+
+        $this->render_template($template);
+        wp_footer();
+        ?>
+</body>
+</html>
+<?php
+        // Suppress the theme's footer.php
+        $templates = [];
+        $name = (string) $name;
+        if ('' !== $name) {
+            $templates[] = "footer-{$name}.php";
+        }
+        $templates[] = 'footer.php';
+
+        // Avoid running wp_footer hooks again inside the theme footer
+        remove_all_actions('wp_footer');
+
+        ob_start();
+        locate_template($templates, true);
+        ob_get_clean();
     }
 }
