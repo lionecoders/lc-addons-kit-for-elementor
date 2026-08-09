@@ -96,3 +96,81 @@
 .lc-header-footer-post-timeline a {
     text-decoration: none !important;
 }
+
+/* Alternating Layout */
+.lcake-post-timeline--alternating {
+    padding-left: 0;
+}
+
+.lcake-post-timeline--alternating::before {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.lcake-post-timeline--alternating .lcake-post-timeline-item {
+    width: 50%;
+    clear: both;
+}
+
+.lcake-post-timeline--alternating .lcake-post-timeline-item:nth-child(odd) {
+    float: right;
+    padding-left: 30px;
+    padding-right: 0;
+}
+
+.lcake-post-timeline--alternating .lcake-post-timeline-item:nth-child(even) {
+    float: left;
+    padding-right: 30px;
+    padding-left: 0;
+    text-align: right;
+}
+
+.lcake-post-timeline--alternating .lcake-post-timeline-item::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.lcake-post-timeline--alternating::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.lcake-post-timeline--alternating .lcake-post-timeline-item:nth-child(odd) .lcake-post-timeline-icon {
+    left: 0;
+    transform: translateX(-50%);
+}
+
+.lcake-post-timeline--alternating .lcake-post-timeline-item:nth-child(even) .lcake-post-timeline-icon {
+    left: auto;
+    right: 0;
+    transform: translateX(50%);
+}
+
+@media (max-width: 767px) {
+    .lcake-post-timeline--alternating {
+        padding-left: 50px;
+    }
+    .lcake-post-timeline--alternating::before {
+        left: 19px;
+        transform: none;
+    }
+    .lcake-post-timeline--alternating .lcake-post-timeline-item {
+        width: 100%;
+        float: none;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: left;
+    }
+    .lcake-post-timeline--alternating .lcake-post-timeline-item:nth-child(even) {
+        text-align: left;
+        padding-right: 0;
+    }
+    .lcake-post-timeline--alternating .lcake-post-timeline-item:nth-child(odd) .lcake-post-timeline-icon,
+    .lcake-post-timeline--alternating .lcake-post-timeline-item:nth-child(even) .lcake-post-timeline-icon {
+        left: -50px;
+        right: auto;
+        transform: none;
+    }
+}

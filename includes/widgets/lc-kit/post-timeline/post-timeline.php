@@ -41,6 +41,19 @@ class LCAKE_Kit_Post_Timeline extends \Elementor\Widget_Base {
         );
 
         $this->add_control(
+            'timeline_layout',
+            [
+                'label' => esc_html__('Layout', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'alternating',
+                'options' => [
+                    'left' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
+                    'alternating' => esc_html__('Alternating', 'lc-addons-kit-for-elementor'),
+                ],
+            ]
+        );
+
+        $this->add_control(
             'timeline_source',
             [
                 'label' => esc_html__('Source', 'lc-addons-kit-for-elementor'),
@@ -254,7 +267,8 @@ class LCAKE_Kit_Post_Timeline extends \Elementor\Widget_Base {
                     'unit' => 'px',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lcake-post-timeline::before' => 'border-left-width: {{SIZE}}{{UNIT}}; left: calc(20px - {{SIZE}}{{UNIT}} / 2);',
+                    '{{WRAPPER}} .lcake-post-timeline:not(.lcake-post-timeline--alternating)::before' => 'border-left-width: {{SIZE}}{{UNIT}}; left: calc(20px - {{SIZE}}{{UNIT}} / 2);',
+                    '{{WRAPPER}} .lcake-post-timeline--alternating::before' => 'border-left-width: {{SIZE}}{{UNIT}}; left: 50%; transform: translateX(-50%);',
                 ],
             ]
         );
@@ -303,7 +317,8 @@ class LCAKE_Kit_Post_Timeline extends \Elementor\Widget_Base {
                     'unit' => 'px',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lcake-post-timeline-icon' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}; left: calc(-30px - {{SIZE}}{{UNIT}} / 2);',
+                    '{{WRAPPER}} .lcake-post-timeline-icon' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .lcake-post-timeline:not(.lcake-post-timeline--alternating) .lcake-post-timeline-icon' => 'left: calc(-30px - {{SIZE}}{{UNIT}} / 2);',
                 ],
             ]
         );
@@ -876,6 +891,7 @@ class LCAKE_Kit_Post_Timeline extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
         $source = $settings['timeline_source'] ?? 'custom';
+        $layout_class = 'lcake-post-timeline--' . ($settings['timeline_layout'] ?? 'alternating');
 
         if ('posts' === $source) {
             $query = new \WP_Query([
@@ -890,7 +906,7 @@ class LCAKE_Kit_Post_Timeline extends \Elementor\Widget_Base {
                 return;
             }
             ?>
-            <div class="lcake-post-timeline">
+            <div class="lcake-post-timeline <?php echo esc_attr($layout_class); ?>">
                 <?php while ($query->have_posts()) : $query->the_post(); ?>
                     <div class="lcake-post-timeline-item">
                         <div class="lcake-post-timeline-icon">
@@ -918,7 +934,7 @@ class LCAKE_Kit_Post_Timeline extends \Elementor\Widget_Base {
                 return;
             }
             ?>
-            <div class="lcake-post-timeline">
+            <div class="lcake-post-timeline <?php echo esc_attr($layout_class); ?>">
                 <?php foreach ($items as $item) : ?>
                     <div class="lcake-post-timeline-item">
                         <div class="lcake-post-timeline-icon">
