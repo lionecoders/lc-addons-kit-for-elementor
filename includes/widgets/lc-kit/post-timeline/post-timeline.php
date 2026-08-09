@@ -267,8 +267,7 @@ class LCAKE_Kit_Post_Timeline extends \Elementor\Widget_Base {
                     'unit' => 'px',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lcake-post-timeline:not(.lcake-post-timeline--alternating)::before' => 'border-left-width: {{SIZE}}{{UNIT}}; left: calc(20px - {{SIZE}}{{UNIT}} / 2);',
-                    '{{WRAPPER}} .lcake-post-timeline--alternating::before' => 'border-left-width: {{SIZE}}{{UNIT}}; left: 50%; transform: translateX(-50%);',
+                    '{{WRAPPER}} .lcake-post-timeline::before' => 'border-left-width: {{SIZE}}{{UNIT}}; left: calc(20px - {{SIZE}}{{UNIT}} / 2);',
                 ],
             ]
         );
@@ -317,8 +316,7 @@ class LCAKE_Kit_Post_Timeline extends \Elementor\Widget_Base {
                     'unit' => 'px',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .lcake-post-timeline-icon' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .lcake-post-timeline:not(.lcake-post-timeline--alternating) .lcake-post-timeline-icon' => 'left: calc(-30px - {{SIZE}}{{UNIT}} / 2);',
+                    '{{WRAPPER}} .lcake-post-timeline-icon' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}}; left: calc(-30px - {{SIZE}}{{UNIT}} / 2);',
                 ],
             ]
         );
