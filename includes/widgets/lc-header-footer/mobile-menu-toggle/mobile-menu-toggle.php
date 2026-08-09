@@ -99,7 +99,15 @@ class LC_Header_Footer_Mobile_Menu_Toggle extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
         $breakpoint = !empty($settings['breakpoint']) ? (int) $settings['breakpoint'] : 800;
+        $id = $this->get_id();
         ?>
+        <style>
+        @media (max-width: <?php echo $breakpoint; ?>px) {
+            .elementor-element-<?php echo $id; ?> .lc-hf-menu-toggle {
+                display: flex;
+            }
+        }
+        </style>
         <button type="button" class="lc-hf-menu-toggle" data-breakpoint="<?php echo esc_attr($breakpoint); ?>" aria-label="<?php echo esc_attr__('Toggle menu', 'lc-addons-kit-for-elementor'); ?>" aria-expanded="false">
             <span class="lc-hf-menu-toggle-bar"></span>
             <span class="lc-hf-menu-toggle-bar"></span>

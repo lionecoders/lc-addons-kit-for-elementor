@@ -33,12 +33,7 @@ body.lcake-mobile-menu-open .lc-hf-menu-toggle .lc-hf-menu-toggle-bar:nth-child(
     transform: translateY(-8px) rotate(-45deg);
 }
 
-@media (max-width: 800px) {
-    .lc-hf-menu-toggle {
-        display: flex;
-    }
-}
-
+/* Mobile display: handled dynamically by the Mobile Menu Toggle widget's render method using the Show Toggle Below (px) setting */
 
 /* Remove text decoration for a tags */
 .elementor-widget-lc-header-footer-mobile-menu-toggle a,

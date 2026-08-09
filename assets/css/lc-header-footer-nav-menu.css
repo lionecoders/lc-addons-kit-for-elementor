@@ -98,38 +98,7 @@
     color: #3b82f6;
 }
 
-/* Mobile collapse: shown/hidden via body class toggled by the Mobile Menu Toggle widget */
-@media (max-width: 800px) {
-    .lc-hf-nav-menu-wrapper {
-        display: none;
-        width: 100%;
-    }
-
-    body.lcake-mobile-menu-open .lc-hf-nav-menu-wrapper {
-        display: block;
-    }
-
-    .lc-hf-nav-menu {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-    }
-
-    .lc-hf-nav-submenu {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        display: none;
-        padding-left: 16px;
-    }
-
-    .lc-hf-has-submenu.lc-hf-submenu-open > .lc-hf-nav-submenu {
-        display: block;
-    }
-}
-
+/* Mobile collapse: handled dynamically by the Nav Menu widget's render method using the Collapse Below (px) setting */
 
 /* Remove text decoration for a tags */
 .elementor-widget-lc-header-footer-nav-menu a,

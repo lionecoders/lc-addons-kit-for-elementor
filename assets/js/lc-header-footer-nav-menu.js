@@ -7,8 +7,11 @@
             return;
         }
 
+        var $container = $scope.find('.lc-hf-nav-menu-container');
+        var breakpoint = $container.length ? parseInt($container.attr('data-breakpoint')) : 800;
+
         $menu.find('.lc-hf-has-submenu > a').on('click', function (e) {
-            if (window.innerWidth > 800) {
+            if (window.innerWidth > breakpoint) {
                 return;
             }
             var $parent = $(this).parent();

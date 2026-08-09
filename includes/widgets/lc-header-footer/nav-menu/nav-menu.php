@@ -179,7 +179,45 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
             return;
         }
 
-        echo LCAKE_Kit_Utils::kses($menu_html);
+        $id = $this->get_id();
+        $mobile_breakpoint = !empty($settings['mobile_breakpoint']) ? (int) $settings['mobile_breakpoint'] : 800;
+        ?>
+        <style>
+        @media (max-width: <?php echo $mobile_breakpoint; ?>px) {
+            .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu-wrapper {
+                display: none;
+                width: 100%;
+            }
+
+            body.lcake-mobile-menu-open .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu-wrapper {
+                display: block;
+            }
+
+            .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+
+            .elementor-element-<?php echo $id; ?> .lc-hf-nav-submenu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                display: none;
+                padding-left: 16px;
+            }
+
+            .elementor-element-<?php echo $id; ?> .lc-hf-has-submenu.lc-hf-submenu-open > .lc-hf-nav-submenu {
+                display: block;
+            }
+        }
+        </style>
+        <div class="lc-hf-nav-menu-container" data-breakpoint="<?php echo esc_attr($mobile_breakpoint); ?>">
+            <?php echo LCAKE_Kit_Utils::kses($menu_html); ?>
+        </div>
+        <?php
     }
 }
 
