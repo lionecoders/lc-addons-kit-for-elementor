@@ -232,7 +232,6 @@ class LCAKE_Kit_Widget_Loader
             'lcake-kit-login-register-js' => ['file' => 'lcake-kit-login-register.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-event-calendar-js' => ['file' => 'lcake-kit-event-calendar.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lc-header-footer-nav-menu-js' => ['file' => 'lc-header-footer-nav-menu.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
-            'lc-header-footer-mobile-menu-toggle-js' => ['file' => 'lc-header-footer-mobile-menu-toggle.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lc-header-footer-search-toggle-js' => ['file' => 'lc-header-footer-search-toggle.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lc-header-footer-cart-icon-js' => ['file' => 'lc-header-footer-cart-icon.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false, 'path' => '']
@@ -340,7 +339,6 @@ class LCAKE_Kit_Widget_Loader
             'lc-header-footer-site-logo-css' => ['file' => 'lc-header-footer-site-logo.css', 'enqueue' => false, 'path' => ''],
             'lc-header-footer-site-title-css' => ['file' => 'lc-header-footer-site-title.css', 'enqueue' => false, 'path' => ''],
             'lc-header-footer-nav-menu-css' => ['file' => 'lc-header-footer-nav-menu.css', 'enqueue' => false, 'path' => ''],
-            'lc-header-footer-mobile-menu-toggle-css' => ['file' => 'lc-header-footer-mobile-menu-toggle.css', 'enqueue' => false, 'path' => ''],
             'lc-header-footer-search-toggle-css' => ['file' => 'lc-header-footer-search-toggle.css', 'enqueue' => false, 'path' => ''],
             'lc-header-footer-cart-icon-css' => ['file' => 'lc-header-footer-cart-icon.css', 'enqueue' => false, 'path' => ''],
             'lc-header-footer-contact-info-css' => ['file' => 'lc-header-footer-contact-info.css', 'enqueue' => false, 'path' => ''],

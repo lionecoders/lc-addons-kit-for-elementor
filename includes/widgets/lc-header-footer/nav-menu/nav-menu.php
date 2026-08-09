@@ -1,12 +1,6 @@
 <?php
-/**
- * Nav Menu Widget
- *
- * @package LC_Elementor_Addons_Kit
- */
-
 if (!defined('ABSPATH')) {
-    exit;
+    exit; // Exit if accessed directly.
 }
 
 class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
@@ -24,7 +18,11 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
     }
 
     public function get_categories() {
-        return ['lc-header-footer-kit1'];
+        return ['lc-header-footer-kit'];
+    }
+
+    public function get_keywords() {
+        return ['nav', 'menu', 'navigation', 'header'];
     }
 
     public function get_style_depends() {
@@ -36,10 +34,11 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
     }
 
     protected function register_controls() {
+        // CONTENT TAB
         $this->start_controls_section(
             'content_section',
             [
-                'label' => esc_html__('Content', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Layout', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -77,57 +76,56 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'align',
+            [
+                'label' => esc_html__('Align', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => esc_html__('Left', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'center' => [
+                        'title' => esc_html__('Center', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-h-align-center',
+                    ],
+                    'right' => [
+                        'title' => esc_html__('Right', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                    'justify' => [
+                        'title' => esc_html__('Stretch', 'lc-addons-kit-for-elementor'),
+                        'icon' => 'eicon-h-align-stretch',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .lc-hf-nav-menu' => 'justify-content: {{VALUE}};',
+                ],
+                'condition' => [
+                    'layout' => 'horizontal',
+                ],
+            ]
+        );
+
         $this->add_control(
             'mobile_breakpoint',
             [
                 'label' => esc_html__('Collapse Below (px)', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::NUMBER,
                 'default' => 800,
-                'description' => esc_html__('Pair with the Mobile Menu Toggle widget below this width.', 'lc-addons-kit-for-elementor'),
+                'description' => esc_html__('The menu will turn into a hamburger toggle below this width.', 'lc-addons-kit-for-elementor'),
             ]
         );
 
         $this->end_controls_section();
 
+        // STYLE TAB - MAIN MENU
         $this->start_controls_section(
-            'section_style',
+            'section_style_main_menu',
             [
-                'label' => esc_html__('Style', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Main Menu', 'lc-addons-kit-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-            ]
-        );
-
-        $this->add_responsive_control(
-            'item_spacing',
-            [
-                'label' => esc_html__('Spacing', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::SLIDER,
-                'range' => ['px' => ['min' => 0, 'max' => 60]],
-                'default' => ['size' => 28, 'unit' => 'px'],
-                'selectors' => ['{{WRAPPER}} .lc-hf-nav-menu' => 'gap: {{SIZE}}{{UNIT}};'],
-            ]
-        );
-
-        $this->add_control(
-            'link_color',
-            [
-                'label' => esc_html__('Link Color', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#111827',
-                'selectors' => ['{{WRAPPER}} .lc-hf-nav-menu > li > a' => 'color: {{VALUE}};'],
-            ]
-        );
-
-        $this->add_control(
-            'link_hover_color',
-            [
-                'label' => esc_html__('Hover / Active Color', 'lc-addons-kit-for-elementor'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#3b82f6',
-                'selectors' => [
-                    '{{WRAPPER}} .lc-hf-nav-menu > li > a:hover' => 'color: {{VALUE}};',
-                    '{{WRAPPER}} .lc-hf-nav-menu > li.current-menu-item > a' => 'color: {{VALUE}};',
-                ],
             ]
         );
 
@@ -139,13 +137,310 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
-            'submenu_background',
+        $this->add_responsive_control(
+            'item_spacing',
             [
-                'label' => esc_html__('Submenu Background', 'lc-addons-kit-for-elementor'),
+                'label' => esc_html__('Space Between', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => ['px' => ['min' => 0, 'max' => 100]],
+                'default' => ['size' => 28, 'unit' => 'px'],
+                'selectors' => ['{{WRAPPER}} .lc-hf-nav-menu' => 'gap: {{SIZE}}{{UNIT}};'],
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_main_menu_style');
+
+        // NORMAL
+        $this->start_controls_tab(
+            'tab_main_menu_normal',
+            ['label' => esc_html__('Normal', 'lc-addons-kit-for-elementor')]
+        );
+
+        $this->add_control(
+            'link_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#111827',
+                'selectors' => ['{{WRAPPER}} .lc-hf-nav-menu > li > a' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        // HOVER
+        $this->start_controls_tab(
+            'tab_main_menu_hover',
+            ['label' => esc_html__('Hover', 'lc-addons-kit-for-elementor')]
+        );
+
+        $this->add_control(
+            'link_hover_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6',
+                'selectors' => [
+                    '{{WRAPPER}} .lc-hf-nav-menu > li > a:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        // ACTIVE
+        $this->start_controls_tab(
+            'tab_main_menu_active',
+            ['label' => esc_html__('Active', 'lc-addons-kit-for-elementor')]
+        );
+
+        $this->add_control(
+            'link_active_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6',
+                'selectors' => [
+                    '{{WRAPPER}} .lc-hf-nav-menu > li.current-menu-item > a' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+        $this->end_controls_section();
+
+        // STYLE TAB - DROPDOWN
+        $this->start_controls_section(
+            'section_style_dropdown',
+            [
+                'label' => esc_html__('Dropdown', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'dropdown_typography',
+                'selector' => '{{WRAPPER}} .lc-hf-nav-submenu li a',
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_dropdown_style');
+
+        // NORMAL
+        $this->start_controls_tab(
+            'tab_dropdown_normal',
+            ['label' => esc_html__('Normal', 'lc-addons-kit-for-elementor')]
+        );
+
+        $this->add_control(
+            'dropdown_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#374151',
+                'selectors' => ['{{WRAPPER}} .lc-hf-nav-submenu li a' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_control(
+            'dropdown_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'default' => '#ffffff',
                 'selectors' => ['{{WRAPPER}} .lc-hf-nav-submenu' => 'background-color: {{VALUE}};'],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        // HOVER
+        $this->start_controls_tab(
+            'tab_dropdown_hover',
+            ['label' => esc_html__('Hover', 'lc-addons-kit-for-elementor')]
+        );
+
+        $this->add_control(
+            'dropdown_hover_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6',
+                'selectors' => ['{{WRAPPER}} .lc-hf-nav-submenu li a:hover' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_control(
+            'dropdown_hover_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => 'rgba(59, 130, 246, 0.08)',
+                'selectors' => ['{{WRAPPER}} .lc-hf-nav-submenu li a:hover' => 'background-color: {{VALUE}};'],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        // ACTIVE
+        $this->start_controls_tab(
+            'tab_dropdown_active',
+            ['label' => esc_html__('Active', 'lc-addons-kit-for-elementor')]
+        );
+
+        $this->add_control(
+            'dropdown_active_color',
+            [
+                'label' => esc_html__('Text Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#3b82f6',
+                'selectors' => ['{{WRAPPER}} .lc-hf-nav-submenu li.current-menu-item > a' => 'color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_control(
+            'dropdown_active_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => ['{{WRAPPER}} .lc-hf-nav-submenu li.current-menu-item > a' => 'background-color: {{VALUE}};'],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->add_control(
+            'dropdown_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .lc-hf-nav-submenu' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'dropdown_box_shadow',
+                'selector' => '{{WRAPPER}} .lc-hf-nav-submenu',
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dropdown_distance',
+            [
+                'label' => esc_html__('Distance', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => ['px' => ['min' => 0, 'max' => 100]],
+                'selectors' => [
+                    '{{WRAPPER}} .lc-hf-nav-submenu' => 'transform: translateY({{SIZE}}{{UNIT}});',
+                    '{{WRAPPER}} .lc-hf-has-submenu:hover > .lc-hf-nav-submenu' => 'transform: translateY(0);',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
+        // STYLE TAB - TOGGLE BUTTON
+        $this->start_controls_section(
+            'section_style_toggle',
+            [
+                'label' => esc_html__('Toggle Button', 'lc-addons-kit-for-elementor'),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->start_controls_tabs('tabs_toggle_style');
+
+        // NORMAL
+        $this->start_controls_tab(
+            'tab_toggle_normal',
+            ['label' => esc_html__('Normal', 'lc-addons-kit-for-elementor')]
+        );
+
+        $this->add_control(
+            'toggle_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#111827',
+                'selectors' => ['{{WRAPPER}} .lc-hf-menu-toggle-bar' => 'background-color: {{VALUE}};'],
+            ]
+        );
+
+        $this->add_control(
+            'toggle_background_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => ['{{WRAPPER}} .lc-hf-menu-toggle' => 'background-color: {{VALUE}} !important;'],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        // HOVER
+        $this->start_controls_tab(
+            'tab_toggle_hover',
+            ['label' => esc_html__('Hover / Active', 'lc-addons-kit-for-elementor')]
+        );
+
+        $this->add_control(
+            'toggle_hover_color',
+            [
+                'label' => esc_html__('Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lc-hf-menu-toggle:hover .lc-hf-menu-toggle-bar' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .lc-hf-nav-menu-container.lc-hf-menu-open .lc-hf-menu-toggle .lc-hf-menu-toggle-bar' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'toggle_hover_background_color',
+            [
+                'label' => esc_html__('Background Color', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .lc-hf-menu-toggle:hover' => 'background-color: {{VALUE}} !important;',
+                    '{{WRAPPER}} .lc-hf-nav-menu-container.lc-hf-menu-open .lc-hf-menu-toggle' => 'background-color: {{VALUE}} !important;',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+            'toggle_size',
+            [
+                'label' => esc_html__('Size', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => ['px' => ['min' => 20, 'max' => 80]],
+                'default' => ['size' => 28, 'unit' => 'px'],
+                'separator' => 'before',
+                'selectors' => ['{{WRAPPER}} .lc-hf-menu-toggle' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};'],
+            ]
+        );
+
+        $this->add_control(
+            'toggle_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .lc-hf-menu-toggle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -164,12 +459,14 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
         }
 
         $args = [
-            'menu' => $menu_id,
-            'container' => 'nav',
-            'container_class' => 'lc-hf-nav-menu-wrapper',
-            'menu_class' => 'lc-hf-nav-menu',
             'echo' => false,
-            'fallback_cb' => false,
+            'menu' => $menu_id,
+            'container' => false,
+            'menu_class' => 'lc-hf-nav-menu',
+            'fallback_cb' => function($args) {
+                $pages = wp_list_pages(['title_li' => '', 'echo' => false]);
+                return '<ul class="' . esc_attr($args['menu_class']) . '">' . $pages . '</ul>';
+            },
             'walker' => new LC_Header_Footer_Nav_Menu_Walker(),
         ];
 
@@ -184,13 +481,17 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
         ?>
         <style>
         @media (max-width: <?php echo $mobile_breakpoint; ?>px) {
+            .elementor-element-<?php echo $id; ?> .lc-hf-menu-toggle {
+                display: flex;
+            }
+
             .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu-wrapper {
-                display: none;
+                display: none !important;
                 width: 100%;
             }
 
-            body.lcake-mobile-menu-open .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu-wrapper {
-                display: block;
+            .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu-container.lc-hf-menu-open .lc-hf-nav-menu-wrapper {
+                display: block !important;
             }
 
             .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu {
@@ -203,7 +504,7 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
                 position: static;
                 opacity: 1;
                 visibility: visible;
-                transform: none;
+                transform: none !important;
                 box-shadow: none;
                 display: none;
                 padding-left: 16px;
@@ -215,7 +516,14 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
         }
         </style>
         <div class="lc-hf-nav-menu-container" data-breakpoint="<?php echo esc_attr($mobile_breakpoint); ?>">
-            <?php echo LCAKE_Kit_Utils::kses($menu_html); ?>
+            <button type="button" class="lc-hf-menu-toggle" aria-label="<?php echo esc_attr__('Toggle menu', 'lc-addons-kit-for-elementor'); ?>" aria-expanded="false">
+                <span class="lc-hf-menu-toggle-bar"></span>
+                <span class="lc-hf-menu-toggle-bar"></span>
+                <span class="lc-hf-menu-toggle-bar"></span>
+            </button>
+            <nav class="lc-hf-nav-menu-wrapper">
+                <?php echo LCAKE_Kit_Utils::kses($menu_html); ?>
+            </nav>
         </div>
         <?php
     }
