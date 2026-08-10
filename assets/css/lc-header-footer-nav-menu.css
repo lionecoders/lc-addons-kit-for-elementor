@@ -100,11 +100,11 @@
     overflow-y: auto;
     transform-origin: top;
     transition: max-height 0.3s, transform 0.3s;
-    /* Prevent pushing header content down */
     position: absolute;
     z-index: 9997;
-    left: 0;
-    width: 100%;
+    min-width: 100%;
+    width: max-content;
+    max-width: 100vw;
 }
 
 .lc-hf-nav-menu--dropdown a {

@@ -34,6 +34,16 @@
             if (this.elements.$menuToggle.length) {
                 this.elements.$menuToggle.on('click', this.toggleMenu.bind(this));
             }
+
+            if (this.$element.hasClass('lc-hf-nav-menu--stretch')) {
+                $(window).on('resize', this.onResize.bind(this));
+            }
+        }
+
+        onResize() {
+            if (this.elements.$menuToggle.hasClass(this.getSettings('classes.active'))) {
+                this.stretchMenu();
+            }
         }
 
         initSmartmenus() {
@@ -56,10 +66,51 @@
             if (isActive) {
                 this.elements.$menuToggle.removeClass(classes.active);
                 this.elements.$menuToggle.attr('aria-expanded', 'false');
+                setTimeout(() => {
+                    if (!this.elements.$menuToggle.hasClass(classes.active)) {
+                        this.resetStretch();
+                    }
+                }, 300);
             } else {
                 this.elements.$menuToggle.addClass(classes.active);
                 this.elements.$menuToggle.attr('aria-expanded', 'true');
+                this.stretchMenu();
             }
+        }
+
+        stretchMenu() {
+            if (!this.$element.hasClass('lc-hf-nav-menu--stretch')) {
+                return;
+            }
+
+            const $dropdown = this.elements.$dropdownMenu;
+            if (!$dropdown.length) {
+                return;
+            }
+
+            // Implementation of a simple stretch
+            const widgetOffset = this.$element.offset().left;
+            const viewportWidth = $(window).width();
+
+            $dropdown.css({
+                'position': 'absolute',
+                'left': `-${widgetOffset}px`,
+                'width': `${viewportWidth}px`,
+                'max-width': '100vw'
+            });
+        }
+
+        resetStretch() {
+            if (!this.$element.hasClass('lc-hf-nav-menu--stretch')) {
+                return;
+            }
+
+            this.elements.$dropdownMenu.css({
+                'position': '',
+                'left': '',
+                'width': '',
+                'max-width': ''
+            });
         }
     }
 

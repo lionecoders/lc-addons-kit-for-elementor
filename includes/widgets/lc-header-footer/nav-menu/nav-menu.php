@@ -427,6 +427,18 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base
         $this->end_controls_tab();
         $this->end_controls_tabs();
 
+        $this->add_control(
+            'full_width',
+            [
+                'label' => esc_html__('Full Width', 'lc-addons-kit-for-elementor'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'description' => esc_html__('Stretch the dropdown of the menu to full width.', 'lc-addons-kit-for-elementor'),
+                'prefix_class' => 'lc-hf-nav-menu--',
+                'return_value' => 'stretch',
+                'separator' => 'before',
+            ]
+        );
+
         $this->add_responsive_control(
             'toggle_size',
             [
