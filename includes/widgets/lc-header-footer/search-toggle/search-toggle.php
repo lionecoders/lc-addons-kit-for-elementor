@@ -24,7 +24,7 @@ class LC_Header_Footer_Search_Toggle extends \Elementor\Widget_Base {
     }
 
     public function get_categories() {
-        return ['lc-header-footer-kit1'];
+        return ['lc-header-footer-kit'];
     }
 
     public function get_keywords() {

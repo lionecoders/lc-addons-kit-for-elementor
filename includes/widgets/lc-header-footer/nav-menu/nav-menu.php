@@ -3,37 +3,46 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
-class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
+class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base
+{
 
-    public function get_name() {
+    public function get_name()
+    {
         return 'lc-header-footer-nav-menu';
     }
 
-    public function get_title() {
+    public function get_title()
+    {
         return esc_html__('Nav Menu', 'lc-addons-kit-for-elementor');
     }
 
-    public function get_icon() {
+    public function get_icon()
+    {
         return 'eicon-nav-menu';
     }
 
-    public function get_categories() {
+    public function get_categories()
+    {
         return ['lc-header-footer-kit'];
     }
 
-    public function get_keywords() {
+    public function get_keywords()
+    {
         return ['nav', 'menu', 'navigation', 'header'];
     }
 
-    public function get_style_depends() {
+    public function get_style_depends()
+    {
         return ['lc-header-footer-nav-menu-css'];
     }
 
-    public function get_script_depends() {
+    public function get_script_depends()
+    {
         return ['lc-header-footer-nav-menu-js'];
     }
 
-    protected function register_controls() {
+    protected function register_controls()
+    {
         // CONTENT TAB
         $this->start_controls_section(
             'content_section',
@@ -99,9 +108,7 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
                         'icon' => 'eicon-h-align-stretch',
                     ],
                 ],
-                'selectors' => [
-                    '{{WRAPPER}} .lc-hf-nav-menu' => 'justify-content: {{VALUE}};',
-                ],
+                'prefix_class' => 'lc-hf-nav-menu__align-',
                 'condition' => [
                     'layout' => 'horizontal',
                 ],
@@ -447,7 +454,8 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
         $this->end_controls_section();
     }
 
-    protected function render() {
+    protected function render()
+    {
         $settings = $this->get_settings_for_display();
         $menu_id = (int) $settings['menu'];
 
@@ -463,14 +471,28 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
             'menu' => $menu_id,
             'container' => false,
             'menu_class' => 'lc-hf-nav-menu',
-            'fallback_cb' => function($args) {
+            'fallback_cb' => function ($args) {
                 $pages = wp_list_pages(['title_li' => '', 'echo' => false]);
                 return '<ul class="' . esc_attr($args['menu_class']) . '">' . $pages . '</ul>';
             },
             'walker' => new LC_Header_Footer_Nav_Menu_Walker(),
         ];
 
-        $menu_html = wp_nav_menu($args);
+        $layout = $settings['layout'] ?? 'horizontal';
+
+        $main_args = $args;
+        if ($layout === 'vertical') {
+            $main_args['menu_class'] .= ' sm-vertical';
+        } else {
+            $main_args['menu_class'] .= ' sm-horizontal';
+        }
+        $main_args['menu_id'] = 'menu-' . $this->get_id();
+        $menu_html = wp_nav_menu($main_args);
+
+        $dropdown_args = $args;
+        $dropdown_args['menu_class'] .= ' sm-vertical';
+        $dropdown_args['menu_id'] = 'menu-' . $this->get_id() . '-dropdown';
+        $dropdown_menu_html = wp_nav_menu($dropdown_args);
 
         if (!$menu_html) {
             return;
@@ -478,71 +500,76 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
 
         $id = $this->get_id();
         $mobile_breakpoint = !empty($settings['mobile_breakpoint']) ? (int) $settings['mobile_breakpoint'] : 800;
+
+        // Output responsive breakpoint logic
         ?>
         <style>
-        @media (max-width: <?php echo $mobile_breakpoint; ?>px) {
-            .elementor-element-<?php echo $id; ?> .lc-hf-menu-toggle {
-                display: flex;
+            @media (max-width: <?php echo $mobile_breakpoint; ?>px) {
+                .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu--main {
+                    display: none !important;
+                }
+
+                .elementor-element-<?php echo $id; ?> .lc-hf-menu-toggle {
+                    display: flex !important;
+                }
             }
 
-            .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu-wrapper {
-                display: none !important;
-                width: 100%;
+            @media (min-width: <?php echo $mobile_breakpoint + 1; ?>px) {
+                .elementor-element-<?php echo $id; ?> .lc-hf-menu-toggle,
+                .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu--dropdown {
+                    display: none !important;
+                }
             }
-
-            .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu-container.lc-hf-menu-open .lc-hf-nav-menu-wrapper {
-                display: block !important;
-            }
-
-            .elementor-element-<?php echo $id; ?> .lc-hf-nav-menu {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0;
-            }
-
-            .elementor-element-<?php echo $id; ?> .lc-hf-nav-submenu {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none !important;
-                box-shadow: none;
-                display: none;
-                padding-left: 16px;
-            }
-
-            .elementor-element-<?php echo $id; ?> .lc-hf-has-submenu.lc-hf-submenu-open > .lc-hf-nav-submenu {
-                display: block;
-            }
-        }
         </style>
-        <div class="lc-hf-nav-menu-container" data-breakpoint="<?php echo esc_attr($mobile_breakpoint); ?>">
-            <button type="button" class="lc-hf-menu-toggle" aria-label="<?php echo esc_attr__('Toggle menu', 'lc-addons-kit-for-elementor'); ?>" aria-expanded="false">
-                <span class="lc-hf-menu-toggle-bar"></span>
-                <span class="lc-hf-menu-toggle-bar"></span>
-                <span class="lc-hf-menu-toggle-bar"></span>
-            </button>
-            <nav class="lc-hf-nav-menu-wrapper">
+
+        <?php if ($layout !== 'dropdown'): ?>
+            <nav class="lc-hf-nav-menu--main lc-hf-nav-menu__container lc-hf-nav-menu--layout-<?php echo esc_attr($layout); ?>">
                 <?php echo LCAKE_Kit_Utils::kses($menu_html); ?>
             </nav>
+        <?php endif; ?>
+
+        <div class="lc-hf-menu-toggle" role="button" tabindex="0"
+            aria-label="<?php echo esc_attr__('Toggle menu', 'lc-addons-kit-for-elementor'); ?>" aria-expanded="false">
+            <span class="lc-hf-menu-toggle-bar"></span>
+            <span class="lc-hf-menu-toggle-bar"></span>
+            <span class="lc-hf-menu-toggle-bar"></span>
         </div>
+
+        <nav class="lc-hf-nav-menu--dropdown lc-hf-nav-menu__container" aria-hidden="true">
+            <?php echo LCAKE_Kit_Utils::kses($dropdown_menu_html); ?>
+        </nav>
         <?php
     }
 }
 
 if (!class_exists('LC_Header_Footer_Nav_Menu_Walker')) {
-    class LC_Header_Footer_Nav_Menu_Walker extends \Walker_Nav_Menu {
-        public function start_lvl(&$output, $depth = 0, $args = null) {
-            $output .= '<ul class="lc-hf-nav-submenu lc-hf-nav-submenu--depth-' . (int) $depth . '">';
+    class LC_Header_Footer_Nav_Menu_Walker extends \Walker_Nav_Menu
+    {
+        public function start_lvl(&$output, $depth = 0, $args = null)
+        {
+            $output .= '<ul class="sub-menu">';
         }
 
-        public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+        public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
+        {
             $has_children = in_array('menu-item-has-children', $item->classes, true);
+
+            // Add elementor-like classes
+            $item->classes[] = $depth ? 'lc-hf-sub-item' : 'lc-hf-item';
+            if (in_array('current-menu-item', $item->classes)) {
+                $item->classes[] = 'lc-hf-item-active';
+            }
+            if (false !== strpos($item->url, '#')) {
+                $item->classes[] = 'lc-hf-item-anchor';
+            }
+
             $classes = implode(' ', array_filter($item->classes));
 
             $output .= '<li class="' . esc_attr($classes) . ($has_children ? ' lc-hf-has-submenu' : '') . '">';
-            $output .= '<a href="' . esc_url($item->url) . '">' . esc_html($item->title);
+            $output .= '<a href="' . esc_url($item->url) . '" class="lc-hf-item-link">';
+            $output .= esc_html($item->title);
             if ($has_children) {
-                $output .= '<span class="lc-hf-submenu-caret" aria-hidden="true">&#9662;</span>';
+                $output .= '<span class="sub-arrow"><i class="fas fa-chevron-down"></i></span>';
             }
             $output .= '</a>';
         }

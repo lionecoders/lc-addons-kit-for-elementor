@@ -135,7 +135,7 @@ class LCAKE_Kit_Widget_Loader
                         'title' => __('LC Page Kit', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-folder',
                     ],
-                    'lc-header-footer-kit1' => [
+                    'lc-header-footer-kit' => [
                         'title' => __('LC Header Footer kit', 'lc-addons-kit-for-elementor'),
                         'icon' => 'eicon-header',
                     ],
@@ -199,6 +199,10 @@ class LCAKE_Kit_Widget_Loader
     {
         $this->check_all_widget_dependencies();
 
+        if ( ! wp_script_is( 'smartmenus', 'registered' ) ) {
+            wp_register_script( 'smartmenus', LCAKE_EAK_URL . 'assets/lib/smartmenus/jquery.smartmenus.min.js', [ 'jquery' ], '1.0.1', true );
+        }
+
         $scripts = [
             'lcake-kit-jquery-event-move' => ['file' => 'jquery.event.move.min.js', 'deps' => ['jquery'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-twentytwenty' => ['file' => 'jquery.twentytwenty.min.js', 'deps' => ['jquery', 'lcake-kit-jquery-event-move'], 'enqueue' => false, 'path' => ''],
@@ -231,7 +235,7 @@ class LCAKE_Kit_Widget_Loader
             'lcake-kit-twitter-feed-js' => ['file' => 'lcake-kit-twitter-feed.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-login-register-js' => ['file' => 'lcake-kit-login-register.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lcake-kit-event-calendar-js' => ['file' => 'lcake-kit-event-calendar.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
-            'lc-header-footer-nav-menu-js' => ['file' => 'lc-header-footer-nav-menu.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
+            'lc-header-footer-nav-menu-js' => ['file' => 'lc-header-footer-nav-menu.js', 'deps' => ['jquery', 'elementor-frontend', 'smartmenus'], 'enqueue' => false, 'path' => ''],
             'lc-header-footer-search-toggle-js' => ['file' => 'lc-header-footer-search-toggle.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             'lc-header-footer-cart-icon-js' => ['file' => 'lc-header-footer-cart-icon.js', 'deps' => ['jquery', 'elementor-frontend'], 'enqueue' => false, 'path' => ''],
             // 'lcake-kit-client-logo' => ['file' => 'lcake-kit-client-logo.js', 'deps' => ['jquery', 'lcake-swiper-js'], 'enqueue' => false, 'path' => '']

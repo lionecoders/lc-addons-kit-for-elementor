@@ -107,7 +107,7 @@
         elementorFrontend.hooks.addAction('frontend/element_ready/lcake-kit-event-calendar.default', WidgetLcakeEventCalendarHandler);
     };
 
-    if (window.elementorFrontend) {
+    if (window.elementorFrontend && window.elementorFrontend.hooks) {
         init();
     } else {
         $(window).on('elementor/frontend/init', init);

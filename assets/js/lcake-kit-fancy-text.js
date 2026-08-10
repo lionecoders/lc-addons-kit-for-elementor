@@ -31,7 +31,7 @@
         elementorFrontend.hooks.addAction('frontend/element_ready/lcake-kit-fancy-text.default', WidgetLcakeFancyTextHandler);
     };
 
-    if (window.elementorFrontend) {
+    if (window.elementorFrontend && window.elementorFrontend.hooks) {
         init();
     } else {
         $(window).on('elementor/frontend/init', init);

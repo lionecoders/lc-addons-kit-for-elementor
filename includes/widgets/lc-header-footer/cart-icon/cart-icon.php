@@ -34,7 +34,7 @@ class LC_Header_Footer_Cart_Icon extends \Elementor\Widget_Base {
     }
 
     public function get_categories() {
-        return ['lc-header-footer-kit1'];
+        return ['lc-header-footer-kit'];
     }
 
     public function get_style_depends() {
