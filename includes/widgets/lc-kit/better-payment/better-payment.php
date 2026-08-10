@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Better Payment Widget.
+ *
+ * Elementor widget that displays a Better Payment.
+ */
 class LCAKE_Kit_Better_Payment extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

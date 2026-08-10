@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Woo Product Images Widget.
+ *
+ * Elementor widget that displays a Woo Product Images.
+ */
 class LCAKE_Kit_Woo_Product_Images extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

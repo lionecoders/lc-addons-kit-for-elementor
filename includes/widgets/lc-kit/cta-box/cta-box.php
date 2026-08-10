@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * CTA Box Widget.
+ *
+ * Elementor widget that displays a CTA Box.
+ */
 class LCAKE_Kit_Cta_Box extends \Elementor\Widget_Base {
 
 	public function get_name() {

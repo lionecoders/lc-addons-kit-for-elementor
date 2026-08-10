@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Interactive Circle Widget.
+ *
+ * Elementor widget that displays an Interactive Circle.
+ */
 class LCAKE_Kit_Interactive_Circle extends \Elementor\Widget_Base {
 
 	public function get_name() {

@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Business Reviews Widget.
+ *
+ * Elementor widget that displays a Business Reviews.
+ */
 class LCAKE_Kit_Business_Reviews extends \Elementor\Widget_Base {
 
 	public function get_name() {

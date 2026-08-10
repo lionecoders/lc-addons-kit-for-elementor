@@ -13,6 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+/**
+ * Testimonial Widget.
+ *
+ * Elementor widget that displays a Testimonial.
+ */
 class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base {
 
 

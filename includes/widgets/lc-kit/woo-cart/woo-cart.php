@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Woo Cart Page Widget.
+ *
+ * Elementor widget that displays a Woo Cart Page.
+ */
 class LCAKE_Kit_Woo_Cart extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

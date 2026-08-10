@@ -10,6 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Image Comparison Widget.
+ *
+ * Elementor widget that displays an Image Comparison.
+ */
 class LCAKE_Kit_Image_Comparison extends \Elementor\Widget_Base {
 
 

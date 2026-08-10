@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Woo Product Price Widget.
+ *
+ * Elementor widget that displays a Woo Product Price.
+ */
 class LCAKE_Kit_Woo_Product_Price extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

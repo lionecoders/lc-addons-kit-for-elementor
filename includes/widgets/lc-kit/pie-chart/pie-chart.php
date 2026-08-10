@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Pie Chart Widget.
+ *
+ * Elementor widget that displays a Pie Chart.
+ */
 class LCAKE_Kit_Pie_Chart extends \Elementor\Widget_Base {
 
 	public function get_name() {

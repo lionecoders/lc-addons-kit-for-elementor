@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Fancy Text Widget.
+ *
+ * Elementor widget that displays a Fancy Text.
+ */
 class LCAKE_Kit_Fancy_Text extends \Elementor\Widget_Base {
 
 	public function get_name() {

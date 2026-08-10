@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * weForms Widget.
+ *
+ * Elementor widget that integrates with weForms.
+ */
 class LCAKE_Kit_We_Forms extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

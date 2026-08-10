@@ -3,11 +3,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Validates dependencies required by individual widgets.
+ * 
+ * Supports checking for active plugins (by class, function, or path), 
+ * post types, PHP versions, WordPress versions, and Elementor versions.
+ *
+ * @since 1.0.0
+ */
 class LCAKE_Kit_Dependency_Checker {
 
 	/**
-	 * Check if all dependencies are active and available.
+	 * Checks if all required dependencies in an array are active and available.
 	 *
+	 * @since 1.0.0
 	 * @param array $dependencies Array of dependency definitions.
 	 * @return bool True if all dependencies are met, false otherwise.
 	 */
@@ -61,7 +70,13 @@ class LCAKE_Kit_Dependency_Checker {
 	}
 
 	/**
-	 * Check if a plugin dependency is met.
+	 * Checks if a specific plugin dependency is met.
+	 * 
+	 * Validates against a class name, function name, constant, or plugin file path.
+	 * 
+	 * @since 1.0.0
+	 * @param array $dependency Dependency definition array.
+	 * @return bool True if the plugin is active, false otherwise.
 	 */
 	private static function check_plugin( $dependency ) {
 		if ( ! empty( $dependency['class'] ) && class_exists( $dependency['class'] ) ) {
@@ -89,7 +104,11 @@ class LCAKE_Kit_Dependency_Checker {
 	}
 
 	/**
-	 * Check if a post type dependency is met.
+	 * Checks if a required post type is registered.
+	 * 
+	 * @since 1.0.0
+	 * @param array $dependency Dependency definition array.
+	 * @return bool True if the post type exists, false otherwise.
 	 */
 	private static function check_post_type( $dependency ) {
 		if ( empty( $dependency['post_type'] ) ) {

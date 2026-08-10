@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Accordion Widget.
+ *
+ * Elementor widget that displays an Accordion.
+ */
 class LCAKE_Kit_Accordion extends \Elementor\Widget_Base {
 
 	public function get_name() {

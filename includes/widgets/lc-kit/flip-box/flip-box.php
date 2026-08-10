@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Flip Box Widget.
+ *
+ * Elementor widget that displays a Flip Box.
+ */
 class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
 
 	public function get_name() {

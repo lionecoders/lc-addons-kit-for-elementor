@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Post Timeline Widget.
+ *
+ * Elementor widget that displays a Post Timeline.
+ */
 class LCAKE_Kit_Post_Timeline extends \Elementor\Widget_Base {
 
 	public function get_name() {

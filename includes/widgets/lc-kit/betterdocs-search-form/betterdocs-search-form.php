@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Docs Search Form Widget.
+ *
+ * Elementor widget that integrates with Docs Search Form.
+ */
 class LCAKE_Kit_Betterdocs_Search_Form extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Search Toggle Widget.
+ *
+ * Elementor widget that displays a Search Toggle.
+ */
 class LC_Header_Footer_Search_Toggle extends \Elementor\Widget_Base {
 
 	public function get_name() {

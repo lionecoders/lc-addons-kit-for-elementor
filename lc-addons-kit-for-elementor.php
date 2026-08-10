@@ -20,20 +20,51 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Main plugin bootstrap class.
+ * 
+ * Initializes the plugin, defines constants, and loads all necessary dependencies
+ * and core components after verifying Elementor is active.
+ *
+ * @since 1.0.0
+ */
 class LCAKE_Elementor_Addons_Kit {
 
 
+	/**
+	 * Constructor.
+	 * 
+	 * Sets up the plugin constants and hooks into 'plugins_loaded' to load the core classes.
+	 *
+	 * @since 1.0.0
+	 */
 	public function __construct() {
 		$this->define_constants();
 		add_action( 'plugins_loaded', array( $this, 'on_plugins_loaded' ) );
 	}
 
+	/**
+	 * Defines global plugin constants.
+	 * 
+	 * @since 1.0.0
+	 * @return void
+	 */
 	private function define_constants() {
 		define( 'LCAKE_EAK_VERSION', '1.1.4' );
 		define( 'LCAKE_EAK_PATH', plugin_dir_path( __FILE__ ) );
 		define( 'LCAKE_EAK_URL', plugin_dir_url( __FILE__ ) );
 	}
 
+	/**
+	 * Callback for the 'plugins_loaded' action.
+	 * 
+	 * Checks if Elementor is loaded. If it is, includes and instantiates all core classes 
+	 * (Widgets Loader, Admin Settings, Icon Library, and Header/Footer Builder). 
+	 * If not, displays an admin notice.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function on_plugins_loaded() {
 		if ( ! did_action( 'elementor/loaded' ) ) {
 			add_action( 'admin_notices', array( $this, 'elementor_missing_notice' ) );
@@ -53,6 +84,12 @@ class LCAKE_Elementor_Addons_Kit {
 	}
 
 
+	/**
+	 * Displays an admin notice if Elementor is not active.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function elementor_missing_notice() {
 		echo '<div class="notice notice-warning"><p>';
 		echo esc_html__( 'LC Elementor Addons Kit requires Elementor to be installed and activated.', 'lc-addons-kit-for-elementor' );

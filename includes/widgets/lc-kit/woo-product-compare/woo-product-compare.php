@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Woo Product Compare Widget.
+ *
+ * Elementor widget that displays a Woo Product Compare.
+ */
 class LCAKE_Kit_Woo_Product_Compare extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

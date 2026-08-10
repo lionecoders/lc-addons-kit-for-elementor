@@ -34,6 +34,12 @@ class LCAKE_Header_Footer_Builder {
 		add_action( 'wp', array( $this, 'init_frontend_hooks' ) );
 	}
 
+	/**
+	 * Registers the 'lcake_hf_template' custom post type for header/footer templates.
+	 *
+	 * @since 1.2.0
+	 * @return void
+	 */
 	public function register_post_type() {
 		register_post_type(
 			self::POST_TYPE,
@@ -106,6 +112,12 @@ class LCAKE_Header_Footer_Builder {
 		);
 	}
 
+	/**
+	 * Retrieves the available display condition options.
+	 *
+	 * @since 1.2.0
+	 * @return array An associative array of condition keys and human-readable labels.
+	 */
 	private function get_condition_options() {
 		return array(
 			'none'               => esc_html__( 'None', 'lc-addons-kit-for-elementor' ),
@@ -286,6 +298,15 @@ class LCAKE_Header_Footer_Builder {
 		}
 	}
 
+	/**
+	 * Checks if the current frontend request matches a template's display conditions.
+	 *
+	 * @since 1.2.0
+	 * @param string $condition           The condition type (e.g., 'entire_site', 'front_page').
+	 * @param array  $condition_pages     Array of specific page IDs for the 'specific_pages' condition.
+	 * @param string $condition_post_type The post type for the 'specific_post_type' condition.
+	 * @return bool True if the condition matches the current request, false otherwise.
+	 */
 	private function condition_matches( $condition, $condition_pages, $condition_post_type ) {
 		switch ( $condition ) {
 			case 'none':
@@ -313,6 +334,16 @@ class LCAKE_Header_Footer_Builder {
 		}
 	}
 
+	/**
+	 * Gets the matching template for a given type (header or footer).
+	 * 
+	 * Fetches all templates of the specified type, sorts them by priority, and evaluates
+	 * their conditions until the first matching template is found.
+	 *
+	 * @since 1.2.0
+	 * @param string $type The template type ('header' or 'footer').
+	 * @return \WP_Post|null The matching template post object, or null if none found.
+	 */
 	private function get_matching_template( $type ) {
 		$templates = get_posts(
 			array(
@@ -359,6 +390,15 @@ class LCAKE_Header_Footer_Builder {
 		return null;
 	}
 
+	/**
+	 * Initializes frontend hooks to override the theme's header and footer.
+	 * 
+	 * Binds to 'get_header' and 'get_footer' hooks if a matching template is found
+	 * for the current page request.
+	 *
+	 * @since 1.2.0
+	 * @return void
+	 */
 	public function init_frontend_hooks() {
 		if ( $this->should_skip_render() ) {
 			return;
@@ -401,6 +441,15 @@ class LCAKE_Header_Footer_Builder {
 		echo '</div>';
 	}
 
+	/**
+	 * Callback for the 'get_header' action.
+	 * 
+	 * Renders the custom Elementor header template and suppresses the active theme's header.php.
+	 *
+	 * @since 1.2.0
+	 * @param string|null $name Name of the specific header file to load (optional).
+	 * @return void
+	 */
 	public function get_header( $name = null ) {
 		$template = $this->matching_header ?: $this->get_matching_template( 'header' );
 		if ( ! $template ) {
@@ -446,6 +495,15 @@ class LCAKE_Header_Footer_Builder {
 		ob_get_clean();
 	}
 
+	/**
+	 * Callback for the 'get_footer' action.
+	 * 
+	 * Renders the custom Elementor footer template and suppresses the active theme's footer.php.
+	 *
+	 * @since 1.2.0
+	 * @param string|null $name Name of the specific footer file to load (optional).
+	 * @return void
+	 */
 	public function get_footer( $name = null ) {
 		$template = $this->matching_footer ?: $this->get_matching_template( 'footer' );
 		if ( ! $template ) {

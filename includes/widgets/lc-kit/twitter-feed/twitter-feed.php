@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * X (Twitter) Feed Widget.
+ *
+ * Elementor widget that displays a X (Twitter) Feed.
+ */
 class LCAKE_Kit_Twitter_Feed extends \Elementor\Widget_Base {
 
 	public function get_name() {

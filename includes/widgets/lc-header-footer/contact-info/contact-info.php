@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Contact Info Widget.
+ *
+ * Elementor widget that displays a Contact Info.
+ */
 class LC_Header_Footer_Contact_Info extends \Elementor\Widget_Base {
 
 	public function get_name() {

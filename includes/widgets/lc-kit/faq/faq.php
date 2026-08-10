@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * FAQ Widget.
+ *
+ * Elementor widget that displays a FAQ.
+ */
 class LCAKE_Kit_FAQ extends \Elementor\Widget_Base {
 
 	public function get_name() {

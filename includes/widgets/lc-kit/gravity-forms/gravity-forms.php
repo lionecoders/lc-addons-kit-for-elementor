@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Gravity Forms Widget.
+ *
+ * Elementor widget that integrates with Gravity Forms.
+ */
 class LCAKE_Kit_Gravity_Forms extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

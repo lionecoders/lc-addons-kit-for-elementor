@@ -1,12 +1,31 @@
 <?php
 
+/**
+ * Registers custom icon sets within the Elementor editor.
+ *
+ * @since 1.0.0
+ */
 class LCAKE_Lib {
 
+	/**
+	 * Constructor.
+	 * 
+	 * Hooks into the Elementor icons manager to add additional icon tabs.
+	 *
+	 * @since 1.0.0
+	 */
 	function __construct() {
 		// Register custom icon set with Elementor
 		add_filter( 'elementor/icons_manager/additional_tabs', array( $this, 'lcake_icon_tab' ) );
 	}
 
+	/**
+	 * Adds the "LCAKE Icons" tab to the Elementor Icon Library modal.
+	 *
+	 * @since 1.0.0
+	 * @param array $tabs The existing icon tabs array.
+	 * @return array The modified icon tabs array containing the new custom icons.
+	 */
 	function lcake_icon_tab( $tabs ) {
 		// Ensure constants exist
 		if ( ! defined( 'LCAKE_EAK_URL' ) ) {

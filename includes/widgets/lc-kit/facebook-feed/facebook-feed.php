@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Facebook Feed Widget.
+ *
+ * Elementor widget that displays a Facebook Feed.
+ */
 class LCAKE_Kit_Facebook_Feed extends \Elementor\Widget_Base {
 
 	public function get_name() {

@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Product Grid Widget.
+ *
+ * Elementor widget that displays a Product Grid.
+ */
 class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

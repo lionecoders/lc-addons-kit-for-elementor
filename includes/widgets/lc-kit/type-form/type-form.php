@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Typeform Widget.
+ *
+ * Elementor widget that integrates with Typeform.
+ */
 class LCAKE_Kit_Type_Form extends \Elementor\Widget_Base {
 
 	public function get_name() {

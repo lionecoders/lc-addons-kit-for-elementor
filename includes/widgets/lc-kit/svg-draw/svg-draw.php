@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * SVG Draw Widget.
+ *
+ * Elementor widget that displays a SVG Draw.
+ */
 class LCAKE_Kit_Svg_Draw extends \Elementor\Widget_Base {
 
 	public function get_name() {

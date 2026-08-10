@@ -4,12 +4,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+/**
+ * Handles the "LC Kit" admin settings page and REST API endpoints.
+ * 
+ * Responsible for rendering the React-based widget manager interface in the admin
+ * area, registering REST routes to save settings, and loading widget metadata.
+ *
+ * @since 1.0.0
+ */
 class LCAKE_Kit_Admin_Settings {
 
 	private $widgets   = array();
 	private $menu_slug = 'lcake_menu';
 	private $page_hook = '';
 
+	/**
+	 * Constructor.
+	 * 
+	 * Hooks into WordPress admin initialization and REST API actions.
+	 *
+	 * @since 1.0.0
+	 */
 	public function __construct() {
 		$this->load_widget_info();
 
@@ -154,6 +169,15 @@ class LCAKE_Kit_Admin_Settings {
 		);
 	}
 
+	/**
+	 * Parses all widget files to extract metadata for the admin interface.
+	 * 
+	 * Scans the widget directories, reads file contents to extract icons, and
+	 * maps widgets to their respective categories and third-party plugin dependencies.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	private function load_widget_info() {
 		$this->widgets = array();
 		$folders       = array( 'lc-kit', 'lc-header-footer' );
@@ -259,6 +283,12 @@ class LCAKE_Kit_Admin_Settings {
 		);
 	}
 
+	/**
+	 * Adds the "LC Kit" menu and submenu pages to the WordPress admin sidebar.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function add_settings_page() {
 
 		add_menu_page( 'LC Kit', 'LC Kit', 'manage_options', $this->menu_slug, array( $this, 'render_settings_page' ), 'dashicons-screenoptions' );
@@ -283,6 +313,14 @@ class LCAKE_Kit_Admin_Settings {
 		);
 	}
 
+	/**
+	 * Registers REST API routes for the admin React app.
+	 * 
+	 * Adds the `/lcake-kit/v1/save-settings` endpoint to save enabled/disabled widgets.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	public function register_rest_routes() {
 		register_rest_route(
 			'lcake-kit/v1',
@@ -295,6 +333,16 @@ class LCAKE_Kit_Admin_Settings {
 		);
 	}
 
+	/**
+	 * Callback for the REST API to save widget settings.
+	 * 
+	 * Receives an array of enabled widget IDs, validates them against known widgets,
+	 * and updates the `lcake_kit_enabled_widgets` option in the database.
+	 *
+	 * @since 1.0.0
+	 * @param \WP_REST_Request $request The incoming REST API request.
+	 * @return \WP_REST_Response Response object indicating success or failure.
+	 */
 	public function handle_save_settings_rest( $request ) {
 		$enabled_widgets   = $request->get_param( 'enabled_widgets' );
 		$sanitized_enabled = array();
@@ -316,6 +364,15 @@ class LCAKE_Kit_Admin_Settings {
 		);
 	}
 
+	/**
+	 * Enqueues the React app scripts and styles for the admin settings page.
+	 * 
+	 * Passes localized settings, all widget metadata, and a REST nonce to the frontend app.
+	 *
+	 * @since 1.0.0
+	 * @param string $hook The current admin page hook.
+	 * @return void
+	 */
 	public function enqueue_admin_assets( $hook ) {
 		if ( $hook !== $this->page_hook ) {
 			return;

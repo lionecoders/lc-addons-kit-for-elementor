@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Fluent Forms Widget.
+ *
+ * Elementor widget that integrates with Fluent Forms.
+ */
 class LCAKE_Kit_Fluent_Form extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

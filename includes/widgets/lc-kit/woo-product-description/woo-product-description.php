@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Woo Description Widget.
+ *
+ * Elementor widget that displays a Woo Description.
+ */
 class LCAKE_Kit_Woo_Product_Description extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

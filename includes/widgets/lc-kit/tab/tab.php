@@ -11,6 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+/**
+ * Tab Widget.
+ *
+ * Elementor widget that displays a Tab.
+ */
 class LCAKE_Kit_Tab extends \Elementor\Widget_Base {
 
 

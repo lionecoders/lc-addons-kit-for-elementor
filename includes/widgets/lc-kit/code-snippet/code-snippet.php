@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Code Snippet Widget.
+ *
+ * Elementor widget that displays a Code Snippet.
+ */
 class LCAKE_Kit_Code_Snippet extends \Elementor\Widget_Base {
 
 

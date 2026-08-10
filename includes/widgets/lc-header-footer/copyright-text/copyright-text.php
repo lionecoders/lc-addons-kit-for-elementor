@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Copyright Text Widget.
+ *
+ * Elementor widget that displays a Copyright Text.
+ */
 class LC_Header_Footer_Copyright_Text extends \Elementor\Widget_Base {
 
 	public function get_name() {

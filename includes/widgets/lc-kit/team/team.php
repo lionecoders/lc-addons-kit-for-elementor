@@ -11,6 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+/**
+ * Team Widget.
+ *
+ * Elementor widget that displays a Team.
+ */
 class LCAKE_Kit_Team extends \Elementor\Widget_Base {
 
 	public function get_name() {

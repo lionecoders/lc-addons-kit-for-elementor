@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Drop Caps Widget.
+ *
+ * Elementor widget that displays a Drop Caps.
+ */
 class LCAKE_Kit_Drop_Caps extends \Elementor\Widget_Base {
 
 

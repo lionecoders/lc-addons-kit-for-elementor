@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Funfact Widget.
+ *
+ * Elementor widget that displays a Funfact.
+ */
 class LCAKE_Kit_Funfact extends \Elementor\Widget_Base {
 
 	// The original snippet used a trait, we don't need it if not available

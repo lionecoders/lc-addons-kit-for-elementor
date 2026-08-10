@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Cart Icon Widget.
+ *
+ * Elementor widget that displays a Cart Icon.
+ */
 class LC_Header_Footer_Cart_Icon extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

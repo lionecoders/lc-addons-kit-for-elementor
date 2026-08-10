@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Content Ticker Widget.
+ *
+ * Elementor widget that displays a Content Ticker.
+ */
 class LCAKE_Kit_Content_Ticker extends \Elementor\Widget_Base {
 
 	public function get_name() {

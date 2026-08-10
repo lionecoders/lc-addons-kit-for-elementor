@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Embed Anything Widget.
+ *
+ * Elementor widget that displays an Embed Anything.
+ */
 class LCAKE_Kit_Embed_Press extends \Elementor\Widget_Base {
 
 	public function get_name() {

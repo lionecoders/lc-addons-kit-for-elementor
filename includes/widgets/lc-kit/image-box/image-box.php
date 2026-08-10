@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Image Box Widget.
+ *
+ * Elementor widget that displays an Image Box.
+ */
 class LCAKE_Kit_Image_Box extends \Elementor\Widget_Base {
 
 

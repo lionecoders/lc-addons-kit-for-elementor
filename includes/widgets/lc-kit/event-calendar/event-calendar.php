@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Event Calendar Widget.
+ *
+ * Elementor widget that displays an Event Calendar.
+ */
 class LCAKE_Kit_Event_Calendar extends \Elementor\Widget_Base {
 
 	public function get_name() {

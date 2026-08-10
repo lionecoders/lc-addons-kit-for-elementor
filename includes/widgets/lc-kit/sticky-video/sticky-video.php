@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Sticky Video Widget.
+ *
+ * Elementor widget that displays a Sticky Video.
+ */
 class LCAKE_Kit_Sticky_Video extends \Elementor\Widget_Base {
 
 	public function get_name() {

@@ -3,6 +3,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+/**
+ * Nav Menu Widget.
+ *
+ * Elementor widget that displays a Nav Menu.
+ */
 class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
 
 
@@ -572,7 +577,11 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
 }
 
 if ( ! class_exists( 'LC_Header_Footer_Nav_Menu_Walker' ) ) {
-	class LC_Header_Footer_Nav_Menu_Walker extends \Walker_Nav_Menu {
+	/**
+ * Class LC_Header_Footer_Nav_Menu_Walker
+ *
+ */
+class LC_Header_Footer_Nav_Menu_Walker extends \Walker_Nav_Menu {
 
 		public function start_lvl( &$output, $depth = 0, $args = null ) {
 			$output .= '<ul class="sub-menu">';

@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Woo Product Title Widget.
+ *
+ * Elementor widget that displays a Woo Product Title.
+ */
 class LCAKE_Kit_Woo_Product_Title extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

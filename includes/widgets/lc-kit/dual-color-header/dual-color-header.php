@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Dual Color Heading Widget.
+ *
+ * Elementor widget that displays a Dual Color Heading.
+ */
 class LCAKE_Kit_Dual_Color_Header extends \Elementor\Widget_Base {
 
 	public function get_name() {

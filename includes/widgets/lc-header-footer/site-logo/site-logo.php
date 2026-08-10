@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Site Logo Widget.
+ *
+ * Elementor widget that displays a Site Logo.
+ */
 class LC_Header_Footer_Site_Logo extends \Elementor\Widget_Base {
 
 	public function get_name() {

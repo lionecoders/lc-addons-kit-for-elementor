@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Woo Product Tabs Widget.
+ *
+ * Elementor widget that displays a Woo Product Tabs.
+ */
 class LCAKE_Kit_Woo_Product_Tabs extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

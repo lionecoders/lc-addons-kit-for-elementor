@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Video Widget.
+ *
+ * Elementor widget that displays a Video.
+ */
 class LCAKE_Kit_Video extends \Elementor\Widget_Base {
 
 	public function get_name() {

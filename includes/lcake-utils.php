@@ -11,6 +11,15 @@ defined( 'ABSPATH' ) || exit;
 class LCAKE_Kit_Utils {
 
 
+	/**
+	 * Returns an array of allowed HTML tags and attributes for wp_kses().
+	 * 
+	 * Allows standard formatting tags (a, b, strong, i, em, span, div, p, etc.)
+	 * and safe attributes like class, style, href, title.
+	 *
+	 * @since 1.0.0
+	 * @return array Array of allowed tags and attributes.
+	 */
 	public static function get_kses_array() {
 		return array(
 			'a'                             => array(
@@ -173,6 +182,13 @@ class LCAKE_Kit_Utils {
 		);
 	}
 
+	/**
+	 * Sanitizes HTML content using the plugin's predefined allowed tags.
+	 *
+	 * @since 1.0.0
+	 * @param string $raw The raw HTML input string.
+	 * @return string Sanitized HTML string.
+	 */
 	public static function kses( $raw ) {
 
 		$allowed_tags = self::get_kses_array();
@@ -184,6 +200,15 @@ class LCAKE_Kit_Utils {
 		}
 	}
 
+	/**
+	 * Replaces curly braces with span tags for highlighted text.
+	 * 
+	 * Example: "Hello {world}" becomes "Hello <span>world</span>".
+	 *
+	 * @since 1.0.0
+	 * @param string $text The input text containing curly braces.
+	 * @return string The processed text with span tags.
+	 */
 	public static function kspan( $text ) {
 		return str_replace( array( '{', '}' ), array( '<span>', '</span>' ), $text );
 	}
@@ -414,6 +439,14 @@ class LCAKE_Kit_Utils {
 		return $options;
 	}
 
+	/**
+	 * A helper method to register and optionally enqueue a list of styles or scripts.
+	 *
+	 * @since 1.0.0
+	 * @param array  $scripts An associative array of script/style data arrays.
+	 * @param string $file    The type of file ('script' for JS, 'style' for CSS).
+	 * @return void
+	 */
 	public static function lcake_file_enqueue( $scripts, $file ) {
 		$register_func = 'wp_register_' . $file;
 		$enqueue_func  = 'wp_enqueue_' . $file;

@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Login / Register Widget.
+ *
+ * Elementor widget that displays a Login / Register.
+ */
 class LCAKE_Kit_Login_Register extends \Elementor\Widget_Base {
 
 	public function get_name() {

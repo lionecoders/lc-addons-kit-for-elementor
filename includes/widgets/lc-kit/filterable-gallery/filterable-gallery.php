@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Filterable Gallery Widget.
+ *
+ * Elementor widget that displays a Filterable Gallery.
+ */
 class LCAKE_Kit_Filterable_Gallery extends \Elementor\Widget_Base {
 
 	public function get_name() {

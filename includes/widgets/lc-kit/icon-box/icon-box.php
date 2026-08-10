@@ -10,6 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Icon Box Widget.
+ *
+ * Elementor widget that displays an Icon Box.
+ */
 class LCAKE_Kit_Icon_Box extends \Elementor\Widget_Base {
 
 	public function get_name() {

@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Breadcrumbs Widget.
+ *
+ * Elementor widget that displays a Breadcrumbs.
+ */
 class LCAKE_Kit_Breadcrumbs extends \Elementor\Widget_Base {
 
 	public function get_name() {

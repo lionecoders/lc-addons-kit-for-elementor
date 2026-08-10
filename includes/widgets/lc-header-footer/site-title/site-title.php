@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Site Title Widget.
+ *
+ * Elementor widget that displays a Site Title.
+ */
 class LC_Header_Footer_Site_Title extends \Elementor\Widget_Base {
 
 	public function get_name() {

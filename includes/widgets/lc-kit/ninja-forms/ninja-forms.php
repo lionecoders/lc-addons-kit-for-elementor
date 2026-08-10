@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Ninja Forms Widget.
+ *
+ * Elementor widget that integrates with Ninja Forms.
+ */
 class LCAKE_Kit_Ninja_Forms extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

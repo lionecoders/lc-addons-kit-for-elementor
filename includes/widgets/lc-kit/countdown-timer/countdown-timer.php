@@ -13,6 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+/**
+ * Countdown Timer Widget.
+ *
+ * Elementor widget that displays a Countdown Timer.
+ */
 class LCAKE_Kit_Countdown_Timer extends Widget_Base {
 
 

@@ -4,6 +4,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Core widget loader class.
+ * 
+ * Handles discovering, dependency checking, and registering Elementor widgets
+ * from the 'lc-kit' and 'lc-header-footer' directories. Also manages asset enqueuing.
+ *
+ * @since 1.0.0
+ */
 class LCAKE_Kit_Widget_Loader {
 
 
@@ -14,6 +22,13 @@ class LCAKE_Kit_Widget_Loader {
 
 	private $dependencies_checked = false;
 
+	/**
+	 * Constructor.
+	 * 
+	 * Hooks into Elementor core actions to register widgets, categories, and frontend/editor assets.
+	 *
+	 * @since 1.0.0
+	 */
 	public function __construct() {
 		add_action( 'elementor/widgets/register', array( $this, 'register_widgets' ) );
 		add_action( 'elementor/elements/categories_registered', array( $this, 'register_categories' ) );
@@ -22,6 +37,12 @@ class LCAKE_Kit_Widget_Loader {
 		add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'enqueue_editor_styles' ) );
 	}
 
+	/**
+	 * Scans widget directories and maps widget file data to their corresponding class names.
+	 *
+	 * @since 1.0.0
+	 * @return array An associative array of widget classes and their file data.
+	 */
 	public function load_widget_classes() {
 		if ( ! empty( $this->widget_classes ) ) {
 			return $this->widget_classes;
@@ -70,6 +91,15 @@ class LCAKE_Kit_Widget_Loader {
 		return $this->widget_classes;
 	}
 
+	/**
+	 * Verifies third-party plugin dependencies for all discovered widgets.
+	 * 
+	 * If a widget's dependencies (e.g., WooCommerce) are unmet, it excludes the widget's
+	 * specific assets (CSS/JS) from being enqueued.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
 	private function check_all_widget_dependencies() {
 		if ( $this->dependencies_checked ) {
 			return;
@@ -106,6 +136,15 @@ class LCAKE_Kit_Widget_Loader {
 		}
 	}
 
+	/**
+	 * Registers custom categories in the Elementor panel.
+	 * 
+	 * Adds 'LC Page Kit' and 'LC Header Footer kit' and reorders them to appear at the top.
+	 *
+	 * @since 1.0.0
+	 * @param \Elementor\Elements_Manager $elements_manager The Elementor elements manager instance.
+	 * @return void
+	 */
 	public function register_categories( $elements_manager ) {
 		$elements_manager->add_category(
 			'lcake-page-kit',
@@ -156,6 +195,13 @@ class LCAKE_Kit_Widget_Loader {
 		}
 	}
 
+	/**
+	 * Registers widgets with Elementor based on user settings and unmet dependencies.
+	 *
+	 * @since 1.0.0
+	 * @param \Elementor\Widgets_Manager $widgets_manager The Elementor widgets manager instance.
+	 * @return void
+	 */
 	public function register_widgets( $widgets_manager ) {
 		$this->check_all_widget_dependencies();
 

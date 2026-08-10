@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Contact Form 7 Widget.
+ *
+ * Elementor widget that integrates with Contact Form 7.
+ */
 class LCAKE_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
 
 

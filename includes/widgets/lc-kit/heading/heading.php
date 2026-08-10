@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Heading Widget.
+ *
+ * Elementor widget that displays a Heading.
+ */
 class LCAKE_Kit_Heading extends \Elementor\Widget_Base {
 
 	public function get_name() {

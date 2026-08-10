@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Formstack Widget.
+ *
+ * Elementor widget that integrates with Formstack.
+ */
 class LCAKE_Kit_Formstack extends \Elementor\Widget_Base {
 
 	public function get_name() {

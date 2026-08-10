@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Caldera Forms Widget.
+ *
+ * Elementor widget that integrates with Caldera Forms.
+ */
 class LCAKE_Kit_Caldera_Forms extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

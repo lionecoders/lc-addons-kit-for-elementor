@@ -10,6 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Button Widget.
+ *
+ * Elementor widget that displays a Button.
+ */
 class LCAKE_Kit_Button extends \Elementor\Widget_Base {
 
 

@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Post Grid Widget.
+ *
+ * Elementor widget that displays a Post Grid.
+ */
 class LCAKE_Kit_Post_Grid extends \Elementor\Widget_Base {
 
 	public function get_name() {

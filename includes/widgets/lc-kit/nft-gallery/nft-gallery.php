@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * NFT Gallery Widget.
+ *
+ * Elementor widget that displays a NFT Gallery.
+ */
 class LCAKE_Kit_Nft_Gallery extends \Elementor\Widget_Base {
 
 	public function get_name() {

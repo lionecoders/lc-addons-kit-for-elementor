@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Docs Category Grid Widget.
+ *
+ * Elementor widget that displays a Docs Category Grid.
+ */
 class LCAKE_Kit_Betterdocs_Category_Grid extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

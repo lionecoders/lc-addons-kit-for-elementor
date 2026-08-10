@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Docs Category Box Widget.
+ *
+ * Elementor widget that displays a Docs Category Box.
+ */
 class LCAKE_Kit_Betterdocs_Category_Box extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

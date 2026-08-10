@@ -13,6 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Post Grid Widget Class
  */
+/**
+ * Post Grid Widget.
+ *
+ * Elementor widget that displays a Post Grid.
+ */
 class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
 
 	/**

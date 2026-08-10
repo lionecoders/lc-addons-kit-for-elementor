@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Business Hours Widget.
+ *
+ * Elementor widget that displays a Business Hours.
+ */
 class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
 
 	public function get_name() {

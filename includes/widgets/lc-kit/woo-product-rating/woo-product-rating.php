@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Woo Product Rating Widget.
+ *
+ * Elementor widget that displays a Woo Product Rating.
+ */
 class LCAKE_Kit_Woo_Product_Rating extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

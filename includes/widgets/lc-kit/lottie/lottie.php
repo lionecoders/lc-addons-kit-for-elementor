@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Lottie Widget.
+ *
+ * Elementor widget that displays a Lottie.
+ */
 class LCAKE_Kit_Lottie extends \Elementor\Widget_Base {
 
 

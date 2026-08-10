@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * WPForms Widget.
+ *
+ * Elementor widget that integrates with WPForms.
+ */
 class LCAKE_Kit_Wp_Forms extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

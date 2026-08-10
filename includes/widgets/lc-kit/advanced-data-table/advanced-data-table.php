@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Advanced Data Table Widget.
+ *
+ * Elementor widget that displays an Advanced Data Table.
+ */
 class LCAKE_Kit_Advanced_Data_Table extends \Elementor\Widget_Base {
 
 	public function get_name() {

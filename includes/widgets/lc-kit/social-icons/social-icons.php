@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Social Icons Widget.
+ *
+ * Elementor widget that displays a Social Icons.
+ */
 class LCAKE_Kit_Social_Icons extends \Elementor\Widget_Base {
 
 	public function get_name() {

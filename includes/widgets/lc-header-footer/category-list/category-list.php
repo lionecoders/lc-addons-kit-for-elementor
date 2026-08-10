@@ -13,6 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Category List Widget Class
  */
+/**
+ * Category List Widget.
+ *
+ * Elementor widget that displays a Category List.
+ */
 class LC_Header_Footer_Category_List extends \Elementor\Widget_Base {
 
 	/**

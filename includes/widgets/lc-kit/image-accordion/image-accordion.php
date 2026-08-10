@@ -18,6 +18,11 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 
+/**
+ * Image Accordion Widget.
+ *
+ * Elementor widget that displays an Image Accordion.
+ */
 class LCAKE_Kit_Image_Accordion extends Widget_Base {
 
 	public function get_name() {

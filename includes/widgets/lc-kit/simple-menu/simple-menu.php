@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Simple Menu Widget.
+ *
+ * Elementor widget that displays a Simple Menu.
+ */
 class LCAKE_Kit_Simple_Menu extends \Elementor\Widget_Base {
 
 	public function get_name() {

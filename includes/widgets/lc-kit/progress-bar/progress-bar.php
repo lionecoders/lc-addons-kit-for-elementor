@@ -10,6 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Progress Bar Widget.
+ *
+ * Elementor widget that displays a Progress Bar.
+ */
 class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base {
 
 

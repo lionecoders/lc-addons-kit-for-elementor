@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Woo Checkout Widget.
+ *
+ * Elementor widget that displays a Woo Checkout.
+ */
 class LCAKE_Kit_Woo_Checkout extends \Elementor\Widget_Base {
 
 	public function get_required_dependencies() {

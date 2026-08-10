@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Pricing Table Widget.
+ *
+ * Elementor widget that displays a Pricing Table.
+ */
 class LCAKE_Kit_Pricing_Table extends \Elementor\Widget_Base {
 
 	public function get_name() {

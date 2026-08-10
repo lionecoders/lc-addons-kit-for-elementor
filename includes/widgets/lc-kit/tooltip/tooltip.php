@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Tooltip Widget.
+ *
+ * Elementor widget that displays a Tooltip.
+ */
 class LCAKE_Kit_Tooltip extends \Elementor\Widget_Base {
 
 	public function get_name() {

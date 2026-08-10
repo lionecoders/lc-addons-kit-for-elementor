@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Mailchimp Newsletter Widget.
+ *
+ * Elementor widget that integrates with Mailchimp Newsletter.
+ */
 class LCAKE_Kit_Mailchimp extends \Elementor\Widget_Base {
 
 
