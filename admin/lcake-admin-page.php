@@ -113,7 +113,6 @@ class LCAKE_Kit_Admin_Settings {
 			'wp-forms'                      => 'Forms',
 			'fluent-form'                   => 'Forms',
 			'we-forms'                      => 'Forms',
-			'caldera-forms'                 => 'Forms',
 			'formstack'                     => 'Forms',
 			'type-form'                     => 'Forms',
 			// Social & Integrations
@@ -239,9 +238,6 @@ class LCAKE_Kit_Admin_Settings {
 					} elseif ( $base === 'we-forms' ) {
 						$plugin_name = 'weForms';
 						$plugin_link = 'https://wordpress.org/plugins/weforms/';
-					} elseif ( $base === 'caldera-forms' ) {
-						$plugin_name = 'Caldera Forms';
-						$plugin_link = 'https://wordpress.org/plugins/caldera-forms/';
 					} elseif ( $base === 'formstack' ) {
 						$plugin_name = 'Formstack';
 						$plugin_link = 'https://www.formstack.com/';

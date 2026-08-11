@@ -792,11 +792,6 @@ class LCAKE_Kit_Widget_Loader {
 				'enqueue' => false,
 				'path'    => '',
 			),
-			'lcake-kit-caldera-forms-css'                 => array(
-				'file'    => 'lcake-kit-caldera-forms.css',
-				'enqueue' => false,
-				'path'    => '',
-			),
 			'lcake-kit-formstack-css'                     => array(
 				'file'    => 'lcake-kit-formstack.css',
 				'enqueue' => false,
