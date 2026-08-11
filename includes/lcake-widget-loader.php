@@ -241,24 +241,24 @@ class LCAKE_Kit_Widget_Loader {
 		$this->check_all_widget_dependencies();
 
 		if ( ! wp_script_is( 'smartmenus', 'registered' ) ) {
-			wp_register_script( 'smartmenus', LCAKE_EAK_URL . 'assets/lib/smartmenus/jquery.smartmenus.min.js', array( 'jquery' ), '1.0.1', true );
+			wp_register_script( 'smartmenus', LCAKE_EAK_URL . 'assets/lib/smartmenus/lc-jquery.smartmenus.min.js', array( 'jquery' ), '1.0.1', true );
 		}
 
 		$scripts = array(
 			'lcake-kit-jquery-event-move'       => array(
-				'file'    => 'jquery.event.move.min.js',
+				'file'    => 'lc-jquery.event.move.min.js',
 				'deps'    => array( 'jquery' ),
 				'enqueue' => false,
 				'path'    => '',
 			),
 			'lcake-kit-twentytwenty'            => array(
-				'file'    => 'jquery.twentytwenty.min.js',
+				'file'    => 'lc-jquery.twentytwenty.min.js',
 				'deps'    => array( 'jquery', 'lcake-kit-jquery-event-move' ),
 				'enqueue' => false,
 				'path'    => '',
 			),
 			'lcake-kit-image-comparison'        => array(
-				'file'    => 'image-comparison.js',
+				'file'    => 'lcake-kit-image-comparison.js',
 				'deps'    => array( 'jquery', 'elementor-frontend', 'lcake-kit-twentytwenty' ),
 				'enqueue' => false,
 				'path'    => '',
@@ -313,13 +313,13 @@ class LCAKE_Kit_Widget_Loader {
 				'module'  => true,
 			),
 			'lcake-btsp-js'                     => array(
-				'file'    => 'bootstrap.bundle.min.js',
+				'file'    => 'lc-bootstrap.bundle.min.js',
 				'deps'    => array( 'jquery' ),
 				'enqueue' => true,
 				'path'    => '',
 			),
 			'lcake-dialog-js'                   => array(
-				'file'    => 'dialog.min.js',
+				'file'    => 'lc-dialog.min.js',
 				'deps'    => array( 'jquery' ),
 				'enqueue' => true,
 				'path'    => '',
@@ -331,7 +331,7 @@ class LCAKE_Kit_Widget_Loader {
 				'path'    => '',
 			),
 			'lcake-swiper-js'                   => array(
-				'file'    => 'swiper-bundle.min.js',
+				'file'    => 'lc-swiper-bundle.min.js',
 				'deps'    => array( 'jquery' ),
 				'enqueue' => false,
 				'path'    => '',
@@ -349,7 +349,7 @@ class LCAKE_Kit_Widget_Loader {
 				'path'    => '',
 			),
 			'lcake-kit-countdown-js'            => array(
-				'file'    => 'jquery.countdown.min.js',
+				'file'    => 'lc-jquery.countdown.min.js',
 				'deps'    => array( 'jquery' ),
 				'enqueue' => true,
 				'path'    => '',
@@ -473,7 +473,7 @@ class LCAKE_Kit_Widget_Loader {
 
 		$styles = array(
 			'lcake-kit-twentytwenty'                      => array(
-				'file'    => 'twentytwenty.min.css',
+				'file'    => 'lc-twentytwenty.min.css',
 				'enqueue' => false,
 				'path'    => '',
 			),
@@ -503,7 +503,7 @@ class LCAKE_Kit_Widget_Loader {
 				'path'    => '',
 			),
 			'lcake-kit-image-comparison'                  => array(
-				'file'    => 'image-comparison.css',
+				'file'    => 'lcake-kit-image-comparison.css',
 				'enqueue' => true,
 				'path'    => '',
 			),
@@ -538,12 +538,12 @@ class LCAKE_Kit_Widget_Loader {
 				'path'    => '',
 			),
 			'lcake-btsp-css'                              => array(
-				'file'    => 'bootstrap.min.css',
+				'file'    => 'lc-bootstrap.min.css',
 				'enqueue' => true,
 				'path'    => '',
 			),
 			'lcake-swiper-css'                            => array(
-				'file'    => 'swiper-bundle.min.css',
+				'file'    => 'lc-swiper-bundle.min.css',
 				'enqueue' => true,
 				'path'    => '',
 			),
