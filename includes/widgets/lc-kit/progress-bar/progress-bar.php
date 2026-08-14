@@ -27,7 +27,7 @@ class LCAKE_Kit_Progress_Bar extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-skill-bar';
+		return 'eicon-skill-bar lcake-mveous-badge';
 	}
 
 	public function get_categories() {

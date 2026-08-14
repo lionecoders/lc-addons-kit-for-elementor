@@ -29,7 +29,7 @@ class LCAKE_Kit_Facebook_Feed extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-facebook';
+		return 'eicon-facebook lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

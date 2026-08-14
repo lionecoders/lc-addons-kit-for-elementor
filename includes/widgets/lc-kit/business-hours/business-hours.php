@@ -25,7 +25,7 @@ class LCAKE_Kit_Business_Hours extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-clock-o';
+		return 'eicon-clock-o lcake-mveous-badge';
 	}
 
 	public function get_categories() {

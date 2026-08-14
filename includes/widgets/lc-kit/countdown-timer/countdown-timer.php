@@ -40,7 +40,7 @@ class LCAKE_Kit_Countdown_Timer extends Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-countdown';
+		return 'eicon-countdown lcake-mveous-badge';
 	}
 
 	public function get_categories() {

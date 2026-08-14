@@ -30,7 +30,7 @@ class LCAKE_Kit_Image_Box extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-image-box';
+		return 'eicon-image-box lcake-mveous-badge';
 	}
 
 	public function get_categories() {

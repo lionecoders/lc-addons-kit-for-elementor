@@ -39,7 +39,7 @@ class LCAKE_Kit_Betterdocs_Search_Form extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-search';
+		return 'eicon-search lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

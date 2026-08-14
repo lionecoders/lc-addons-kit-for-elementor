@@ -27,7 +27,7 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-button';
+		return 'eicon-button lcake-mveous-badge';
 	}
 
 	public function get_categories() {

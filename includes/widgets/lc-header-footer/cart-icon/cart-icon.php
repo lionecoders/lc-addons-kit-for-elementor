@@ -35,7 +35,7 @@ class LC_Header_Footer_Cart_Icon extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-cart';
+		return 'eicon-cart lcake-mveous-badge';
 	}
 
 	public function get_categories() {

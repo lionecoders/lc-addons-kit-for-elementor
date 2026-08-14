@@ -29,7 +29,7 @@ class LCAKE_Kit_Dual_Color_Header extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-t-letter';
+		return 'eicon-t-letter lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

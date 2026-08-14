@@ -29,7 +29,7 @@ class LCAKE_Kit_Breadcrumbs extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-share-arrow';
+		return 'eicon-share-arrow lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

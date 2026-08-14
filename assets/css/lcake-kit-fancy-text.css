@@ -12,24 +12,29 @@
 
 .lcake-fancy-text-rotator {
     position: relative;
-    display: inline-block;
-    min-height: 1.3em;
+    display: inline-grid;
     vertical-align: bottom;
+    text-align: center;
+}
+
+.lcake-fancy-text-before,
+.lcake-fancy-text-after {
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: inherit;
 }
 
 .lcake-fancy-text-word {
-    position: absolute;
-    left: 0;
-    top: 0;
+    grid-area: 1 / 1;
     white-space: nowrap;
     color: #3b82f6;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    transform-origin: center;
 }
 
 .lcake-fancy-text-word.is-active {
-    position: relative;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;

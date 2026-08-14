@@ -39,7 +39,7 @@ class LCAKE_Kit_Better_Payment extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-paypal-button';
+		return 'eicon-paypal-button lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

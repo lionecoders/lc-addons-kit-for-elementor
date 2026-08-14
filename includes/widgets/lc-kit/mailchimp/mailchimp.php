@@ -26,7 +26,7 @@ class LCAKE_Kit_Mailchimp extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-mail';
+		return 'eicon-mail lcake-mveous-badge';
 	}
 
 	public function get_categories() {

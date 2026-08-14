@@ -35,7 +35,7 @@ class LCAKE_Kit_Testimonial extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-testimonial';
+		return 'eicon-testimonial lcake-mveous-badge';
 	}
 
 	public function get_categories() {

@@ -29,7 +29,7 @@ class LCAKE_Kit_Fancy_Text extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-animation-text';
+		return 'eicon-animation-text lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {
@@ -56,6 +56,9 @@ class LCAKE_Kit_Fancy_Text extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'default'     => esc_html__( 'We are', 'lc-addons-kit-for-elementor' ),
 				'label_block' => true,
+				'dynamic'     => array(
+					'active' => true,
+				),
 			)
 		);
 
@@ -91,6 +94,9 @@ class LCAKE_Kit_Fancy_Text extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::TEXT,
 				'default'     => esc_html__( 'for your business', 'lc-addons-kit-for-elementor' ),
 				'label_block' => true,
+				'dynamic'     => array(
+					'active' => true,
+				),
 			)
 		);
 
@@ -114,6 +120,32 @@ class LCAKE_Kit_Fancy_Text extends \Elementor\Widget_Base {
 				'label'   => esc_html__( 'Interval (ms)', 'lc-addons-kit-for-elementor' ),
 				'type'    => \Elementor\Controls_Manager::NUMBER,
 				'default' => 2200,
+			)
+		);
+
+		$this->add_responsive_control(
+			'alignment',
+			array(
+				'label'     => esc_html__( 'Alignment', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::CHOOSE,
+				'options'   => array(
+					'flex-start'   => array(
+						'title' => esc_html__( 'Left', 'lc-addons-kit-for-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'lc-addons-kit-for-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'flex-end'  => array(
+						'title' => esc_html__( 'Right', 'lc-addons-kit-for-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'default' => 'flex-start',
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-fancy-text' => 'justify-content: {{VALUE}};',
+				),
 			)
 		);
 
@@ -168,9 +200,9 @@ class LCAKE_Kit_Fancy_Text extends \Elementor\Widget_Base {
 		}
 		?>
 		<div class="lcake-fancy-text-wrapper">
-			<p class="lcake-fancy-text">
+			<div class="lcake-fancy-text">
 				<?php if ( ! empty( $settings['before_text'] ) ) : ?>
-					<span class="lcake-fancy-text-before"><?php echo esc_html( $settings['before_text'] ); ?></span>
+					<span class="lcake-fancy-text-before" style="display: inline-block;"><?php echo wp_kses_post( $settings['before_text'] ); ?></span>
 				<?php endif; ?>
 				<span class="lcake-fancy-text-rotator" data-interval="<?php echo esc_attr( $settings['interval'] ); ?>">
 					<?php foreach ( $words as $index => $word ) : ?>
@@ -178,9 +210,9 @@ class LCAKE_Kit_Fancy_Text extends \Elementor\Widget_Base {
 					<?php endforeach; ?>
 				</span>
 				<?php if ( ! empty( $settings['after_text'] ) ) : ?>
-					<span class="lcake-fancy-text-after"><?php echo esc_html( $settings['after_text'] ); ?></span>
+					<span class="lcake-fancy-text-after" style="display: inline-block;"><?php echo wp_kses_post( $settings['after_text'] ); ?></span>
 				<?php endif; ?>
-			</p>
+			</div>
 		</div>
 		<?php
 	}

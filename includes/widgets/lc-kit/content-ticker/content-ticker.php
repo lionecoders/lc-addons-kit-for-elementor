@@ -29,7 +29,7 @@ class LCAKE_Kit_Content_Ticker extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-post-slider';
+		return 'eicon-post-slider lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

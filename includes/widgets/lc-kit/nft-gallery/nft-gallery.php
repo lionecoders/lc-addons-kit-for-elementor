@@ -29,7 +29,7 @@ class LCAKE_Kit_Nft_Gallery extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-gallery-masonry';
+		return 'eicon-gallery-masonry lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

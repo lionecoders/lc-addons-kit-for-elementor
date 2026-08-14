@@ -26,7 +26,7 @@ class LCAKE_Kit_Contact_Form_7 extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-form-horizontal';
+		return 'eicon-form-horizontal lcake-mveous-badge';
 	}
 
 	public function get_categories() {

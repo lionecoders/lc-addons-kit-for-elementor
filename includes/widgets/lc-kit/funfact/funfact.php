@@ -37,7 +37,7 @@ class LCAKE_Kit_Funfact extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-number-field';
+		return 'eicon-number-field lcake-mveous-badge';
 	}
 
 	public function get_categories() {

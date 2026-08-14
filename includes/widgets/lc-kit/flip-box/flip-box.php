@@ -29,7 +29,7 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-flip-box';
+		return 'eicon-flip-box lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

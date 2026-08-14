@@ -1,6 +1,5 @@
 /* Branded Widget Badge inside Elementor editor sidebar drawer panel only */
-#elementor-panel-category-lcake-page-kit .elementor-element::after,
-#elementor-panel-category-lc-header-footer-kit .elementor-element::after {
+.elementor-element:has(.lcake-mveous-badge)::after {
     content: '';
     position: absolute;
     top: 5px;
@@ -14,7 +13,6 @@
     display: block;
 }
 
-#elementor-panel-category-lcake-page-kit .elementor-element,
-#elementor-panel-category-lc-header-footer-kit .elementor-element {
+.elementor-element:has(.lcake-mveous-badge) {
     position: relative;
 }

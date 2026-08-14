@@ -38,7 +38,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
 	 * Get widget icon
 	 */
 	public function get_icon() {
-		return 'eicon-posts-grid';
+		return 'eicon-posts-grid lcake-mveous-badge';
 	}
 
 	/**

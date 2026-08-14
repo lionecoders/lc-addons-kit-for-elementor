@@ -25,7 +25,7 @@ class LCAKE_Kit_FAQ extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-help-o';
+		return 'eicon-help-o lcake-mveous-badge';
 	}
 
 	public function get_categories() {

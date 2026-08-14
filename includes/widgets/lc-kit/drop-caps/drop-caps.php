@@ -30,7 +30,7 @@ class LCAKE_Kit_Drop_Caps extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-text';
+		return 'eicon-text lcake-mveous-badge';
 	}
 
 	public function get_categories() {

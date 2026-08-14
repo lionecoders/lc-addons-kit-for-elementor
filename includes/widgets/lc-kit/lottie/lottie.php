@@ -26,7 +26,7 @@ class LCAKE_Kit_Lottie extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-animation';
+		return 'eicon-animation lcake-mveous-badge';
 	}
 
 	public function get_categories() {

@@ -29,7 +29,7 @@ class LCAKE_Kit_Login_Register extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-lock-user';
+		return 'eicon-lock-user lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

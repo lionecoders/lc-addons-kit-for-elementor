@@ -28,7 +28,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-person';
+		return 'eicon-person lcake-mveous-badge';
 	}
 
 	public function get_categories() {

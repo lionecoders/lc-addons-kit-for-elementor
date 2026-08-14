@@ -25,7 +25,7 @@ class LC_Header_Footer_Site_Logo extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-site-logo';
+		return 'eicon-site-logo lcake-mveous-badge';
 	}
 
 	public function get_categories() {

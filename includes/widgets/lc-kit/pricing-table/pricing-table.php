@@ -25,7 +25,7 @@ class LCAKE_Kit_Pricing_Table extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-price-table';
+		return 'eicon-price-table lcake-mveous-badge';
 	}
 
 	public function get_categories() {

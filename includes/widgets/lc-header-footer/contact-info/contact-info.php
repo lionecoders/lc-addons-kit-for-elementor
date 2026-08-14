@@ -25,7 +25,7 @@ class LC_Header_Footer_Contact_Info extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-call-to-action lcake-mveous-badge';
 	}
 
 	public function get_categories() {

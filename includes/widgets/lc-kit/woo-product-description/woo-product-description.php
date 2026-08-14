@@ -39,7 +39,7 @@ class LCAKE_Kit_Woo_Product_Description extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-product-description';
+		return 'eicon-product-description lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

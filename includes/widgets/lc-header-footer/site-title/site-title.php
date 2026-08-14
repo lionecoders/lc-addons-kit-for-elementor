@@ -25,7 +25,7 @@ class LC_Header_Footer_Site_Title extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-site-title';
+		return 'eicon-site-title lcake-mveous-badge';
 	}
 
 	public function get_categories() {

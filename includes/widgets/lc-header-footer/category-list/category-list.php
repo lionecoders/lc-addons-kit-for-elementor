@@ -38,7 +38,7 @@ class LC_Header_Footer_Category_List extends \Elementor\Widget_Base {
 	 * Get widget icon
 	 */
 	public function get_icon() {
-		return 'eicon-post-list';
+		return 'eicon-post-list lcake-mveous-badge';
 	}
 
 	public function get_categories() {

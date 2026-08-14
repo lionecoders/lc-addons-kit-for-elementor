@@ -33,7 +33,7 @@ class LCAKE_Kit_Accordion extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-accordion';
+		return 'eicon-accordion lcake-mveous-badge';
 	}
 
 	public function get_categories() {

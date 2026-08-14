@@ -29,7 +29,7 @@ class LCAKE_Kit_Simple_Menu extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-nav-menu';
+		return 'eicon-nav-menu lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

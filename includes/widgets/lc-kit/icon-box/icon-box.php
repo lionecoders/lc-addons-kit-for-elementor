@@ -30,7 +30,7 @@ class LCAKE_Kit_Icon_Box extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-icon-box';
+		return 'eicon-icon-box lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

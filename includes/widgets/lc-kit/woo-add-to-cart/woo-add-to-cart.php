@@ -39,7 +39,7 @@ class LCAKE_Kit_Woo_Add_To_Cart extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-product-add-to-cart';
+		return 'eicon-product-add-to-cart lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

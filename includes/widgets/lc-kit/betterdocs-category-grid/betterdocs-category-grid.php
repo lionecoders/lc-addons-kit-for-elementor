@@ -39,7 +39,7 @@ class LCAKE_Kit_Betterdocs_Category_Grid extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-posts-grid';
+		return 'eicon-posts-grid lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

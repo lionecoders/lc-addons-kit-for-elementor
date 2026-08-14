@@ -25,7 +25,7 @@ class LCAKE_Kit_Social_Icons extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-social-icons';
+		return 'eicon-social-icons lcake-mveous-badge';
 	}
 
 	public function get_categories() {

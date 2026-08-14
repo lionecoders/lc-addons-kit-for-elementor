@@ -29,7 +29,7 @@ class LCAKE_Kit_Cta_Box extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-call-to-action lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

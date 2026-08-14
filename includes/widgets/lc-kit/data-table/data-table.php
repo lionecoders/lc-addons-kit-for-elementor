@@ -29,7 +29,7 @@ class LCAKE_Kit_Data_Table extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-table';
+		return 'eicon-table lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

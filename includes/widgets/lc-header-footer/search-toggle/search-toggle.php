@@ -29,7 +29,7 @@ class LC_Header_Footer_Search_Toggle extends \Elementor\Widget_Base
 
 	public function get_icon()
 	{
-		return 'eicon-search';
+		return 'eicon-search lcake-mveous-badge';
 	}
 
 	public function get_categories()

@@ -25,7 +25,7 @@ class LCAKE_Kit_Pie_Chart extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-circle-o';
+		return 'eicon-circle-o lcake-mveous-badge';
 	}
 
 	public function get_categories() {

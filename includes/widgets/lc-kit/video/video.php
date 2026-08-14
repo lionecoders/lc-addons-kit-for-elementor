@@ -25,7 +25,7 @@ class LCAKE_Kit_Video extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-video-playlist';
+		return 'eicon-video-playlist lcake-mveous-badge';
 	}
 
 	public function get_categories() {

@@ -29,7 +29,7 @@ class LCAKE_Kit_Filterable_Gallery extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-gallery-grid';
+		return 'eicon-gallery-grid lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

@@ -29,7 +29,7 @@ class LCAKE_Kit_Embed_Press extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-code';
+		return 'eicon-code lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {

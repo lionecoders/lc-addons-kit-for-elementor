@@ -27,7 +27,7 @@ class LCAKE_Kit_Image_Comparison extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-image-before-after';
+		return 'eicon-image-before-after lcake-mveous-badge';
 	}
 
 	public function get_categories() {

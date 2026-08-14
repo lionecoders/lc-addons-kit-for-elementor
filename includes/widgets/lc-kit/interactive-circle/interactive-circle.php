@@ -29,7 +29,7 @@ class LCAKE_Kit_Interactive_Circle extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-counter-circle';
+		return 'eicon-counter-circle lcake-mveous-badge';
 	}
 
 	public function get_style_depends() {
