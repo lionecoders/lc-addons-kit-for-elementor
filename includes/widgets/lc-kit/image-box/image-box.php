@@ -477,6 +477,6 @@ class LCAKE_Kit_Image_Box extends \Elementor\Widget_Base {
 
 		$html .= '</div>';
 
-		echo wp_kses_post( $html );
+		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }

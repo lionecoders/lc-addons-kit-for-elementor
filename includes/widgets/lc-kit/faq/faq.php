@@ -448,7 +448,7 @@ class LCAKE_Kit_FAQ extends \Elementor\Widget_Base {
 			echo '</div>';
 
 			echo '<div class="lc-faq-answer" id="' . esc_attr( $answer_id ) . '" role="region" aria-labelledby="' . esc_attr( $question_id ) . '">';
-			echo '<div class="lc-faq-answer-content">' . wp_kses_post( $item['content'] ) . '</div>';
+			echo '<div class="lc-faq-answer-content">' . wp_kses_post( $item['content'] ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '</div>';
 
 			echo '</div>';

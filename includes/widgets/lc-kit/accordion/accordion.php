@@ -835,7 +835,7 @@ class LCAKE_Kit_Accordion extends \Elementor\Widget_Base {
 
 			echo '<div class="lcake-accordion-content">';
 			echo '<div class="lcake-accordion-body">';
-			echo wp_kses_post( $item['content'] );
+			echo wp_kses_post( $item['content'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo '</div>';
 			echo '</div>';
 

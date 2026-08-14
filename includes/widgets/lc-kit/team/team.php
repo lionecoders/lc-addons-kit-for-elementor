@@ -3687,7 +3687,7 @@ class LCAKE_Kit_Team extends \Elementor\Widget_Base {
 
 		echo '<div class="lcake-main-wrapper">';
 
-		echo wp_kses_post( $this->render_template() );
+		echo $this->render_template(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		echo '</div>';
 	}

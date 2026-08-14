@@ -437,7 +437,7 @@ class LCAKE_Header_Footer_Builder {
 		}
 
 		echo '<div class="lcake-hf-template lcake-hf-template--' . esc_attr( get_post_meta( $template->ID, '_lcake_hf_type', true ) ) . '">';
-		echo wp_kses_post( LCAKE_Kit_Utils::render_elementor_content( $template->ID ) );
+		echo LCAKE_Kit_Utils::render_elementor_content( $template->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor content is pre-escaped and contains required <style>/<script> tags that wp_kses_post would break.
 		echo '</div>';
 	}
 

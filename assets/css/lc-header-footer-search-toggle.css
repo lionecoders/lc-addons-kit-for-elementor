@@ -1,63 +1,104 @@
-.lc-hf-search-toggle {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-}
-
-.lc-hf-search-toggle-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    background: none;
-    border: none;
-    color: #111827;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-}
-
-.lc-hf-search-toggle-btn:hover {
-    background-color: rgba(59, 130, 246, 0.08);
-}
-
 .lc-hf-search-form {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    width: 280px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-    transition: all 0.25s ease;
-    z-index: 100;
-}
-
-.lc-hf-search-toggle.is-open .lc-hf-search-form {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.lc-hf-search-input {
+    display: inline-flex;
+    align-items: stretch;
     width: 100%;
-    box-sizing: border-box;
-    padding: 12px 18px;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    background: #ffffff;
-    box-shadow: 0 10px 24px -5px rgba(0, 0, 0, 0.12);
-    font-size: 14px;
-    outline: none;
 }
 
-.lc-hf-search-input:focus {
+.lc-hf-search-input-wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: stretch;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px 0 0 4px;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.lc-hf-search-input-wrapper:focus-within {
     border-color: #3b82f6;
 }
 
+.lc-hf-search-input {
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    border: none !important;
+    background: transparent !important;
+    font-size: 15px;
+    color: #111827;
+    outline: none !important;
+    box-shadow: none !important;
+}
 
-/* Remove text decoration for a tags */
+.lc-hf-search-input:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Prevent Chrome autofill from turning the input light blue */
+.lc-hf-search-input:-webkit-autofill,
+.lc-hf-search-input:-webkit-autofill:hover, 
+.lc-hf-search-input:-webkit-autofill:focus, 
+.lc-hf-search-input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s !important;
+    -webkit-text-fill-color: inherit !important;
+}
+
+.lc-hf-search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    display: none; /* Hide default webkit clear button as we use our own */
+}
+
+.lc-hf-search-input::placeholder {
+    color: #9ca3af;
+}
+
+.lc-hf-search-clear {
+    display: none; /* Hidden by default via JS */
+    align-items: center;
+    justify-content: center;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 12px;
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+.lc-hf-search-clear.is-visible {
+    display: flex;
+}
+
+.lc-hf-search-clear:hover {
+    color: #ef4444;
+}
+
+.lc-hf-search-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    background: #3b82f6;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.lc-hf-search-submit:hover {
+    background: #2563eb;
+}
+
+/* Remove text decoration for a tags if any */
 .elementor-widget-lc-header-footer-search-toggle a,
 .lcake-search-toggle a,
 .lcake-kit-search-toggle a,

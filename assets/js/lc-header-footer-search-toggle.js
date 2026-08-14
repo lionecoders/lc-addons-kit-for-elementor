@@ -2,29 +2,37 @@
     'use strict';
 
     var WidgetLcHfSearchToggleHandler = function ($scope) {
-        var $wrapper = $scope.find('.lc-hf-search-toggle');
-        if (!$wrapper.length) {
+        var $form = $scope.find('.lc-hf-search-form');
+        if (!$form.length) {
             return;
         }
 
-        var $btn = $wrapper.find('.lc-hf-search-toggle-btn');
-        var $input = $wrapper.find('.lc-hf-search-input');
+        var $input = $form.find('.lc-hf-search-input');
+        var $clearBtn = $form.find('.lc-hf-search-clear');
 
-        $btn.on('click', function () {
-            var isOpen = $wrapper.toggleClass('is-open').hasClass('is-open');
-            $btn.attr('aria-expanded', isOpen ? 'true' : 'false');
-            if (isOpen) {
-                setTimeout(function () {
-                    $input.trigger('focus');
-                }, 50);
-            }
-        });
+        if (!$input.length || !$clearBtn.length) {
+            return;
+        }
 
-        $(document).on('click', function (e) {
-            if (!$wrapper.is(e.target) && $wrapper.has(e.target).length === 0) {
-                $wrapper.removeClass('is-open');
-                $btn.attr('aria-expanded', 'false');
+        // Show/hide clear button based on input value
+        var toggleClearBtn = function () {
+            if ($input.val().length > 0) {
+                $clearBtn.addClass('is-visible');
+            } else {
+                $clearBtn.removeClass('is-visible');
             }
+        };
+
+        // Initialize state
+        toggleClearBtn();
+
+        // Listen for input changes
+        $input.on('input propertychange', toggleClearBtn);
+
+        // Clear input when clear button is clicked
+        $clearBtn.on('click', function (e) {
+            e.preventDefault();
+            $input.val('').trigger('input').focus();
         });
     };
 
