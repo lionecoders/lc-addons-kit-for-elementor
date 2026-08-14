@@ -326,7 +326,7 @@ class LCAKE_Kit_Drop_Caps extends \Elementor\Widget_Base {
 		if ( ! empty( $settings['lc_content_drop_cap_letter'] ) ) {
 			$drop_cap_letter = $settings['lc_content_drop_cap_letter'];
 		} else {
-			$clean_text      = trim( strip_tags( $text ) );
+			$clean_text      = trim( wp_strip_all_tags( $text ) );
 			$drop_cap_letter = mb_substr( $clean_text, 0, 1, 'UTF-8' );
 		}
 
@@ -348,7 +348,7 @@ class LCAKE_Kit_Drop_Caps extends \Elementor\Widget_Base {
 		}
 
 		// Output
-		echo '<div ' . $this->get_render_attribute_string( 'wrapper' ) . '>';
+		echo '<div ' . $this->get_render_attribute_string( 'wrapper' ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings.
 		echo '<span class="lcake-drop-caps-letter">' . esc_html( $drop_cap_letter ) . '</span>';
 		echo '<div class="lcake-drop-caps-text">' . wp_kses_post( $text ) . '</div>';
 		echo '</div>';

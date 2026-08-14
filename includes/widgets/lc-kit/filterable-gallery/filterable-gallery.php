@@ -552,18 +552,18 @@ class LCAKE_Kit_Filterable_Gallery extends \Elementor\Widget_Base {
 					$link      = $item['link'] ?? array();
 					$tag       = ! empty( $link['url'] ) ? 'a' : 'div';
 					?>
-					<<?php echo $tag; ?> class="lcake-filterable-gallery-item anim-<?php echo esc_attr( $settings['image_hover_animation'] ?? 'zoom-in' ); ?> overlay-<?php echo esc_attr( $settings['overlay_display'] ?? 'hover' ); ?>" data-category="<?php echo esc_attr( $cat_slugs ); ?>"
+					<<?php echo tag_escape( $tag ); ?> class="lcake-filterable-gallery-item anim-<?php echo esc_attr( $settings['image_hover_animation'] ?? 'zoom-in' ); ?> overlay-<?php echo esc_attr( $settings['overlay_display'] ?? 'hover' ); ?>" data-category="<?php echo esc_attr( $cat_slugs ); ?>"
 						<?php
 						if ( 'a' === $tag ) :
 							?>
 							href="<?php echo esc_url( $link['url'] ); ?>"<?php endif; ?>>
-						<?php echo LCAKE_Kit_Utils::get_attachment_image_html( $item, 'image', 'medium', array( 'class' => 'lcake-filterable-gallery-image' ) ); ?>
+						<?php echo wp_kses( LCAKE_Kit_Utils::get_attachment_image_html( $item, 'image', 'medium', array( 'class' => 'lcake-filterable-gallery-image' ) ), LCAKE_Kit_Utils::get_kses_array() ); ?>
 						<?php if ( ! empty( $item['title'] ) ) : ?>
 							<div class="lcake-filterable-gallery-overlay">
 								<span class="lcake-filterable-gallery-title"><?php echo esc_html( $item['title'] ); ?></span>
 							</div>
 						<?php endif; ?>
-					</<?php echo $tag; ?>>
+					</<?php echo tag_escape( $tag ); ?>>
 				<?php endforeach; ?>
 			</div>
 		</div>

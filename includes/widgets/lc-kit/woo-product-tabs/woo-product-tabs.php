@@ -298,7 +298,7 @@ class LCAKE_Kit_Woo_Product_Tabs extends \Elementor\Widget_Base {
 		$original_product = isset( $GLOBALS['product'] ) ? $GLOBALS['product'] : null;
 
 		$post               = get_post( $product->get_id() );
-		$GLOBALS['product'] = $product;
+		$GLOBALS['product'] = $product; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 		setup_postdata( $post );
 		?>
 		<div class="lcake-woo-tabs">
@@ -306,7 +306,7 @@ class LCAKE_Kit_Woo_Product_Tabs extends \Elementor\Widget_Base {
 		</div>
 		<?php
 		$post               = $original_post;
-		$GLOBALS['product'] = $original_product;
+		$GLOBALS['product'] = $original_product; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 		if ( $original_post ) {
 			setup_postdata( $original_post );
 		} else {

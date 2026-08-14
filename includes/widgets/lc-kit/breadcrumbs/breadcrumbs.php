@@ -230,6 +230,7 @@ class LCAKE_Kit_Breadcrumbs extends \Elementor\Widget_Base {
 			);
 		} elseif ( is_search() ) {
 			$trail[] = array(
+				// translators: %s: the search query string entered by the user.
 				'text'    => sprintf( esc_html__( 'Search results for: %s', 'lc-addons-kit-for-elementor' ), get_search_query() ),
 				'url'     => '',
 				'current' => true,
@@ -289,7 +290,7 @@ class LCAKE_Kit_Breadcrumbs extends \Elementor\Widget_Base {
 						<?php endif; ?>
 					</li>
 					<?php if ( ! $is_last ) : ?>
-						<li class="lcake-breadcrumbs-separator" aria-hidden="true"><?php echo $separator; ?></li>
+						<li class="lcake-breadcrumbs-separator" aria-hidden="true"><?php echo wp_kses_post( $separator ); ?></li>
 					<?php endif; ?>
 				<?php endforeach; ?>
 			</ol>

@@ -436,7 +436,7 @@ class LC_Header_Footer_Post_Grid extends \Elementor\Widget_Base {
 
 								<?php if ( $show_excerpt === 'yes' ) : ?>
 									<div class="lc-post-grid-item-excerpt">
-										<?php echo wp_trim_words( get_the_excerpt(), $excerpt_length, '...' ); ?>
+										<?php echo esc_html( wp_trim_words( get_the_excerpt(), $excerpt_length, '...' ) ); ?>
 									</div>
 								<?php endif; ?>
 

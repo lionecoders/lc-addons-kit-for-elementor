@@ -294,12 +294,12 @@ class LCAKE_Kit_Feature_List extends \Elementor\Widget_Base {
 				}
 				?>
 				<li class="lcake-feature-list-item">
-					<<?php echo $tag; ?> class="lcake-feature-list-link" <?php echo $link_attrs; ?>>
+					<<?php echo tag_escape( $tag ); ?> class="lcake-feature-list-link" <?php echo $link_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $link_attrs is built with esc_url() and hardcoded safe attribute strings. ?>>
 						<span class="lcake-feature-list-icon">
 							<?php \Elementor\Icons_Manager::render_icon( $item['item_icon'], array( 'aria-hidden' => 'true' ) ); ?>
 						</span>
 						<span class="lcake-feature-list-text"><?php echo esc_html( $item['item_text'] ); ?></span>
-					</<?php echo $tag; ?>>
+					</<?php echo tag_escape( $tag ); ?>>
 				</li>
 			<?php endforeach; ?>
 		</ul>

@@ -127,7 +127,7 @@ class LCAKE_Kit_Woo_Product_Title extends \Elementor\Widget_Base {
 		$valid_tags = array( 'h1', 'h2', 'h3', 'div' );
 		$tag        = in_array( $settings['html_tag'], $valid_tags, true ) ? $settings['html_tag'] : 'h1';
 		?>
-		<<?php echo $tag; ?> class="lcake-woo-product-title"><?php echo esc_html( $product->get_name() ); ?></<?php echo $tag; ?>>
+		<<?php echo tag_escape( $tag ); ?> class="lcake-woo-product-title"><?php echo esc_html( $product->get_name() ); ?></<?php echo tag_escape( $tag ); ?>>
 		<?php
 	}
 }

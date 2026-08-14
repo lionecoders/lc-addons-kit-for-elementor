@@ -438,7 +438,7 @@ class LCAKE_Kit_Betterdocs_Category_Grid extends \Elementor\Widget_Base {
 						array(
 							'post_type'      => 'docs',
 							'posts_per_page' => (int) $settings['articles_per_category'],
-							'tax_query'      => array(
+							'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 								array(
 									'taxonomy' => 'doc_category',
 									'field'    => 'term_id',

@@ -260,7 +260,7 @@ class LCAKE_Kit_Woo_Product_Rating extends \Elementor\Widget_Base {
 		$count = $product->get_review_count();
 		?>
 		<div class="lcake-woo-product-rating" style="display: flex; align-items: center;">
-			<?php echo wc_get_rating_html( $product->get_average_rating() ); ?>
+			<?php echo wp_kses_post( wc_get_rating_html( $product->get_average_rating() ) ); ?>
 			<?php
 			if ( 'yes' === $settings['show_count'] ) :
 				$label_singular = ! empty( $settings['review_word_singular'] ) ? $settings['review_word_singular'] : esc_html__( 'review', 'lc-addons-kit-for-elementor' );

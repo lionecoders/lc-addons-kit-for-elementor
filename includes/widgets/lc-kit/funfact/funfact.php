@@ -1351,7 +1351,7 @@ class LCAKE_Kit_Funfact extends \Elementor\Widget_Base {
 
 		?>
 
-		<div <?php echo $this->get_render_attribute_string( 'funfact_wrapper' ); ?>>
+		<div <?php echo $this->get_render_attribute_string( 'funfact_wrapper' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>>
 			<?php if ( isset( $settings['lcake_funfact_enable_vertical_border'] ) && $settings['lcake_funfact_enable_vertical_border'] == 'yes' ) : ?>
 				<div class="vertical-bar <?php echo esc_attr( isset( $settings['lcake_funfact_enable_vertical_border_position'] ) ? $settings['lcake_funfact_enable_vertical_border_position'] : '' ); ?>"></div>
 			<?php endif; ?>

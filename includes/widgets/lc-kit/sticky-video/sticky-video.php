@@ -368,7 +368,7 @@ class LCAKE_Kit_Sticky_Video extends \Elementor\Widget_Base {
 		?>
 		<div class="lcake-sticky-video" data-show-close="<?php echo esc_attr( $settings['show_close'] ); ?>">
 			<div class="lcake-sticky-video-inner">
-				<?php echo LCAKE_Kit_Utils::kses( $embed_html ); ?>
+				<?php echo LCAKE_Kit_Utils::kses( $embed_html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- output is sanitized via wp_kses() inside LCAKE_Kit_Utils::kses(). ?>
 				<?php if ( 'yes' === $settings['show_close'] ) : ?>
 					<button type="button" class="lcake-sticky-video-close" aria-label="<?php echo esc_attr__( 'Close', 'lc-addons-kit-for-elementor' ); ?>">&times;</button>
 				<?php endif; ?>

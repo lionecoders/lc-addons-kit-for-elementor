@@ -152,10 +152,10 @@ class LCAKE_Kit_Dual_Color_Header extends \Elementor\Widget_Base {
 		$valid_tags = array( 'h1', 'h2', 'h3', 'h4', 'div', 'span' );
 		$tag        = in_array( $settings['html_tag'], $valid_tags, true ) ? $settings['html_tag'] : 'h2';
 		?>
-		<<?php echo $tag; ?> class="lcake-dual-color-header">
+		<<?php echo tag_escape( $tag ); ?> class="lcake-dual-color-header">
 			<span class="lcake-dual-color-header-part-one"><?php echo esc_html( $settings['text_part_one'] ); ?></span>
 			<span class="lcake-dual-color-header-part-two"><?php echo esc_html( $settings['text_part_two'] ); ?></span>
-		</<?php echo $tag; ?>>
+		</<?php echo tag_escape( $tag ); ?>>
 		<?php
 	}
 }

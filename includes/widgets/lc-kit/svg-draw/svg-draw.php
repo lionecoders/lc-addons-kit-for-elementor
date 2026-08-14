@@ -157,7 +157,7 @@ class LCAKE_Kit_Svg_Draw extends \Elementor\Widget_Base {
 		$svg_content = file_get_contents( $file_path );
 		?>
 		<div class="lcake-svg-draw" data-trigger="<?php echo esc_attr( $settings['trigger'] ); ?>" data-duration="<?php echo esc_attr( $settings['draw_duration'] ); ?>">
-			<?php echo LCAKE_Kit_Utils::kses( $svg_content ); ?>
+			<?php echo LCAKE_Kit_Utils::kses( $svg_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- output is sanitized via wp_kses() inside LCAKE_Kit_Utils::kses(). ?>
 		</div>
 		<?php
 	}

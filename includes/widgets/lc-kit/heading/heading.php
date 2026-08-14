@@ -217,8 +217,8 @@ class LCAKE_Kit_Heading extends \Elementor\Widget_Base {
 		}
 		$this->add_render_attribute( 'title', 'class', $title_classes );
 
-		echo '<div ' . $this->get_render_attribute_string( 'wrapper' ) . '>';
-			echo '<' . tag_escape( $heading_tag ) . ' ' . $this->get_render_attribute_string( 'title' ) . '>';
+		echo '<div ' . $this->get_render_attribute_string( 'wrapper' ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings.
+			echo '<' . tag_escape( $heading_tag ) . ' ' . $this->get_render_attribute_string( 'title' ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings.
 				echo wp_kses_post( $heading_text );
 			echo '</' . tag_escape( $heading_tag ) . '>';
 		echo '</div>';

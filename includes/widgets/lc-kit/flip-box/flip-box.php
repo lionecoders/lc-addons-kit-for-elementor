@@ -470,7 +470,7 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
 						<div class="lcake-flip-box-description"><?php echo wp_kses_post( $settings['front_description'] ); ?></div>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['front_button_text'] ) ) : ?>
-						<a <?php echo $this->get_render_attribute_string( 'front_button_link' ); ?>>
+						<a <?php echo $this->get_render_attribute_string( 'front_button_link' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>>
 							<?php echo esc_html( $settings['front_button_text'] ); ?>
 						</a>
 					<?php endif; ?>
@@ -488,7 +488,7 @@ class LCAKE_Kit_Flip_Box extends \Elementor\Widget_Base {
 						<div class="lcake-flip-box-description"><?php echo wp_kses_post( $settings['back_description'] ); ?></div>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['back_button_text'] ) ) : ?>
-						<a <?php echo $this->get_render_attribute_string( 'back_button_link' ); ?>>
+						<a <?php echo $this->get_render_attribute_string( 'back_button_link' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>>
 							<?php echo esc_html( $settings['back_button_text'] ); ?>
 						</a>
 					<?php endif; ?>

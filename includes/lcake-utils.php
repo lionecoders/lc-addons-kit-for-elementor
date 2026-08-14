@@ -408,8 +408,8 @@ class LCAKE_Kit_Utils {
 		if ( defined( 'FLUENTFORM' ) || function_exists( 'wpFluentForm' ) ) {
 			global $wpdb;
 			$table_name = $wpdb->prefix . 'fluentform_forms';
-			if ( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) === $table_name ) {
-				$forms = $wpdb->get_results( "SELECT id, title FROM $table_name ORDER BY id DESC", ARRAY_A );
+			if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ) === $table_name ) { // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				$forms = $wpdb->get_results( $wpdb->prepare( 'SELECT id, title FROM `%1s` ORDER BY id DESC', $table_name ), ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder -- table name is built from $wpdb->prefix + hardcoded string; cannot be auto-quoted.
 				if ( ! empty( $forms ) ) {
 					foreach ( $forms as $form ) {
 						$options[ $form['id'] ] = $form['title'];

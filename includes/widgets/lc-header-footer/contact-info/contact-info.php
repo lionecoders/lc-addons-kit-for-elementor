@@ -206,7 +206,7 @@ class LC_Header_Footer_Contact_Info extends \Elementor\Widget_Base {
 				$tag  = ! empty( $link['url'] ) ? 'a' : 'span';
 				?>
 				<li class="lc-hf-contact-item">
-					<<?php echo $tag; ?> class="lc-hf-contact-link"
+					<<?php echo tag_escape( $tag ); ?> class="lc-hf-contact-link"
 						<?php
 						if ( 'a' === $tag ) :
 							?>
@@ -215,7 +215,7 @@ class LC_Header_Footer_Contact_Info extends \Elementor\Widget_Base {
 							<?php \Elementor\Icons_Manager::render_icon( $item['icon'], array( 'aria-hidden' => 'true' ) ); ?>
 						</span>
 						<span class="lc-hf-contact-text"><?php echo esc_html( $item['text'] ); ?></span>
-					</<?php echo $tag; ?>>
+					</<?php echo tag_escape( $tag ); ?>>
 				</li>
 			<?php endforeach; ?>
 		</ul>

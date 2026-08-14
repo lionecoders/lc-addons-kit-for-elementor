@@ -163,14 +163,14 @@ class LCAKE_Kit_Interactive_Circle extends \Elementor\Widget_Base {
 		}
 		$this->add_render_attribute( 'link', 'class', 'lcake-interactive-circle' );
 		?>
-		<<?php echo $tag; ?> <?php echo $this->get_render_attribute_string( 'link' ); ?>>
+		<<?php echo tag_escape( $tag ); ?> <?php echo $this->get_render_attribute_string( 'link' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>>
 			<span class="lcake-interactive-circle-icon">
 				<?php \Elementor\Icons_Manager::render_icon( $settings['icon'], array( 'aria-hidden' => 'true' ) ); ?>
 			</span>
 			<?php if ( ! empty( $settings['title'] ) ) : ?>
 				<span class="lcake-interactive-circle-title"><?php echo esc_html( $settings['title'] ); ?></span>
 			<?php endif; ?>
-		</<?php echo $tag; ?>>
+		</<?php echo tag_escape( $tag ); ?>>
 		<?php
 	}
 }

@@ -348,7 +348,7 @@ class LCAKE_Kit_Lottie extends \Elementor\Widget_Base {
 		);
 
 		// Output lottie container with config dataset
-		echo '<div ' . $this->get_render_attribute_string( 'wrapper' ) . '>';
+		echo '<div ' . $this->get_render_attribute_string( 'wrapper' ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings.
 
 		echo '<div class="lcake-lottie-container" id="' . esc_attr( $config['container_id'] ) . '" data-lottie-config="' . esc_attr( json_encode( $config ) ) . '"></div>';
 

@@ -191,12 +191,12 @@ class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
 			'post_type'           => 'product',
 			'posts_per_page'      => (int) $settings['products_count'],
 			'orderby'             => 'price' === $settings['order_by'] ? 'meta_value_num' : $settings['order_by'],
-			'meta_key'            => 'price' === $settings['order_by'] ? '_price' : '',
+			'meta_key'            => 'price' === $settings['order_by'] ? '_price' : '', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 			'ignore_sticky_posts' => true,
 		);
 
 		if ( ! empty( $settings['category'] ) ) {
-			$args['tax_query'] = array(
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 				array(
 					'taxonomy' => 'product_cat',
 					'field'    => 'slug',
@@ -215,9 +215,9 @@ class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
 			<?php
 			while ( $query->have_posts() ) :
 				$query->the_post();
-				global $product;
+				global $product; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 				if ( ! $product instanceof \WC_Product ) {
-					$product = wc_get_product( get_the_ID() );
+					$product = wc_get_product( get_the_ID() ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 				}
 				if ( ! $product ) {
 					continue;
@@ -225,7 +225,7 @@ class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
 				?>
 				<div class="lcake-product-grid-card">
 					<a href="<?php the_permalink(); ?>" class="lcake-product-grid-thumb">
-						<?php echo $product->get_image( 'medium', array( 'class' => 'lcake-product-grid-image' ) ); ?>
+						<?php echo wp_kses_post( $product->get_image( 'medium', array( 'class' => 'lcake-product-grid-image' ) ) ); ?>
 					</a>
 					<div class="lcake-product-grid-content">
 						<h3 class="lcake-product-grid-title">

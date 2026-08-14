@@ -431,7 +431,7 @@ class LCAKE_Kit_FAQ extends \Elementor\Widget_Base {
 		$this->add_render_attribute( 'wrapper', 'class', 'lc-faq' );
 		$this->add_render_attribute( 'wrapper', 'data-multiple', $multiple ? 'true' : 'false' );
 
-		echo '<div ' . $this->get_render_attribute_string( 'wrapper' ) . '>';
+		echo '<div ' . $this->get_render_attribute_string( 'wrapper' ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings.
 
 		foreach ( $settings['lc_faq_content_items'] as $index => $item ) {
 			$is_active    = ( $active_index !== null && $index === $active_index );

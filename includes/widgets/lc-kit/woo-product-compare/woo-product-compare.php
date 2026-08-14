@@ -400,7 +400,7 @@ class LCAKE_Kit_Woo_Product_Compare extends \Elementor\Widget_Base {
 									switch ( $key ) :
 										case 'image':
 											?>
-											<?php echo $product->get_image( 'thumbnail' ); ?>
+											<?php echo wp_kses_post( $product->get_image( 'thumbnail' ) ); ?>
 											<?php
 											break;
 										case 'price':
@@ -410,7 +410,7 @@ class LCAKE_Kit_Woo_Product_Compare extends \Elementor\Widget_Base {
 											break;
 										case 'rating':
 											?>
-											<?php echo wc_get_rating_html( $product->get_average_rating() ); ?>
+											<?php echo wp_kses_post( wc_get_rating_html( $product->get_average_rating() ) ); ?>
 											<?php
 											break;
 										case 'description':

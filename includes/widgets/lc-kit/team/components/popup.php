@@ -1,4 +1,5 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; }
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $close_btn_align_class = 'lcake-team-close-btn-align-right';
 if ( isset( $lcake_modal_close_align ) && 'left' === $lcake_modal_close_align ) {
 	$close_btn_align_class = 'lcake-team-close-btn-align-left';

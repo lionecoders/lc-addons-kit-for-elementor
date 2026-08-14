@@ -346,7 +346,7 @@ class LCAKE_Kit_Business_Reviews extends \Elementor\Widget_Base {
 				?>
 				<div class="lcake-business-review-card">
 					<div class="lcake-business-review-header">
-						<?php echo LCAKE_Kit_Utils::get_attachment_image_html( $review, 'avatar', 'thumbnail', array( 'class' => 'lcake-business-review-avatar' ) ); ?>
+						<?php echo wp_kses( LCAKE_Kit_Utils::get_attachment_image_html( $review, 'avatar', 'thumbnail', array( 'class' => 'lcake-business-review-avatar' ) ), LCAKE_Kit_Utils::get_kses_array() ); ?>
 						<div>
 							<span class="lcake-business-review-name"><?php echo esc_html( $review['name'] ); ?></span>
 							<span class="lcake-business-review-source lcake-business-review-source--<?php echo esc_attr( $review['source'] ); ?>">

@@ -222,7 +222,7 @@ class LCAKE_Header_Footer_Builder {
 	}
 
 	public function save_meta_box( $post_id ) {
-		if ( ! isset( $_POST['lcake_hf_nonce'] ) || ! wp_verify_nonce( $_POST['lcake_hf_nonce'], 'lcake_hf_save_meta' ) ) {
+		if ( ! isset( $_POST['lcake_hf_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['lcake_hf_nonce'] ) ), 'lcake_hf_save_meta' ) ) {
 			return;
 		}
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -350,7 +350,7 @@ class LCAKE_Header_Footer_Builder {
 				'post_type'      => self::POST_TYPE,
 				'post_status'    => 'publish',
 				'posts_per_page' => -1,
-				'meta_query'     => array(
+				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 					array(
 						'key'   => '_lcake_hf_type',
 						'value' => $type,
@@ -424,7 +424,7 @@ class LCAKE_Header_Footer_Builder {
 			return true;
 		}
 		if ( class_exists( '\Elementor\Plugin' ) && isset( \Elementor\Plugin::$instance->preview ) && \Elementor\Plugin::$instance->preview->is_preview_mode() ) {
-			if ( isset( $_GET['elementor-preview'] ) && (int) $_GET['elementor-preview'] === get_the_ID() && get_post_type() === self::POST_TYPE ) {
+			if ( isset( $_GET['elementor-preview'] ) && (int) $_GET['elementor-preview'] === get_the_ID() && get_post_type() === self::POST_TYPE ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only Elementor preview check; no data is saved or processed.
 				return true;
 			}
 		}
@@ -437,7 +437,7 @@ class LCAKE_Header_Footer_Builder {
 		}
 
 		echo '<div class="lcake-hf-template lcake-hf-template--' . esc_attr( get_post_meta( $template->ID, '_lcake_hf_type', true ) ) . '">';
-		echo LCAKE_Kit_Utils::render_elementor_content( $template->ID );
+		echo wp_kses_post( LCAKE_Kit_Utils::render_elementor_content( $template->ID ) );
 		echo '</div>';
 	}
 
@@ -470,13 +470,19 @@ class LCAKE_Header_Footer_Builder {
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<?php if ( ! current_theme_supports( 'title-tag' ) ) : ?>
-		<title><?php echo wp_get_document_title(); ?></title>
+		<title><?php echo esc_html( wp_get_document_title() ); ?></title>
 	<?php endif; ?>
 		<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 		<?php
-		wp_body_open();
+		if ( function_exists( 'wp_body_open' ) ) {
+			// phpcs:disable
+			wp_body_open();
+			// phpcs:enable
+		} else {
+			do_action( 'wp_body_open' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+		}
 		$this->render_template( $template );
 
 		// Suppress the theme's header.php

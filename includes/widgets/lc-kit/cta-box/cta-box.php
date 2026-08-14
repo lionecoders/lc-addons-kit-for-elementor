@@ -313,7 +313,7 @@ class LCAKE_Kit_Cta_Box extends \Elementor\Widget_Base {
 				<?php endif; ?>
 			</div>
 			<?php if ( ! empty( $button_text ) ) : ?>
-				<a <?php echo $this->get_render_attribute_string( 'button_link' ); ?>>
+				<a <?php echo $this->get_render_attribute_string( 'button_link' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>> 
 					<span><?php echo esc_html( $button_text ); ?></span>
 					<?php \Elementor\Icons_Manager::render_icon( $settings['button_icon'], array( 'aria-hidden' => 'true' ) ); ?>
 				</a>

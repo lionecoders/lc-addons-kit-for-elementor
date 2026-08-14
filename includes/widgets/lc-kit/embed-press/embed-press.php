@@ -124,7 +124,7 @@ class LCAKE_Kit_Embed_Press extends \Elementor\Widget_Base {
 		}
 		?>
 		<div class="lcake-embed-press">
-			<?php echo LCAKE_Kit_Utils::kses( $embed_html ); ?>
+			<?php echo LCAKE_Kit_Utils::kses( $embed_html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- output is sanitized via wp_kses() inside LCAKE_Kit_Utils::kses(). ?>
 		</div>
 		<?php
 	}

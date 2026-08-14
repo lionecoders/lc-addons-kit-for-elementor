@@ -336,7 +336,7 @@ class LCAKE_Kit_Advanced_Data_Table extends \Elementor\Widget_Base {
 									<td><input type="checkbox" class="lcake-adv-table-row-select"></td>
 								<?php endif; ?>
 								<?php foreach ( $columns as $index => $col ) : ?>
-									<td><?php echo isset( $cells[ $index ] ) ? $format_cell( $cells[ $index ] ) : ''; ?></td>
+									<td><?php echo isset( $cells[ $index ] ) ? wp_kses_post( $format_cell( $cells[ $index ] ) ) : ''; ?></td>
 								<?php endforeach; ?>
 							</tr>
 						<?php endforeach; ?>

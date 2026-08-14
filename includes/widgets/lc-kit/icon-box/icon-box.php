@@ -414,10 +414,10 @@ class LCAKE_Kit_Icon_Box extends \Elementor\Widget_Base {
 		$this->add_render_attribute( 'description', 'class', 'lcake-icon-box-description' );
 
 		?>
-		<div <?php echo $this->get_render_attribute_string( 'icon_box' ); ?>>
+		<div <?php echo $this->get_render_attribute_string( 'icon_box' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>>
 			<?php if ( ! empty( $icon['value'] ) ) : ?>
 				<div class="lcake-icon-box-icon_wrapper">
-					<div <?php echo $this->get_render_attribute_string( 'icon' ); ?>>
+					<div <?php echo $this->get_render_attribute_string( 'icon' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>>
 						<?php \Elementor\Icons_Manager::render_icon( $icon, array( 'aria-hidden' => 'true' ) ); ?>
 					</div>
 				</div>
@@ -436,19 +436,19 @@ class LCAKE_Kit_Icon_Box extends \Elementor\Widget_Base {
 						<a href="<?php echo esc_url( $link['url'] ); ?>" class="lcake-icon-box-link"
 							<?php echo ! empty( $link['is_external'] ) ? 'target="_blank"' : ''; ?>
 							<?php echo ! empty( $link['nofollow'] ) ? 'rel="nofollow"' : ''; ?>>
-							<<?php echo $title_tag; ?> <?php echo $this->get_render_attribute_string( 'title' ); ?>>
+							<<?php echo tag_escape( $title_tag ); ?> <?php echo $this->get_render_attribute_string( 'title' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>>
 								<?php echo wp_kses_post( $title ); ?>
-							</<?php echo $title_tag; ?>>
+							</<?php echo tag_escape( $title_tag ); ?>>
 						</a>
 					<?php else : ?>
-						<<?php echo $title_tag; ?> <?php echo $this->get_render_attribute_string( 'title' ); ?>>
+						<<?php echo tag_escape( $title_tag ); ?> <?php echo $this->get_render_attribute_string( 'title' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>>
 							<?php echo wp_kses_post( $title ); ?>
-						</<?php echo $title_tag; ?>>
+						</<?php echo tag_escape( $title_tag ); ?>>
 					<?php endif; ?>
 				<?php endif; ?>
 
 				<?php if ( ! empty( $description ) ) : ?>
-					<div <?php echo $this->get_render_attribute_string( 'description' ); ?>>
+					<div <?php echo $this->get_render_attribute_string( 'description' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>>
 						<?php echo wp_kses_post( $description ); ?>
 					</div>
 				<?php endif; ?>

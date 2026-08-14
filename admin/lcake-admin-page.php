@@ -292,7 +292,7 @@ class LCAKE_Kit_Admin_Settings {
 	}
 
 	public function remove_wordpress_notices() {
-		if ( isset( $_GET['page'] ) && $_GET['page'] === $this->menu_slug ) {
+		if ( isset( $_GET['page'] ) && $_GET['page'] === $this->menu_slug ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only check to conditionally suppress admin notices; no data is saved or processed.
 			remove_all_actions( 'admin_notices' );
 			remove_all_actions( 'all_admin_notices' );
 		}

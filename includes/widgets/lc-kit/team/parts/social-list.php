@@ -1,4 +1,7 @@
-<?php \Elementor\Icons_Manager::enqueue_shim(); ?>
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; }
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+\Elementor\Icons_Manager::enqueue_shim();
+?>
 <ul class="lcake-team-social-list">
 	<?php foreach ( $lcake_team_social_icons as $icon ) { ?>
 		<li <?php echo $this->get_render_attribute_string( 'social_item_' . $icon['_id'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Already escaped by elementor ?>>

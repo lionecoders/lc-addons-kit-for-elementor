@@ -704,12 +704,12 @@ class LCAKE_Kit_Button extends \Elementor\Widget_Base {
 		<div class="lcake-kit-wid-con">
 			<div class="lcake-kit-button-wrapper">
 				<?php if ( $has_url ) : ?>
-					<a <?php echo $this->get_render_attribute_string( 'button' ); ?>>
-						<?php echo ( $button_inner ); ?>
+					<a <?php echo $this->get_render_attribute_string( 'button' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>>
+						<?php echo wp_kses_post( $button_inner ); ?>
 					</a>
 				<?php else : ?>
-					<button type="button" <?php echo $this->get_render_attribute_string( 'button' ); ?>>
-						<?php echo ( $button_inner ); ?>
+					<button type="button" <?php echo $this->get_render_attribute_string( 'button' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings. ?>>
+						<?php echo wp_kses_post( $button_inner ); ?>
 					</button>
 				<?php endif; ?>
 			</div>

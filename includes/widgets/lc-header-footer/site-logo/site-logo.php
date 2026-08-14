@@ -129,9 +129,9 @@ class LC_Header_Footer_Site_Logo extends \Elementor\Widget_Base {
 		$tag_close = 'yes' === $settings['link_to_home'] ? '</a>' : '';
 		?>
 		<div class="lc-hf-site-logo">
-			<?php echo $tag_open; ?>
+			<?php echo wp_kses_post( $tag_open ); ?>
 			<img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-			<?php echo $tag_close; ?>
+			<?php echo wp_kses_post( $tag_close ); ?>
 		</div>
 		<?php
 	}

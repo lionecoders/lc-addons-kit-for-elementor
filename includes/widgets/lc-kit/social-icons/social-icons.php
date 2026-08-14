@@ -414,7 +414,7 @@ class LCAKE_Kit_Social_Icons extends \Elementor\Widget_Base {
 			)
 		);
 
-		echo '<ul ' . ( $this->get_render_attribute_string( 'wrapper' ) ) . '>';
+		echo '<ul ' . ( $this->get_render_attribute_string( 'wrapper' ) ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings.
 
 		// Allowed URL schemes
 		$allowed_schemes = array( 'http', 'https', 'mailto', 'tel' );
@@ -447,7 +447,7 @@ class LCAKE_Kit_Social_Icons extends \Elementor\Widget_Base {
 			}
 
 			echo '<li class="lcake-social-icon">';
-			echo '<a ' . ( $this->get_render_attribute_string( 'link_' . esc_attr( $id ) ) ) . '>';
+			echo '<a ' . ( $this->get_render_attribute_string( 'link_' . esc_attr( $id ) ) ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings.
 
 			// Icon rendering using Elementor Icons Manager
 			if ( ! empty( $icon['lcake_socialmedia_icons'] ) && is_array( $icon['lcake_socialmedia_icons'] ) ) {

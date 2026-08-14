@@ -560,7 +560,7 @@ class LCAKE_Kit_Woo_Product_List extends \Elementor\Widget_Base {
 		$orderby = $settings['order_by'] ?? 'date';
 		if ( 'price' === $orderby ) {
 			$args['orderby']  = 'meta_value_num';
-			$args['meta_key'] = '_price';
+			$args['meta_key'] = '_price'; // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 		} else {
 			$args['orderby'] = $orderby;
 		}
@@ -583,10 +583,12 @@ class LCAKE_Kit_Woo_Product_List extends \Elementor\Widget_Base {
 			<?php
 			while ( $query->have_posts() ) :
 				$query->the_post();
-				global $product;
+				// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+				global $product; 
 				if ( ! $product instanceof \WC_Product ) {
-					$product = wc_get_product( get_the_ID() );
+					$product = wc_get_product( get_the_ID() ); 
 				}
+				// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 				if ( ! $product ) {
 					continue;
 				}
@@ -594,7 +596,7 @@ class LCAKE_Kit_Woo_Product_List extends \Elementor\Widget_Base {
 				<div class="lcake-woo-list-item">
 					<?php if ( $show_image ) : ?>
 						<a href="<?php the_permalink(); ?>" class="lcake-woo-list-thumb">
-							<?php echo $product->get_image( 'thumbnail', array( 'class' => 'lcake-woo-list-image' ) ); ?>
+							<?php echo wp_kses_post( $product->get_image( 'thumbnail', array( 'class' => 'lcake-woo-list-image' ) ) ); ?>
 						</a>
 					<?php endif; ?>
 					<div class="lcake-woo-list-content">
@@ -604,7 +606,7 @@ class LCAKE_Kit_Woo_Product_List extends \Elementor\Widget_Base {
 							</h3>
 						<?php endif; ?>
 						<?php if ( $show_rating ) : ?>
-							<div class="lcake-woo-list-rating"><?php echo wc_get_rating_html( $product->get_average_rating() ); ?></div>
+							<div class="lcake-woo-list-rating"><?php echo wp_kses_post( wc_get_rating_html( $product->get_average_rating() ) ); ?></div>
 						<?php endif; ?>
 						<?php if ( $show_price ) : ?>
 							<div class="lcake-woo-list-price"><?php echo wp_kses_post( $product->get_price_html() ); ?></div>

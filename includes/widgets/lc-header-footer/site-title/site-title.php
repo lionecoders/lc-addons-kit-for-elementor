@@ -138,13 +138,13 @@ class LC_Header_Footer_Site_Title extends \Elementor\Widget_Base {
 		$has_link   = 'yes' === $settings['link_to_home'];
 		?>
 		<div class="lc-hf-site-title-wrap">
-			<<?php echo $tag; ?> class="lc-hf-site-title">
+			<<?php echo tag_escape( $tag ); ?> class="lc-hf-site-title">
 				<?php if ( $has_link ) : ?>
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo esc_html( $site_name ); ?></a>
 				<?php else : ?>
 					<?php echo esc_html( $site_name ); ?>
 				<?php endif; ?>
-			</<?php echo $tag; ?>>
+			</<?php echo tag_escape( $tag ); ?>>
 			<?php if ( 'yes' === $settings['show_tagline'] ) : ?>
 				<p class="lc-hf-site-tagline"><?php echo esc_html( get_bloginfo( 'description' ) ); ?></p>
 			<?php endif; ?>

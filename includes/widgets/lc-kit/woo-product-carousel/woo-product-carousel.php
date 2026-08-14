@@ -174,9 +174,9 @@ class LCAKE_Kit_Woo_Product_Carousel extends \Elementor\Widget_Base {
 					<?php
 					while ( $query->have_posts() ) :
 						$query->the_post();
-						global $product;
+						global $product; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 						if ( ! $product instanceof \WC_Product ) {
-							$product = wc_get_product( get_the_ID() );
+							$product = wc_get_product( get_the_ID() ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 						}
 						if ( ! $product ) {
 							continue;
@@ -185,7 +185,7 @@ class LCAKE_Kit_Woo_Product_Carousel extends \Elementor\Widget_Base {
 						<div class="swiper-slide">
 							<div class="lcake-woo-carousel-card">
 								<a href="<?php the_permalink(); ?>" class="lcake-woo-carousel-thumb">
-									<?php echo $product->get_image( 'medium', array( 'class' => 'lcake-woo-carousel-image' ) ); ?>
+									<?php echo wp_kses_post( $product->get_image( 'medium', array( 'class' => 'lcake-woo-carousel-image' ) ) ); ?>
 								</a>
 								<div class="lcake-woo-carousel-content">
 									<h3 class="lcake-woo-carousel-title">

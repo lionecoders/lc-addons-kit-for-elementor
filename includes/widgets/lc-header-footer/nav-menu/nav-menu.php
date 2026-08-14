@@ -538,19 +538,19 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
 		// Output responsive breakpoint logic
 		?>
 		<style>
-			@media (max-width: <?php echo $mobile_breakpoint; ?>px) {
-				.elementor-element-<?php echo $id; ?> .lc-hf-nav-menu--main {
+			@media (max-width: <?php echo absint( $mobile_breakpoint ); ?>px) {
+				.elementor-element-<?php echo esc_attr( $id ); ?> .lc-hf-nav-menu--main {
 					display: none !important;
 				}
 
-				.elementor-element-<?php echo $id; ?> .lc-hf-menu-toggle {
+				.elementor-element-<?php echo esc_attr( $id ); ?> .lc-hf-menu-toggle {
 					display: flex !important;
 				}
 			}
 
-			@media (min-width: <?php echo $mobile_breakpoint + 1; ?>px) {
-				.elementor-element-<?php echo $id; ?> .lc-hf-menu-toggle,
-				.elementor-element-<?php echo $id; ?> .lc-hf-nav-menu--dropdown {
+			@media (min-width: <?php echo absint( $mobile_breakpoint ) + 1; ?>px) {
+				.elementor-element-<?php echo esc_attr( $id ); ?> .lc-hf-menu-toggle,
+				.elementor-element-<?php echo esc_attr( $id ); ?> .lc-hf-nav-menu--dropdown {
 					display: none !important;
 				}
 			}
@@ -558,7 +558,7 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
 
 		<?php if ( $layout !== 'dropdown' ) : ?>
 			<nav class="lc-hf-nav-menu--main lc-hf-nav-menu__container lc-hf-nav-menu--layout-<?php echo esc_attr( $layout ); ?>">
-				<?php echo LCAKE_Kit_Utils::kses( $menu_html ); ?>
+				<?php echo LCAKE_Kit_Utils::kses( $menu_html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- output is sanitized via wp_kses() inside LCAKE_Kit_Utils::kses(). ?>
 			</nav>
 		<?php endif; ?>
 
@@ -570,7 +570,7 @@ class LC_Header_Footer_Nav_Menu extends \Elementor\Widget_Base {
 		</div>
 
 		<nav class="lc-hf-nav-menu--dropdown lc-hf-nav-menu__container" aria-hidden="true">
-			<?php echo LCAKE_Kit_Utils::kses( $dropdown_menu_html ); ?>
+			<?php echo LCAKE_Kit_Utils::kses( $dropdown_menu_html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- output is sanitized via wp_kses() inside LCAKE_Kit_Utils::kses(). ?>
 		</nav>
 		<?php
 	}

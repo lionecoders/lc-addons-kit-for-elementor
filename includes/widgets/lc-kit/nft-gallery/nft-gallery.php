@@ -397,13 +397,13 @@ class LCAKE_Kit_Nft_Gallery extends \Elementor\Widget_Base {
 				$link = $item['link'] ?? array();
 				$tag  = ! empty( $link['url'] ) ? 'a' : 'div';
 				?>
-				<<?php echo $tag; ?> class="lcake-nft-card"
+				<<?php echo tag_escape( $tag ); ?> class="lcake-nft-card"
 					<?php
 					if ( 'a' === $tag ) :
 						?>
 						href="<?php echo esc_url( $link['url'] ); ?>"<?php endif; ?>>
 					<div class="lcake-nft-card-media">
-						<?php echo LCAKE_Kit_Utils::get_attachment_image_html( $item, 'image', 'medium', array( 'class' => 'lcake-nft-card-image' ) ); ?>
+						<?php echo wp_kses( LCAKE_Kit_Utils::get_attachment_image_html( $item, 'image', 'medium', array( 'class' => 'lcake-nft-card-image' ) ), LCAKE_Kit_Utils::get_kses_array() ); ?>
 					</div>
 					<div class="lcake-nft-card-info">
 						<?php if ( ! empty( $item['name'] ) ) : ?>
@@ -413,7 +413,7 @@ class LCAKE_Kit_Nft_Gallery extends \Elementor\Widget_Base {
 							<span class="lcake-nft-card-price"><?php echo esc_html( $item['price'] ); ?></span>
 						<?php endif; ?>
 					</div>
-				</<?php echo $tag; ?>>
+				</<?php echo tag_escape( $tag ); ?>>
 			<?php endforeach; ?>
 		</div>
 		<?php

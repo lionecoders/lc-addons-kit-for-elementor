@@ -427,7 +427,7 @@ class LCAKE_Kit_Video extends \Elementor\Widget_Base {
 
 		$this->add_render_attribute( 'wrapper', 'class', 'lcake-video-wrapper' );
 
-		echo '<div ' . $this->get_render_attribute_string( 'wrapper' ) . '>';
+		echo '<div ' . $this->get_render_attribute_string( 'wrapper' ) . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor pre-sanitizes render attribute strings.
 
 		echo '<div class="lcake-video-container">';
 		if ( $settings['video_type'] === 'hosted' ) {
