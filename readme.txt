@@ -8,7 +8,7 @@ Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC Kit' and 'LC Header & Footer kit' with a dashboard control panel.
+A powerful Elementor addon plugin that offers 83 widgets categorized into 'LC Kit' and 'LC Header & Footer kit' with a dashboard control panel.
 
 == Description ==
 
@@ -22,21 +22,94 @@ A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC K
 * **Modern UI**: Beautiful and responsive admin interface
 * **Performance Optimized**: Lightweight and fast loading
 
-= 📦 **LC Kit Widgets (12 Widgets)** =
+= 📦 **LC Header & Footer Widgets (9 Widgets)** =
 
-* Image Accordion
+* Cart Icon
+* Category List
+* Contact Info
+* Copyright Text
+* Nav Menu
+* Post Grid
+* Search Toggle
+* Site Logo
+* Site Title
+
+= 📦 **LC Kit Widgets (74 Widgets)** =
+
 * Accordion
-* Button
-* FAQ
-* Image Comparison
-* Testimonial
-* Pricing Table
-* Team
-* Social Icons
-* Progress Bar
-* Pie Chart
-* Tab
+* Advanced Data Table
+* Better Payment
+* Betterdocs Category Box
+* Betterdocs Category Grid
+* Betterdocs Search Form
+* Breadcrumbs
 * Business Hours
+* Business Reviews
+* Button
+* Code Snippet
+* Contact Form 7
+* Content Ticker
+* Countdown Timer
+* CTA Box
+* Data Table
+* Drop Caps
+* Dual Color Header
+* Embed Press
+* Event Calendar
+* Facebook Feed
+* Fancy Text
+* FAQ
+* Feature List
+* Filterable Gallery
+* Flip Box
+* Fluent Form
+* Formstack
+* Funfact
+* Gravity Forms
+* Heading
+* Icon Box
+* Image Accordion
+* Image Box
+* Image Comparison
+* Interactive Circle
+* Login Register
+* Lottie
+* Mailchimp
+* NFT Gallery
+* Ninja Forms
+* Pie Chart
+* Post Grid
+* Post Timeline
+* Pricing Table
+* Product Grid
+* Progress Bar
+* Simple Menu
+* Social Icons
+* Sticky Video
+* SVG Draw
+* Tab
+* Team
+* Testimonial
+* Tooltip
+* Twitter Feed
+* Type Form
+* Video
+* We Forms
+* Woo Add To Cart
+* Woo Cart
+* Woo Checkout
+* Woo Product Carousel
+* Woo Product Compare
+* Woo Product Description
+* Woo Product Gallery
+* Woo Product Images
+* Woo Product List
+* Woo Product Price
+* Woo Product Rating
+* Woo Product Short Description
+* Woo Product Tabs
+* Woo Product Title
+* WP Forms
 
 = 🚀 **Key Benefits** =
 
