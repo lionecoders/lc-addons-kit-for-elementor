@@ -4,7 +4,7 @@
  * Plugin Name: LC Addons Kit for Elementor
  * Plugin URI: https://lionecoders.com
  * Description: A powerful Elementor addon plugin that offers a wide range of widgets categorized into 'LC Kit'.
- * Version: 1.1.12
+ * Version: 1.1.1
  * Author: Lionecoders
  * Author URI: https://lionecoders.com
  * Text Domain: lc-addons-kit-for-elementor
