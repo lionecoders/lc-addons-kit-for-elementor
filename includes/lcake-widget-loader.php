@@ -847,11 +847,7 @@ class LCAKE_Kit_Widget_Loader {
 				'enqueue' => false,
 				'path'    => '',
 			),
-			'lcake-kit-better-payment-css'                => array(
-				'file'    => 'lcake-kit-better-payment.css',
-				'enqueue' => false,
-				'path'    => '',
-			),
+
 			'lc-header-footer-site-logo-css'              => array(
 				'file'    => 'lc-header-footer-site-logo.css',
 				'enqueue' => false,
