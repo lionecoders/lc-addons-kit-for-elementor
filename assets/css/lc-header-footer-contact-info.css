@@ -7,7 +7,7 @@
     list-style: none;
 }
 
-.lc-hf-contact-info--vertical {
+.lc-hf-contact-info--vertical .lc-hf-contact-info {
     flex-direction: column;
 }
 

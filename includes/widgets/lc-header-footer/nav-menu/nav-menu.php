@@ -584,7 +584,7 @@ if ( ! class_exists( 'LC_Header_Footer_Nav_Menu_Walker' ) ) {
 class LC_Header_Footer_Nav_Menu_Walker extends \Walker_Nav_Menu {
 
 		public function start_lvl( &$output, $depth = 0, $args = null ) {
-			$output .= '<ul class="sub-menu">';
+			$output .= '<ul class="sub-menu lc-hf-nav-submenu">';
 		}
 
 		public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {

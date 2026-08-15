@@ -248,6 +248,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
 }
 
 .lcake-adv-table-page-size {
@@ -274,6 +275,7 @@
 
 .lcake-adv-table-pagination-info {
     user-select: none;
+    white-space: nowrap;
 }
 
 .lcake-adv-table-pagination-buttons {
