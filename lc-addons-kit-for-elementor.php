@@ -2,11 +2,11 @@
 
 /**
  * Plugin Name: LC Addons Kit for Elementor
- * Plugin URI: https://lionecoders.com
+ * Plugin URI: https://mveous.com
  * Description: A powerful Elementor addon plugin that offers a wide range of widgets categorized into 'LC Kit'.
- * Version: 1.1.1
- * Author: Lionecoders
- * Author URI: https://lionecoders.com
+ * Version: 1.2.1
+ * Author: Mveous
+ * Author URI: https://mveous.com
  * Text Domain: lc-addons-kit-for-elementor
  * Requires at least: 5.0
  * Tested up to: 7.0
@@ -50,7 +50,7 @@ class LCAKE_Elementor_Addons_Kit {
 	 * @return void
 	 */
 	private function define_constants() {
-		define( 'LCAKE_EAK_VERSION', '1.1.12' );
+		define( 'LCAKE_EAK_VERSION', '1.2.1' );
 		define( 'LCAKE_EAK_PATH', plugin_dir_path( __FILE__ ) );
 		define( 'LCAKE_EAK_URL', plugin_dir_url( __FILE__ ) );
 	}

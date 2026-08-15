@@ -1,10 +1,10 @@
 === LC Addons Kit for Elementor ===
-Contributors: deep7197
+Contributors: mveous, deep7197
 Tags: elementor, widgets, addons, page-builder, lc-kit
 Requires at least: 5.0
-Tested up to: 7.0
+Tested up to: 7.4
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,9 +12,9 @@ A powerful Elementor addon plugin that offers 83 widgets categorized into 'LC Ki
 
 == Description ==
 
-**LC Elementor Addons Kit** is a comprehensive Elementor addon plugin developed by Lionecoders that provides a wide range of professional widgets to enhance your Elementor page building experience.
+**LC Elementor Addons Kit** is a comprehensive Elementor addon plugin that provides a wide range of professional widgets to enhance your Elementor page building experience.
 
-= 🎯 **Core Features** =
+🎯 **Core Features** 
 
 * **Widget Category**: 'LC Kit'
 * **Dashboard Control Panel**: Enable/disable individual widgets
@@ -22,19 +22,18 @@ A powerful Elementor addon plugin that offers 83 widgets categorized into 'LC Ki
 * **Modern UI**: Beautiful and responsive admin interface
 * **Performance Optimized**: Lightweight and fast loading
 
-= 📦 **LC Header & Footer Widgets (9 Widgets)** =
+📦 **LC Header & Footer Widgets (8 Widgets)**
 
 * Cart Icon
 * Category List
 * Contact Info
 * Copyright Text
 * Nav Menu
-* Post Grid
 * Search Toggle
 * Site Logo
 * Site Title
 
-= 📦 **LC Kit Widgets (74 Widgets)** =
+📦 **LC Kit Widgets (73 Widgets)** 
 
 * Accordion
 * Advanced Data Table
@@ -111,7 +110,7 @@ A powerful Elementor addon plugin that offers 83 widgets categorized into 'LC Ki
 * Woo Product Title
 * WP Forms
 
-= 🚀 **Key Benefits** =
+🚀 **Key Benefits**
 
 * **Easy Management**: Control which widgets appear in Elementor editor
 * **Performance**: Only loads enabled widgets for optimal speed
@@ -119,7 +118,7 @@ A powerful Elementor addon plugin that offers 83 widgets categorized into 'LC Ki
 * **Flexible**: Works with all Elementor themes and layouts
 * **Developer Friendly**: Clean code structure with hooks and filters
 
-= 💡 **Perfect For** =
+💡 **Perfect For**
 
 * Web developers and designers
 * Marketing agencies
@@ -146,8 +145,8 @@ A powerful Elementor addon plugin that offers 83 widgets categorized into 'LC Ki
 
 = How do I enable/disable widgets? =
 
-1. Go to **LC Kit** in your WordPress admin menu
-2. Use the toggle switches to enable/disable widgets
+1. Go to **LC Kit > Widget Manager** in your WordPress admin menu
+2. Select the widgets to enable or disable.
 3. Widgets are organized by category for easy management
 4. Save settings to apply changes
 
@@ -171,8 +170,15 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 1. Admin Dashboard
 2. LC Widgets
+3. LC Header Footer Kit Widgets
 
 == Changelog ==
+= 1.2.1 =
+* Added LC Header Footer Kit Widgets.
+* Added Template Create System.
+* Added 70+ more widgets.
+* Update Admin Dashboard UI for a better user experience.
+
 = 1.1.1 =
 * Fix minor issues.
 * Tested Upto WordPress 7.0
@@ -186,10 +192,6 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 = 1.0.0 =
 * Initial release
-
-== Credits ==
-
-Developed by [Lionecoders](https://lionecoders.com)
 
 == License ==
 

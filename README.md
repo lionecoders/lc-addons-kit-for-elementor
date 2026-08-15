@@ -4,7 +4,7 @@ A powerful Elementor addon plugin that offers 83 widgets categorized into 'LC Ki
 
 ## Description
 
-**LC Elementor Addons Kit** is a comprehensive Elementor addon plugin developed by Lionecoders that provides a wide range of professional widgets to enhance your Elementor page building experience.
+**LC Elementor Addons Kit** is a comprehensive Elementor addon plugin that provides a wide range of professional widgets to enhance your Elementor page building experience.
 
 ### 🎯 Core Features
 
@@ -14,23 +14,21 @@ A powerful Elementor addon plugin that offers 83 widgets categorized into 'LC Ki
 * **Modern UI**: Beautiful and responsive admin interface
 * **Performance Optimized**: Lightweight and fast loading
 
-### 📦 LC Header & Footer Widgets (9 Widgets)
+### 📦 LC Header & Footer Widgets (8 Widgets)
 
 * Cart Icon
 * Category List
 * Contact Info
 * Copyright Text
 * Nav Menu
-* Post Grid
 * Search Toggle
 * Site Logo
 * Site Title
 
-### 📦 LC Kit Widgets (74 Widgets)
+### 📦 LC Kit Widgets (73 Widgets)
 
 * Accordion
 * Advanced Data Table
-* Better Payment
 * Betterdocs Category Box
 * Betterdocs Category Grid
 * Betterdocs Search Form
@@ -131,8 +129,8 @@ A powerful Elementor addon plugin that offers 83 widgets categorized into 'LC Ki
 
 ### How do I enable/disable widgets?
 
-1. Go to **LC Kit** in your WordPress admin menu
-2. Use the toggle switches to enable/disable widgets
+1. Go to **LC Kit > Widget Manager** in your WordPress admin menu
+2. Select the widgets to enable or disable.
 3. Widgets are organized by category for easy management
 4. Save settings to apply changes
 
@@ -168,8 +166,8 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 ## Usage
 
 ### Admin Dashboard
-1. Go to **LC Kit** in your WordPress admin menu
-2. Use the toggle switches to enable/disable widgets
+1. Go to **LC Kit > Widget Manager** in your WordPress admin menu
+2. Select the widgets to enable or disable.
 3. Widgets are organized by category for easy management
 4. Save settings to apply changes
 
@@ -178,7 +176,6 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 2. Look for **LC Kit** and **LC Header & Footer kit** categories
 3. Drag and drop enabled widgets to your layout
 4. Customize widget settings in the Elementor panel
-
 
 ## Performance
 
@@ -195,6 +192,16 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 ## Changelog
 
+### 1.2.1
+* Added LC Header Footer Kit Widgets.
+* Added Template Create System.
+* Added 70+ more widgets.
+* Update Admin Dashboard UI for a better user experience.
+
+### 1.1.1
+* Fix minor issues.
+* Tested Upto WordPress 7.0
+
 ### 1.1.0
 * Added LC Contact Form 7, LC MailChimp, LC Funfact, LC Countdown Timer, LC Drop Caps, LC Heading widgets, LC Image Box.
 * Tested Upto Elementor 4.0.
@@ -204,10 +211,6 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 ### 1.0.0
 * Initial release
-
-## Credits
-
-Developed by [Lionecoders](https://lionecoders.com)
 
 ## License
 
