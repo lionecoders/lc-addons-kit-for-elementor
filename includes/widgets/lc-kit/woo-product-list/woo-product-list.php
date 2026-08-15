@@ -239,6 +239,40 @@ class LCAKE_Kit_Woo_Product_List extends \Elementor\Widget_Base {
 
 		$this->end_controls_section();
 
+		// --- Image Styles ---
+		$this->start_controls_section(
+			'section_style_image',
+			array(
+				'label'     => esc_html__( 'Image', 'lc-addons-kit-for-elementor' ),
+				'tab'       => \Elementor\Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'show_image' => 'yes',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'     => 'image_border',
+				'selector' => '{{WRAPPER}} .lcake-woo-list-image',
+			)
+		);
+
+		$this->add_responsive_control(
+			'image_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-woo-list-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
 		// --- Title Styles ---
 		$this->start_controls_section(
 			'section_style_title',
@@ -310,22 +344,6 @@ class LCAKE_Kit_Woo_Product_List extends \Elementor\Widget_Base {
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .lcake-woo-list-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->add_control(
-			'title_hover_underline',
-			array(
-				'label'     => esc_html__( 'Hover Underline', 'lc-addons-kit-for-elementor' ),
-				'type'      => \Elementor\Controls_Manager::SELECT,
-				'default'   => 'none',
-				'options'   => array(
-					'none'      => esc_html__( 'Hide', 'lc-addons-kit-for-elementor' ),
-					'underline' => esc_html__( 'Show', 'lc-addons-kit-for-elementor' ),
-				),
-				'selectors' => array(
-					'{{WRAPPER}} .lcake-woo-list-title a:hover' => 'text-decoration: {{VALUE}} !important;',
 				),
 			)
 		);

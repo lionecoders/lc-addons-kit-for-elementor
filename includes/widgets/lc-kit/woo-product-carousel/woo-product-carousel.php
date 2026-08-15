@@ -101,6 +101,51 @@ class LCAKE_Kit_Woo_Product_Carousel extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'navigation',
+			array(
+				'label'   => esc_html__( 'Navigation', 'lc-addons-kit-for-elementor' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'both',
+				'options' => array(
+					'both'   => esc_html__( 'Arrows and Dots', 'lc-addons-kit-for-elementor' ),
+					'arrows' => esc_html__( 'Arrows', 'lc-addons-kit-for-elementor' ),
+					'dots'   => esc_html__( 'Dots', 'lc-addons-kit-for-elementor' ),
+					'none'   => esc_html__( 'None', 'lc-addons-kit-for-elementor' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_prev',
+			array(
+				'label'            => esc_html__( 'Previous Icon', 'lc-addons-kit-for-elementor' ),
+				'type'             => \Elementor\Controls_Manager::ICONS,
+				'default'          => array(
+					'value'   => 'fas fa-angle-left',
+					'library' => 'fa-solid',
+				),
+				'condition'        => array(
+					'navigation' => array( 'both', 'arrows' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_next',
+			array(
+				'label'            => esc_html__( 'Next Icon', 'lc-addons-kit-for-elementor' ),
+				'type'             => \Elementor\Controls_Manager::ICONS,
+				'default'          => array(
+					'value'   => 'fas fa-angle-right',
+					'library' => 'fa-solid',
+				),
+				'condition'        => array(
+					'navigation' => array( 'both', 'arrows' ),
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -122,17 +167,147 @@ class LCAKE_Kit_Woo_Product_Carousel extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'title_hover_underline',
+			'title_color',
 			array(
-				'label'     => esc_html__( 'Title Hover Underline', 'lc-addons-kit-for-elementor' ),
-				'type'      => \Elementor\Controls_Manager::SELECT,
-				'default'   => 'none',
-				'options'   => array(
-					'none'      => esc_html__( 'Hide', 'lc-addons-kit-for-elementor' ),
-					'underline' => esc_html__( 'Show', 'lc-addons-kit-for-elementor' ),
+				'label'     => esc_html__( 'Title Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'default'   => '#0f172a',
+				'selectors' => array( '{{WRAPPER}} .lcake-woo-carousel-title' => 'color: {{VALUE}};', '{{WRAPPER}} .lcake-woo-carousel-title a' => 'color: {{VALUE}};' ),
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'title_typography',
+				'label'    => esc_html__( 'Title Typography', 'lc-addons-kit-for-elementor' ),
+				'selector' => '{{WRAPPER}} .lcake-woo-carousel-title, {{WRAPPER}} .lcake-woo-carousel-title a',
+			)
+		);
+
+
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_navigation_style',
+			array(
+				'label'     => esc_html__( 'Navigation', 'lc-addons-kit-for-elementor' ),
+				'tab'       => \Elementor\Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'navigation!' => 'none',
 				),
-				'selectors' => array(
-					'{{WRAPPER}} .lcake-woo-carousel-title a:hover' => 'text-decoration: {{VALUE}} !important;',
+			)
+		);
+
+		$this->add_control(
+			'heading_arrows',
+			array(
+				'label'     => esc_html__( 'Arrows', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::HEADING,
+				'condition' => array(
+					'navigation' => array( 'both', 'arrows' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'arrow_color',
+			array(
+				'label'     => esc_html__( 'Arrow Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array( '{{WRAPPER}} .lcake-woo-carousel-nav' => 'color: {{VALUE}}; fill: {{VALUE}};' ),
+				'condition' => array(
+					'navigation' => array( 'both', 'arrows' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'arrow_bg_color',
+			array(
+				'label'     => esc_html__( 'Arrow Background', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array( '{{WRAPPER}} .lcake-woo-carousel-nav' => 'background-color: {{VALUE}};' ),
+				'condition' => array(
+					'navigation' => array( 'both', 'arrows' ),
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'arrow_size',
+			array(
+				'label'      => esc_html__( 'Arrow Size', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => 10,
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-woo-carousel-nav' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .lcake-woo-carousel-nav svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				),
+				'condition'  => array(
+					'navigation' => array( 'both', 'arrows' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'heading_dots',
+			array(
+				'label'     => esc_html__( 'Dots', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => array(
+					'navigation' => array( 'both', 'dots' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'dot_color',
+			array(
+				'label'     => esc_html__( 'Dot Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array( '{{WRAPPER}} .swiper-pagination-bullet' => 'background-color: {{VALUE}};' ),
+				'condition' => array(
+					'navigation' => array( 'both', 'dots' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'dot_active_color',
+			array(
+				'label'     => esc_html__( 'Dot Active Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array( '{{WRAPPER}} .swiper-pagination-bullet-active' => 'background-color: {{VALUE}};' ),
+				'condition' => array(
+					'navigation' => array( 'both', 'dots' ),
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'dot_size',
+			array(
+				'label'      => esc_html__( 'Dot Size', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => 4,
+						'max' => 30,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				),
+				'condition'  => array(
+					'navigation' => array( 'both', 'dots' ),
 				),
 			)
 		);
@@ -167,6 +342,9 @@ class LCAKE_Kit_Woo_Product_Carousel extends \Elementor\Widget_Base {
 			'autoplay'            => 'yes' === $settings['autoplay'],
 			'loop'                => 'yes' === $settings['loop'],
 		);
+
+		$show_arrows = in_array( $settings['navigation'], array( 'both', 'arrows' ) );
+		$show_dots   = in_array( $settings['navigation'], array( 'both', 'dots' ) );
 		?>
 		<div class="lcake-woo-carousel-wrapper">
 			<div class="lcake-woo-carousel swiper" data-config="<?php echo esc_attr( wp_json_encode( $config ) ); ?>">
@@ -197,10 +375,18 @@ class LCAKE_Kit_Woo_Product_Carousel extends \Elementor\Widget_Base {
 						</div>
 					<?php endwhile; ?>
 				</div>
-				<div class="swiper-pagination"></div>
+				<?php if ( $show_dots ) : ?>
+					<div class="swiper-pagination"></div>
+				<?php endif; ?>
 			</div>
-			<div class="lcake-woo-carousel-nav lcake-woo-carousel-prev">&#10094;</div>
-			<div class="lcake-woo-carousel-nav lcake-woo-carousel-next">&#10095;</div>
+			<?php if ( $show_arrows ) : ?>
+				<div class="lcake-woo-carousel-nav lcake-woo-carousel-prev">
+					<?php \Elementor\Icons_Manager::render_icon( $settings['icon_prev'], array( 'aria-hidden' => 'true' ) ); ?>
+				</div>
+				<div class="lcake-woo-carousel-nav lcake-woo-carousel-next">
+					<?php \Elementor\Icons_Manager::render_icon( $settings['icon_next'], array( 'aria-hidden' => 'true' ) ); ?>
+				</div>
+			<?php endif; ?>
 		</div>
 		<?php
 		wp_reset_postdata();

@@ -450,6 +450,12 @@ class LCAKE_Kit_Widget_Loader {
 				'enqueue' => false,
 				'path'    => '',
 			),
+			'lcake-kit-woo-product-tabs-js'     => array(
+				'file'    => 'lcake-kit-woo-product-tabs.js',
+				'deps'    => array( 'jquery', 'elementor-frontend' ),
+				'enqueue' => false,
+				'path'    => '',
+			),
 		);
 
 		if ( ! empty( $this->excluded_scripts ) ) {

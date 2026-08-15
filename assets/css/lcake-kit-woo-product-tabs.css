@@ -46,6 +46,7 @@
 }
 
 .lcake-woo-tabs .woocommerce-Tabs-panel {
+    display: none;
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-top: none;

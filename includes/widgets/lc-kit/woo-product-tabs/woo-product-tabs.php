@@ -46,6 +46,10 @@ class LCAKE_Kit_Woo_Product_Tabs extends \Elementor\Widget_Base {
 		return array( 'lcake-kit-woo-product-tabs-css' );
 	}
 
+	public function get_script_depends() {
+		return array( 'lcake-kit-woo-product-tabs-js' );
+	}
+
 	protected function register_controls() {
 		$this->start_controls_section(
 			'content_section',
@@ -240,6 +244,48 @@ class LCAKE_Kit_Woo_Product_Tabs extends \Elementor\Widget_Base {
 			array(
 				'name'     => 'panel_typography',
 				'selector' => '{{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel',
+			)
+		);
+
+		// --- Panel Headings ---
+		$this->add_control(
+			'heading_panel_headings',
+			array(
+				'label'     => esc_html__( 'Headings', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'panel_heading_color',
+			array(
+				'label'     => esc_html__( 'Heading Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'default'   => '#111827',
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h1, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h2, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h3, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h4, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h5, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h6' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'panel_heading_typography',
+				'selector' => '{{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h1, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h2, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h3, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h4, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h5, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h6',
+			)
+		);
+
+		$this->add_responsive_control(
+			'panel_heading_margin',
+			array(
+				'label'      => esc_html__( 'Heading Margin', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h1, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h2, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h3, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h4, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h5, {{WRAPPER}} .lcake-woo-tabs .woocommerce-Tabs-panel h6' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
 			)
 		);
 

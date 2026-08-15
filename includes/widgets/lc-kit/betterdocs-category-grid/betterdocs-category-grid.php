@@ -240,22 +240,6 @@ class LCAKE_Kit_Betterdocs_Category_Grid extends \Elementor\Widget_Base {
 			)
 		);
 
-		$this->add_control(
-			'title_hover_underline',
-			array(
-				'label'     => esc_html__( 'Hover Underline', 'lc-addons-kit-for-elementor' ),
-				'type'      => \Elementor\Controls_Manager::SELECT,
-				'default'   => 'none',
-				'options'   => array(
-					'none'      => esc_html__( 'Hide', 'lc-addons-kit-for-elementor' ),
-					'underline' => esc_html__( 'Show', 'lc-addons-kit-for-elementor' ),
-				),
-				'selectors' => array(
-					'{{WRAPPER}} .lcake-docs-category-grid-title a:hover, {{WRAPPER}} .lcake-docs-category-grid-list a:hover' => 'text-decoration: {{VALUE}} !important;',
-				),
-			)
-		);
-
 		$this->end_controls_section();
 
 		// --- Icon Style Section ---

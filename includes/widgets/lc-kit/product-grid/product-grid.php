@@ -106,6 +106,16 @@ class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'button_text',
+			array(
+				'label'       => esc_html__( 'Button Text', 'lc-addons-kit-for-elementor' ),
+				'type'        => \Elementor\Controls_Manager::TEXT,
+				'placeholder' => esc_html__( 'e.g. Add to Cart', 'lc-addons-kit-for-elementor' ),
+				'description' => esc_html__( 'Leave empty to use default WooCommerce text.', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
 		$this->add_responsive_control(
 			'columns',
 			array(
@@ -161,17 +171,144 @@ class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'title_hover_underline',
+			'title_color',
 			array(
-				'label'     => esc_html__( 'Title Hover Underline', 'lc-addons-kit-for-elementor' ),
-				'type'      => \Elementor\Controls_Manager::SELECT,
-				'default'   => 'none',
-				'options'   => array(
-					'none'      => esc_html__( 'Hide', 'lc-addons-kit-for-elementor' ),
-					'underline' => esc_html__( 'Show', 'lc-addons-kit-for-elementor' ),
-				),
+				'label'     => esc_html__( 'Title Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'default'   => '#0f172a',
 				'selectors' => array(
-					'{{WRAPPER}} .lcake-product-grid-title a:hover' => 'text-decoration: {{VALUE}} !important;',
+					'{{WRAPPER}} .lcake-product-grid-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .lcake-product-grid-title a' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'title_typography',
+				'label'    => esc_html__( 'Title Typography', 'lc-addons-kit-for-elementor' ),
+				'selector' => '{{WRAPPER}} .lcake-product-grid-title, {{WRAPPER}} .lcake-product-grid-title a',
+			)
+		);
+
+
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_button_style',
+			array(
+				'label' => esc_html__( 'Button Style', 'lc-addons-kit-for-elementor' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'button_typography',
+				'label'    => esc_html__( 'Typography', 'lc-addons-kit-for-elementor' ),
+				'selector' => '{{WRAPPER}} .lcake-product-grid-cart .button',
+			)
+		);
+
+		$this->start_controls_tabs( 'button_colors' );
+
+		$this->start_controls_tab(
+			'button_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'button_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'button_background_color',
+			array(
+				'label'     => esc_html__( 'Background Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'button_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'button_hover_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button:hover' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'button_hover_background_color',
+			array(
+				'label'     => esc_html__( 'Background Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button:hover' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'      => 'button_border',
+				'label'     => esc_html__( 'Border', 'lc-addons-kit-for-elementor' ),
+				'selector'  => '{{WRAPPER}} .lcake-product-grid-cart .button',
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'button_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator'  => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'button_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -210,6 +347,16 @@ class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
 		if ( ! $query->have_posts() ) {
 			return;
 		}
+
+		$cart_text_filter = null;
+		if ( ! empty( $settings['button_text'] ) ) {
+			$custom_text = $settings['button_text'];
+			$cart_text_filter = function( $text, $product ) use ( $custom_text ) {
+				return $custom_text;
+			};
+			add_filter( 'woocommerce_product_add_to_cart_text', $cart_text_filter, 99, 2 );
+		}
+
 		?>
 		<div class="lcake-product-grid">
 			<?php
@@ -240,6 +387,9 @@ class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
 			<?php endwhile; ?>
 		</div>
 		<?php
+		if ( $cart_text_filter ) {
+			remove_filter( 'woocommerce_product_add_to_cart_text', $cart_text_filter, 99 );
+		}
 		wp_reset_postdata();
 	}
 }

@@ -75,6 +75,24 @@ class LCAKE_Kit_Woo_Add_To_Cart extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'button_typography',
+				'label'    => esc_html__( 'Typography', 'lc-addons-kit-for-elementor' ),
+				'selector' => '{{WRAPPER}} .lcake-woo-add-to-cart .button',
+			)
+		);
+
+		$this->start_controls_tabs( 'button_colors' );
+
+		$this->start_controls_tab(
+			'button_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
 		$this->add_control(
 			'button_color',
 			array(
@@ -88,10 +106,75 @@ class LCAKE_Kit_Woo_Add_To_Cart extends \Elementor\Widget_Base {
 		$this->add_control(
 			'button_background',
 			array(
-				'label'     => esc_html__( 'Background', 'lc-addons-kit-for-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'lc-addons-kit-for-elementor' ),
 				'type'      => \Elementor\Controls_Manager::COLOR,
 				'default'   => '#3b82f6',
 				'selectors' => array( '{{WRAPPER}} .lcake-woo-add-to-cart .button' => 'background-color: {{VALUE}};' ),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'button_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'button_hover_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array( '{{WRAPPER}} .lcake-woo-add-to-cart .button:hover' => 'color: {{VALUE}};' ),
+			)
+		);
+
+		$this->add_control(
+			'button_hover_background',
+			array(
+				'label'     => esc_html__( 'Background Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array( '{{WRAPPER}} .lcake-woo-add-to-cart .button:hover' => 'background-color: {{VALUE}};' ),
+			)
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'      => 'button_border',
+				'label'     => esc_html__( 'Border', 'lc-addons-kit-for-elementor' ),
+				'selector'  => '{{WRAPPER}} .lcake-woo-add-to-cart .button',
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'button_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-woo-add-to-cart .button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator'  => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'button_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-woo-add-to-cart .button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
 			)
 		);
 

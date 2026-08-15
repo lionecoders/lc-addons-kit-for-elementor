@@ -339,6 +339,131 @@ class LCAKE_Kit_Woo_Product_Compare extends \Elementor\Widget_Base {
 		);
 
 		$this->end_controls_section();
+
+		// --- Image Style Section ---
+		$this->start_controls_section(
+			'section_style_image',
+			array(
+				'label' => esc_html__( 'Image', 'lc-addons-kit-for-elementor' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'image_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-woo-compare td img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		// --- Button Style Section ---
+		$this->start_controls_section(
+			'section_style_button',
+			array(
+				'label' => esc_html__( 'Button', 'lc-addons-kit-for-elementor' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'button_typography',
+				'label'    => esc_html__( 'Typography', 'lc-addons-kit-for-elementor' ),
+				'selector' => '{{WRAPPER}} .lcake-woo-compare td .button',
+			)
+		);
+
+		$this->start_controls_tabs( 'button_colors' );
+
+		$this->start_controls_tab(
+			'button_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'button_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array( '{{WRAPPER}} .lcake-woo-compare td .button' => 'color: {{VALUE}};' ),
+			)
+		);
+
+		$this->add_control(
+			'button_background',
+			array(
+				'label'     => esc_html__( 'Background Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array( '{{WRAPPER}} .lcake-woo-compare td .button' => 'background-color: {{VALUE}};' ),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'button_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'button_hover_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array( '{{WRAPPER}} .lcake-woo-compare td .button:hover' => 'color: {{VALUE}};' ),
+			)
+		);
+
+		$this->add_control(
+			'button_hover_background',
+			array(
+				'label'     => esc_html__( 'Background Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array( '{{WRAPPER}} .lcake-woo-compare td .button:hover' => 'background-color: {{VALUE}};' ),
+			)
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_responsive_control(
+			'button_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-woo-compare td .button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator'  => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'button_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-woo-compare td .button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
 	}
 
 	protected function render() {

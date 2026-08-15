@@ -100,6 +100,31 @@ class LCAKE_Kit_Woo_Product_Title extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_responsive_control(
+			'text_align',
+			array(
+				'label'     => esc_html__( 'Alignment', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'lc-addons-kit-for-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'lc-addons-kit-for-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'lc-addons-kit-for-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-woo-product-title' => 'text-align: {{VALUE}};'
+				),
+			)
+		);
+
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
 			array(
