@@ -14,11 +14,19 @@
                 if (closed) {
                     return;
                 }
+                
+                // Prevent layout shift by locking the wrapper's height before docking
+                if (!entry.isIntersecting) {
+                    $scope.css('min-height', $scope.height());
+                } else {
+                    $scope.css('min-height', '');
+                }
+
                 $video.toggleClass('is-docked', !entry.isIntersecting);
             });
         }, { threshold: 0 });
 
-        observer.observe($video[0]);
+        observer.observe($scope[0]);
 
         $video.find('.lcake-sticky-video-close').on('click', function () {
             closed = true;
