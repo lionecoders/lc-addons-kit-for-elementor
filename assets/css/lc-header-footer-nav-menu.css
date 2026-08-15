@@ -89,6 +89,84 @@
     font-size: 0.7em;
 }
 
+/* Dropdown Base Styles */
+.lc-hf-nav-menu > li.lc-hf-has-submenu,
+.lc-hf-nav-submenu > li.lc-hf-has-submenu {
+    position: relative;
+}
+
+.lc-hf-nav-submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    z-index: 999;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 4px;
+}
+
+/* Nested Submenus (3rd level+) */
+.lc-hf-nav-submenu .lc-hf-nav-submenu {
+    top: 0;
+    left: 100%;
+    transform: translateX(10px) translateY(0);
+}
+
+/* Hover and Active states (compatible with SmartMenus) */
+.lc-hf-nav-menu li.lc-hf-has-submenu:hover > .lc-hf-nav-submenu,
+.lc-hf-nav-menu li.lc-hf-has-submenu.highlighted > .lc-hf-nav-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) translateX(0);
+    display: flex !important; /* Override potential JS hiding */
+}
+
+/* Dropdown Items */
+.lc-hf-nav-submenu li {
+    width: 100%;
+}
+
+.lc-hf-nav-submenu li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    color: #4b5563;
+    font-size: 14px;
+    transition: all 0.25s ease;
+}
+
+.lc-hf-nav-submenu li:last-child > a {
+    border-bottom: none;
+}
+
+.lc-hf-nav-submenu li a:hover {
+    background-color: #f3f4f6;
+    color: #3b82f6;
+}
+
+/* Arrow rotation on hover */
+.lc-hf-nav-menu li.lc-hf-has-submenu:hover > a > .sub-arrow i {
+    transform: rotate(180deg);
+}
+
+.lc-hf-nav-submenu li.lc-hf-has-submenu > a > .sub-arrow i {
+    transform: rotate(-90deg);
+}
+
+
 .lc-hf-nav-menu--dropdown {
     background-color: #fff;
     font-size: 13px;
@@ -177,5 +255,24 @@ ul.lc-hf-nav-menu--dropdown a:hover {
     0%, 100% {
         overflow: hidden;
     }
+}
+
+/* Mobile Submenus (Accordion Style) */
+.lc-hf-nav-menu--dropdown .lc-hf-nav-submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    padding-left: 20px;
+    background: transparent;
+    display: none; /* Handled by smartmenus or JS */
+}
+
+/* If smartmenus adds sm-open to the UL on mobile */
+.lc-hf-nav-menu--dropdown ul.sm-nowrap,
+.lc-hf-nav-menu--dropdown li.lc-hf-has-submenu:hover > .lc-hf-nav-submenu,
+.lc-hf-nav-menu--dropdown li.lc-hf-has-submenu.highlighted > .lc-hf-nav-submenu {
+    display: block !important;
 }
 
