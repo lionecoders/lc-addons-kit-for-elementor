@@ -192,7 +192,7 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 ## Changelog
 
-### 1.2.1
+### 1.2.0
 * Added LC Header Footer Kit Widgets.
 * Added Template Create System.
 * Added 70+ more widgets.
