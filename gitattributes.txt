@@ -3,6 +3,8 @@
 /.github/**             export-ignore
 /.wp-org                export-ignore
 /.wp-org/**             export-ignore
+/.wordpress-org         export-ignore
+/.wordpress-org/**      export-ignore
 /.gitignore             export-ignore
 /.gitattributes         export-ignore
 /gitattributes.txt      export-ignore

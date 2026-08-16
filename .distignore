@@ -2,6 +2,7 @@
 .git
 .github
 .wp-org
+.wordpress-org
 .gitignore
 .gitattributes
 gitattributes.txt
