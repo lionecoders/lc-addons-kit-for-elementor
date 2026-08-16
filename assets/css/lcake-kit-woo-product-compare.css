@@ -1,0 +1,45 @@
+.lcake-woo-compare-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+.lcake-woo-compare {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.lcake-woo-compare thead th {
+    background: #3b82f6;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 16px 20px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.lcake-woo-compare tbody td {
+    padding: 16px 20px;
+    text-align: center;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.lcake-woo-compare-label {
+    font-weight: 700;
+    color: #111827;
+    text-align: left !important;
+    white-space: nowrap;
+    background: #f9fafb;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-compare a,
+.lcake-woo-product-compare a,
+.lcake-kit-woo-product-compare a,
+.lc-header-footer-woo-product-compare a {
+    text-decoration: none !important;
+}

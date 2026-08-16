@@ -1,0 +1,66 @@
+.lcake-content-ticker {
+    display: flex;
+    align-items: center;
+    background: #111827;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.lcake-content-ticker-label {
+    flex-shrink: 0;
+    background: #3b82f6;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 20px;
+    white-space: nowrap;
+}
+
+.lcake-content-ticker-viewport {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+.lcake-content-ticker-track {
+    display: flex;
+    width: max-content;
+    animation: lcake-ticker-scroll linear infinite;
+}
+
+.lcake-content-ticker-item {
+    flex-shrink: 0;
+    padding: 12px 40px;
+    color: #ffffff;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.lcake-content-ticker-item a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.lcake-content-ticker-item a:hover {
+    text-decoration: underline;
+}
+
+
+@keyframes lcake-ticker-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-content-ticker a,
+.lcake-content-ticker a,
+.lcake-kit-content-ticker a,
+.lc-header-footer-content-ticker a {
+    text-decoration: none !important;
+}

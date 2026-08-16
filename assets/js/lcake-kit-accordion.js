@@ -45,14 +45,18 @@
         }
     });
 
-    if (window.elementorFrontend) {
-        window.addEventListener("elementor/frontend/init", () => {
-            elementorFrontend.hooks.addAction("frontend/element_ready/lcake-kit-accordion.default", ($scope) => {
-                if (!hasInitialized) {
-                    initAccordion($scope[0]);
-                    hasInitialized = true;
-                }
-            });
+    const initElementor = () => {
+        elementorFrontend.hooks.addAction("frontend/element_ready/lcake-kit-accordion.default", ($scope) => {
+            if (!hasInitialized) {
+                initAccordion($scope[0]);
+                hasInitialized = true;
+            }
         });
+    };
+
+    if (window.elementorFrontend && window.elementorFrontend.hooks) {
+        initElementor();
+    } else {
+        window.addEventListener("elementor/frontend/init", initElementor);
     }
 })();

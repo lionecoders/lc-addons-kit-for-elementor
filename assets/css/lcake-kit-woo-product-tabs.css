@@ -1,0 +1,75 @@
+.lcake-woo-tabs {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.lcake-woo-tabs ul.tabs {
+    display: flex;
+    list-style: none;
+    margin: 0 0 -1px 0;
+    padding: 0;
+    border-bottom: 1px solid #e5e7eb;
+    gap: 10px;
+}
+
+.lcake-woo-tabs ul.tabs li {
+    margin: 0;
+    padding: 0;
+}
+
+.lcake-woo-tabs ul.tabs li a {
+    display: block;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #4b5563;
+    text-decoration: none !important;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transition: all 0.25s ease;
+    background: #f9fafb;
+}
+
+.lcake-woo-tabs ul.tabs li a:hover {
+    color: #3b82f6;
+    background: #f3f4f6;
+}
+
+.lcake-woo-tabs ul.tabs li.active a {
+    color: #3b82f6;
+    background: #ffffff;
+    border-color: #e5e7eb;
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: -1px;
+}
+
+.lcake-woo-tabs .woocommerce-Tabs-panel {
+    display: none;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 30px;
+    font-size: 15px;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.lcake-woo-tabs .woocommerce-Tabs-panel h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 15px 0;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-tabs a,
+.lcake-woo-product-tabs a,
+.lcake-kit-woo-product-tabs a,
+.lc-header-footer-woo-product-tabs a {
+    text-decoration: none !important;
+}

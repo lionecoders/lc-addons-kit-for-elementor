@@ -1,0 +1,18 @@
+.lcake-woo-short-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #6b7280;
+}
+
+.lcake-woo-short-description p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-short-description a,
+.lcake-woo-product-short-description a,
+.lcake-kit-woo-product-short-description a,
+.lc-header-footer-woo-product-short-description a {
+    text-decoration: none !important;
+}

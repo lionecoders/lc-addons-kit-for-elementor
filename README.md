@@ -1,10 +1,10 @@
 # LC Addons Kit for Elementor
 
-A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC Kit' and 'LC Header & Footer kit' with a dashboard control panel.
+A powerful Elementor addon plugin that offers 83 widgets categorized into 'LC Kit' and 'LC Header & Footer kit' with a dashboard control panel.
 
 ## Description
 
-**LC Elementor Addons Kit** is a comprehensive Elementor addon plugin developed by Lionecoders that provides a wide range of professional widgets to enhance your Elementor page building experience.
+**LC Elementor Addons Kit** is a comprehensive Elementor addon plugin that provides a wide range of professional widgets to enhance your Elementor page building experience.
 
 ### 🎯 Core Features
 
@@ -14,21 +14,92 @@ A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC K
 * **Modern UI**: Beautiful and responsive admin interface
 * **Performance Optimized**: Lightweight and fast loading
 
-### 📦 LC Kit Widgets (12 Widgets)
+### 📦 LC Header & Footer Widgets (8 Widgets)
 
-* Image Accordion
+* Cart Icon
+* Category List
+* Contact Info
+* Copyright Text
+* Nav Menu
+* Search Toggle
+* Site Logo
+* Site Title
+
+### 📦 LC Kit Widgets (73 Widgets)
+
 * Accordion
-* Button
-* FAQ
-* Image Comparison
-* Testimonial
-* Pricing Table
-* Team
-* Social Icons
-* Progress Bar
-* Pie Chart
-* Tab
+* Advanced Data Table
+* Betterdocs Category Box
+* Betterdocs Category Grid
+* Betterdocs Search Form
+* Breadcrumbs
 * Business Hours
+* Business Reviews
+* Button
+* Code Snippet
+* Contact Form 7
+* Content Ticker
+* Countdown Timer
+* CTA Box
+* Data Table
+* Drop Caps
+* Dual Color Header
+* Embed Press
+* Event Calendar
+* Facebook Feed
+* Fancy Text
+* FAQ
+* Feature List
+* Filterable Gallery
+* Flip Box
+* Fluent Form
+* Formstack
+* Funfact
+* Gravity Forms
+* Heading
+* Icon Box
+* Image Accordion
+* Image Box
+* Image Comparison
+* Interactive Circle
+* Login Register
+* Lottie
+* Mailchimp
+* NFT Gallery
+* Ninja Forms
+* Pie Chart
+* Post Grid
+* Post Timeline
+* Pricing Table
+* Product Grid
+* Progress Bar
+* Simple Menu
+* Social Icons
+* Sticky Video
+* SVG Draw
+* Tab
+* Team
+* Testimonial
+* Tooltip
+* Twitter Feed
+* Type Form
+* Video
+* We Forms
+* Woo Add To Cart
+* Woo Cart
+* Woo Checkout
+* Woo Product Carousel
+* Woo Product Compare
+* Woo Product Description
+* Woo Product Gallery
+* Woo Product Images
+* Woo Product List
+* Woo Product Price
+* Woo Product Rating
+* Woo Product Short Description
+* Woo Product Tabs
+* Woo Product Title
+* WP Forms
 
 ### 🚀 Key Benefits
 
@@ -58,8 +129,8 @@ A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC K
 
 ### How do I enable/disable widgets?
 
-1. Go to **LC Kit** in your WordPress admin menu
-2. Use the toggle switches to enable/disable widgets
+1. Go to **LC Kit > Widget Manager** in your WordPress admin menu
+2. Select the widgets to enable or disable.
 3. Widgets are organized by category for easy management
 4. Save settings to apply changes
 
@@ -95,8 +166,8 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 ## Usage
 
 ### Admin Dashboard
-1. Go to **LC Kit** in your WordPress admin menu
-2. Use the toggle switches to enable/disable widgets
+1. Go to **LC Kit > Widget Manager** in your WordPress admin menu
+2. Select the widgets to enable or disable.
 3. Widgets are organized by category for easy management
 4. Save settings to apply changes
 
@@ -105,7 +176,6 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 2. Look for **LC Kit** and **LC Header & Footer kit** categories
 3. Drag and drop enabled widgets to your layout
 4. Customize widget settings in the Elementor panel
-
 
 ## Performance
 
@@ -122,6 +192,16 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 ## Changelog
 
+### 1.2.0
+* Added LC Header Footer Kit Widgets.
+* Added Template Create System.
+* Added 70+ more widgets.
+* Update Admin Dashboard UI for a better user experience.
+
+### 1.1.1
+* Fix minor issues.
+* Tested Upto WordPress 7.0
+
 ### 1.1.0
 * Added LC Contact Form 7, LC MailChimp, LC Funfact, LC Countdown Timer, LC Drop Caps, LC Heading widgets, LC Image Box.
 * Tested Upto Elementor 4.0.
@@ -131,10 +211,6 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 ### 1.0.0
 * Initial release
-
-## Credits
-
-Developed by [Lionecoders](https://lionecoders.com)
 
 ## License
 

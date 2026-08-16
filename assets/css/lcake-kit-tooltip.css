@@ -1,0 +1,151 @@
+/*
+* Modern Styles for Tooltip Widget
+*/
+
+.lcake-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.lcake-tooltip-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #3b82f6;
+    border-bottom: 1px dashed currentColor;
+    cursor: help;
+    font-size: 16px;
+    outline: none;
+}
+
+.lcake-tooltip-trigger i,
+.lcake-tooltip-trigger svg {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.lcake-tooltip-content {
+    position: absolute;
+    z-index: 10;
+    width: 200px;
+    background: #111827;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: all 0.25s ease;
+    pointer-events: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.lcake-tooltip-content::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #111827;
+    transform: rotate(45deg);
+}
+
+.lcake-tooltip-trigger:hover + .lcake-tooltip-content,
+.lcake-tooltip-trigger:focus + .lcake-tooltip-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Position: top (default) */
+.lcake-tooltip .lcake-tooltip-content {
+    bottom: 100%;
+    left: 50%;
+    margin-bottom: 12px;
+    transform: translate(-50%, 6px);
+}
+
+.lcake-tooltip .lcake-tooltip-content::before {
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    margin-top: -5px;
+}
+
+.lcake-tooltip-trigger:hover + .lcake-tooltip-content {
+    transform: translate(-50%, 0);
+}
+
+/* Position: bottom */
+.lcake-tooltip--pos-bottom .lcake-tooltip-content {
+    bottom: auto;
+    top: 100%;
+    margin-bottom: 0;
+    margin-top: 12px;
+    transform: translate(-50%, -6px);
+}
+
+.lcake-tooltip--pos-bottom .lcake-tooltip-content::before {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: -5px;
+}
+
+.lcake-tooltip--pos-bottom .lcake-tooltip-trigger:hover + .lcake-tooltip-content {
+    transform: translate(-50%, 0);
+}
+
+/* Position: left */
+.lcake-tooltip--pos-left .lcake-tooltip-content {
+    bottom: auto;
+    top: 50%;
+    left: auto;
+    right: 100%;
+    margin: 0 12px 0 0;
+    transform: translate(6px, -50%);
+}
+
+.lcake-tooltip--pos-left .lcake-tooltip-content::before {
+    top: 50%;
+    left: 100%;
+    margin-left: -5px;
+    margin-top: -5px;
+}
+
+.lcake-tooltip--pos-left .lcake-tooltip-trigger:hover + .lcake-tooltip-content {
+    transform: translate(0, -50%);
+}
+
+/* Position: right */
+.lcake-tooltip--pos-right .lcake-tooltip-content {
+    bottom: auto;
+    top: 50%;
+    left: 100%;
+    margin: 0 0 0 12px;
+    transform: translate(-6px, -50%);
+}
+
+.lcake-tooltip--pos-right .lcake-tooltip-content::before {
+    top: 50%;
+    right: 100%;
+    margin-left: 0;
+    margin-right: -5px;
+    margin-top: -5px;
+}
+
+.lcake-tooltip--pos-right .lcake-tooltip-trigger:hover + .lcake-tooltip-content {
+    transform: translate(0, -50%);
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-tooltip a,
+.lcake-tooltip a,
+.lcake-kit-tooltip a,
+.lc-header-footer-tooltip a {
+    text-decoration: none !important;
+}

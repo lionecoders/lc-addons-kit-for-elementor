@@ -178,3 +178,11 @@
 .lcake-image-accordion--btn {
     font-weight: 400
 }
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-image-accordion a,
+.lcake-image-accordion a,
+.lcake-kit-image-accordion a,
+.lc-header-footer-image-accordion a {
+    text-decoration: none !important;
+}

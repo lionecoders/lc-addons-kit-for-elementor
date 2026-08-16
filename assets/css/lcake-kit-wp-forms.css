@@ -1,0 +1,25 @@
+.lcake-wp-forms .wpforms-field input,
+.lcake-wp-forms .wpforms-field select,
+.lcake-wp-forms .wpforms-field textarea {
+    border-radius: 10px !important;
+    border-color: #e5e7eb !important;
+}
+
+.lcake-wp-forms .wpforms-submit {
+    background: #3b82f6 !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+}
+
+.lcake-wp-forms .wpforms-submit:hover {
+    background: #2563eb !important;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-wp-forms a,
+.lcake-wp-forms a,
+.lcake-kit-wp-forms a,
+.lc-header-footer-wp-forms a {
+    text-decoration: none !important;
+}

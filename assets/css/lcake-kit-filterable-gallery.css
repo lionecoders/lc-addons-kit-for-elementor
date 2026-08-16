@@ -1,0 +1,149 @@
+.lcake-filterable-gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.lcake-filterable-gallery-filter {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lcake-filterable-gallery-filter:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+
+.lcake-filterable-gallery-filter.is-active {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    color: #ffffff;
+}
+
+.lcake-filterable-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.lcake-filterable-gallery-item {
+    position: relative;
+    display: block;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.lcake-filterable-gallery-item.is-hidden {
+    display: none;
+}
+
+.lcake-filterable-gallery-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* --- Image Hover Animations --- */
+
+/* Zoom In */
+.lcake-filterable-gallery-item.anim-zoom-in .lcake-filterable-gallery-image {
+    transition: transform 0.5s ease;
+}
+.lcake-filterable-gallery-item.anim-zoom-in:hover .lcake-filterable-gallery-image {
+    transform: scale(1.08);
+}
+
+/* Zoom Out */
+.lcake-filterable-gallery-item.anim-zoom-out .lcake-filterable-gallery-image {
+    transform: scale(1.08);
+    transition: transform 0.5s ease;
+}
+.lcake-filterable-gallery-item.anim-zoom-out:hover .lcake-filterable-gallery-image {
+    transform: scale(1);
+}
+
+/* Grayscale */
+.lcake-filterable-gallery-item.anim-grayscale .lcake-filterable-gallery-image {
+    filter: grayscale(0%);
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+.lcake-filterable-gallery-item.anim-grayscale:hover .lcake-filterable-gallery-image {
+    filter: grayscale(100%);
+}
+
+/* Blur */
+.lcake-filterable-gallery-item.anim-blur .lcake-filterable-gallery-image {
+    filter: blur(0px);
+    transition: filter 0.5s ease, transform 0.5s ease;
+}
+.lcake-filterable-gallery-item.anim-blur:hover .lcake-filterable-gallery-image {
+    filter: blur(4px);
+}
+
+/* None */
+.lcake-filterable-gallery-item.anim-none .lcake-filterable-gallery-image {
+    transition: none;
+}
+.lcake-filterable-gallery-item.anim-none:hover .lcake-filterable-gallery-image {
+    transform: none;
+    filter: none;
+}
+
+/* --- Overlay Display Configurations --- */
+
+.lcake-filterable-gallery-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 60%);
+    transition: opacity 0.3s ease;
+}
+
+/* Always show overlay */
+.lcake-filterable-gallery-item.overlay-always .lcake-filterable-gallery-overlay {
+    opacity: 1;
+}
+
+/* Hover show overlay */
+.lcake-filterable-gallery-item.overlay-hover .lcake-filterable-gallery-overlay {
+    opacity: 0;
+}
+.lcake-filterable-gallery-item.overlay-hover:hover .lcake-filterable-gallery-overlay {
+    opacity: 1;
+}
+
+.lcake-filterable-gallery-title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+@media (max-width: 767px) {
+    .lcake-filterable-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-filterable-gallery a,
+.lcake-filterable-gallery a,
+.lcake-kit-filterable-gallery a,
+.lc-header-footer-filterable-gallery a {
+    text-decoration: none !important;
+}

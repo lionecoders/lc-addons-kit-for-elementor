@@ -40,3 +40,12 @@
         font-size: 28px;
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-heading a,
+.lcake-heading a,
+.lcake-kit-heading a,
+.lc-header-footer-heading a {
+    text-decoration: none !important;
+}

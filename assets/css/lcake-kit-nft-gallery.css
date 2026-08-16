@@ -1,0 +1,65 @@
+.lcake-nft-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.lcake-nft-card {
+    display: block;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.lcake-nft-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.12);
+}
+
+.lcake-nft-card-media {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.lcake-nft-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.lcake-nft-card:hover .lcake-nft-card-image {
+    transform: scale(1.06);
+}
+
+.lcake-nft-card-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+}
+
+.lcake-nft-card-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.lcake-nft-card-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #3b82f6;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-nft-gallery a,
+.lcake-nft-gallery a,
+.lcake-kit-nft-gallery a,
+.lc-header-footer-nft-gallery a {
+    text-decoration: none !important;
+}

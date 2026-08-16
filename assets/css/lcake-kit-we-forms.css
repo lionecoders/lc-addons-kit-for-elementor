@@ -1,0 +1,30 @@
+.lcake-we-forms input[type="text"],
+.lcake-we-forms input[type="email"],
+.lcake-we-forms textarea,
+.lcake-we-forms select {
+    border-radius: 10px;
+    border-color: #e5e7eb;
+}
+
+.lcake-we-forms button[type="submit"],
+.lcake-we-forms input[type="submit"] {
+    background: #3b82f6;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+    color: #ffffff;
+}
+
+.lcake-we-forms button[type="submit"]:hover,
+.lcake-we-forms input[type="submit"]:hover {
+    background: #2563eb;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-we-forms a,
+.lcake-we-forms a,
+.lcake-kit-we-forms a,
+.lc-header-footer-we-forms a {
+    text-decoration: none !important;
+}

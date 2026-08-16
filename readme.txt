@@ -1,20 +1,20 @@
 === LC Addons Kit for Elementor ===
-Contributors: deep7197
+Contributors: mveous, deep7197
 Tags: elementor, widgets, addons, page-builder, lc-kit
 Requires at least: 5.0
-Tested up to: 7.0
+Tested up to: 7.4
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC Kit' and 'LC Header & Footer kit' with a dashboard control panel.
+A powerful Elementor addon plugin that offers 83 widgets categorized into 'LC Kit' and 'LC Header & Footer kit' with a dashboard control panel.
 
 == Description ==
 
-**LC Elementor Addons Kit** is a comprehensive Elementor addon plugin developed by Lionecoders that provides a wide range of professional widgets to enhance your Elementor page building experience.
+**LC Elementor Addons Kit** is a comprehensive Elementor addon plugin that provides a wide range of professional widgets to enhance your Elementor page building experience.
 
-= 🎯 **Core Features** =
+🎯 **Core Features** 
 
 * **Widget Category**: 'LC Kit'
 * **Dashboard Control Panel**: Enable/disable individual widgets
@@ -22,23 +22,95 @@ A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC K
 * **Modern UI**: Beautiful and responsive admin interface
 * **Performance Optimized**: Lightweight and fast loading
 
-= 📦 **LC Kit Widgets (12 Widgets)** =
+📦 **LC Header & Footer Widgets (8 Widgets)**
 
-* Image Accordion
+* Cart Icon
+* Category List
+* Contact Info
+* Copyright Text
+* Nav Menu
+* Search Toggle
+* Site Logo
+* Site Title
+
+📦 **LC Kit Widgets (73 Widgets)** 
+
 * Accordion
-* Button
-* FAQ
-* Image Comparison
-* Testimonial
-* Pricing Table
-* Team
-* Social Icons
-* Progress Bar
-* Pie Chart
-* Tab
+* Advanced Data Table
+* Better Payment
+* Betterdocs Category Box
+* Betterdocs Category Grid
+* Betterdocs Search Form
+* Breadcrumbs
 * Business Hours
+* Business Reviews
+* Button
+* Code Snippet
+* Contact Form 7
+* Content Ticker
+* Countdown Timer
+* CTA Box
+* Data Table
+* Drop Caps
+* Dual Color Header
+* Embed Press
+* Event Calendar
+* Facebook Feed
+* Fancy Text
+* FAQ
+* Feature List
+* Filterable Gallery
+* Flip Box
+* Fluent Form
+* Formstack
+* Funfact
+* Gravity Forms
+* Heading
+* Icon Box
+* Image Accordion
+* Image Box
+* Image Comparison
+* Interactive Circle
+* Login Register
+* Lottie
+* Mailchimp
+* NFT Gallery
+* Ninja Forms
+* Pie Chart
+* Post Grid
+* Post Timeline
+* Pricing Table
+* Product Grid
+* Progress Bar
+* Simple Menu
+* Social Icons
+* Sticky Video
+* SVG Draw
+* Tab
+* Team
+* Testimonial
+* Tooltip
+* Twitter Feed
+* Type Form
+* Video
+* We Forms
+* Woo Add To Cart
+* Woo Cart
+* Woo Checkout
+* Woo Product Carousel
+* Woo Product Compare
+* Woo Product Description
+* Woo Product Gallery
+* Woo Product Images
+* Woo Product List
+* Woo Product Price
+* Woo Product Rating
+* Woo Product Short Description
+* Woo Product Tabs
+* Woo Product Title
+* WP Forms
 
-= 🚀 **Key Benefits** =
+🚀 **Key Benefits**
 
 * **Easy Management**: Control which widgets appear in Elementor editor
 * **Performance**: Only loads enabled widgets for optimal speed
@@ -46,7 +118,7 @@ A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC K
 * **Flexible**: Works with all Elementor themes and layouts
 * **Developer Friendly**: Clean code structure with hooks and filters
 
-= 💡 **Perfect For** =
+💡 **Perfect For**
 
 * Web developers and designers
 * Marketing agencies
@@ -73,8 +145,8 @@ A powerful Elementor addon plugin that offers 41+ widgets categorized into 'LC K
 
 = How do I enable/disable widgets? =
 
-1. Go to **LC Kit** in your WordPress admin menu
-2. Use the toggle switches to enable/disable widgets
+1. Go to **LC Kit > Widget Manager** in your WordPress admin menu
+2. Select the widgets to enable or disable.
 3. Widgets are organized by category for easy management
 4. Save settings to apply changes
 
@@ -98,8 +170,15 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 1. Admin Dashboard
 2. LC Widgets
+3. LC Header Footer Kit Widgets
 
 == Changelog ==
+= 1.2.1 =
+* Added LC Header Footer Kit Widgets.
+* Added Template Create System.
+* Added 70+ more widgets.
+* Update Admin Dashboard UI for a better user experience.
+
 = 1.1.1 =
 * Fix minor issues.
 * Tested Upto WordPress 7.0
@@ -113,10 +192,6 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 
 = 1.0.0 =
 * Initial release
-
-== Credits ==
-
-Developed by [Lionecoders](https://lionecoders.com)
 
 == License ==
 

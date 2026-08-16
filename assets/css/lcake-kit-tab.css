@@ -115,7 +115,7 @@
     left: 0;
     height: 3px;
     width: 100%;
-    background-color: #2575fc;
+    background-color: #3b82f6;
     -webkit-transform-origin: 0 50%;
     transform-origin: 0 50%;
     -webkit-transform: scaleX(0);
@@ -146,8 +146,8 @@
     transition: all .4s ease;
     opacity: 0;
     visibility: hidden;
-    background-image: -webkit-gradient(linear,left top,right bottom,from(rgba(255,255,255,0)),color-stop(50%,rgba(255,255,255,0)),color-stop(50%,#4b3fe1),to(#4b3fe1));
-    background-image: linear-gradient(to bottom right,rgba(255,255,255,0) 0,rgba(255,255,255,0) 50%,#4b3fe1 50%,#4b3fe1 100%);
+    background-image: -webkit-gradient(linear,left top,right bottom,from(rgba(255,255,255,0)),color-stop(50%,rgba(255,255,255,0)),color-stop(50%,#3b82f6),to(#3b82f6));
+    background-image: linear-gradient(to bottom right,rgba(255,255,255,0) 0,rgba(255,255,255,0) 50%,#3b82f6 50%,#3b82f6 100%);
     z-index: -1
 }
 
@@ -170,7 +170,7 @@
     transform: translateX(-50%);
     width: 70px;
     height: 1px;
-    background-color: #2575fc
+    background-color: #3b82f6
 }
 
 .lcake-main-wrapper .lcake-tab-nav.lcake_heartbit_style .lcake-nav-item .lcake-nav-link::after {
@@ -182,7 +182,7 @@
     background-image: linear-gradient(136deg,rgba(0,0,0,0) 50%,rgba(242,41,91,0) 50%);
     border-style: solid;
     border-width: 1px 0 0 1px;
-    border-color: #2575fc;
+    border-color: #3b82f6;
     z-index: 1
 }
 
@@ -364,3 +364,11 @@
     animation: lcakeFadeIn .9s ease-in-out;
   }
   @keyframes lcakeFadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-tab a,
+.lcake-tab a,
+.lcake-kit-tab a,
+.lc-header-footer-tab a {
+    text-decoration: none !important;
+}

@@ -1,2 +1,10 @@
-/admin/node_modules
+# Ignore dependencies and OS artifacts
+admin/node_modules/
+node_modules/
 package-lock.json
+admin/package-lock.json
+*node_modules
+.DS_Store
+Thumbs.db
+.vscode/
+*.log

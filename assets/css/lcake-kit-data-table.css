@@ -1,0 +1,46 @@
+.lcake-data-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
+}
+
+.lcake-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.lcake-data-table thead th {
+    background: #3b82f6;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+    padding: 16px 20px;
+    white-space: nowrap;
+}
+
+.lcake-data-table tbody td {
+    padding: 14px 20px;
+    font-size: 15px;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.lcake-data-table.is-striped tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.lcake-data-table tbody tr:hover {
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-data-table a,
+.lcake-data-table a,
+.lcake-kit-data-table a,
+.lc-header-footer-data-table a {
+    text-decoration: none !important;
+}

@@ -1,0 +1,14 @@
+.lc-hf-copyright {
+    margin: 0;
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lc-header-footer-copyright-text a,
+.lcake-copyright-text a,
+.lcake-kit-copyright-text a,
+.lc-header-footer-copyright-text a {
+    text-decoration: none !important;
+}

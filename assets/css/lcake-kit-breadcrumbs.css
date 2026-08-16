@@ -1,0 +1,54 @@
+/*
+* Modern Styles for Breadcrumbs Widget
+*/
+
+.lcake-breadcrumbs-wrapper {
+    width: 100%;
+}
+
+.lcake-breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+    font-size: 15px;
+    color: #6b7280;
+}
+
+.lcake-breadcrumbs-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+.lcake-breadcrumbs-item a {
+    color: #3b82f6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.lcake-breadcrumbs-item a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+.lcake-breadcrumbs-item.is-current {
+    color: #111827;
+    font-weight: 600;
+}
+
+.lcake-breadcrumbs-separator {
+    color: #9ca3af;
+    display: inline-flex;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-breadcrumbs a,
+.lcake-breadcrumbs a,
+.lcake-kit-breadcrumbs a,
+.lc-header-footer-breadcrumbs a {
+    text-decoration: none !important;
+}

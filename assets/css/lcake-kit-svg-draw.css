@@ -1,0 +1,33 @@
+.lcake-svg-draw svg {
+    width: 200px;
+    height: auto;
+    display: block;
+}
+
+.lcake-svg-draw svg path,
+.lcake-svg-draw svg polyline,
+.lcake-svg-draw svg circle,
+.lcake-svg-draw svg line {
+    stroke: #3b82f6;
+    stroke-width: 3;
+    fill: none;
+    stroke-dasharray: var(--lcake-svg-length, 1000);
+    stroke-dashoffset: var(--lcake-svg-length, 1000);
+    transition: stroke-dashoffset var(--lcake-svg-duration, 2000ms) ease;
+}
+
+.lcake-svg-draw.is-drawn svg path,
+.lcake-svg-draw.is-drawn svg polyline,
+.lcake-svg-draw.is-drawn svg circle,
+.lcake-svg-draw.is-drawn svg line {
+    stroke-dashoffset: 0;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-svg-draw a,
+.lcake-svg-draw a,
+.lcake-kit-svg-draw a,
+.lc-header-footer-svg-draw a {
+    text-decoration: none !important;
+}

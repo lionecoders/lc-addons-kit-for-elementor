@@ -1,0 +1,31 @@
+.lcake-gravity-forms .gform_wrapper input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+.lcake-gravity-forms .gform_wrapper select,
+.lcake-gravity-forms .gform_wrapper textarea {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 16px;
+}
+
+.lcake-gravity-forms .gform_wrapper .gform_button {
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.lcake-gravity-forms .gform_wrapper .gform_button:hover {
+    background: #2563eb;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-gravity-forms a,
+.lcake-gravity-forms a,
+.lcake-kit-gravity-forms a,
+.lc-header-footer-gravity-forms a {
+    text-decoration: none !important;
+}

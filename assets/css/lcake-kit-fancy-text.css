@@ -1,0 +1,65 @@
+.lcake-fancy-text {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #111827;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.lcake-fancy-text-rotator {
+    position: relative;
+    display: inline-grid;
+    vertical-align: bottom;
+    text-align: center;
+}
+
+.lcake-fancy-text-before,
+.lcake-fancy-text-after {
+    opacity: 1 !important;
+    visibility: visible !important;
+    color: inherit;
+}
+
+.lcake-fancy-text-word {
+    grid-area: 1 / 1;
+    white-space: nowrap;
+    color: #3b82f6;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform-origin: center;
+}
+
+.lcake-fancy-text-word.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Fade animation */
+.lcake-fancy-text--anim-fade .lcake-fancy-text-word {
+    transition: opacity 0.5s ease;
+}
+
+/* Slide up animation */
+.lcake-fancy-text--anim-slide-up .lcake-fancy-text-word {
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.lcake-fancy-text--anim-slide-up .lcake-fancy-text-word.is-active {
+    transform: translateY(0);
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-fancy-text a,
+.lcake-fancy-text a,
+.lcake-kit-fancy-text a,
+.lc-header-footer-fancy-text a {
+    text-decoration: none !important;
+}

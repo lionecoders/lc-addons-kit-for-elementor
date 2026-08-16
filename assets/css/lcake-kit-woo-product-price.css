@@ -1,0 +1,25 @@
+.lcake-woo-product-price {
+    font-size: 26px;
+    font-weight: 800;
+    color: #3b82f6;
+}
+
+.lcake-woo-product-price del {
+    color: #9ca3af;
+    font-weight: 400;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.lcake-woo-product-price ins {
+    text-decoration: none;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-product-price a,
+.lcake-woo-product-price a,
+.lcake-kit-woo-product-price a,
+.lc-header-footer-woo-product-price a {
+    text-decoration: none !important;
+}

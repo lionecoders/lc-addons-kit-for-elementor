@@ -60,3 +60,12 @@
         font-size: 14px;
     }
 }
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-business-hours a,
+.lcake-business-hours a,
+.lcake-kit-business-hours a,
+.lc-header-footer-business-hours a {
+    text-decoration: none !important;
+}

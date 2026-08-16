@@ -1,0 +1,151 @@
+.lcake-post-timeline {
+    --lcake-timeline-line: #e5e7eb;
+    position: relative;
+    padding-left: 50px;
+}
+
+.lcake-post-timeline::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 6px;
+    bottom: 6px;
+    width: 0;
+    border-left: 2px solid var(--lcake-timeline-line);
+    transition: border-color 0.3s ease;
+}
+
+.lcake-post-timeline-item {
+    position: relative;
+    padding-bottom: 36px;
+    transition: padding-bottom 0.3s ease;
+}
+
+.lcake-post-timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.lcake-post-timeline-icon {
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3b82f6;
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 15px;
+    box-shadow: 0 0 0 6px #ffffff;
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                box-shadow 0.3s ease,
+                border-radius 0.3s ease,
+                transform 0.3s ease;
+}
+
+.lcake-post-timeline-icon svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+    transition: fill 0.3s ease;
+}
+
+.lcake-post-timeline-content {
+    padding-top: 6px;
+    transition: background-color 0.3s ease,
+                padding 0.3s ease,
+                border-radius 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lcake-post-timeline-date {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #3b82f6;
+    margin-bottom: 6px;
+    transition: color 0.3s ease, margin 0.3s ease;
+}
+
+.lcake-post-timeline-title {
+    margin: 0 0 8px 0;
+    font-size: 19px;
+    font-weight: 800;
+    color: #111827;
+    transition: color 0.3s ease, margin 0.3s ease;
+}
+
+.lcake-post-timeline-description {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #6b7280;
+    transition: color 0.3s ease;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-post-timeline a,
+.lcake-post-timeline a,
+.lcake-kit-post-timeline a,
+.lc-header-footer-post-timeline a {
+    text-decoration: none !important;
+}
+
+/* Alternating Layout */
+@media (min-width: 768px) {
+    .lcake-post-timeline--alternating {
+        padding-left: 0;
+    }
+
+    .lcake-post-timeline--alternating::before {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+
+    .lcake-post-timeline--alternating .lcake-post-timeline-item {
+        width: 50%;
+        clear: both;
+    }
+
+    .lcake-post-timeline--alternating .lcake-post-timeline-item:nth-child(odd) {
+        float: right;
+        padding-left: 30px;
+        padding-right: 0;
+    }
+
+    .lcake-post-timeline--alternating .lcake-post-timeline-item:nth-child(even) {
+        float: left;
+        padding-right: 30px;
+        padding-left: 0;
+        text-align: right;
+    }
+
+    .lcake-post-timeline--alternating .lcake-post-timeline-item::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .lcake-post-timeline--alternating::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .lcake-post-timeline--alternating .lcake-post-timeline-item:nth-child(odd) .lcake-post-timeline-icon {
+        left: 0 !important;
+        transform: translateX(-50%) !important;
+    }
+
+    .lcake-post-timeline--alternating .lcake-post-timeline-item:nth-child(even) .lcake-post-timeline-icon {
+        left: auto !important;
+        right: 0 !important;
+        transform: translateX(50%) !important;
+    }
+}

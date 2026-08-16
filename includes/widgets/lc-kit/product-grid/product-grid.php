@@ -1,0 +1,395 @@
+<?php
+/**
+ * Product Grid Widget
+ *
+ * @package LC_Elementor_Addons_Kit
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Product Grid Widget.
+ *
+ * Elementor widget that displays a Product Grid.
+ */
+class LCAKE_Kit_Product_Grid extends \Elementor\Widget_Base {
+
+	public function get_required_dependencies() {
+		return array(
+			array(
+				'type'  => 'plugin',
+				'class' => 'WooCommerce',
+				'name'  => 'WooCommerce',
+			),
+		);
+	}
+
+	public function get_name() {
+		return 'lcake-kit-product-grid';
+	}
+
+	public function get_categories() {
+		return array( 'lcake-page-kit' );
+	}
+
+	public function get_title() {
+		return esc_html__( 'Product Grid', 'lc-addons-kit-for-elementor' );
+	}
+
+	public function get_icon() {
+		return 'eicon-products lcake-mveous-badge';
+	}
+
+	public function get_style_depends() {
+		return array( 'lcake-kit-product-grid-css' );
+	}
+
+	protected function register_controls() {
+		$this->start_controls_section(
+			'content_section',
+			array(
+				'label' => esc_html__( 'Query', 'lc-addons-kit-for-elementor' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$this->add_control(
+			'products_count',
+			array(
+				'label'   => esc_html__( 'Products Count', 'lc-addons-kit-for-elementor' ),
+				'type'    => \Elementor\Controls_Manager::NUMBER,
+				'default' => 6,
+				'min'     => 1,
+				'max'     => 50,
+			)
+		);
+
+		$categories = array();
+		if ( LCAKE_Kit_Utils::is_woo_active() ) {
+			$terms = get_terms(
+				array(
+					'taxonomy'   => 'product_cat',
+					'hide_empty' => false,
+				)
+			);
+			if ( ! is_wp_error( $terms ) ) {
+				foreach ( $terms as $term ) {
+					$categories[ $term->slug ] = $term->name;
+				}
+			}
+		}
+
+		$this->add_control(
+			'category',
+			array(
+				'label'    => esc_html__( 'Category', 'lc-addons-kit-for-elementor' ),
+				'type'     => \Elementor\Controls_Manager::SELECT2,
+				'multiple' => true,
+				'options'  => $categories,
+			)
+		);
+
+		$this->add_control(
+			'order_by',
+			array(
+				'label'   => esc_html__( 'Order By', 'lc-addons-kit-for-elementor' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'date',
+				'options' => array(
+					'date'       => esc_html__( 'Date', 'lc-addons-kit-for-elementor' ),
+					'price'      => esc_html__( 'Price', 'lc-addons-kit-for-elementor' ),
+					'popularity' => esc_html__( 'Popularity', 'lc-addons-kit-for-elementor' ),
+					'rand'       => esc_html__( 'Random', 'lc-addons-kit-for-elementor' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'button_text',
+			array(
+				'label'       => esc_html__( 'Button Text', 'lc-addons-kit-for-elementor' ),
+				'type'        => \Elementor\Controls_Manager::TEXT,
+				'placeholder' => esc_html__( 'e.g. Add to Cart', 'lc-addons-kit-for-elementor' ),
+				'description' => esc_html__( 'Leave empty to use default WooCommerce text.', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
+		$this->add_responsive_control(
+			'columns',
+			array(
+				'label'     => esc_html__( 'Columns', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::SELECT,
+				'default'   => '3',
+				'options'   => array(
+					'2' => '2',
+					'3' => '3',
+					'4' => '4',
+				),
+				'selectors' => array( '{{WRAPPER}} .lcake-product-grid' => 'grid-template-columns: repeat({{VALUE}}, 1fr);' ),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_style',
+			array(
+				'label' => esc_html__( 'Style', 'lc-addons-kit-for-elementor' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'grid_gap',
+			array(
+				'label'     => esc_html__( 'Gap', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 60,
+					),
+				),
+				'default'   => array(
+					'size' => 24,
+					'unit' => 'px',
+				),
+				'selectors' => array( '{{WRAPPER}} .lcake-product-grid' => 'gap: {{SIZE}}{{UNIT}};' ),
+			)
+		);
+
+		$this->add_control(
+			'price_color',
+			array(
+				'label'     => esc_html__( 'Price Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'default'   => '#3b82f6',
+				'selectors' => array( '{{WRAPPER}} .lcake-product-grid-price' => 'color: {{VALUE}};' ),
+			)
+		);
+
+		$this->add_control(
+			'title_color',
+			array(
+				'label'     => esc_html__( 'Title Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'default'   => '#0f172a',
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-product-grid-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .lcake-product-grid-title a' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'title_typography',
+				'label'    => esc_html__( 'Title Typography', 'lc-addons-kit-for-elementor' ),
+				'selector' => '{{WRAPPER}} .lcake-product-grid-title, {{WRAPPER}} .lcake-product-grid-title a',
+			)
+		);
+
+
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_button_style',
+			array(
+				'label' => esc_html__( 'Button Style', 'lc-addons-kit-for-elementor' ),
+				'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'button_typography',
+				'label'    => esc_html__( 'Typography', 'lc-addons-kit-for-elementor' ),
+				'selector' => '{{WRAPPER}} .lcake-product-grid-cart .button',
+			)
+		);
+
+		$this->start_controls_tabs( 'button_colors' );
+
+		$this->start_controls_tab(
+			'button_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'button_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'button_background_color',
+			array(
+				'label'     => esc_html__( 'Background Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'button_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'lc-addons-kit-for-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'button_hover_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button:hover' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'button_hover_background_color',
+			array(
+				'label'     => esc_html__( 'Background Color', 'lc-addons-kit-for-elementor' ),
+				'type'      => \Elementor\Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button:hover' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'      => 'button_border',
+				'label'     => esc_html__( 'Border', 'lc-addons-kit-for-elementor' ),
+				'selector'  => '{{WRAPPER}} .lcake-product-grid-cart .button',
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'button_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator'  => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'button_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'lc-addons-kit-for-elementor' ),
+				'type'       => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .lcake-product-grid-cart .button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	protected function render() {
+		if ( ! LCAKE_Kit_Utils::is_woo_active() ) {
+			LCAKE_Kit_Utils::woo_inactive_notice();
+			return;
+		}
+
+		$settings = $this->get_settings_for_display();
+
+		$args = array(
+			'post_type'           => 'product',
+			'posts_per_page'      => (int) $settings['products_count'],
+			'orderby'             => 'price' === $settings['order_by'] ? 'meta_value_num' : $settings['order_by'],
+			'meta_key'            => 'price' === $settings['order_by'] ? '_price' : '', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			'ignore_sticky_posts' => true,
+		);
+
+		if ( ! empty( $settings['category'] ) ) {
+			$args['tax_query'] = array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+				array(
+					'taxonomy' => 'product_cat',
+					'field'    => 'slug',
+					'terms'    => $settings['category'],
+				),
+			);
+		}
+
+		$query = new \WP_Query( $args );
+
+		if ( ! $query->have_posts() ) {
+			return;
+		}
+
+		$cart_text_filter = null;
+		if ( ! empty( $settings['button_text'] ) ) {
+			$custom_text = $settings['button_text'];
+			$cart_text_filter = function( $text, $product ) use ( $custom_text ) {
+				return $custom_text;
+			};
+			add_filter( 'woocommerce_product_add_to_cart_text', $cart_text_filter, 99, 2 );
+		}
+
+		?>
+		<div class="lcake-product-grid">
+			<?php
+			while ( $query->have_posts() ) :
+				$query->the_post();
+				global $product; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+				if ( ! $product instanceof \WC_Product ) {
+					$product = wc_get_product( get_the_ID() ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+				}
+				if ( ! $product ) {
+					continue;
+				}
+				?>
+				<div class="lcake-product-grid-card">
+					<a href="<?php the_permalink(); ?>" class="lcake-product-grid-thumb">
+						<?php echo wp_kses_post( $product->get_image( 'medium', array( 'class' => 'lcake-product-grid-image' ) ) ); ?>
+					</a>
+					<div class="lcake-product-grid-content">
+						<h3 class="lcake-product-grid-title">
+							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+						</h3>
+						<div class="lcake-product-grid-price"><?php echo wp_kses_post( $product->get_price_html() ); ?></div>
+						<div class="lcake-product-grid-cart">
+							<?php echo do_shortcode( '[add_to_cart id="' . $product->get_id() . '" show_price="false"]' ); ?>
+						</div>
+					</div>
+				</div>
+			<?php endwhile; ?>
+		</div>
+		<?php
+		if ( $cart_text_filter ) {
+			remove_filter( 'woocommerce_product_add_to_cart_text', $cart_text_filter, 99 );
+		}
+		wp_reset_postdata();
+	}
+}

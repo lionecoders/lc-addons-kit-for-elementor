@@ -70,7 +70,7 @@
 
 .lcake-main-wrapper .lcake-bar .lcake-bar-track {
     width: 0%;
-    background-color: #333;
+    background-color: #3b82f6;
     display: block;
     height: 100%;
     overflow: visible!important;
@@ -109,7 +109,7 @@
 
 .lcake-main-wrapper .lcake-bar-content .lcake-skill-title {
     font-weight: 700;
-    color: #000
+    color: #111827
 }
 
 .lcake-main-wrapper .lcake-percentage-wrapper {
@@ -733,4 +733,12 @@
 
 .lcake-main-wrapper .style-ribbon .lcake-single-skill-bar.color-10 .lcake-percentage-wrapper::before {
     color: #4a3080
+}
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-progress-bar a,
+.lcake-progress-bar a,
+.lcake-kit-progress-bar a,
+.lc-header-footer-progress-bar a {
+    text-decoration: none !important;
 }

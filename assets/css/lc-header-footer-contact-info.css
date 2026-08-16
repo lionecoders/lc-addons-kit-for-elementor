@@ -1,0 +1,51 @@
+.lc-hf-contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lc-hf-contact-info--vertical .lc-hf-contact-info {
+    flex-direction: column;
+}
+
+.lc-hf-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.lc-hf-contact-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b82f6;
+}
+
+.lc-hf-contact-icon i,
+.lc-hf-contact-icon svg {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.lc-hf-contact-text {
+    font-size: 14px;
+    color: #374151;
+}
+
+a.lc-hf-contact-link:hover .lc-hf-contact-text {
+    color: #3b82f6;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lc-header-footer-contact-info a,
+.lcake-contact-info a,
+.lcake-kit-contact-info a,
+.lc-header-footer-contact-info a {
+    text-decoration: none !important;
+}

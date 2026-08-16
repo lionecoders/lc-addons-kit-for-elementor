@@ -61,3 +61,12 @@
     margin-bottom: 0;
 }
 
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-drop-caps a,
+.lcake-drop-caps a,
+.lcake-kit-drop-caps a,
+.lc-header-footer-drop-caps a {
+    text-decoration: none !important;
+}

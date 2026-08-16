@@ -1,0 +1,31 @@
+.lcake-woo-checkout #payment {
+    background: #f9fafb;
+    border-radius: 16px;
+}
+
+.lcake-woo-checkout .form-row input.input-text,
+.lcake-woo-checkout .form-row select {
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    padding: 10px 14px;
+}
+
+.lcake-woo-checkout #place_order {
+    background: #3b82f6;
+    border-radius: 12px;
+    font-weight: 700;
+    padding: 14px 30px;
+}
+
+.lcake-woo-checkout #place_order:hover {
+    background: #2563eb;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-woo-checkout a,
+.lcake-woo-checkout a,
+.lcake-kit-woo-checkout a,
+.lc-header-footer-woo-checkout a {
+    text-decoration: none !important;
+}

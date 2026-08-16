@@ -47,3 +47,12 @@
   color: #555;
 }
 
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-faq a,
+.lcake-faq a,
+.lcake-kit-faq a,
+.lc-header-footer-faq a {
+    text-decoration: none !important;
+}

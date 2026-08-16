@@ -1,0 +1,99 @@
+.lc-hf-cart-icon {
+    position: relative;
+    display: inline-flex;
+}
+
+.lc-hf-cart-icon-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: #111827;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.lc-hf-cart-icon-btn:hover {
+    background-color: rgba(59, 130, 246, 0.08);
+}
+
+.lc-hf-cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #3b82f6;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 999px;
+    line-height: 1;
+}
+
+.lc-hf-cart-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 300px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.25s ease;
+    z-index: 100;
+}
+
+.lc-hf-cart-icon.is-open .lc-hf-cart-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lc-hf-cart-dropdown .woocommerce-mini-cart-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.lc-hf-cart-dropdown .total {
+    font-weight: 700;
+}
+
+.lc-hf-cart-dropdown .button {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    background: #3b82f6;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.lc-hf-cart-dropdown .button:hover {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lc-header-footer-cart-icon a,
+.lcake-cart-icon a,
+.lcake-kit-cart-icon a,
+.lc-header-footer-cart-icon a {
+    text-decoration: none !important;
+}

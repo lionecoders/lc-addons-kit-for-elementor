@@ -1,0 +1,29 @@
+.lc-hf-site-logo {
+    display: inline-flex;
+    align-items: center;
+}
+
+.lc-hf-site-logo-link {
+    display: inline-flex;
+}
+
+.lc-hf-site-logo img {
+    width: 140px;
+    height: auto;
+    display: block;
+}
+
+.lc-hf-notice {
+    color: #9ca3af;
+    font-size: 13px;
+    font-style: italic;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lc-header-footer-site-logo a,
+.lcake-site-logo a,
+.lcake-kit-site-logo a,
+.lc-header-footer-site-logo a {
+    text-decoration: none !important;
+}

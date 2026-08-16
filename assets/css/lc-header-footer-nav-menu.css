@@ -1,0 +1,278 @@
+.lc-hf-nav-menu__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.lc-hf-nav-menu {
+    position: relative;
+    z-index: 2;
+}
+
+.lc-hf-nav-menu:after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.lc-hf-nav-menu, 
+.lc-hf-nav-menu li, 
+.lc-hf-nav-menu ul {
+    display: block;
+    line-height: normal;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.lc-hf-nav-menu ul {
+    display: none;
+}
+
+.lc-hf-nav-menu--layout-horizontal .lc-hf-nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lc-hf-nav-menu--layout-vertical .lc-hf-nav-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.lc-hf-nav-menu__align-right .lc-hf-nav-menu {
+    justify-content: flex-end;
+}
+.lc-hf-nav-menu__align-left .lc-hf-nav-menu {
+    justify-content: flex-start;
+}
+.lc-hf-nav-menu__align-center .lc-hf-nav-menu {
+    justify-content: center;
+}
+.lc-hf-nav-menu__align-justify .lc-hf-nav-menu {
+    justify-content: space-between;
+}
+.lc-hf-nav-menu__align-justify .lc-hf-nav-menu > li {
+    flex-grow: 1;
+}
+.lc-hf-nav-menu__align-justify .lc-hf-nav-menu > li > a {
+    justify-content: center;
+}
+
+.lc-hf-nav-menu a, 
+.lc-hf-nav-menu li {
+    position: relative;
+}
+
+.lc-hf-nav-menu a {
+    align-items: center;
+    display: flex;
+    line-height: 20px;
+    padding: 10px 20px;
+    text-decoration: none !important;
+}
+
+.lc-hf-nav-menu .sub-arrow {
+    align-items: center;
+    display: flex;
+    line-height: 1;
+    margin-block-end: -10px;
+    margin-block-start: -10px;
+    padding: 10px;
+    padding-inline-end: 0;
+}
+
+.lc-hf-nav-menu .sub-arrow i {
+    pointer-events: none;
+    font-size: 0.7em;
+}
+
+/* Dropdown Base Styles */
+.lc-hf-nav-menu > li.lc-hf-has-submenu,
+.lc-hf-nav-submenu > li.lc-hf-has-submenu {
+    position: relative;
+}
+
+.lc-hf-nav-submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    z-index: 999;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-radius: 4px;
+}
+
+/* Nested Submenus (3rd level+) */
+.lc-hf-nav-submenu .lc-hf-nav-submenu {
+    top: 0;
+    left: 100%;
+    transform: translateX(10px) translateY(0);
+}
+
+/* Hover and Active states (compatible with SmartMenus) */
+.lc-hf-nav-menu li.lc-hf-has-submenu:hover > .lc-hf-nav-submenu,
+.lc-hf-nav-menu li.lc-hf-has-submenu.highlighted > .lc-hf-nav-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) translateX(0);
+    display: flex !important; /* Override potential JS hiding */
+}
+
+/* Dropdown Items */
+.lc-hf-nav-submenu li {
+    width: 100%;
+}
+
+.lc-hf-nav-submenu li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    color: #4b5563;
+    font-size: 14px;
+    transition: all 0.25s ease;
+}
+
+.lc-hf-nav-submenu li:last-child > a {
+    border-bottom: none;
+}
+
+.lc-hf-nav-submenu li a:hover {
+    background-color: #f3f4f6;
+    color: #3b82f6;
+}
+
+/* Arrow rotation on hover */
+.lc-hf-nav-menu li.lc-hf-has-submenu:hover > a > .sub-arrow i {
+    transform: rotate(180deg);
+}
+
+.lc-hf-nav-submenu li.lc-hf-has-submenu > a > .sub-arrow i {
+    transform: rotate(-90deg);
+}
+
+
+.lc-hf-nav-menu--dropdown {
+    background-color: #fff;
+    font-size: 13px;
+}
+
+.lc-hf-nav-menu--dropdown.lc-hf-nav-menu__container {
+    margin-top: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transform-origin: top;
+    transition: max-height 0.3s, transform 0.3s;
+    position: absolute;
+    z-index: 9997;
+    min-width: 100%;
+    width: max-content;
+    max-width: 100vw;
+}
+
+.lc-hf-nav-menu--dropdown a {
+    color: #33373d;
+}
+
+ul.lc-hf-nav-menu--dropdown a, 
+ul.lc-hf-nav-menu--dropdown a:focus, 
+ul.lc-hf-nav-menu--dropdown a:hover {
+    border-inline-start: 8px solid transparent;
+    text-shadow: none;
+}
+
+.lc-hf-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none !important;
+}
+
+.lc-hf-menu-toggle-bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: #33373d;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Dropdown Logic */
+.elementor-widget-lc-header-footer-nav-menu {
+    --menu-height: 100vh;
+}
+
+.lc-hf-menu-toggle:not(.lc-hf-active) + .lc-hf-nav-menu__container.lc-hf-nav-menu--dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transform: scaleY(0);
+}
+
+.lc-hf-menu-toggle.lc-hf-active + .lc-hf-nav-menu__container.lc-hf-nav-menu--dropdown {
+    animation: hide-scroll .3s backwards;
+    max-height: var(--menu-height);
+    transform: scaleY(1);
+}
+
+/* Active burger animation */
+.lc-hf-menu-toggle.lc-hf-active .lc-hf-menu-toggle-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.lc-hf-menu-toggle.lc-hf-active .lc-hf-menu-toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.lc-hf-menu-toggle.lc-hf-active .lc-hf-menu-toggle-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+@keyframes hide-scroll {
+    0%, 100% {
+        overflow: hidden;
+    }
+}
+
+/* Mobile Submenus (Accordion Style) */
+.lc-hf-nav-menu--dropdown .lc-hf-nav-submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    padding-left: 20px;
+    background: transparent;
+    display: none; /* Handled by smartmenus or JS */
+}
+
+/* If smartmenus adds sm-open to the UL on mobile */
+.lc-hf-nav-menu--dropdown ul.sm-nowrap,
+.lc-hf-nav-menu--dropdown li.lc-hf-has-submenu:hover > .lc-hf-nav-submenu,
+.lc-hf-nav-menu--dropdown li.lc-hf-has-submenu.highlighted > .lc-hf-nav-submenu {
+    display: block !important;
+}
+

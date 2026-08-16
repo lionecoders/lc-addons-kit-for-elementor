@@ -75,3 +75,12 @@
 }
 
 /* Alignments natively supported via Elementor */
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-lottie a,
+.lcake-lottie a,
+.lcake-kit-lottie a,
+.lc-header-footer-lottie a {
+    text-decoration: none !important;
+}

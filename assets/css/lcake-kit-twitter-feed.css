@@ -1,0 +1,18 @@
+.lcake-twitter-feed {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.lcake-twitter-feed .twitter-timeline {
+    width: 100% !important;
+}
+
+
+/* Remove text decoration for a tags */
+.elementor-widget-lcake-kit-twitter-feed a,
+.lcake-twitter-feed a,
+.lcake-kit-twitter-feed a,
+.lc-header-footer-twitter-feed a {
+    text-decoration: none !important;
+}
