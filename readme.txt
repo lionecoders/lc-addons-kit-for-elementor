@@ -2,9 +2,9 @@
 Contributors: mveous, deep7197
 Tags: elementor, widgets, addons, page-builder, lc-kit
 Requires at least: 5.0
-Tested up to: 7.4
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -173,6 +173,9 @@ This plugin is specifically designed for Elementor and requires Elementor to be 
 3. LC Header Footer Kit Widgets
 
 == Changelog ==
+= 1.2.1 =
+* Tested upto WP 7.1
+
 = 1.2.0 =
 * Added LC Header Footer Kit Widgets.
 * Added Template Create System.
