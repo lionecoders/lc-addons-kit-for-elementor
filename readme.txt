@@ -1,5 +1,5 @@
 === LC Addons Kit for Elementor ===
-Contributors: mveous, deep7197
+Contributors: deep7197
 Tags: elementor, widgets, addons, page-builder, lc-kit
 Requires at least: 5.0
 Tested up to: 7.1
